@@ -1,0 +1,206 @@
+import InterfaceLayout from "page-componet/layout"
+import Model from "components/model"
+import { Grid, Item, Lwrap, Rwrap } from "./structure"
+import logo from "../../../../assits/model.svg"
+import Input from "components/input"
+import Button from "components/button"
+import { useCallback, useEffect, useState } from "react"
+import outisdeClick from "functions/outside"
+import { useDispatch, useSelector } from "react-redux"
+import { setModelData } from "store/loginModel"
+import LoginModelPart from "./login"
+
+const Left = () => {
+    return (
+        <>
+            <Lwrap>
+                <img src={logo} alt="model for login" />
+            </Lwrap>
+        </>
+    )
+}
+
+const roles = ['admin', 'user', 'guest', 'super admin']
+const Drop = (props) => {
+    const { onClick, array } = props;
+    return (
+        <>
+            {
+                Array.isArray(array) ? array.map((item, index) => {
+                    return (
+                        <Item key={index}
+                            onClick={onClick}
+                            aria-hidden="true"
+                        >
+                            {item}
+                        </Item>
+                    )
+                }
+                ) : null
+            }
+        </>
+    )
+}
+
+const Outside = outisdeClick(Drop)
+
+const RoleModel = (props) => {
+
+    const [drop, setDrop] = useState(false);
+    const [role, setRole] = useState("" || props.role)
+    //  set valeu to redux 
+    const dispatch = useDispatch();
+
+    const handelFocus = () => {
+        setDrop(true)
+    }
+
+    console.log(role)
+
+    const close = () => {
+        setDrop(false)
+    }
+    const dropClick = (e) => {
+        setRole(e.target.innerText)
+        setDrop(false)
+        dispatch(setModelData({
+            type: e.target.innerText,
+            valid: true,
+        }))
+    }
+
+
+    const error = useCallback(() => {
+        if (role?.length > 0) {
+            let ol = String(role).toLowerCase()
+            if (!roles.includes(ol)) {
+                return true
+            }
+        }
+        return false
+    }, [role])
+
+
+    const setValue = (e) => {
+        setRole(e.target.value)
+
+        dispatch(setModelData({
+            type: role,
+            valid: error() ? false : true,
+        }))
+    }
+
+    useEffect(() => {
+        dispatch(setModelData({
+            type: role,
+            valid: error() ? false : true,
+        }))
+
+    }, [dispatch, error, role])
+
+    return (
+        <>
+            <Input
+                placeholder="Enter Your Role"
+                type="model"
+                inputype="text"
+                onFocus={handelFocus}
+                value={role}
+                onChange={(e) => setValue(e)}
+                error={error()}
+                errorMessage="Role is not in application"
+            />
+
+            {
+                drop ? <div
+                    style={{ position: "absolute", top: "44%", left: 0, width: "100%", background: "rgb(23 86 130)", zIndex: 1 }}
+                >
+                    <Outside
+                        outSide={close}
+                        onClick={dropClick}
+                        array={
+                            role?.length > 0 ? roles.filter(item => item.includes(role)) : roles
+                        }
+                    />
+                </div> : null
+            }
+        </>
+    )
+}
+
+
+const Right = (props) => {
+
+    const user = useSelector(state => state.loginModel)
+    const dispatch = useDispatch();
+
+
+    const [activeCompont, setActiveCompont] = useState(1)
+    const [text, setText] = useState("Next");
+
+    console.log(user)
+    const handelClick = () => {
+
+        if (user.isValid) {
+            setText("Login")
+            setActiveCompont(activeCompont + 1)
+            dispatch(setModelData({
+                number: 2
+            }))
+        }
+
+    }
+
+    const url = new URL(window.location.href);
+    const role = url.searchParams.get("role");
+
+    // console.log(role)
+    // url be like this http://localhost:3000/?role=Admin
+    return (
+        <>
+            <Rwrap>
+
+                {
+                    activeCompont === 1 ? <RoleModel role={role} /> : null
+                }
+                {
+                    activeCompont === 2 && <LoginModelPart />
+                }
+
+                <Button
+                    type="login-model"
+                    onClick={handelClick}
+                >
+                    {text}
+                </Button>
+            </Rwrap>
+        </>
+    )
+}
+
+const LoginModel = () => {
+    return (
+        <>
+            <Model.Outer>
+                <Model.Inner>
+                    <Grid>
+                        <Left />
+                        <Right />
+                    </Grid>
+                </Model.Inner>
+            </Model.Outer>
+        </>
+    )
+}
+
+const MainLoginPage = () => {
+    return (
+        <>
+            <InterfaceLayout>
+                <LoginModel />
+            </InterfaceLayout>
+        </>
+    )
+}
+
+export default MainLoginPage

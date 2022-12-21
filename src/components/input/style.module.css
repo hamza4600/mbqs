@@ -1,0 +1,66 @@
+.login {
+    width: 100%;
+    flex: 1;
+}
+
+.disable {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.login {
+    font-size: 1em;
+    font-weight: lighter;
+    line-height: 1.5;
+    overflow: visible;
+    height: calc(1em + 1.25rem + 0px);
+    padding: 0px 2px;
+    margin: 10px 0px;
+    width: 90%;
+    border-bottom: 1px solid #B0C4DE !important;
+    background: transparent;
+    color: whitesmoke;
+    text-transform: capitalize;
+}
+
+.login::placeholder {
+    color: #C2BEBE;
+}
+
+.login:focus {
+    outline: none;
+}
+
+.passIcon {
+    position: relative;
+    right: 0;
+    top: 6px;
+    bottom: 0px;
+    left: -25px;
+    margin: auto;
+    cursor: pointer;
+    color: #c3daf3;
+}
+
+/* For Text Area */
+.loginArea {
+    width: 100%;
+}
+
+.textArealogin {
+    width: 93%;
+    height: 10rem;
+    border: 1px solid #B0C4DE;
+    background-color: #F0F8FF;
+    padding: 0.5rem;
+    margin: 10px 0px;
+    font-size: 1em;
+    /*  cannot resize */
+    resize: none;
+}
+
+.error {
+    color: red;
+    font-size: 0.8rem;
+    margin: 0px 0px 0px 0px;
+}

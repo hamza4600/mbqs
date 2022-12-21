@@ -1,0 +1,47 @@
+.button {
+    position: relative;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-wrap: nowrap;
+    flex-direction: row;
+    text-decoration: none;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    user-select: none;
+    border: 0;
+    white-space: nowrap;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    webkit-font-smoothing: antialiased;
+}
+
+
+.leftIcon {
+    position: relative;
+    right: 5px;
+    top: 2px;
+}
+
+.rightIcon {
+    position: relative;
+    left: 5px;
+    top: 2px;
+}
+
+.disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+/*Model */
+
+.model {
+    width: 90%;
+    background-color:  #D8E6F1;
+    color: black;
+    padding: 3px 18px;
+    margin-top: 2rem;
+}
