@@ -46,9 +46,11 @@ const Tooltip = forwardRef(
                     };
                 case "sidebar":
                     return {
-                        position: "fixed",
-                        left: "60px",
+                        position: "absolute",
+                        left: "42px",
                         transform: "translateY(-100%)",
+                        zIndex: "100",
+                        marginTop: "55px",
                     };
                 default:
                     return {

@@ -18,7 +18,8 @@ const Check = styled.input`
     cursor: pointer;
     margin-right: 0.5em;
     border-radius: ${(props) => (props.br ? props.br : "0")};
-  }
+    background: none;
+}
 
   :checked {
     background: ${(props) => (props.bg ? props.bg : "#275482")};
@@ -40,10 +41,9 @@ const Check = styled.input`
 const Radio = memo(
     forwardRef(function (props, ref) {
         const {
-            rounded,
+            rounded = false,
             id,
             value,
-            checked,
             onChange,
             onBlur,
             hasError,
@@ -83,12 +83,12 @@ const Radio = memo(
                     id={id}
                     type="checkbox"
                     value={value}
-                    checked={checked}
+                    // checked={checked}
                     onChange={onChange}
                     onBlur={onBlur}
                     disabled={disabled}
                     style={style}
-                    {...props}
+                    // {...props}
                 />
                 <label style={{ color: typeOf?.color || "inherit" }} htmlFor={id}>{label}</label>
                 {hasError && <p style={{ color: "red" }}>{errorMessage}</p>}

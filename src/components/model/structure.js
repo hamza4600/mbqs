@@ -35,6 +35,10 @@ const Model2 = styled.div`
   width: 100%;
   max-width: 661px;
   border-radius: 6px;
+
+    @media (max-width: 768px) {
+        max-height: 410px;
+    }
   `;
 
 export const ModelTwo = memo(forwardRef(

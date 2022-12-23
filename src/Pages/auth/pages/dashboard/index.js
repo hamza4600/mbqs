@@ -1,7 +1,12 @@
+import InterfaceLayout from "page-componet/layout"
+
 const Dashboard = () => {
     return (
         <>
-            <h1>Dashboard</h1>
+            <InterfaceLayout sidebar>
+
+            </InterfaceLayout>
+
         </>
     )
 }

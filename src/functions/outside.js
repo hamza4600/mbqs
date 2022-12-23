@@ -2,7 +2,7 @@ import React from 'react';
 
 function outisdeClick(WrapperComponent, callback) {
     function HOC(props) {
-        
+
         const { outSide } = props;
         const ref = React.useRef(null);
         React.useEffect(() => {

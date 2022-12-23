@@ -44,7 +44,7 @@ const Left = () => {
 const Footer = () => {
     return (
         <>
-            <PageFoot>
+            <PageFoot aria-label="footer">
                 <Left />
                 <p>{text} </p>
             </PageFoot>

@@ -12,13 +12,18 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
-    min-width: 13rem;
+    min-width: 12rem;
     max-width: auto;
 
     #flag{
         width: 32px;
         height: 20px;
     }
+
+    @media screen and (max-width: 768px) {
+        min-width: 8rem;
+    }
+
     `;
 
 const Icon = styled.i`
@@ -35,6 +40,11 @@ const Icon = styled.i`
         color: #fff;
     }
 
+    @media screen and (max-width: 768px) {
+        margin: 0 0.5rem;
+        scale: 0.8;
+    }
+
 `;
 
 const RightSide = () => {
@@ -42,7 +52,7 @@ const RightSide = () => {
         <>
             <Wrapper>
                 <Icon>
-                    <BiSearch size={22}/>
+                    <BiSearch size={20}/>
                 </Icon>
                 <Icon>
                     <SlMenu size={20}/>

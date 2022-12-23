@@ -18,6 +18,12 @@ const Page = styled.div`
     align-items: center;
     justify-content: space-between;
     position: relative;
+    
+    main {
+        position: relative;
+        flex: 1;
+        width: 100%;
+    }
     `;
 
 const MakePage = forwardRef(

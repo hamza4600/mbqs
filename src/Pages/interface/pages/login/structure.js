@@ -40,16 +40,35 @@ export const Item = styled.div`
     }
     `;
 
-
-
 export const LoginModelWrapper = styled.div`
     
+    color: #C2BEBE;
+    font-size: 12px;
     #row {
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        align-items: center;
-        background: #fff;
-        width: 100%;
+        margin-top: 10px;
+        width: 90%;
+        font-size: 10px;
     }
-    `;
+
+    @media (max-width: 768px) {
+        #row {
+            width: 90%;
+        }
+    }
+`;
+
+export const RegesterWrapper = styled.div`
+
+    font-size: 12px !important;
+
+    input {
+        margin: 5px 0 !important;
+    }
+
+    @media (max-width: 768px) {
+        margin-top: -50px;
+    }
+`;

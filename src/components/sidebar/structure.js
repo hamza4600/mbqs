@@ -6,11 +6,11 @@ export const Aside = styled.aside`
   align-items: flex-start;
   justify-content: center;
   width: ${(props) => (props.width ? props.width : "240")}px;
-  height: ${(props) => props.height};
+  height: ${(props) => props.height || "100%"};
   background-color: ${({ theme }) => theme.sideBarBg};
   color: ${({ theme }) => theme.sideBarText};
   position: absolute;
-  overflow: auto;
+  // overflow: auto;
   right: ${(props) => (props.right ? "0px" : "")};
   left: ${(props) => (props.left ? "0px" : "")};
   z-index: 100;

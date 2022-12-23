@@ -18,7 +18,7 @@ const LoginModelPart = () => {
             [name]: e.target.value,
         })
     }
-    
+
 
     return (
         <>
@@ -28,7 +28,7 @@ const LoginModelPart = () => {
                     type="model"
                     inputype="text"
                     value={values.username}
-                    onChange={(e) => setValue(e , 'username')}
+                    onChange={(e) => setValue(e, 'username')}
                     // error={error()}
                     errorMessage="Enter Your User Name"
                 />
@@ -43,12 +43,16 @@ const LoginModelPart = () => {
                 />
 
                 <div id="row">
-                    {/* <Input.Radio
+                    <Input.Radio
                         type="model"
                         name="remember"
                         value="remember"
                         checked={values.remember}
-                    /> */}
+                        onChange={(e) => setValue(e, 'remember')}
+                        label="Remember Me"
+                    />
+                    <a href="/">Forgot Password</a>
+                    <a href="/">Sign Up</a>
                 </div>
 
             </LoginModelWrapper>

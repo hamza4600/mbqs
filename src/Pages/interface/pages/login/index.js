@@ -1,14 +1,18 @@
 import InterfaceLayout from "page-componet/layout"
 import Model from "components/model"
-import { Grid, Item, Lwrap, Rwrap } from "./structure"
+import { Grid, Lwrap, Rwrap } from "./structure"
 import logo from "../../../../assits/model.svg"
 import Input from "components/input"
 import Button from "components/button"
 import { useCallback, useEffect, useState } from "react"
-import outisdeClick from "functions/outside"
 import { useDispatch, useSelector } from "react-redux"
 import { setModelData } from "store/loginModel"
 import LoginModelPart from "./login"
+import RegesterModel from "./regester"
+import Outside from "./drop"
+import OTP from "./otp"
+import ResetPass from "./resetPass"
+
 
 const Left = () => {
     return (
@@ -21,28 +25,6 @@ const Left = () => {
 }
 
 const roles = ['admin', 'user', 'guest', 'super admin']
-const Drop = (props) => {
-    const { onClick, array } = props;
-    return (
-        <>
-            {
-                Array.isArray(array) ? array.map((item, index) => {
-                    return (
-                        <Item key={index}
-                            onClick={onClick}
-                            aria-hidden="true"
-                        >
-                            {item}
-                        </Item>
-                    )
-                }
-                ) : null
-            }
-        </>
-    )
-}
-
-const Outside = outisdeClick(Drop)
 
 const RoleModel = (props) => {
 
@@ -134,11 +116,13 @@ const Right = (props) => {
     const user = useSelector(state => state.loginModel)
     const dispatch = useDispatch();
 
+    const url = new URL(window.location.href);
+    const role = url.searchParams.get("role");
 
-    const [activeCompont, setActiveCompont] = useState(1)
+    const [activeCompont, setActiveCompont] = useState(5    )
     const [text, setText] = useState("Next");
 
-    console.log(user)
+    // console.log(user)
     const handelClick = () => {
 
         if (user.isValid) {
@@ -148,11 +132,16 @@ const Right = (props) => {
                 number: 2
             }))
         }
-
+        if (activeCompont === 3) {
+            setText("Regester")
+        }
     }
 
-    const url = new URL(window.location.href);
-    const role = url.searchParams.get("role");
+    useEffect(() => {
+        if (activeCompont === 3) {
+            setText("Regester")
+        }
+    }, [activeCompont])
 
     // console.log(role)
     // url be like this http://localhost:3000/?role=Admin
@@ -161,12 +150,20 @@ const Right = (props) => {
             <Rwrap>
 
                 {
-                    activeCompont === 1 ? <RoleModel role={role} /> : null
+                    activeCompont === 1 && <RoleModel role={role} />
                 }
                 {
                     activeCompont === 2 && <LoginModelPart />
                 }
-
+                {
+                    activeCompont === 3 && <RegesterModel />
+                }
+                {
+                    activeCompont === 4 && <OTP />
+                }
+                {
+                    activeCompont === 5 && <ResetPass />
+                }
                 <Button
                     type="login-model"
                     onClick={handelClick}

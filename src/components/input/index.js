@@ -45,9 +45,9 @@ const Input = forwardRef(
             }
         }, [id, autoFocus])
 
-        // useEffect(() => {
+        useEffect(() => {
 
-        // }, [value])
+        }, [value])
 
         const showPassword = () => {
             const password = document.getElementById(id);

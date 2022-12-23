@@ -5,7 +5,7 @@ const lightThem = {
     color: 'white',
     iconGroup: '#00416A',
     iconColor: '#c4c4c4',
-    sideBarBg: '#00416A',
+    sideBarBg: '#0E2637',
     sideBarText: '#c4c4c4',
     modelOne: '#00416A',
     page: ' #D8E6F1 ',
