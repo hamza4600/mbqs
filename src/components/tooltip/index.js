@@ -37,17 +37,17 @@ const Tooltip = forwardRef(
 
         const typeObject = useMemo(() => {
             switch (type) {
-                case "icon":
+                case "navbar":
                     return {
                         position: "absolute",
-                        top: "2.1rem",
-                        left: "50%",
+                        top: "29px",
+                        left: "10%",
                         transform: "translateX(-50%)",
                     };
                 case "sidebar":
                     return {
                         position: "absolute",
-                        left: "42px",
+                        left: "40px",
                         transform: "translateY(-100%)",
                         zIndex: "100",
                         marginTop: "55px",

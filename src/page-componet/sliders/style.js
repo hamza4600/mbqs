@@ -57,7 +57,8 @@ export const Span = styled.span`
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease-in-out;
-
+    margin-left: 8px;
+    
     &:hover {
         color: #00BFFF;
     }

@@ -5,8 +5,7 @@ import { useState } from "react"
 import { Span, Wrapper } from "./style"
 import { sidebarData } from "./varibel"
 
-
-const Icon = (props) => { // not working 
+const Icon = (props) => {
     const {
         icon,
         hover,

@@ -12,7 +12,6 @@ export const useToggelDropDown = ({ initialState = false }) => {
         on: on,
         off: off,
         toggle: toggle,
-        // otherOption: otherOption
     }
 
     return [state, options];

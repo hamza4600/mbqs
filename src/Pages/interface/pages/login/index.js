@@ -37,8 +37,7 @@ const RoleModel = (props) => {
         setDrop(true)
     }
 
-    console.log(role)
-
+    // console.log(role)
     const close = () => {
         setDrop(false)
     }
@@ -50,7 +49,6 @@ const RoleModel = (props) => {
             valid: true,
         }))
     }
-
 
     const error = useCallback(() => {
         if (role?.length > 0) {
@@ -110,7 +108,7 @@ const RoleModel = (props) => {
     )
 }
 
-
+// pass all values to redux 
 const Right = (props) => {
 
     const user = useSelector(state => state.loginModel)
@@ -119,10 +117,9 @@ const Right = (props) => {
     const url = new URL(window.location.href);
     const role = url.searchParams.get("role");
 
-    const [activeCompont, setActiveCompont] = useState(5    )
+    const [activeCompont, setActiveCompont] = useState(1)
     const [text, setText] = useState("Next");
 
-    // console.log(user)
     const handelClick = () => {
 
         if (user.isValid) {
@@ -135,16 +132,26 @@ const Right = (props) => {
         if (activeCompont === 3) {
             setText("Regester")
         }
-    }
+        if (activeCompont === 2 && text === "Login") {
+            // setText("OTP")
+            // setActiveCompont(activeCompont + 1)
+            window.location.href = "/auth/panel"
+        }
+
+    };
+
 
     useEffect(() => {
         if (activeCompont === 3) {
             setText("Regester")
         }
+        if (activeCompont === 4) {
+            setText("OTP")
+        }
     }, [activeCompont])
 
     // console.log(role)
-    // url be like this http://localhost:3000/?role=Admin
+    // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
     return (
         <>
             <Rwrap>
@@ -153,7 +160,7 @@ const Right = (props) => {
                     activeCompont === 1 && <RoleModel role={role} />
                 }
                 {
-                    activeCompont === 2 && <LoginModelPart />
+                    activeCompont === 2 && <LoginModelPart setActiveCompont={setActiveCompont} />
                 }
                 {
                     activeCompont === 3 && <RegesterModel />
@@ -193,7 +200,7 @@ const LoginModel = () => {
 const MainLoginPage = () => {
     return (
         <>
-            <InterfaceLayout>
+            <InterfaceLayout blurnav>
                 <LoginModel />
             </InterfaceLayout>
         </>

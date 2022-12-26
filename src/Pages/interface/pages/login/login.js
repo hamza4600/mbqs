@@ -4,8 +4,8 @@ import { LoginModelWrapper } from "./structure"
 
 // part of LoginModel
 
-const LoginModelPart = () => {
-
+const LoginModelPart = (props) => {
+    
     const [values, setValues] = useState({
         username: '',
         password: '',
@@ -19,6 +19,12 @@ const LoginModelPart = () => {
         })
     }
 
+    const forget = () => {
+        props.setActiveCompont(3)
+    }
+    const signup = () => {
+        props.setActiveCompont(5)
+    }
 
     return (
         <>
@@ -51,8 +57,12 @@ const LoginModelPart = () => {
                         onChange={(e) => setValue(e, 'remember')}
                         label="Remember Me"
                     />
-                    <a href="/">Forgot Password</a>
-                    <a href="/">Sign Up</a>
+                    <p
+                        onClick={forget}
+                    >Forgot Password</p>
+                    <p
+                        onClick={signup}
+                    >Sign Up</p>
                 </div>
 
             </LoginModelWrapper>

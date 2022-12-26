@@ -5,16 +5,17 @@ const Navbar = forwardRef(
     function Navbar(props, ref) {
         return (
             <>
-                <Nav
+                <Nav    
                     ref={ref}
                     aria-label="navbar"
                     tabIndex={0}
+                    blure = {props.blure}
                 >
                     <NavWrapper>
                         {props.Left}
                         {props.children}
                         {props.Center}
-                        {props.Right}
+                        {!props.blure && props.Right}
                     </NavWrapper>
                 </Nav>
             </>

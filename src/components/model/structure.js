@@ -10,8 +10,7 @@ const Model1 = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  backdrop-filter: blur(5px);
-    `;
+  `;
 
 export const ModelOne = memo(forwardRef(
     function ModelOne(props, ref) {
@@ -30,6 +29,7 @@ const Model2 = styled.div`
   max-height: 350px;
   padding: 1rem;
   z-index: ${(props) => (props.show ? "-1" : "")};
+  z-index: 2;
   background-color: #003153;
   color: #fff;
   width: 100%;

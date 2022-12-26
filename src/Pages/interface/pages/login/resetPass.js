@@ -22,8 +22,8 @@ const ResetPass = () => {
             <LoginModelWrapper>
                 <Input
                     placeholder="Enter New Password"
-                    type="model"
-                    inputype="text"
+                    type="model-password"
+                    inputype="password"
                     value={pass.pass}
                     onChange={(e) => setValue(e, 'pass')}
                     // error={error()}
@@ -31,8 +31,8 @@ const ResetPass = () => {
                 />
                 <Input
                     placeholder="Renter New Password"
-                    type="model"
-                    inputype="text"
+                    type="model-password"
+                    inputype="password"
                     value={pass.cpass}
                     onChange={(e) => setValue(e, 'cpass')}
                     // error={error()}

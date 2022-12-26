@@ -40,8 +40,7 @@ const Sidebar = memo(forwardRef(
                     <Wrapper
                         aria-label="sidebar"
                         aria-haspopup="true"
-                        aria-expanded={trigger}
-                    // tabIndex={0}       
+                        aria-expanded={trigger}    
                     >
                         {children}
                     </Wrapper>

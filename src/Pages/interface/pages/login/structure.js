@@ -53,6 +53,10 @@ export const LoginModelWrapper = styled.div`
         font-size: 10px;
     }
 
+    p{
+        cursor: pointer;
+    }
+    
     @media (max-width: 768px) {
         #row {
             width: 90%;

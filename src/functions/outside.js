@@ -8,7 +8,7 @@ function outisdeClick(WrapperComponent, callback) {
         React.useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
-                    outSide();
+                    outSide && typeof outSide === "function" && outSide();
                 }
             }
             document.addEventListener("mousedown", handleClickOutside);
@@ -17,6 +17,7 @@ function outisdeClick(WrapperComponent, callback) {
             };
         }, [outSide, ref]);
         return <div
+            style={{ position: "relative" }}
             ref={ref}
         >
             <WrapperComponent {...props} />
