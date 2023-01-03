@@ -34,7 +34,7 @@ const Model2 = styled.div`
   color: #fff;
   width: 100%;
   max-width: 661px;
-  border-radius: 6px;
+  border-radius: 4px;
 
     @media (max-width: 768px) {
         max-height: 410px;

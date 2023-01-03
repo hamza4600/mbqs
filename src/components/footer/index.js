@@ -1,6 +1,4 @@
-import React from "react";
 import styled from "styled-components";
-import logo from '../../assits/footer.svg';
 
 const PageFoot = styled.footer`
     max-height: 25px;
@@ -15,41 +13,14 @@ const PageFoot = styled.footer`
     overflow: hidden;
     `;
 
-const Wrapper = styled.div`
-    display: grid;
-    place-items: center;
-    grid-auto-flow: column;
-    position: absolute;
-    left: 15px;
-    
-    img {
-        height: 22px;
-        margin-right: 6px;
-    }
-`;
-
 const text = '© Copyright by MBIQS (Pvt.) Limited, Since 2012. All Rights Reserved';
 
-const Left = () => {
-    return (
-        <>
-            <Wrapper>
-                <img src={logo} alt="logo" />
-                <p>Mian Builder</p>
-            </Wrapper>
-        </>
-    )
-}
-
-const Footer = () => {
-    return (
-        <>
-            <PageFoot aria-label="footer">
-                <Left />
-                <p>{text} </p>
-            </PageFoot>
-        </>
-    )
-};
+const Footer = () => (
+    <>
+        <PageFoot aria-label="footer">
+            <p>{text} </p>
+        </PageFoot>
+    </>
+);
 
 export default Footer;

@@ -1,5 +1,6 @@
 {
   "name": "mia_builder",
+  "domain": "https://mianbuilder.com/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {

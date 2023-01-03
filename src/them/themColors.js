@@ -10,7 +10,7 @@ const lightThem = {
     sideBarBg: '#0E2637',
     sideBarText: '#c4c4c4',
     modelOne: '#00416A',
-    page: ' #D8E6F1 ',
+    page: '#F0F8FF',
     adimPageText: '#003153',
     cards: 'white',
     cardText: '#00416A',
