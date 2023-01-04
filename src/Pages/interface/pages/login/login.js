@@ -1,11 +1,12 @@
 import Input from "components/input"
 import { useState } from "react"
-import { LoginModelWrapper } from "./structure"
+import { Head, LoginModelWrapper } from "./structure"
+import Button from "components/button"
 
 // part of LoginModel
 
 const LoginModelPart = (props) => {
-    
+
     const [values, setValues] = useState({
         username: '',
         password: '',
@@ -20,15 +21,20 @@ const LoginModelPart = (props) => {
     }
 
     const forget = () => {
-        props.setActiveCompont(3)
+        props.setActiveCompont(4)
     }
     const signup = () => {
-        props.setActiveCompont(5)
+        props.setActiveCompont(2)
+    }
+
+    const handelLogin = () => {
+        window.location.href = "/auth/panel"
     }
 
     return (
         <>
             <LoginModelWrapper>
+                <Head>Welcome</Head>
                 <Input
                     placeholder="User Name"
                     type="model"
@@ -65,6 +71,12 @@ const LoginModelPart = (props) => {
                     >Sign Up</p>
                 </div>
 
+                <Button
+                    type="login-model"
+                    onClick={handelLogin}
+                >
+                    Login
+                </Button>
             </LoginModelWrapper>
         </>
     )

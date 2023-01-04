@@ -15,12 +15,18 @@ export const Grid = styled.div`
     `;
 
 export const Lwrap = styled.div`
-        margin: 0 auto;
-        `;
+    background: #fff;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;        
+    `;
 
 export const Rwrap = styled.div`
     width: 300px;
     position: relative;
+    margin-left: 20px;
     
     @media (max-width: 768px) {
         width: 100%;
@@ -76,3 +82,13 @@ export const RegesterWrapper = styled.div`
         margin-top: -50px;
     }
 `;
+
+export const Head  = styled.h1`
+    font-size: 26px;
+    font-weight: 500;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #C2BEBE;
+    `;

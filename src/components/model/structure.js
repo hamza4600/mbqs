@@ -27,7 +27,6 @@ const Model2 = styled.div`
   position: relative;
   height: 100%;
   max-height: 350px;
-  padding: 1rem;
   z-index: ${(props) => (props.show ? "-1" : "")};
   z-index: 2;
   background-color: #003153;

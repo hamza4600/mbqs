@@ -1,7 +1,7 @@
 import Input from "components/input"
 import { useState } from "react"
-import { LoginModelWrapper } from "./structure"
-
+import { Head, LoginModelWrapper } from "./structure"
+import Button from "components/button"
 
 const ResetPass = () => {
 
@@ -20,6 +20,7 @@ const ResetPass = () => {
     return (
         <>
             <LoginModelWrapper>
+                <Head>Reset Password</Head>
                 <Input
                     placeholder="Enter New Password"
                     type="model-password"
@@ -38,6 +39,9 @@ const ResetPass = () => {
                     // error={error()}
                     errorMessage="Enter Your Password"
                 />
+
+                <Button type="login-model" onClick={() => { }}>Re-set Password</Button>
+
             </LoginModelWrapper>
         </>
     )

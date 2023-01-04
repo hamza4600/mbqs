@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 const lightThem = {
-    navBar: '#003153',
-    color: 'white',
-    navhoverIcon: '#00BFFF',
+    navBar: 'white',
+    color: 'black',
+    navhoverIcon: 'black',
 
     iconGroup: '#00416A',
     iconColor: '#c4c4c4',

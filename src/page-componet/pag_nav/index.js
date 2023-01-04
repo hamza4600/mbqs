@@ -1,7 +1,7 @@
 import Navbar from "components/navbar"
 import styled from "styled-components"
 
-import logo from "../../assits/Group.svg"
+import logo from "../../assits/Logo.svg"
 import flag from "../../assits/uk-flag.svg"
 
 import { BiSearch } from "react-icons/bi";
@@ -33,7 +33,7 @@ const Wrapper = styled.div`
 
 const Ico = styled.i`
     margin: 0 auto;
-    color: ${(props) => props.color ? '#00BFFF' : '#C2BEBE'};
+    color: ${(props) => props.color ? '#00BFFF' : '#0E2637'};
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -54,7 +54,6 @@ const Ico = styled.i`
 const Icon = (props) => {
     const { hover, Click, icon, color } = props;
     const [ref, istrue] = useHover();
-    // console.log(props);
     return (
         <>
             <Ico

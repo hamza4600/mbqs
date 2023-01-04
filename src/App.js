@@ -11,16 +11,14 @@ const InterfacePages = lazy(() => import('Pages/interface'));
 const AuthPages = lazy(() => import('Pages/auth'));
 
 
-const ThemWrapper = ({ children }) => {
-    return (
-        <>
-            <ThemeProvider theme={Them.light} >
-                <GlobalStyle />
-                {children}
-            </ThemeProvider>
-        </>
-    )
-}
+const ThemWrapper = ({ children }) => (
+  <>
+    <ThemeProvider theme={Them.light} >
+      <GlobalStyle />
+      {children}
+    </ThemeProvider>
+  </>
+)
 
 function App() {
   return (
@@ -28,10 +26,10 @@ function App() {
       <Suspense fallback={<PageSpinner />}>
         <ErrorBoundary>
           <ThemWrapper>
-          <Routes>
-            <Route path="/*" element={<InterfacePages />} />
-            <Route path="/auth/*" element={<AuthPages />} />
-          </Routes>
+            <Routes>
+              <Route path="/*" element={<InterfacePages />} />
+              <Route path="/auth/*" element={<AuthPages />} />
+            </Routes>
           </ThemWrapper>
         </ErrorBoundary>
       </Suspense>

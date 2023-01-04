@@ -1,12 +1,14 @@
 import Input from "components/input"
 import { useState } from "react"
-import { LoginModelWrapper } from "./structure"
+import { Head, LoginModelWrapper } from "./structure"
+import Button from "components/button"
 
 const OTP = () => {
     const [otp, setOtp] = useState("")
     return (
         <>
             <LoginModelWrapper>
+                <Head>OTP Verification</Head>
                 <Input
                     placeholder="Enter OTP Verification Code"
                     type="model"
@@ -16,6 +18,8 @@ const OTP = () => {
                     // error={error()}
                     errorMessage="Enter Your OTP"
                 />
+
+                <Button type="login-model" onClick={() => { }}>Verify</Button>
             </LoginModelWrapper>
         </>
     )

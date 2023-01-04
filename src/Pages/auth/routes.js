@@ -1,0 +1,18 @@
+export  const authRoutes = {
+    panel:  '/panel' ,
+    addbusines:  '/add-business' ,
+    creatbusines:  '/add-business' ,
+    listbussiness :  '/list-business' ,
+    busniessProfile :  '/business-profile' ,
+    newPage :  '/new-page' ,
+    newPageList :  '/new-page-list' ,
+    addAbout :  '/add-about' ,
+    addAboutList :  '/add-about-list' ,
+    addContact :  '/add-contact' ,
+    addTerms :  '/add-terms' ,
+    addPrivacy :  '/add-privacy' ,
+    addFaq :  '/add-faq' ,
+    settingAddPage :  '/setting-add-page' ,
+    settAddDetail :  '/sett-add-detail' ,
+    headFoot :  '/head-foot' ,
+}

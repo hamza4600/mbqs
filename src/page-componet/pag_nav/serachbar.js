@@ -10,9 +10,9 @@ const Wrapper = styled.div`
         font-size: 14px !important;
         position: relative;
         width: 450px;
-        background-color: #05375b;
+        background-color: #F0F8FF;
         border: 1px solid #555;
-        color: #40e0d0!important;
+        color: #1E1E1E !important;
         font-size: 18px;
         height: 28px;
         outline: none;

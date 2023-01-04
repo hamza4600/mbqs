@@ -11,7 +11,6 @@ const Sidebar = memo(forwardRef(
         const outsideClic = useCallback((e) => {
             if (trigger === false) return;
             if (trigger && innerRef.current && !innerRef.current.contains(e.target)) {
-                console.log(e.target);
                 outSideClick();
             }
         }, [outSideClick, trigger]);

@@ -1,6 +1,7 @@
 import Input from "components/input"
 import { useState } from "react"
-import { RegesterWrapper } from "./structure"
+import { Head, RegesterWrapper } from "./structure"
+import Button from "components/button"
 
 const RegesterModel = () => {
     const [values, setValues] = useState({
@@ -18,11 +19,11 @@ const RegesterModel = () => {
             [name]: e.target.value,
         })
     }
-    console.log(values)
+    
     return (
         <>
             <RegesterWrapper>
-
+                <Head>Regester</Head>
                 <Input
                     placeholder="Company Name"
                     type="model"
@@ -69,8 +70,8 @@ const RegesterModel = () => {
                     errorMessage="Enter Your User Name"
                 />
 
+                <Button type="login-model" onClick={() => { }}>Sign Up</Button>
             </RegesterWrapper>
-
         </>
     )
 }
