@@ -8,11 +8,13 @@ import { persistStore } from "redux-persist";
 // reducers
 import sessionSlice from "store/session";
 import loginModel from "store/loginModel";
+import  userSlice  from "store/user";  // all user data 
 
 
 const reducers = combineReducers({
     session: sessionSlice,
     loginModel: loginModel,
+    user: userSlice,
 });
 
 const persistConfig = {

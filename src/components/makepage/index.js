@@ -24,6 +24,15 @@ const Page = styled.div`
         flex: 1;
         width: 100%;
     }
+
+    .main-page {
+        margin-left: 65px;
+        margin-top: 10px;
+        flex: 1;
+        width: 80%;
+    }
+
+
     `;
 
 const MakePage = forwardRef(

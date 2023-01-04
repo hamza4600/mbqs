@@ -4,6 +4,7 @@ import useHover from "Hooks/useHover"
 import { useState } from "react"
 import { Span, Wrapper } from "./style"
 import { sidebarData } from "./varibel"
+import { Link } from "react-router-dom"
 
 const Icon = (props) => {
     const {
@@ -96,12 +97,19 @@ const PageSideBar = () => {
                                             <div id="drop">
                                                 {
                                                     Array.isArray(item.drop) && item.drop.map((drop, index) => (
-                                                        <a
+                                                        <Link
                                                             key={index}
-                                                            href={drop.route || '#'}
+                                                            to={"/auth" + drop.route}
+                                                            isActive={(match, location) => {
+                                                                if (!match) {
+                                                                    return false;
+                                                                }
+                                                                return true;
+                                                            }}
+
                                                         >
                                                             {drop.title}
-                                                        </a>
+                                                        </Link>
                                                     ))
                                                 }
                                             </div>

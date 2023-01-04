@@ -1,7 +1,3 @@
-import { FiUserPlus } from "react-icons/fi";
-import { GoLocation } from "react-icons/go";
-import { AiOutlineShoppingCart } from "react-icons/ai";
-import { BsHeadset } from "react-icons/bs";
 import { MdOutlineEngineering } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -10,215 +6,93 @@ import { BiMessageAltDetail } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
-import { FiMonitor } from "react-icons/fi";
+import { authRoutes } from "Pages/auth/routes";
 
 const size = 20;
 
 export const sidebarData = [
     {
-        id: 1,
-        title: 'customer',
-        icon: <FiUserPlus size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'customer list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'customer list',
-                route: "/"
-            }
-        ]
-    },
-    {
-        id: 2,
-        title: 'area',
-        icon: <GoLocation size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'Area list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'Area list',
-                route: "/"
-            }
-        ]
-    },
-    {
-        id: 3,
-        title: 'products',
-        icon: <AiOutlineShoppingCart size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'products list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'new products',
-                route: "/"
-            }
-        ]
-    },
-    {
-        id: 4,
-        title: 'service',
-        icon: <BsHeadset size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'services list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'new services',
-                route: "/"
-            }
-        ]
-    },
-    {
         id: 5,
-        title: 'engineers',
+        title: 'our business',
         icon: <MdOutlineEngineering size={size} />,
         drop: [
             {
                 id: 1,
-                title: 'structure engineers',
-                route: "/"
+                title: 'create business page',
+                route: authRoutes.creatbusines
             },
             {
                 id: 2,
-                title: 'architect ',
-                route: "/"
+                title: 'list business page',
+                route: authRoutes.listbussiness
             },
             {
                 id: 3,
-                title: 'Coastal engineer',
-                route: "/"
-            },
-            {
-                id: 4,
-                title: 'earthquick engineer',
-                route: "/"
-            },
-            {
-                id: 5,
-                title: 'geotechnical engineers',
-                route: "/"
-            },
-            {
-                id: 6,
-                title: 'transport engineer',
-                route: "/"
-            },
-            {
-                id: 7,
-                title: 'water engineer',
-                route: "/"
+                title: 'business profile',
+                route: authRoutes.busniessProfile
             }
         ]
     },
     {
         id: 6,
-        title: 'real estate',
+        title: 'news',
         icon: <HiOutlineBuildingOffice2 size={size} />,
         drop: [
             {
                 id: 1,
-                title: 'properties ',
-                route: "/"
+                title: 'creat news page',
+                route: authRoutes.newPage
             },
             {
                 id: 2,
-                title: 'Real estate Agent',
-                route: "/"
+                title: 'list news page',
+                route: authRoutes.newPageList
             }
         ]
     },
     {
         id: 7,
-        title: 'invoice',
+        title: 'events',
         icon: <IoDocumentTextOutline size={size} />,
         drop: [
             {
                 id: 1,
-                title: 'create document',
-                route: "/"
+                title: 'create event page',
+                route: authRoutes.addEvent
+            },
+            {
+                id: 2,
+                title: 'list event page',
+                route: authRoutes.addEventList
             }
         ]
     },
     {
         id: 8,
-        title: 'agent',
+        title: 'about us',
         icon: <RiUser2Line size={size} />,
         drop: [
             {
                 id: 1,
-                title: 'agent list',
-                route: "/"
+                title: 'creat about page',
+                route: authRoutes.addAbout
             },
             {
                 id: 2,
-                title: 'seller agent',
-                route: "/"
+                title: 'List about page',
+                route : authRoutes.addAboutList
             }
         ]
     },
     {
         id: 9,
-        title: 'news',
+        title: 'privacy',
         icon: <BiMessageAltDetail size={size} />,
         drop: [
             {
                 id: 1,
-                title: 'news list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'new news',
-                route: "/"
-            }
-        ]
-    },
-    {
-        id: 10,
-        title: 'contact',
-        icon: <FiPhoneCall size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'contact list',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'new contact',
-                route: "/"
-            }
-        ]
-    },
-    {
-        id: 11,
-        title: 'front end',
-        icon: <FiMonitor size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'open front-end',
-                route: "/"
-            },
-            {
-                id: 2,
-                title: 'new pages',
-                route: "/"
+                title: 'creat privacy page',
+                route: authRoutes.addPrivacy
             }
         ]
     },
@@ -229,13 +103,20 @@ export const sidebarData = [
         drop: [
             {
                 id: 1,
-                title: 'open terms',
-                route: "/"
-            },
+                title: 'creat terms page',
+                route: authRoutes.addTerms
+            }
+        ]
+    },
+    {
+        id: 10,
+        title: 'contact',
+        icon: <FiPhoneCall size={size} />,
+        drop: [
             {
-                id: 2,
-                title: 'change terms',
-                route: "/"
+                id: 1,
+                title: 'creat contact page',
+                route: authRoutes.addContact
             }
         ]
     },
@@ -246,13 +127,23 @@ export const sidebarData = [
         drop: [
             {
                 id: 1,
-                title: 'open setting',
-                route: "/"
+                title: 'front website view',
+                route: authRoutes.settAddPage
             },
             {
                 id: 2,
-                title: 'change setting',
-                route: "/"
+                title: 'header & footer',
+                route: authRoutes.headFooter
+            },
+            {
+                id: 3,
+                title: 'add new page',
+                route: authRoutes.settAddPage
+            },
+            {
+                id: 4,
+                title: 'details',
+                route: authRoutes.settAddDetail
             }
         ]
     },

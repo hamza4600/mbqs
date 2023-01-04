@@ -1,33 +1,36 @@
-import React, { lazy, Suspense } from 'react';
+import { Suspense } from 'react';
 import { Routes, Route } from "react-router-dom"
 import { compose } from "redux";
 import PageSpinner from 'components/pageSpinner';
+import InterfaceLayout from 'page-componet/layout';
+import getUserRole from 'functions/getRole';
+import paths from './routes';
 
-const Dashboard = lazy(() => import('./pages/dashboard'));
+const detail = {
+    name: "user",
+    title: "User",
+    roleID: "userID",
+    role: "user",
+    login: "/",
+};
 
-const paths = [
-    {
-        id: 1,
-        path: '/panel',
-        component: Dashboard,
-    }
-    
-]
 const AuthPages = () => (
     <>
         <Suspense fallback={<PageSpinner />}>
-            <Routes>
-                {paths.map((path) => (
-                    <Route
-                        key={path.id}
-                        path={path.path}
-                        element={<path.component />} />
-                ))}
-            </Routes>
+            <InterfaceLayout>
+                <Routes>
+                    {paths.map((path) => (
+                        <Route
+                            key={path.id}
+                            path={path.path}
+                            element={path.component} />
+                    ))}
+                </Routes>
+            </InterfaceLayout>
         </Suspense>
     </>
 )
 
 export default compose(
-
+    getUserRole(detail) // check user role Auth or not Set Page Title
 )(AuthPages);

@@ -1,15 +1,14 @@
 import { lazy, Suspense } from 'react';
 import PageSpinner from 'components/pageSpinner';
 
-//  all components are lazy loaded 
-const Dashboard = () => {
+const CreatBusiness = () => {
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
-                <h1>Dashboard</h1>             
+                <h1>creat business</h1>
             </Suspense>
         </>
     )
 }
 
-export default Dashboard
+export default CreatBusiness

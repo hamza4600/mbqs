@@ -4,15 +4,17 @@ import PageNavbar from "page-componet/pag_nav";
 import PageSideBar from "page-componet/sliders";
 
 const InterfaceLayout = (props) => {
-    const { children, sidebar , blurnav } = props;
+    const { children, sidebar = true, blurnav } = props;
 
     return (
         <>
             <MakePage>
-                <PageNavbar blure = {blurnav} />
+                <PageNavbar blure={blurnav} />
                 <main>
                     {sidebar && <PageSideBar />}
-                    {children}
+                    <div className={sidebar ? "main-page" : null} >
+                        {children}
+                    </div>
                 </main>
                 <Footer />
             </MakePage>

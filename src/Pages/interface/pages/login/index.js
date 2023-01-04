@@ -67,7 +67,7 @@ const LoginModel = () => (
 
 const MainLoginPage = () => (
     <>
-        <InterfaceLayout blurnav>
+        <InterfaceLayout blurnav sidebar={false}>
             <LoginModel />
         </InterfaceLayout>
     </>
