@@ -1,17 +1,22 @@
 import Navbar from "components/navbar"
 import styled from "styled-components"
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
+import useHover from "Hooks/useHover";
 
 import logo from "../../assits/Logo.svg"
 import flag from "../../assits/uk-flag.svg"
-
 import { BiSearch } from "react-icons/bi";
 import { SlMenu } from "react-icons/sl";
 import { FaRegUser } from "react-icons/fa";
-import useHover from "Hooks/useHover";
+
 import Tooltip from "components/tooltip";
-import { useState } from "react";
-import outisdeClick from "functions/outside";
 import Searchbar from "./serachbar";
+// Redux
+import { useDispatch, useSelector } from "react-redux";
+import { toggelSidebar } from "store/sidebar";
+// HOC
+import outisdeClick from "functions/outside";
 
 const Wrapper = styled.div`
     display: flex;
@@ -79,17 +84,20 @@ const Icons = outisdeClick(Icon);
 const RightSide = () => {
 
     const [searh, setSearh] = useState(false);
-    const [menu, setMenu] = useState(false);
     const [user, setUser] = useState(false);
+
+    const dispatch = useDispatch();
+    const state = useSelector(state => state.sidebar)
 
     const search = () => {
         console.log("search");
         setSearh(!searh);
     };
+
     const handelMenu = () => {
-        console.log("menu");
-        setMenu(!menu);
+        dispatch(toggelSidebar())
     };
+
     const handelUser = () => {
         console.log("user");
         setUser(!user);
@@ -103,21 +111,21 @@ const RightSide = () => {
                     icon={<BiSearch size={20} />}
                     Click={search}
                     color={searh}
-                    // outSide={() => setSearh(false)}
+                // outSide={() => setSearh(false)}
                 />
                 <Icons
                     hover="Menu"
                     icon={<SlMenu size={20} />}
                     Click={handelMenu}
-                    color={menu}
-                    outSide = {() => setMenu(false)}
+                    color={state?.dongal}
+                // outSide={() => setMenu(false)}
                 />
                 <Icons
                     hover="User"
                     icon={<FaRegUser size={20} />}
                     Click={handelUser}
                     color={user}
-                    outSide = {() => setUser(false)}
+                    outSide={() => setUser(false)}
                 />
                 <Icons
                     hover="Language"
@@ -125,20 +133,27 @@ const RightSide = () => {
                 />
             </Wrapper>
             {
-                searh && <Searchbar />  
+                searh && <Searchbar />
             }
         </>
     )
 }
 
 const PageNavbar = (props) => {
+    const route = useLocation();
     return (
         <>
             <Navbar
-                blure = {props.blure || false}
+                blure={props.blure || false}
                 Left={
                     <>
-                        <img src={logo} alt="logo" />
+                        <a
+                            href={!props.blure &&
+                                route.pathname === "/auth/panel" ? "#" : "/auth/panel"
+                            }  // can also pass on base of auth
+                        >
+                            <img src={logo} alt="logo" />
+                        </a>
                     </>
                 }
                 Right={<RightSide />}

@@ -3,17 +3,16 @@ import Tooltip from "components/tooltip"
 import useHover from "Hooks/useHover"
 import { useState } from "react"
 import { Span, Wrapper } from "./style"
-import { sidebarData } from "./varibel"
-import { Link } from "react-router-dom"
+import { sidebarData } from "./varibel";
+import Anchor from "components/a";
+import { useSelector } from "react-redux"
 
-const Icon = (props) => {
+
+function Icon(props) {
     const {
-        icon,
-        hover,
-        id,
-        select,
-    } = props;
-    const [ref, isHovering] = useHover();
+        icon, hover, id, select,
+    } = props
+    const [ref, isHovering] = useHover()
 
     return (
         <>
@@ -26,21 +25,18 @@ const Icon = (props) => {
                 aria-expanded={isHovering}
             >
                 <i>{icon}</i>
-                {
-                    isHovering && (
-                        <Tooltip
-                            isShown={true}
-                            content={hover}
-                            type="sidebar"
-                        />
-                    )
-                }
+                {isHovering && (
+                    <Tooltip
+                        isShown={true}
+                        content={hover}
+                        type="sidebar" />
+                )}
             </Span>
         </>
     )
 }
 
-const PageSideBar = () => {
+const PageSide = () => {
     const [width, setWidth] = useState(55)
     const [select, setSelect] = useState();
     const [showSub, setShowSub] = useState(false);
@@ -56,7 +52,7 @@ const PageSideBar = () => {
     }
     const handelOutSide = () => {
         setShowSub(false);
-        setSelect();
+        setSelect()
         setWidth(60);
     }
 
@@ -88,7 +84,10 @@ const PageSideBar = () => {
                                         aria-selected={item.id === select}
                                         aria-controls={`panel-id-${item.id}`}
                                     >
-                                        <Span select={item.id === select}>
+                                        <Span select={
+                                            item.id === select ||
+                                            window.location.pathname === "/auth" + item.route
+                                        }>
                                             <i>{item.icon}</i>
                                             {width === 210 && item.title}
                                         </Span>
@@ -97,19 +96,19 @@ const PageSideBar = () => {
                                             <div id="drop">
                                                 {
                                                     Array.isArray(item.drop) && item.drop.map((drop, index) => (
-                                                        <Link
+                                                        <Anchor
+                                                            id={drop.title}
                                                             key={index}
-                                                            to={"/auth" + drop.route}
-                                                            isActive={(match, location) => {
-                                                                if (!match) {
-                                                                    return false;
-                                                                }
-                                                                return true;
-                                                            }}
-
+                                                            href={"/auth" + drop.route}
+                                                            onClick={
+                                                                handeWidth
+                                                            }
+                                                            color={
+                                                                window.location.pathname === "/auth" + drop.route ? "#00BFFF" : " "
+                                                            }
                                                         >
                                                             {drop.title}
-                                                        </Link>
+                                                        </Anchor>
                                                     ))
                                                 }
                                             </div>
@@ -135,6 +134,15 @@ const PageSideBar = () => {
                     }
                 </Wrapper>
             </Sidebar>
+        </>
+    )
+};
+
+const PageSideBar = () => {
+    const state = useSelector(state => state.sidebar)
+    return (
+        <>
+            {state.dongal ? <PageSide /> : null}
         </>
     )
 }

@@ -28,7 +28,7 @@ const Right = (props) => {
     // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
     const [activeCompont, setActiveCompont] = useState(1)
 
-    const activeCompt = useCallback(() => {
+    const ActiveCompt = useCallback(() => {
         switch (activeCompont) {
             case 1:
                 return <LoginModelPart setActiveCompont={setActiveCompont} />
@@ -46,7 +46,7 @@ const Right = (props) => {
     return (
         <>
             <Rwrap>
-                {activeCompt()}
+                <ActiveCompt />
             </Rwrap>
         </>
     )

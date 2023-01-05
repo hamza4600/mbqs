@@ -10,11 +10,10 @@ export const Aside = styled.aside`
   background-color: ${({ theme }) => theme.sideBarBg};
   color: ${({ theme }) => theme.sideBarText};
   position: absolute;
-  // overflow: auto;
   right: ${(props) => (props.right ? "0px" : "")};
   left: ${(props) => (props.left ? "0px" : "")};
   z-index: 100;
-  transition: 0.3s ease-in-out;
+  transition: 0.2s ease-in-out;
   animation: ${(props) => (props.animation ? props.animation : "")} 0.3s ease-in-out;
 
   @media (max-width: 768px) {

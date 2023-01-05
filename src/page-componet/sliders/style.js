@@ -18,9 +18,6 @@ export const Wrapper = styled.div`
         flex-direction: column;
         margin-left: 10px;
     }
-    li:hover {
-        color: #fff;
-    }
     i {
         margin-right: 15px;
     }
@@ -63,3 +60,4 @@ export const Span = styled.span`
         color: #00BFFF;
     }
     `;
+

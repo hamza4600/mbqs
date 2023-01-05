@@ -20,4 +20,11 @@ export const NavWrapper = styled.div`
   flex: 1;
   height: 100%;
   padding: 0px 20px;
+
+  a img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
   `;

@@ -5,7 +5,7 @@ import { AiOutlineEye } from "react-icons/ai";
 import styles from "./style.module.css";
 import Radio from "./radio";
 import { compose } from "redux";
-import validator from "./helper";
+// import validator from "./helper";
 import TextArea from "./textarea";
 
 const defaultStyle = {

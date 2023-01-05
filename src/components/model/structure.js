@@ -16,7 +16,7 @@ export const ModelOne = memo(forwardRef(
     function ModelOne(props, ref) {
         const { children } = props;
         return (
-            <Model1 ref={ref} {...props} id="model">
+            <Model1 ref={ref} {...props} id="full-model">
                 {children}
             </Model1>
         )
@@ -34,6 +34,7 @@ const Model2 = styled.div`
   width: 100%;
   max-width: 661px;
   border-radius: 4px;
+    bottom: 100px;
 
     @media (max-width: 768px) {
         max-height: 410px;
@@ -43,7 +44,7 @@ const Model2 = styled.div`
 export const ModelTwo = memo(forwardRef(
     function ModelTwo(props, ref) {
         return (
-            <Model2 ref={ref} show={props.show} {...props}>
+            <Model2 ref={ref} show={props.show} {...props} id="small-modal">
                 {props.children}
             </Model2>
         )
