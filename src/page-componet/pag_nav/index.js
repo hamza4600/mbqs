@@ -38,7 +38,7 @@ const Wrapper = styled.div`
 
 const Ico = styled.i`
     margin: 0 auto;
-    color: ${(props) => props.color ? '#00BFFF' : '#0E2637'};
+    color: ${(props) => props.color ? '#00BFFF' : '#B0C4DE'};
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     display: flex;

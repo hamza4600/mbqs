@@ -10,8 +10,8 @@ const Wrapper = styled.div`
         font-size: 14px !important;
         position: relative;
         width: 450px;
-        background-color: #F0F8FF;
-        border: 1px solid #555;
+        background-color: transparent;
+        border: 1px solid #B0C4DE;
         color: #1E1E1E !important;
         font-size: 18px;
         height: 28px;
@@ -41,12 +41,17 @@ const Searchbar = (props) => {
             document.getElementById(id).focus();
         }
 
-    }, [autofocus , id])
+    }, [autofocus, id])
 
     return (
         <>
             <Wrapper>
-                <input id={id} type="text" placeholder={placeholder} />
+                <input
+                    id={id}
+                    type="text"
+                    placeholder={placeholder}
+                    max-length= "100"
+                />
             </Wrapper>
         </>
     )

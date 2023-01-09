@@ -2,12 +2,10 @@
     width: 100%;
     flex: 1;
 }
-
 .disable {
     opacity: 0.5;
     cursor: not-allowed;
 }
-
 .login {
     font-size: 1em;
     font-weight: lighter;
@@ -22,15 +20,12 @@
     color: whitesmoke;
     text-transform: capitalize;
 }
-
 .login::placeholder {
     color: #C2BEBE;
 }
-
 .login:focus {
     outline: none;
 }
-
 .passIcon {
     position: relative;
     right: 0;
@@ -40,6 +35,43 @@
     margin: auto;
     cursor: pointer;
     color: #c3daf3;
+}
+
+/* Add Data  */
+.addData {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    color : #00243D;
+    height: 25px;
+    padding: 0px 5px;
+    text-transform: capitalize;
+    min-width: 300px;
+}
+
+.addData::placeholder {
+    color: #B0C4DE;
+}
+
+/* Add Data File  */
+
+.addDataFile {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    height: 280px;
+    width: 250px;   
+    padding: 0px 5px;
+    min-width: 300px;
+}
+.addDataFile input {
+    display: none;
+}
+.addDataFile label {
+    display: block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    text-align: center;
+    line-height: 280px;
 }
 
 /* For Text Area */
@@ -63,4 +95,16 @@
     color: red;
     font-size: 0.8rem;
     margin: 0px 0px 0px 0px;
+}
+
+.textAreaAddData {
+    width: 100%;
+    height: 10rem;
+    border: 1px solid #B0C4DE;
+    background-color: #F0F8FF;
+    padding: 0.5rem;
+    margin: 10px 0px;
+    font-size: 1em;
+    /*  cannot resize */
+    /* resize: none; */
 }

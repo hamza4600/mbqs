@@ -33,6 +33,8 @@ const Input = forwardRef(
             onFocus,
             error,
             errorMessage,
+            maxLength = 200,
+            accept,
         } = props;
 
         const idx = useMemo(() => { return uuId() }, [])
@@ -63,6 +65,8 @@ const Input = forwardRef(
                 <div
                     className={clsx({
                         [styles.login]: type === "login",
+                        [styles.addDataFile] : type === "addDataFile",
+                        
                     })}
                 >
                     {label ? <label htmlFor={id || idx}>{label}</label> : null}
@@ -78,8 +82,13 @@ const Input = forwardRef(
                         className={clsx(styles.inputField, {
                             [styles.login]: type === "model" || type === "model-password",
                             [styles.disable]: disabled,
+                            [styles.addData] : type === "addData",
+                            
+
                         })}
                         onFocusCapture={onFocus}
+                        maxLength={maxLength}
+                        accept={accept}
                     />
                     {icon && <i>{icon}</i>}
                     {type === "model-password" && <i className={styles.passIcon} onClick={showPassword}><AiOutlineEye size={22} /></i>}

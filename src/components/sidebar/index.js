@@ -35,6 +35,7 @@ const Sidebar = memo(forwardRef(
                     onClick={handelClick}
                     role='tablist'
                     aria-orientation="vertical"
+                    opacity = "0.95"
                 >
                     <Wrapper
                         aria-label="sidebar"

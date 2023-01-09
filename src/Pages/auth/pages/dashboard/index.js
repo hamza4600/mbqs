@@ -6,7 +6,7 @@ const Dashboard = () => {
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
-                <h1>Dashboard</h1>             
+                <h1>Dashboard</h1>                   
             </Suspense>
         </>
     )

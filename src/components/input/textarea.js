@@ -62,6 +62,7 @@ const TextArea = memo(forwardRef(
                         className={clsx(
                             styleType === "login" && styles.textArealogin,
                             styleType === "noramal" && styles.textAreaNormal,
+                            styleType === "addData" && styles.textAreaAddData,
                         )}
                         maxLength={maxLength}
                     />

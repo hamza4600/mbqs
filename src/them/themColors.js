@@ -18,8 +18,8 @@ const lightThem = {
     toolipText: 'white',
 
     footerColor: 'black',
-    footer: '#B0C4DE'
-    
+    footer: '#B0C4DE',
+    font : 'Poppins, sans-serif'
 }
 
 const darkThem = {
@@ -38,7 +38,8 @@ const darkThem = {
     toolipText: 'white',
 
     footerColor: 'white',
-    footer: '#B0C4DE'
+    footer: '#B0C4DE',
+    font : 'Poppins, sans-serif'
 }
 
 const Them = {

@@ -26,10 +26,10 @@ const Page = styled.div`
     }
 
     .main-page {
-        margin-left: 65px;
+        padding-left: 65px;
         margin-top: 10px;
         flex: 1;
-        width: 80%;
+        width: 100%;
     }
 
 

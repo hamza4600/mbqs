@@ -59,5 +59,11 @@ export const Span = styled.span`
     &:hover {
         color: #00BFFF;
     }
+    
+    i:hover {
+        transition: all 0.1s ease-in-out;
+        scale: 1.5;
+        color: #00BFFF;
+    }
     `;
 
