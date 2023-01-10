@@ -1,9 +1,9 @@
 import { createGlobalStyle } from "styled-components";
 
 const lightThem = {
-    navBar: 'white',
+    navBar: '#204D70',
     color: 'black',
-    navhoverIcon: 'black',
+    navhoverIcon: '#00BFFF',
 
     iconGroup: '#00416A',
     iconColor: '#c4c4c4',
@@ -15,10 +15,10 @@ const lightThem = {
     cards: 'white',
     cardText: '#00416A',
     toolbar: '#003165',
-    toolipText: 'white',
+    toolipText: '#C8CACB',
 
-    footerColor: 'black',
-    footer: '#B0C4DE',
+    footerColor: '#D8E6F1',
+    footer: '#204D70',
     font : 'Poppins, sans-serif'
 }
 

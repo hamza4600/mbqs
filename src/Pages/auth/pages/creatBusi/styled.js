@@ -4,17 +4,17 @@ export const Grid = styled.form`
     display: grid;
     grid-template-columns: 1fr 1fr;
     height: 100%;
-    width: 100%;
-    flex: 1;
     grid-gap: 8px;
     align-items: center;
     padding: 10px;
-    // overflow: hidden;
     position: relative;
 
     h1 {
         font-size: 20px;
-        font-weight: 400;
+        font-weight: 200;
+        font-family: 'Montserrat', sans-serif;
+        color: #00243D;
+        margin-bottom: 20px;
     }
 
     #sub {
@@ -23,17 +23,13 @@ export const Grid = styled.form`
         height: 100%;
         width: 100%;
         justify-content: start;
-        gap: 10px;
+        gap: 5px;
         align-items: start;
     }
 
     #save {
-        background-color: #003153 !important;
-        color: #fff !important;
-        font-weight: 500 !important;
-        padding: 10px 20px !important;
         position: absolute;
-        right: 20rem;
+        right: 10rem;
         bottom: -18rem;
         width: 200px;
     }
@@ -50,6 +46,10 @@ export const Grid = styled.form`
             right: 0;
             bottom: 0;
         }
+    }
+
+    @media (min-width: 1550px) {
+        grid-template-columns: 1fr 1fr .3fr;
     }
 
 `;
@@ -72,6 +72,17 @@ export const Wrapper = styled.div`
     @media (max-width: 1350px) {
         align-items: center;
         justify-content: center;
+    }
+
+    @media (max-width: 720px) {
+        flex-direction: column;
+        
+        div {
+            min-width: 0;
+        }
+        input {
+            width: 0;
+        }
     }
 
     `;

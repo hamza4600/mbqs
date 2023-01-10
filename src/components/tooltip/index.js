@@ -2,10 +2,11 @@ import { forwardRef, useMemo } from "react";
 import styled from "styled-components";
 
 const P = styled.p`
-    padding: 5px 10px;
+    padding: 0px 6px;
     margin: auto;
     font-size: 14px;
     text-transform: capitalize;
+    font-style: normal;
 `;
 
 const Container = styled.div`

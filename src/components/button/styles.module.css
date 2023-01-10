@@ -40,8 +40,16 @@
 
 .model {
     width: 90%;
-    background-color:  #D8E6F1;
+    background-color: #D8E6F1;
     color: black;
     padding: 3px 18px;
     margin-top: 2rem;
+}
+
+/* Save and continue */
+.addData {
+    background-color: #003153;
+    color: #fff;
+    font-weight: 500;
+    padding: 5px 15px;
 }

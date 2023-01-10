@@ -22,8 +22,8 @@ export const authRoutes = {
 };
 
 const listPageType = {  // every Page have its own Api for getting Data
-    business: "business List",
-    newPage: "new Page List",
+    business: "Business",
+    newPage: "new Page ",
     about: "About List",
     event: "Event List",
 };

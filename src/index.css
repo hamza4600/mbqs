@@ -1,7 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
-*{
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap');
+
+* {
   -ms-overflow-style: none;
 }
+
 *::after,
 *::before {
   box-sizing: border-box !important;
@@ -23,17 +26,21 @@ code {
 }
 
 input {
-  letter-spacing: 1px;    
+  letter-spacing: 1px;
 }
+
 input::placeholder {
   letter-spacing: 1px;
 }
-a{
+
+a {
   text-decoration: none !important;
 }
+
 ::-webkit-scrollbar {
   width: 8px;
 }
+
 ::-webkit-scrollbar-thumb {
   background-color: #a6a8b1;
   border-radius: 100px;

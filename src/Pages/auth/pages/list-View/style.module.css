@@ -1,0 +1,41 @@
+.table {
+    width: 99%;
+    background-color: white;
+}
+
+.table table {
+    margin-top: 8px;
+    min-width: 100%;
+    max-width: auto;
+    border-collapse: collapse;
+    color: #00416A;
+    white-space: nowrap;
+
+}
+
+.table table tbody td {
+    font-size: 14px;
+}
+
+.table table th {
+    font-weight: 600 !important;
+    padding: 2px;
+    font-size: 15px;
+    text-align: left;
+    border-bottom: 1px solid #B0C4DE;
+    border-top: 1px solid #B0C4DE;
+}
+
+.table table tr td {
+    padding: 2px;
+    width: auto;
+    text-align: left;
+
+}
+
+.table table tbody tr:hover>* {
+
+    background-color: #00416A;
+    color: white;
+}
+

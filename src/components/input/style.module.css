@@ -42,14 +42,19 @@
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
     color : #00243D;
-    height: 25px;
+    height: 28px;
     padding: 0px 5px;
     text-transform: capitalize;
     min-width: 300px;
+    font-size: 13px;
 }
-
+.addData:focus {
+    border: 1px solid #80C1F9 !important;
+}
 .addData::placeholder {
     color: #B0C4DE;
+    letter-spacing: 0.5px;
+    font-weight: lighter;
 }
 
 /* Add Data File  */
@@ -57,7 +62,7 @@
 .addDataFile {
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
-    height: 280px;
+    height: 310px;
     width: 250px;   
     padding: 0px 5px;
     min-width: 300px;
@@ -104,7 +109,11 @@
     background-color: #F0F8FF;
     padding: 0.5rem;
     margin: 10px 0px;
-    font-size: 1em;
+    font-size: 13px;
+    
     /*  cannot resize */
-    /* resize: none; */
+    resize: none;
+}
+.textAreaAddData:focus {
+    border: 1px solid #80C1F9 !important;
 }

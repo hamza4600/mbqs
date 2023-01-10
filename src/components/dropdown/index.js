@@ -2,81 +2,70 @@ import React, { forwardRef } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-
-    select {
-        width: 300px;
-        height: 25px;
-        border: 1px solid #ccc;
-        border-radius: 2px;
-        padding: 0 10px;
-        font-size: 12px;
-        color: #333;
-        outline: none;
-        cursor: pointer;
-        transition: all 0.3s ease;
-        background-color: transparent;
-
-        &:hover {
-            border-color: #999;
-        }
-
-        &:focus {
-            border-color: #666;
-        }
-
-        &:disabled {
-            background-color: #eee;
-            cursor: not-allowed;
-        }
-    }
-
-    #option {
-        background-color: #F0F8FF;
-        font-size: 14px;
-        color: #333;
-        outline: none;
-    }
+    position: relative;
+    width: 300px;
+    background: #fff;
 `;
-
-
 
 const Dropdown = forwardRef(
     function Dropdown(props, ref) {
         const {
             options = ['One', 'two', 'three'],
-            value,
-            onChange,
             placeholder = "Select an option",
-            disabled = false
+            type = "addData",
+            onBlur = true,
+            onFocus = true,
+            icon,
+            selectItem,
+            selected
         } = props;
+        console.log(selected, '====');
+        const [isToggeled, setIsToggeled] = React.useState(false);
+
+        const handleBlur = (e) => {
+            if (onBlur) {
+                setIsToggeled(false);
+            }
+        }
+
+        const handleFocus = (e) => {
+            if (onFocus) {
+                setIsToggeled(true);
+            }
+        }
+
+        const handleSelectItem = (option, index) => {
+            console.log(option, index);
+            selectItem(option, index);
+            setIsToggeled(false);
+        }
 
         return (
             <>
-                <Wrapper>
-
-                    <select
-                        ref={ref}
-                        role="button"
-                        id="dropdown"
-                        data-testid="dropdown"
-                        aria-haspopup="listbox"
-                        aria-expanded="false"
-                        onChange={onChange}
-                        disabled={disabled}
-                    >
-                        <option value="" id="option">{placeholder}</option>
-                        {options.map((option, index) => (
-                            <option
-                                tabIndex={0}
-                                key={index}
-                                value={option}
-                                id="option"
-                            >
-                                {option}
-                            </option>
-                        ))}
-
-                    </select>
+                <Wrapper
+                    onBlur={handleBlur}
+                    onFocus={handleFocus}
+                    tabIndex="0"
+                    id="dropdown"
+                >
+                    <div>
+                        {selected ? selected : placeholder}
+                        <span>▼</span>
+                        <i>{icon && icon}</i>
+                    </div>
+                    {
+                        type === "addData" && isToggeled && (
+                            <ul>
+                                {options.map((option, index) => (
+                                    <li key={index || Math.random()}
+                                        onClick={() => handleSelectItem(option, index)}
+                                    >
+                                        {option}
+                                    </li>
+                                ))}
+                            </ul>
+                        )
+                    }
 
                 </Wrapper>
             </>
@@ -85,4 +74,3 @@ const Dropdown = forwardRef(
 )
 
 export default Dropdown;
-// creat a better version of this snippet!

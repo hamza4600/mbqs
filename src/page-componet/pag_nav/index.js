@@ -38,15 +38,17 @@ const Wrapper = styled.div`
 
 const Ico = styled.i`
     margin: 0 auto;
-    color: ${(props) => props.color ? '#00BFFF' : '#B0C4DE'};
+    color: ${(props) => props.color ? '#00BFFF' : '#C8CACB'};
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     display: flex;
     flex : 1;
     position: relative;
 
-    &:hover{
+    svg:hover{
         color: ${({ theme }) => theme.navhoverIcon};
+        scale: 1.5;
+        transition: all 0.2s ease-in-out;
     }
 
     @media screen and (max-width: 768px) {

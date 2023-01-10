@@ -24,6 +24,7 @@ const Button = memo(
                             className={clsx(styles.button, {
                                 [styles.disabled]: isDisabled,
                                 [styles.model]: type === 'login-model',
+                                [styles.addData]: type === 'addData',
                                 
                             })}
                             {...props}

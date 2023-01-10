@@ -4,13 +4,14 @@ import Input from 'components/input';
 import { Grid, Wrapper } from './styled';
 import Dropdown from 'components/dropdown';
 import Button from 'components/button';
+import useDropDown from 'components/dropdown/useDropdown';
 
 const Left = () => {
     const [data, setData] = useState({
         name: '',
-        email: '',
+        text: '',
         password: '',
-    })
+    });
 
     const handelChange = (e, name) => {
         setData({
@@ -18,6 +19,9 @@ const Left = () => {
             [name]: e.target.value
         })
     }
+
+    const { isOpen, selectedItemIndex,  selectItem , selected} = useDropDown();
+    console.log(isOpen, selected, selectedItemIndex);
 
     return (
         <>
@@ -35,13 +39,17 @@ const Left = () => {
                         inputype="text"
                         type="addData"
                         placeholder="Enter your business name"
-                        value=""
-                        onChange={() => { }}
+                        value={data.text}
+                        onChange={(e) => handelChange(e, 'text')}
                     />
                 </Wrapper>
                 <Wrapper>
                     <Dropdown
                         placeholder="Select Category"
+                        selectItem = {selectItem}
+                        isOpen = {isOpen}
+                        selected = {selected}
+                        selectedItemIndex = {selectedItemIndex}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
@@ -156,6 +164,20 @@ const Left = () => {
 }
 
 const Right = () => {
+    // files state
+    const [files, setFiles] = useState({
+        file: null,
+        fileUrl: null,
+    });
+
+    // handle file change
+    const handleFileChange = (e) => {
+        setFiles({
+            file: e.target.files[0],
+            fileUrl: URL.createObjectURL(e.target.files[0])
+        });
+    }
+
     return (
         <>
             <div id='sub'>
@@ -238,11 +260,22 @@ const Right = () => {
                         inputype="file"
                         type="addDataFile"
                         placeholder="Choose Image File"
-                        label="Choose Image File"
+                        label={files?.file?.name || "Choose Image File"}
                         accept="image/*"
-                        value=""
-                        onChange={() => { }}
+                        // value={files?.fileUrl} // to be post to server value 
+                        onChange={handleFileChange}
                     />
+                    {
+                        // chnage postion of image
+                        files?.fileUrl && (
+                            <img src={files?.file
+                                && files?.fileUrl
+                                // : "https://via.placeholder.com/150" // color placeholder
+                                // https://via.placeholder.com/150/FF0000/FFFFFF/?text=Image+Size+150x150
+                            } alt="img" />
+                        )
+
+                    }
                     <Input
                         inputype="file"
                         type="addDataFile"
@@ -252,11 +285,12 @@ const Right = () => {
                         value=""
                         onChange={() => { }}
                     />
+
                 </Wrapper>
                 <Button
-                    type='login-model'
-                    onClick={() => { }} 
-                    id = 'save'
+                    type='addData'
+                    onClick={() => { }}
+                    id='save'
                 >
                     Save and Continue
                 </Button>

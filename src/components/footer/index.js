@@ -11,6 +11,10 @@ const PageFoot = styled.footer`
     font-size: 12px;
     position: relative;
     overflow: hidden;
+    
+    @media (max-width: 750px) {
+        max-height: 50px;
+    }
     `;
 
 const text = '© Copyright by MBIQS (Pvt.) Limited, Since 2012. All Rights Reserved';

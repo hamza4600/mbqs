@@ -11,8 +11,8 @@ const Wrapper = styled.div`
         position: relative;
         width: 450px;
         background-color: transparent;
-        border: 1px solid #B0C4DE;
-        color: #1E1E1E !important;
+        border: 1px solid #C8CACB;
+        color: #C8CACB !important;
         font-size: 18px;
         height: 28px;
         outline: none;
@@ -20,9 +20,13 @@ const Wrapper = styled.div`
         width: 300px;
     }
 
+    input::placeholder {
+        color: #C8CACB;
+    }
+
     @media screen and (max-width: 768px) {
         right: 180px;
-        
+
         input {
             width: 220px;
         }
