@@ -1,4 +1,4 @@
-import React, { forwardRef, useEffect } from "react";
+import React, { forwardRef } from "react";
 import styled from "styled-components";
 import { BsChevronDown } from "react-icons/bs";
 
@@ -66,12 +66,12 @@ const Dropdown = forwardRef(
             onBlur = true,
             onFocus = true,
             icon = <BsChevronDown size={16} />,
-            selectItem,
-            selected,
             toggel,
             isOpen,
             close,
-            onChange
+            onChange,
+            value,
+            updateValue,
         } = props;
 
         const handleBlur = (e) => {
@@ -88,15 +88,10 @@ const Dropdown = forwardRef(
 
         const handleSelectItem = (option, index) => {
             // console.log(option, index);
-            selectItem(option, index);
+            updateValue && typeof updateValue === 'function' && updateValue(option, index)
+            onChange && typeof onChange === 'function' && onChange()
             close()
         }
-
-        // componet should be unmounted
-        useEffect(() => {
-
-        }, [onChange])
-
 
         return (
             <>
@@ -108,7 +103,7 @@ const Dropdown = forwardRef(
                     id="dropdown"
                 >
                     <div>
-                        {selected ? selected.name : placeholder}
+                        {value ? value.name : placeholder}
                         <i id='down'>{icon && icon}</i>
                     </div>
                     {
@@ -116,12 +111,7 @@ const Dropdown = forwardRef(
                             <ul>
                                 {options.map((option, index) => (
                                     <li key={option.id || Math.random()}
-                                        onClick={
-                                            () => {
-                                                handleSelectItem(option, index)
-                                                onChange && typeof onChange === 'function' && onChange()
-                                            }
-                                        }
+                                        onClick={() => handleSelectItem(option, index)}
                                     >
                                         {option.name}
                                     </li>

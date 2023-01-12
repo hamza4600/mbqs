@@ -1,4 +1,4 @@
-import { Suspense, useState } from 'react';
+import { Suspense, useEffect, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Input from 'components/input';
 import { Grid, H1, Wrapper } from './styled';
@@ -9,7 +9,7 @@ import useDropDown from 'components/dropdown/useDropdown';
 
 const Left = () => {
 
-    const { isOpen, selectItem, selected, toggle, close } = useDropDown();
+    const { isOpen,  toggle, close, value, updateValue } = useDropDown();
 
     const [data, setData] = useState({
         businessName: '',
@@ -50,7 +50,10 @@ const Left = () => {
         })
     }
 
-    // console.log(selected, 'selected', data);
+    useEffect(() => {
+        console.log(data);
+    }, [data])
+
 
     return (
         <>
@@ -77,17 +80,16 @@ const Left = () => {
                     <Dropdown
                         placeholder="Select Category"
                         isOpen={isOpen}
-                        selected={selected}
                         toggel={toggle}
                         close={close}
-                        selectItem={selectItem}
-                        onChange={() => handeldropdown(selected, 'category')}
+                        onChange={() => handeldropdown(value, 'category')}
+                        value={value}
+                        updateValue={updateValue}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
-                        selectItem={selectItem}
                         isOpen={isOpen}
-                        selected={selected}
+                        value={value}
                         toggel={toggle}
                         close={close}
                     />

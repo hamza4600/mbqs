@@ -1,6 +1,6 @@
 import Portal from "components/portal";
 import useScrollLock from "Hooks/useScrollock";
-import { forwardRef, memo, useCallback, useEffect } from "react";
+import { forwardRef, memo, useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 
 const DialOuter = styled.div`
@@ -16,18 +16,20 @@ const DialOuter = styled.div`
     align-items: center;
     overflow: hidden;
     `;
+
+
 const DialInner = styled.div`
     width: 400px;
     height: 400px;
-    background-color: skyblue;
+    background-color: #204D70;
+    color: #fff;
     border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
     flex-direction: column;
     padding: 20px;
     animation: open 0.2s ease-in-out;
-     
 
     @keyframes open {
         from {
@@ -39,6 +41,23 @@ const DialInner = styled.div`
             opacity: 1;
         }
     }
+
+    #dialog_footer {
+        display: inline-flex;
+        justify-content: space-between;
+        width: 50%;
+    }
+
+    #dialog_footer button {
+        width: 100%;
+        margin: 0 10px;
+        padding: 8px 20px;
+        border-radius: 5px;
+        border: none;
+        outline: none;
+        cursor: pointer;
+    }
+        
 `;
 
 const DialogBox = memo(forwardRef(
@@ -52,7 +71,10 @@ const DialogBox = memo(forwardRef(
             closeOutside = true,
             scrollLock = true,
             backdrop = true,
-            id = 'dialog'
+            id = 'dialog',
+            description,
+            type,
+
         } = props;
 
         const [, setLocked] = useScrollLock(false || scrollLock, ref);
@@ -87,6 +109,20 @@ const DialogBox = memo(forwardRef(
             }
         }, [escClose, handleKeyDown]);
 
+        const handelType = useMemo((e) => {
+            switch (type) {
+                case 'confirm':
+                    return 'confirm';
+                case 'cancel':
+                    return 'cancel';
+                case 'delete':
+                    return 'delete';
+                default:
+                    return 'confirm';
+            }
+        }, [type]);
+
+        console.log('handelType', handelType);
         return (
             <>
                 {open && (
@@ -95,21 +131,24 @@ const DialogBox = memo(forwardRef(
                     >
                         <DialOuter
                             ref={ref}
-                            role="dialog" id={id}
+                            role="dialog"
+                            id={id}
                             onClick={closeOutside && onClose}
                             backdrop={backdrop}
                         >
-                            <DialInner id={id}
+                            <DialInner
+                                id={handelType}
                                 onClick={(e) => e.stopPropagation()}
                             >
-                                {title && <h2>{title}</h2>}
                                 <div id={id} >
-                                    {children}
+                                    <h2>{title}</h2>
+                                    {children && children}
+                                    {description && <p>{description}</p>}
                                 </div>
+                             
                                 <div id="dialog_footer">
-                                    <button onClick={open && onClose}>Cancel</button>
-
                                     <button onClick={onConfirm}>Confirm</button>
+                                    <button onClick={open && onClose}>Cancel</button>
                                 </div>
                             </DialInner>
                         </DialOuter>

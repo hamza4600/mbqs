@@ -2,40 +2,28 @@ import { useState } from "react";
 
 function useDropDown() {
     const [isOpen, setIsOpen] = useState(false);
-    const [selected, setSelected] = useState(null);
     const [options, setOptions] = useState([]);
     const [value, setValue] = useState(null);
-    const [dialogProps, setDialogProps] = useState({});
 
     const toggle = () => setIsOpen(!isOpen);
     const close = () => setIsOpen(false);
     const open = () => setIsOpen(true);
 
-    const selectItem = (option, index) => {
-        setSelected(option);
-        close();
-    }
-
     const updateValue = (value) => {
         setValue(value);
+        close();
     }
 
     return {
         isOpen,
-        selected,
         options,
         value,
-        dialogProps,
         toggle,
         close,
         open,
-        selectItem,
         updateValue,
         setOptions,
-        setDialogProps
     };
 }
 
 export default useDropDown;
-
-//

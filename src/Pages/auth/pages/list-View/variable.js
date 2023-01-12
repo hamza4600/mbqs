@@ -30,16 +30,58 @@ export const ListHead = [
   }
 ];
 
-export const ListBod = {
-  id: 1,
-  businessID: "SE-0000001",
-  businessCat: "Construction",
-  businessName: "Main Builder",
-  email: "info@mainbuilder.com",
-  contact: "+46 000 000 000",
-  regesterDate: "2021-01-01",
-  compantStatus: "Active",
-};
+export const ListBod = [
+  {
+    id: 1,
+    businessID: "SE-0000001",
+    businessCat: "Construction",
+    businessName: "Main Builder",
+    email: "info@mainbuilder.com",
+    contact: "+46 000 000 000",
+    regesterDate: "2021-01-01",
+    compantStatus: "Active",
+  }, 
+  {
+    id: 2,
+    businessID: "SE-0000002",
+    businessCat: "Design",
+    businessName: "Main Design",
+    email: "info@mainbuilder.com",
+    contact: "+46 000 000 000",
+    regesterDate: "2021-01-01",
+    compantStatus: "Active",
+  }, 
+  {
+    id: 3,
+    businessID: "SE-0000003",
+    businessCat: "Destruction",
+    businessName: "Main Destruction",
+    email: "info@mainbuilder.com",
+    contact: "+46 000 000 000",
+    regesterDate: "2021-01-01",
+    compantStatus: "Deactive",
+  }, 
+  {
+    id: 4,
+    businessID: "SE-0000004",
+    businessCat: "Finance",
+    businessName: "Main Finance",
+    email: "info@mainbuilder.com",
+    contact: "+46 000 000 000",
+    regesterDate: "2021-01-01",
+    compantStatus: "Active",
+  }, 
+  {
+    id: 5,
+    businessID: "SE-0000005",
+    businessCat: "Supply Chain",
+    businessName: "Main  Supply Chain",
+    email: "info@mainbuilder.com",
+    contact: "+46 000 000 000",
+    regesterDate: "2021-01-01",
+    compantStatus: "Active",
+  }, 
+]
 
 // Customer dropDown data
 export const customerType = [

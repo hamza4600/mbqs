@@ -31,12 +31,21 @@
     padding: 2px;
     width: auto;
     text-align: left;
-
 }
+
+.action {
+    position: relative;
+    right: 6rem;
+    width: 50px !important;
+    display: inline-flex;
+    justify-content: space-between;
+}
+
 
 .table table tbody tr:hover>* {
     background-color: #00416A;
     color: white;
+    cursor: pointer;
 }
 
 .table table thead th img {
@@ -46,4 +55,3 @@
     position: relative;
     top: 5px;
 }
-

@@ -19,6 +19,7 @@ export const authRoutes = {
     settAddPage: '/setting-add-page',
     settAddDetail: '/setting-app-detail',
     headFooter: '/setting-head-footer',
+    productView: '/product/:id',
 };
 
 const listPageType = {  // every Page have its own Api for getting Data
@@ -46,6 +47,7 @@ const AddContactPage = lazy(() => import('./pages/addContact'));
 const AddnewPage = lazy(() => import('./pages/addPage'));
 const AppDetailSetting = lazy(() => import('./setting'));
 const SettingHeaderFooter = lazy(() => import('./pages/sett-head'));
+const ProductView = lazy(() => import('./pages/product'));
 
 const paths = [
     {
@@ -132,6 +134,11 @@ const paths = [
         id: 16,
         path: authRoutes.headFooter,
         component: <SettingHeaderFooter />
+    }, 
+    {
+        id: 17,
+        path: authRoutes.productView,
+        component: <ProductView />
     }
 ];
 
