@@ -2,6 +2,8 @@ import Input from "components/input"
 import { useState } from "react"
 import { Head, LoginModelWrapper } from "./structure"
 import Button from "components/button"
+import { useDispatch } from "react-redux"
+import { setModelData } from "store/loginModel"
 
 // part of LoginModel
 
@@ -20,14 +22,31 @@ const LoginModelPart = (props) => {
         })
     }
 
+    const dispatch = useDispatch()
+    
     const forget = () => {
         props.setActiveCompont(4)
+        // dispach to redux
+        dispatch(setModelData({
+            valid: false,
+            session: '',
+            typeModel: 'forget',
+            number: 4,
+        }))
     }
     const signup = () => {
         props.setActiveCompont(2)
+        // dispach to redux
+        dispatch(setModelData({
+            valid: false,
+            session: '',
+            typeModel: 'signup',
+            number: 2,
+        }))
     }
 
     const handelLogin = () => {
+        console.log(values)
         window.location.href = "/auth/panel"
     }
 

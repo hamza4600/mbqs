@@ -11,6 +11,7 @@ const Button = memo(
                 rightIcon,
                 isDisabled = false,
                 type,
+                onClick,
 
             } = props;
             return (
@@ -27,6 +28,7 @@ const Button = memo(
                                 [styles.addData]: type === 'addData',
                                 
                             })}
+                            onClick={onClick}
                             {...props}
                         >   
                             {(leftIcon) && (

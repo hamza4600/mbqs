@@ -4,13 +4,15 @@ import { useMemo } from "react";
 import { ListBod, ListHead } from "./variable";
 // Style
 import styles from "./style.module.css";
-
+import Input from "components/input";
+// import { useTranslation } from "react-i18next";
+import logo from "./Vector.svg";
 
 export const ListBody = () => {
 
     const bigList = useMemo(() => {
         let arr = [];
-        for (let i = 0; i < 28; i++) {
+        for (let i = 0; i < 10; i++) {
             arr.push(ListBod);
         }
         return arr;
@@ -23,24 +25,20 @@ export const ListBody = () => {
                     <thead>
                         <tr>
                             {ListHead.map((item) => {
-                                return <th key={item.id}>{item.name}</th>;
+                                return <th key={item.id}>{item.name} <img src={logo} alt="svg" /></th>;
                             })}
                         </tr>
                     </thead>
                     <tbody>
                         {bigList.map((item, v) => (
                             <tr key={v}>
-                                {/* <td> <Input.Radio key={v} label={item.customerID} /> </td> */}
-                                <td>{item.customerName}</td>
-                                <td>{item.address}</td>
-                                <td>{item.customerWallet}</td>
-                                <td>{item.eMoney}</td>
-                                <td>{item.subscriptionPackage}</td>
-                                <td>{item.customerOrder}</td>
-                                <td>{item.customerInvoice}</td>
-                                <td>{item.paymentStatus}</td>
-                                <td>{item.customerStatus}</td>
-                                <td>{item.note}</td>
+                                <td> <Input.Radio key={v} label={item.businessID} /> </td>
+                                <td>{item.businessCat}</td>
+                                <td>{item.businessName}</td>
+                                <td>{item.email}</td>
+                                <td>{item.contact}</td>
+                                <td>{item.regesterDate}</td>
+                                <td>{item.compantStatus}</td>
                             </tr>
                         ))}
                     </tbody>

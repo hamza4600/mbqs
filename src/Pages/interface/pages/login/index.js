@@ -10,6 +10,7 @@ import OTP from "./otp"
 import ResetPass from "./resetPass"
 
 import logo from "../../../../assits/modal.svg"
+import { useSelector } from "react-redux"
 
 const Left = () => (
     <>
@@ -26,7 +27,11 @@ const Right = (props) => {
     // const role = url.searchParams.get("role");
     // console.log(role)
     // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
-    const [activeCompont, setActiveCompont] = useState(1)
+    const [activeCompont, setActiveCompont] = useState(1);
+    const active = useSelector(state => state.loginModel);
+    console.log(active)
+
+    // 
 
     const ActiveCompt = useCallback(() => {
         switch (activeCompont) {
@@ -67,7 +72,7 @@ const LoginModel = () => (
 
 const MainLoginPage = () => (
     <>
-        <InterfaceLayout blurnav sidebar={false}>
+        <InterfaceLayout blurnav={true} sidebar={false}>
             <LoginModel />
         </InterfaceLayout>
     </>

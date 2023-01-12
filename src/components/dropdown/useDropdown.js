@@ -3,7 +3,6 @@ import { useState } from "react";
 function useDropDown() {
     const [isOpen, setIsOpen] = useState(false);
     const [selected, setSelected] = useState(null);
-    const [selectIndex, setSelectIndex] = useState(null);
     const [options, setOptions] = useState([]);
     const [value, setValue] = useState(null);
     const [dialogProps, setDialogProps] = useState({});
@@ -14,7 +13,6 @@ function useDropDown() {
 
     const selectItem = (option, index) => {
         setSelected(option);
-        setSelectIndex(index);
         close();
     }
 
@@ -25,7 +23,6 @@ function useDropDown() {
     return {
         isOpen,
         selected,
-        selectIndex,
         options,
         value,
         dialogProps,

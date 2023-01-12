@@ -1,6 +1,8 @@
 .table {
     width: 99%;
-    background-color: white;
+    background-color: transparent;
+    margin-top: 10px;
+    overflow: auto;
 }
 
 .table table {
@@ -10,7 +12,6 @@
     border-collapse: collapse;
     color: #00416A;
     white-space: nowrap;
-
 }
 
 .table table tbody td {
@@ -18,9 +19,9 @@
 }
 
 .table table th {
-    font-weight: 600 !important;
     padding: 2px;
-    font-size: 15px;
+    font-size: 16px;
+    font-weight: lighter;
     text-align: left;
     border-bottom: 1px solid #B0C4DE;
     border-top: 1px solid #B0C4DE;
@@ -34,8 +35,15 @@
 }
 
 .table table tbody tr:hover>* {
-
     background-color: #00416A;
     color: white;
+}
+
+.table table thead th img {
+    width: 15px;
+    height: 20px;
+    cursor: pointer;
+    position: relative;
+    top: 5px;
 }
 

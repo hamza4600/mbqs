@@ -7,23 +7,33 @@ export const loginModel = createSlice({
         session: '',
         isValid: false,
         num: 1,
+        modeType: '',
     },
     reducers: {
         setModelData: (state, action) => {
-            const { valid, session, type , number } = action.payload;
-                console.log( number)
+            const { valid, session, usertype, number, typeModel } = action.payload;
             return {
                 ...state,
-                // ...action.payload,
-                userTypes: type,
+                userTypes: usertype,
                 session: session,
                 isValid: valid,
                 num: number,
+                modeType: typeModel,
             }
         },
+        resertModel: (state, action) => {
+            return {
+                ...state,
+                userTypes: '',
+                session: '',
+                isValid: false,
+                num: 1,
+                modeType: '',
+            }
+        }
     }
 });
 
-export const { setModelData } = loginModel.actions;
+export const { setModelData, resertModel } = loginModel.actions;
 
 export default loginModel.reducer;

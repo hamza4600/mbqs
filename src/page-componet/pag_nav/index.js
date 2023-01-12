@@ -1,6 +1,5 @@
 import Navbar from "components/navbar"
 import styled from "styled-components"
-import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import useHover from "Hooks/useHover";
 
@@ -142,7 +141,7 @@ const RightSide = () => {
 }
 
 const PageNavbar = (props) => {
-    const route = useLocation();
+   
     return (
         <>
             <Navbar
@@ -150,8 +149,8 @@ const PageNavbar = (props) => {
                 Left={
                     <>
                         <a
-                            href={!props.blure &&
-                                route.pathname === "/auth/panel" ? "#" : "/auth/panel"
+                            href={!props.blure && "/auth/panel"
+                                // route.pathname === "/auth/panel" ? "#" : "/auth/panel"
                             }  // can also pass on base of auth
                         >
                             <img src={logo} alt="logo" />

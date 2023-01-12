@@ -6,20 +6,22 @@ import { Container } from "./styled";
 import Button from "components/button";
 // Icons
 import { MdOutlineAdd } from "react-icons/md";
-import { MdAdd } from "react-icons/md";
-import { MdCloseFullscreen } from "react-icons/md";
-import { BiFilterAlt } from "react-icons/bi";
-import { BsChevronDown } from "react-icons/bs";
-import { BsShareFill } from "react-icons/bs";
+// import { MdAdd } from "react-icons/md";
+// import { MdCloseFullscreen } from "react-icons/md";
+// import { BiFilterAlt } from "react-icons/bi";
+// import { BsChevronDown } from "react-icons/bs";
+// import { BsShareFill } from "react-icons/bs";
+import { H1 } from "../creatBusi/styled";
+import { ListBody } from "./sub";
 
 const LeftSide = () => {
     return (
         <>
             <div id="left">
-                <h1>Search</h1>
-                <h1>Filter by</h1>
-                <h1>Filter by</h1>
-                <h1>Filter by</h1>
+                <p>Search</p>
+                <p>Filter by</p>
+                <p>Filter by</p>
+                <p>Filter by</p>
 
             </div>
         </>
@@ -43,7 +45,7 @@ const ListViewPage = (props) => {
         <>
             <Container>
                 <div id="inline">
-                    <h1>List of {type}</h1>
+                    <H1>{type} List View</H1>
                     <Button
                         text="Add"
                         type='addData'
@@ -53,7 +55,7 @@ const ListViewPage = (props) => {
                     </Button>
                 </div>
 
-                <div id="inline">
+                <div id="inline-head">
                     <LeftSide />
                     <RightSide />
                 </div>
@@ -64,7 +66,7 @@ const ListViewPage = (props) => {
                 />
 
                 {/* /Table View Container arry pass Show add data  */}
-
+                <ListBody />
 
             </Container>
         </>

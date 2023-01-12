@@ -17,7 +17,7 @@ const detail = {
 const AuthPages = () => (
     <>
         <Suspense fallback={<PageSpinner />}>
-            <InterfaceLayout>
+            <InterfaceLayout blurnav= {false}>
                 <Routes>
                     {paths.map((path) => (
                         <Route

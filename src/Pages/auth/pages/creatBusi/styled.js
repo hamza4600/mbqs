@@ -9,14 +9,6 @@ export const Grid = styled.form`
     padding: 10px;
     position: relative;
 
-    h1 {
-        font-size: 20px;
-        font-weight: 200;
-        font-family: 'Montserrat', sans-serif;
-        color: #00243D;
-        margin-bottom: 20px;
-    }
-
     #sub {
         display: flex;
         flex-direction: column;
@@ -33,6 +25,21 @@ export const Grid = styled.form`
         bottom: -18rem;
         width: 200px;
     }
+
+    #show-img {
+        position: absolute;
+        left: 2px;
+        top: 1px;
+        z-index: 1;
+        width: 100px;
+        height: 100px;
+        
+        img {
+            width: 100px;
+            height: 100px;
+            object-fit: cover;
+        }
+    }
     
     @media (max-width: 1350px) {
         grid-template-columns: 1fr;
@@ -43,8 +50,13 @@ export const Grid = styled.form`
 
         #save {
             position: relative;
-            right: 0;
+            left: 110px;
             bottom: 0;
+            margin-top: 20px;
+        }
+
+        #show-img {
+            left: 20rem;
         }
     }
 
@@ -54,6 +66,15 @@ export const Grid = styled.form`
 
 `;
 
+
+export const H1 = styled.h1` // in All pages Header
+    font-size: 20px;
+    font-weight: 200 !important;
+    font-family: 'Montserrat', sans-serif;
+    color: #00243D;
+    margin-bottom: 20px;
+`;
+
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
@@ -61,6 +82,7 @@ export const Wrapper = styled.div`
     width: 100%;
     justify-content: start;
     gap: 20px;
+    position: relative;
 
     div {
         min-width: ${props => props.full && "620px"};
