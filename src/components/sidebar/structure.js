@@ -13,9 +13,18 @@ export const Aside = styled.aside`
   right: ${(props) => (props.right ? "0px" : "")};
   left: ${(props) => (props.left ? "0px" : "")};
   z-index: 100;
-  transition: 0.3s linear;
-  animation: ${(props) => (props.animation ? props.animation : "")} 0.3s linear;
+  transition:  300ms ease;
+  will-change: transform;
+  animation: ${(props) => (props.animation ? props.animation : "slideIn")} 0.3s ease;
   opacity: ${(props) => (props.opacity ? props.opacity : "1")};
+
+  @keyframes slideIn {
+    from {
+      transform: translateX(-100%);
+    } to {
+      transform: translateX(0);
+    }
+  }
 
   @media (max-width: 768px) {
 

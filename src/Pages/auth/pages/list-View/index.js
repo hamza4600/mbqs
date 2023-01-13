@@ -1,40 +1,125 @@
 // used for  main Page Types
 // Only data will chnage for this page  
+import { useState } from "react";
 
-// import DropDownData from "components/dropdown";
-import { Container } from "./styled";
+import { Container, Left, Right } from "./styled";
 import Button from "components/button";
+import Dropdown from "components/dropdown";
+import useDropDown from "components/dropdown/useDropdown";
 // Icons
 import { MdOutlineAdd } from "react-icons/md";
-// import { MdAdd } from "react-icons/md";
-// import { MdCloseFullscreen } from "react-icons/md";
-// import { BiFilterAlt } from "react-icons/bi";
-// import { BsChevronDown } from "react-icons/bs";
-// import { BsShareFill } from "react-icons/bs";
+import { MdCloseFullscreen } from "react-icons/md";
+import { BiFilterAlt } from "react-icons/bi";
+import { BsChevronDown } from "react-icons/bs";
+import { BsShareFill } from "react-icons/bs";
+import { SlCalender } from "react-icons/sl";
+
 import { H1 } from "../creatBusi/styled";
 import { ListBody } from "./sub";
-import {  useState } from "react";
-import { ListBod } from "./variable";
+import { ListBod, exportList, share, sortBy } from "./variable";
 
-const LeftSide = () => {
+
+const LeftSide = (props) => {
+
+    const { query, onChange } = props;
+
+    const { isOpen, toggle, close, value, updateValue } = useDropDown();
+
     return (
         <>
-            <div id="left">
-                <p>Search</p>
-                <p>Filter by</p>
-                <p>Filter by</p>
-                <p>Filter by</p>
+            <Left id="left">
+                <input
+                    type="addData"
+                    inputype='text'
+                    placeholder="Search By Keyword"
+                    id="search"
+                    value={query}
+                    onChange={onChange}
+                />
+                < Dropdown
+                    placeholder="Filter By"
+                    isOpen={isOpen}
+                    toggel={toggle}
+                    close={close}
+                    // onChange={() => handeldropdown(value, 'category')}
+                    value={value}
+                    updateValue={updateValue}
+                    icon={<BiFilterAlt size={22} />}
+                    options={sortBy}
+                    type='form'
+                />
+                < Dropdown
+                    placeholder="Filter Calender"
+                    isOpen={isOpen}
+                    toggel={toggle}
+                    close={close}
+                    // onChange={() => handeldropdown(value, 'category')}
+                    value={value}
+                    updateValue={updateValue}
+                    icon={<SlCalender size={22} />}
+                    options={sortBy}
+                    type='form'
+                />
 
-            </div>
+                < Dropdown
+                    placeholder="Share"
+                    isOpen={isOpen}
+                    toggel={toggle}
+                    close={close}
+                    // onChange={() => handeldropdown(value, 'category')}
+                    value={value}
+                    updateValue={updateValue}
+                    icon={<BsShareFill size={20} />}
+                    options={share}
+                    type='form'
+                />
+
+            </Left>
         </>
     )
 }
 
 const RightSide = () => {
+
+    const { isOpen, toggle, close, value, updateValue } = useDropDown();
+
+    const fullScreen = () => {
+        const element = document.getElementById("main_page");
+        if (element.requestFullscreen) {
+            element.requestFullscreen();
+        }
+        else if (element.mozRequestFullScreen) {
+            element.mozRequestFullScreen();
+        }
+        else if (element.webkitRequestFullscreen) {
+            element.webkitRequestFullscreen();
+        }
+        else if (element.msRequestFullscreen) {
+            element.msRequestFullscreen();
+        }
+    }
     return (
         <>
+            <Right>
+                < Dropdown
+                    placeholder="Share"
+                    isOpen={isOpen}
+                    toggel={toggle}
+                    close={close}
+                    // onChange={() => handeldropdown(value, 'category')}
+                    value={value}
+                    updateValue={updateValue}
+                    icon={<BsChevronDown size={20} />}
+                    options={exportList}
+                    type='form'
+                />
+                <i
+                    onClick={fullScreen}
+                >
+                    <MdCloseFullscreen size={20} />
 
-            <p>Export by</p>
+                </i>
+            </Right>
         </>
     )
 }
@@ -48,10 +133,9 @@ const ListViewPage = (props) => {
     const [query, setQuery] = useState('')
     const [array, setArray] = useState(ListBod);
 
-
-    // serach query
     const search = (e) => {
-        setQuery(e?.target?.value);
+        setQuery(e.target.value)
+        // console.log(query, "array");
         if (e?.target?.value === '') {
             setArray(ListBod);
             return;
@@ -85,16 +169,14 @@ const ListViewPage = (props) => {
                 </div>
 
                 <div id="inline-head">
-                    <LeftSide />
-                    <RightSide />
-                </div>
 
-                <input
-                    type="text"
-                    placeholder="Search"
-                    value={query}
-                    onChange={search}
-                />
+                    <LeftSide
+                        query={query}
+                        onChange={search}
+                    />
+                    <RightSide />
+
+                </div>
 
                 <ListBody
                     query={query}

@@ -57,6 +57,7 @@ export const ListBody = (props) => {
                                 onClick={() => viewPage(v)}
                             >
                                 <td
+                                    className={styles.radio}
                                     onClick={(e) => e.stopPropagation()}>
                                     <Input.Radio key={v} label={item.businessID} />
                                 </td>
@@ -103,6 +104,3 @@ export const ListBody = (props) => {
         </>
     );
 };
-
-
-

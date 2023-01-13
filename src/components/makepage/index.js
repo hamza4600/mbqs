@@ -26,7 +26,7 @@ const Page = styled.div`
     }
 
     .main-page {
-        padding-left: 65px;
+        padding-left: 75px;
         margin-top: 10px;
         flex: 1;
         width: 100%;

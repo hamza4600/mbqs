@@ -41,6 +41,12 @@ const Wrapper = styled.div`
         border: 1px solid #ccc;
     }
 
+    #form {
+        flex-direction: row-reverse !important;
+        justify-content: space-between !important;
+        // width: fit-content !important;
+    }
+
     #down {
         position: absolute;
         right: 6px;
@@ -82,16 +88,28 @@ const Dropdown = forwardRef(
 
         const handleFocus = (e) => {
             if (onFocus) {
+                console.log('focus', toggel);
                 toggel();
             }
         }
 
         const handleSelectItem = (option, index) => {
-            // console.log(option, index);
             updateValue && typeof updateValue === 'function' && updateValue(option, index)
             onChange && typeof onChange === 'function' && onChange()
             close()
         }
+
+        const handelType = (type) => {
+            switch (type) {
+                case 'form':
+                    return 'form'
+                case 'editData':
+                    return 'editData'
+                default:
+                    return 'addData'
+            }
+        }
+
 
         return (
             <>
@@ -101,10 +119,16 @@ const Dropdown = forwardRef(
                     onClick={handleFocus}
                     tabIndex="0"
                     id="dropdown"
+                    ref={ref}
                 >
-                    <div>
-                        {value ? value.name : placeholder}
-                        <i id='down'>{icon && icon}</i>
+                    <div
+                        id={handelType(type)}
+                    >
+                        <p> {value ? value.name : placeholder} </p>
+                        <i
+                            id={`down_${handelType(type)}`}
+                        >
+                            {icon && icon}</i>
                     </div>
                     {
                         isOpen && (
