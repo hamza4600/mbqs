@@ -3,7 +3,7 @@ import styled from "styled-components"
 import { useState } from "react";
 import useHover from "Hooks/useHover";
 
-import logo from "../../assits/Logo.svg"
+import logo from "../../assits/MLogo.png"
 import flag from "../../assits/uk-flag.svg"
 import { BiSearch } from "react-icons/bi";
 import { SlMenu } from "react-icons/sl";

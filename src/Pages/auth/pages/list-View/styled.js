@@ -25,26 +25,54 @@ export const Container = styled.div`
         padding: 0 30px 0 0;    
         margin-top: 20px;
     }
+
+
 `;
 
 
 export const Left = styled.div`
 
     #search {
-        width: 250px !important;
+        width: 250px ;
         max-width: 250px !important;
         height: 28px !important;
         border: 1px solid #ccc !important;
         outline: none !important;
         padding: 0 10px !important;
         background: #F0F8FF !important;
+        font-size: 14px !important;
+        font-weight: 200 !important;
+    }
+
+    #search:focus {
+        border: 1px solid #00BFFF !important;
     }
 
     #dropdown {
         width: 140px !important;
-
     }
 
+    #dropdown svg {
+        margin-top: 5px;
+        padding-left: 2px;
+    }
+
+    #dropdown p {
+        margin-left: 8px;
+    }
+    
+    #dropdownshare {
+        width: 140px !important;
+    }
+
+    #dropdownshare svg {
+        margin-top: 5px;
+        padding-left: 2px;
+    }
+    #dropdownshare p {
+        margin-left: 15px;
+    }
+   
 `;
 
 export const Right = styled.div`
@@ -52,12 +80,18 @@ export const Right = styled.div`
     justify-content: space-between;
     width: 8rem;
     gap: 20px;
+    margin-right: 20px;
 
     #dropdown {
         width: 80px !important;
     }
 
+    #dropdown p {
+        margin-left: 8px;
+    }
+
     i {
         margin-top: 5px;
+        cursor: pointer;
     }
 `;

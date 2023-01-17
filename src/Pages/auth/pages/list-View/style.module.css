@@ -3,15 +3,23 @@
     background-color: transparent;
     margin-top: 10px;
     overflow: auto;
+   
 }
 
 .table table {
     margin-top: 8px;
-    min-width: 100%;
-    max-width: auto;
+    width: 100%;
     border-collapse: collapse;
     color: #00416A;
     white-space: nowrap;
+    min-width: 1200px;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.table::-webkit-scrollbar {
+    height: 8px !important;
+    margin-top: 10px;
 }
 
 .table table tbody td {
@@ -31,21 +39,21 @@
     padding: 2px;
     width: auto;
     text-align: left;
-    
+
 }
 
 .action {
     position: relative;
     right: 6rem;
-    width: 50px !important;
+    width: 60px !important;
     display: inline-flex;
     justify-content: space-between;
+    align-items: center;
 }
-
 
 .table table tbody tr:hover>* {
     background-color: #00416A;
-    color: white;
+    color: white !important;
     cursor: pointer;
 }
 
@@ -59,4 +67,11 @@
 
 .radio label {
     margin-top: 2px;
+}
+
+
+.svg:hover {
+    cursor: pointer;
+    color: white;
+
 }

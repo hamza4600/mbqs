@@ -1,10 +1,11 @@
 import { Suspense, useEffect, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Input from 'components/input';
-import { Grid, H1, Wrapper } from './styled';
+import { Grid,  Wrapper } from './styled';
 import Dropdown from 'components/dropdown';
 import Button from 'components/button';
 import useDropDown from 'components/dropdown/useDropdown';
+import { H1 } from 'components/a';
 
 
 const Left = () => {

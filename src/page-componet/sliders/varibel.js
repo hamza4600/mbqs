@@ -30,6 +30,36 @@ export const sidebarData = [
                 id: 3,
                 title: 'business profile',
                 route: authRoutes.busniessProfile
+            }, 
+            {
+                id: 4,
+                title: 'background image',
+                route: authRoutes.backgroundImg
+            },
+            {
+                id: 5,
+                title: 'image slider',
+                // route: authRoutes.imageSlider
+            }, 
+            {
+                id: 6,
+                title: 'text & business',
+                // route: authRoutes.textBusiness
+            }, 
+            {
+                id: 7,
+                title: 'over lapping text',
+                // route: authRoutes.overlappingText
+            }, 
+            {
+                id: 8,
+                title: 'video list',
+                // route: authRoutes.videoList
+            }, 
+            {
+                id: 9,
+                title: 'brand slider',
+                // route: authRoutes.brandSlider
             }
         ]
     },

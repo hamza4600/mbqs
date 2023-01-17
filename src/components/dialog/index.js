@@ -15,15 +15,45 @@ const DialOuter = styled.div`
     justify-content: center;
     align-items: center;
     overflow: hidden;
+
+    #delete {
+        width: 700px;
+        height: 360px;
+    }
+
+    #delete h2 {
+        font-size: 30px;
+        font-weight: 500;
+    }
+
+    #reason {
+        width: 100%;
+        height: 180px;
+        padding: 6px;
+        margin: 18px 0;
+        outline: none;
+        border: none;
+        border-radius: 3px;
+        background-color: #B8BFC4;
+        font-size: 16px;    
+        font-weight: 200;
+        resize: none;
+    }
+    #reason::placeholder {
+        color: #000000;
+    }
+
+    #delete button {
+        background: #D9D9D9;
+    }
+
     `;
 
 
 const DialInner = styled.div`
-    width: 400px;
-    height: 400px;
     background-color: #204D70;
     color: #fff;
-    border-radius: 10px;
+    border-radius: 3px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -51,11 +81,12 @@ const DialInner = styled.div`
     #dialog_footer button {
         width: 100%;
         margin: 0 10px;
-        padding: 8px 20px;
+        padding: 8px 16px;
         border-radius: 5px;
         border: none;
         outline: none;
         cursor: pointer;
+        font-size: 18px;
     }
         
 `;
@@ -122,7 +153,6 @@ const DialogBox = memo(forwardRef(
             }
         }, [type]);
 
-        console.log('handelType', handelType);
         return (
             <>
                 {open && (
@@ -145,7 +175,7 @@ const DialogBox = memo(forwardRef(
                                     {children && children}
                                     {description && <p>{description}</p>}
                                 </div>
-                             
+
                                 <div id="dialog_footer">
                                     <button onClick={onConfirm}>Confirm</button>
                                     <button onClick={open && onClose}>Cancel</button>

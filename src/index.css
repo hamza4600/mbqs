@@ -2,7 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200;400;500&display=swap');
 
 * {
-  -ms-overflow-style: none;
+  -ms-overflow-style: none; 
 }
 
 *::after,

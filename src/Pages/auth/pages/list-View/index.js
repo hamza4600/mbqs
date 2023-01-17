@@ -14,16 +14,23 @@ import { BsChevronDown } from "react-icons/bs";
 import { BsShareFill } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
 
-import { H1 } from "../creatBusi/styled";
+
 import { ListBody } from "./sub";
 import { ListBod, exportList, share, sortBy } from "./variable";
+import { H1 } from "components/a";
 
 
 const LeftSide = (props) => {
 
     const { query, onChange } = props;
 
-    const { isOpen, toggle, close, value, updateValue } = useDropDown();
+    // for filetr
+    const { isOpen: isFone, toggle: Ftoggle, close: fclose, value: fvalue, updateValue: fupadateValue } = useDropDown();
+    // for calender
+    const { isOpen: isCone, toggle: Ctoggle, close: cclose, value: cvalue, updateValue: cupadateValue } = useDropDown();
+    // for share
+    const { isOpen: isSone, toggle: Stoggle, close: sclose, value: svalue, updateValue: supadateValue } = useDropDown();
+
 
     return (
         <>
@@ -36,42 +43,43 @@ const LeftSide = (props) => {
                     value={query}
                     onChange={onChange}
                 />
-                < Dropdown
+                <Dropdown
                     placeholder="Filter By"
-                    isOpen={isOpen}
-                    toggel={toggle}
-                    close={close}
+                    isOpen={isFone}
+                    toggel={Ftoggle}
+                    close={fclose}
                     // onChange={() => handeldropdown(value, 'category')}
-                    value={value}
-                    updateValue={updateValue}
-                    icon={<BiFilterAlt size={22} />}
+                    // value={fvalue}
+                    // updateValue={fupadateValue}
+                    icon={<BiFilterAlt size={20} color={isFone && "#00BFFF"} />}
                     options={sortBy}
                     type='form'
                 />
                 < Dropdown
                     placeholder="Filter Calender"
-                    isOpen={isOpen}
-                    toggel={toggle}
-                    close={close}
+                    isOpen={isCone}
+                    toggel={Ctoggle}
+                    close={cclose}
                     // onChange={() => handeldropdown(value, 'category')}
-                    value={value}
-                    updateValue={updateValue}
-                    icon={<SlCalender size={22} />}
+                    // value={cvalue}
+                    // updateValue={cupadateValue}
+                    icon={<SlCalender size={20} color={isCone && "#00BFFF"} />}
                     options={sortBy}
                     type='form'
                 />
 
-                < Dropdown
+                <Dropdown
                     placeholder="Share"
-                    isOpen={isOpen}
-                    toggel={toggle}
-                    close={close}
+                    isOpen={isSone}
+                    toggel={Stoggle}
+                    close={sclose}
                     // onChange={() => handeldropdown(value, 'category')}
-                    value={value}
-                    updateValue={updateValue}
-                    icon={<BsShareFill size={20} />}
+                    // value={svalue}
+                    // updateValue={supadateValue}
+                    icon={<BsShareFill size={18} color={isSone && "#00BFFF"} />}
                     options={share}
                     type='form'
+                    id='share'
                 />
 
             </Left>
@@ -102,22 +110,23 @@ const RightSide = () => {
         <>
             <Right>
                 < Dropdown
-                    placeholder="Share"
+                    placeholder="Export"
                     isOpen={isOpen}
                     toggel={toggle}
                     close={close}
                     // onChange={() => handeldropdown(value, 'category')}
-                    value={value}
-                    updateValue={updateValue}
-                    icon={<BsChevronDown size={20} />}
+                    // value={value}
+                    // updateValue={updateValue}
+                    icon={<BsChevronDown size={18} color={isOpen && "#00BFFF"} />}
                     options={exportList}
                     type='form'
                 />
-                <i
-                    onClick={fullScreen}
-                >
-                    <MdCloseFullscreen size={20} />
-
+                
+                <i>
+                    <MdCloseFullscreen
+                        size={20}
+                        onClick={fullScreen}
+                    />
                 </i>
             </Right>
         </>
@@ -131,27 +140,25 @@ const ListViewPage = (props) => {
     const addbusiness = () => window.location.href = `/auth/creat-business`
 
     const [query, setQuery] = useState('')
-    const [array, setArray] = useState(ListBod);
 
     const search = (e) => {
-        setQuery(e.target.value)
-        // console.log(query, "array");
-        if (e?.target?.value === '') {
-            setArray(ListBod);
-            return;
-        }
-        if (e?.target?.value === ' ') return;
-
-        // search by all fields
-        const newArray = array.filter((item) => {
-            return Object.keys(item).some((key) => {
-                return item[key].toString().toLowerCase().includes(e?.target?.value.toLowerCase());
-            })
-        })
-
-        setArray(newArray);
-        console.log(newArray, "newArray");
+        setQuery(e.target.value.replace(/\s/g, '').toLocaleLowerCase())
     }
+
+    const filetrArray = ListBod.filter((item) => {
+        if (query === "" || query === " ") { return item }
+        else if (
+            item.businessCat.toLocaleLowerCase().includes(query) ||
+            item.businessName.toLocaleLowerCase().includes(query) ||
+            item.email.toLocaleLowerCase().includes(query) ||
+            item.businessID.includes(query) ||
+            item.regesterDate.includes(query) ||
+            item.contact.includes(query) ||
+            item.compantStatus.toLocaleLowerCase().includes(query)
+        ) {
+            return item
+        }
+    })
 
     return (
         <>
@@ -161,7 +168,7 @@ const ListViewPage = (props) => {
                     <Button
                         text="Add"
                         type='addData'
-                        leftIcon={<MdOutlineAdd size={22} />}
+                        leftIcon={<MdOutlineAdd size={20} />}
                         onClick={addbusiness}
                     >
                         Creat New {type}
@@ -180,8 +187,7 @@ const ListViewPage = (props) => {
 
                 <ListBody
                     query={query}
-                    array={array}
-                    setArray={setArray}
+                    array={filetrArray}
                 />
             </Container>
         </>

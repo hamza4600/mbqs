@@ -7,11 +7,12 @@ const Wrapper = styled.div`
     position: relative;
     width: 300px;
     background: transparent;
-    font-size: 12px;
+    font-size: 14px;
     height: 28px;
     text-transform: capitalize;
     color : #00243D;
     line-height: 18px;
+    cursor: pointer;
 
     ul {
         position: absolute;
@@ -24,7 +25,16 @@ const Wrapper = styled.div`
     }
 
     li {
-        padding: 0 5px;
+        padding: ${({ type }) => {
+        switch (type) {
+            case 'form':
+                return '5px';
+            case 'addData':
+                return '0 5px';
+            default:
+                return '0 5px';
+        }
+    }};
         cursor: pointer;
         &:hover {
             background: #204D70;
@@ -43,11 +53,11 @@ const Wrapper = styled.div`
 
     #form {
         flex-direction: row-reverse !important;
-        justify-content: space-between !important;
-        // width: fit-content !important;
+        justify-content: start !important;
+        border: none !important;
     }
 
-    #down {
+    #down_addData {
         position: absolute;
         right: 6px;
         top: 50%;
@@ -78,6 +88,7 @@ const Dropdown = forwardRef(
             onChange,
             value,
             updateValue,
+            id = ""
         } = props;
 
         const handleBlur = (e) => {
@@ -88,7 +99,6 @@ const Dropdown = forwardRef(
 
         const handleFocus = (e) => {
             if (onFocus) {
-                console.log('focus', toggel);
                 toggel();
             }
         }
@@ -118,8 +128,9 @@ const Dropdown = forwardRef(
                     // onFocus={handleFocus}
                     onClick={handleFocus}
                     tabIndex="0"
-                    id="dropdown"
+                    id={`dropdown${id}`}
                     ref={ref}
+                    type={type}
                 >
                     <div
                         id={handelType(type)}

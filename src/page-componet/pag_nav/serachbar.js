@@ -24,6 +24,10 @@ const Wrapper = styled.div`
         color: #C8CACB;
     }
 
+    input:focus {
+        border: 1px solid #00BFFF;
+    }
+
     @media screen and (max-width: 768px) {
         right: 180px;
 

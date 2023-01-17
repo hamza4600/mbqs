@@ -1,5 +1,4 @@
 // Main Body of the Customer List Page
-
 import { useState } from "react";
 
 import { ListHead } from "./variable";
@@ -10,13 +9,12 @@ import DialogBox from "components/dialog";
 
 import logo from "./Vector.svg";
 import { FiEdit } from "react-icons/fi";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { RiDeleteBin4Line } from "react-icons/ri";
 
 export const ListBody = (props) => {
 
     const {
         array,
-        setArray,
     } = props;
 
     const [model, setModel] = useState(false);
@@ -30,8 +28,8 @@ export const ListBody = (props) => {
     };
 
     const deleteBusiness = () => {
-        const newArray = array.filter((item) => item.id !== id);
-        setArray(newArray);
+        // remove index of item
+        array.splice(id, 1);
         setModel(prev => !prev)
     }
 
@@ -71,11 +69,13 @@ export const ListBody = (props) => {
                                 >
                                     {item.compantStatus}</td>
                                 <td className={styles.action}>
-                                    <RiDeleteBinLine size={22}
+                                    <RiDeleteBin4Line
+                                        size={24}
+                                        alt="delete"
                                         onClick={
                                             (e) => {
                                                 e.stopPropagation()
-                                                openModel(item.id)
+                                                openModel(v)
                                             }
                                         }
                                     />
@@ -91,16 +91,26 @@ export const ListBody = (props) => {
                     <>
                         <DialogBox
                             open={model}
-                            title="Delete Business"
-                            description="Are you sure you want to delete this business?"
+                            title="Are you sure you want to delete this ?"
+                            children={<Text placeholder="Enter Your Reason Hear" />}
                             onClose={() => setModel(false)}
                             onConfirm={deleteBusiness}
                             type="delete"
                         />
                     </>
                 )}
-
             </div>
         </>
     );
 };
+
+const Text = (props) => {
+    const { text, placeholder } = props;
+    return (
+        <>
+            <div>
+                <textarea name="" id="reason" cols="10" rows="10" value={text} placeholder={placeholder} />
+            </div>
+        </>
+    );
+}

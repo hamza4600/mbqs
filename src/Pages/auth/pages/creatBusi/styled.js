@@ -66,15 +66,6 @@ export const Grid = styled.form`
 
 `;
 
-
-export const H1 = styled.h1` // in All pages Header
-    font-size: 20px;
-    font-weight: 200 !important;
-    font-family: 'Montserrat', sans-serif;
-    color: #00243D;
-    margin-bottom: 20px;
-`;
-
 export const Wrapper = styled.div`
     display: flex;
     flex-direction: row;
