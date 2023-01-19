@@ -1,11 +1,10 @@
 import { lazy } from 'react';
-
 // evevery page will have its own state of data
 export const authRoutes = {
     panel: '/panel',
     addbusines: '/add-business',
     creatbusines: '/creat-business',
-    listbussiness: '/business-list',
+    frontView: '/front-view', // front view of website
     busniessProfile: '/business-profile',
     newPage: '/new-page',
     newPageList: '/new-page-list',
@@ -16,12 +15,18 @@ export const authRoutes = {
     addContact: '/add-contact',
     addTerms: '/add-terms',
     addPrivacy: '/add-privacy',
-    settAddPage: '/setting-add-page',
+    listAddPage: '/list-add-page',
     settAddDetail: '/setting-app-detail',
     headFooter: '/setting-head-footer',
     productView: '/product/:id',
+    menuEdit : '/menu-edit', // edit menu
     // add new page 
+    headerImg: '/header-img',
     backgroundImg: '/background-img',
+    textImg: '/text-img',
+    overLapText: '/overlap-text',
+    viedoList: '/viedo-list',
+    brandSlider: '/brand-slider',
 };
 
 const listPageType = {  // every Page have its own Api for getting Data
@@ -35,8 +40,8 @@ const addType = {
     event: "Add Event Page",
     about: "Add About Page"
 }
-// add trem and privacy and faq and contact are same;
 
+// add trem and privacy and faq and contact are same 
 const Dashboard = lazy(() => import('./pages/dashboard'));
 const CreatBusiness = lazy(() => import('./pages/creatBusi'));
 const AddBusiness = lazy(() => import('./pages/addBusin'));
@@ -46,12 +51,17 @@ const CreatnewPage = lazy(() => import('./pages/newPage'));
 const AddAboutPage = lazy(() => import('./pages/addAbout'));
 const EditPrivacy = lazy(() => import('./pages/privacy'));
 const AddContactPage = lazy(() => import('./pages/addContact'));
-const AddnewPage = lazy(() => import('./pages/addPage'));
 const AppDetailSetting = lazy(() => import('./setting'));
 const SettingHeaderFooter = lazy(() => import('./pages/sett-head'));
 const ProductView = lazy(() => import('./pages/product'));
-// new page
+// new page layout is Same 
 const BackgroundImage = lazy(() => import('./pages/bgImag'));
+const HeaderImage = lazy(() => import('./pages/headImg'));
+const TextImage = lazy(() => import('./pages/textImg'));
+const OverLapppinText = lazy(() => import('./pages/overlapText'));
+const ViedoList = lazy(() => import('./pages/viedoList'));
+const BrandSlider = lazy(() => import('./pages/brandSlider'));
+const EditMenu = lazy(() => import('./pages/menu'));
 
 const paths = [
     {
@@ -69,11 +79,7 @@ const paths = [
         path: authRoutes.addbusines,
         component: <AddBusiness />,
     },
-    {
-        id: 4,
-        path: authRoutes.listbussiness,
-        component: <ListViewPage type={listPageType.business} />,
-    },
+    
     {
         id: 5,
         path: authRoutes.busniessProfile,
@@ -126,8 +132,8 @@ const paths = [
     },
     {
         id: 14,
-        path: authRoutes.settAddPage,
-        component: <AddnewPage />
+        path: authRoutes.listAddPage,
+        component: <ListViewPage type={listPageType.business} />  // list of add page
     },
     {
         id: 15,
@@ -138,7 +144,7 @@ const paths = [
         id: 16,
         path: authRoutes.headFooter,
         component: <SettingHeaderFooter />
-    }, 
+    },
     {
         id: 17,
         path: authRoutes.productView,
@@ -148,7 +154,37 @@ const paths = [
     {
         id: 18,
         path: authRoutes.backgroundImg,
-        component: <BackgroundImage /> // add Event is alos same
+        component: <BackgroundImage />
+    },
+    {
+        id: 19,
+        path: authRoutes.headerImg,
+        component: <HeaderImage />  
+    }, 
+    {
+        id: 20,
+        path: authRoutes.textImg,
+        component: <TextImage />  
+    }, 
+    {
+        id: 21,
+        path: authRoutes.overLapText,
+        component: <OverLapppinText /> 
+    },
+    {
+        id: 22,
+        path: authRoutes.viedoList,
+        component: <ViedoList />
+    },
+    {
+        id: 23,
+        path: authRoutes.brandSlider,
+        component: <BrandSlider />
+    },
+    {
+        id: 24,
+        path: authRoutes.menuEdit,
+        component: <EditMenu />
     }
 ];
 

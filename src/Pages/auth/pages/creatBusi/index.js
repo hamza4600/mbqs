@@ -1,16 +1,16 @@
 import { Suspense, useEffect, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Input from 'components/input';
-import { Grid,  Wrapper } from './styled';
+import { Grid, Wrapper } from './styled';
 import Dropdown from 'components/dropdown';
 import Button from 'components/button';
 import useDropDown from 'components/dropdown/useDropdown';
 import { H1 } from 'components/a';
 
 
-const Left = () => {
+const Left = ({ title }) => {
 
-    const { isOpen,  toggle, close, value, updateValue } = useDropDown();
+    const { isOpen, toggle, close, value, updateValue } = useDropDown();
 
     const [data, setData] = useState({
         businessName: '',
@@ -59,7 +59,9 @@ const Left = () => {
     return (
         <>
             <div id='sub'>
-                <H1>Add New Business</H1>
+                <H1>
+                    {title ? title +" "+"Profile Page" : 'Register New Business'}
+                </H1>
                 <Wrapper>
                     <Input
                         inputype="text"
@@ -340,12 +342,12 @@ const Right = () => {
     )
 }
 
-const CreatBusiness = () => {
+const CreatBusiness = ({ title }) => {
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
                 <Grid>
-                    <Left />
+                    <Left title={title} />
                     <Right />
                 </Grid>
             </Suspense>
@@ -353,4 +355,4 @@ const CreatBusiness = () => {
     )
 }
 
-export default CreatBusiness
+export default CreatBusiness;

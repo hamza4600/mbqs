@@ -19,7 +19,7 @@ const lightThem = {
 
     footerColor: '#D8E6F1',
     footer: '#204D70',
-    font : 'Poppins, sans-serif'
+    font : 'Poppins , sans-serif'
 }
 
 const darkThem = {

@@ -52,7 +52,7 @@ export const ListBody = (props) => {
 
                         {array.map((item, v) => (
                             <tr key={v}
-                                onClick={() => viewPage(v)}
+                                onClick={() => viewPage(item.businessName)}
                             >
                                 <td
                                     className={styles.radio}

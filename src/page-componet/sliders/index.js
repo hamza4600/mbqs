@@ -1,12 +1,16 @@
 import Sidebar from "components/sidebar"
 import Tooltip from "components/tooltip"
 import useHover from "Hooks/useHover"
-import { useState } from "react"
-import { Span, Wrapper } from "./style"
-import { sidebarData } from "./varibel";
 import Anchor from "components/a";
+
+import { useState } from "react"
 import { useSelector } from "react-redux"
 
+import { Span, SubMenu, Wrapper } from "./style"
+import { sidebarData } from "./varibel";
+import { BsChevronDown } from "react-icons/bs";
+
+import outisdeClick from "functions/outside";
 
 function Icon(props) {
     const {
@@ -36,14 +40,86 @@ function Icon(props) {
     )
 }
 
+// outSide handel
+const Menu = outisdeClick(SubMenu)
+
+// sub drop down Handelr
+const SubDropdownMenu = (props) => {
+    const { array, moveTo, } = props;
+
+    const [showSub2, setShowSub2] = useState(false);
+    const [subselt, setSubselt] = useState();
+
+    const subhandel = (e) => {
+        if (e === subselt) return setSubselt();
+        setSubselt(e);
+        setShowSub2(true);
+    }
+
+    const handelOutSide = (e) => {
+        // delay 
+        setTimeout(() => {
+            setSubselt();
+            setShowSub2(false);
+        }, 150);
+    }
+
+    return (
+        <>
+            <Menu
+                outSide={handelOutSide}
+                id={'subMenu'}
+                onClick={(e) => {
+                    e.stopPropagation();
+                    subhandel(array?.id)
+                }}
+                role='tab'
+                aria-selected={array.title === subselt}
+                aria-controls={`panel-id-${array.title}`}
+                aria-expanded={showSub2}
+                color={array?.id !== subselt}
+            >
+                {array?.title}
+                <i className="subico" >
+                    <BsChevronDown size={12} />
+                </i>
+            </Menu>
+            {
+                showSub2 && array.id === subselt && // only one sub menu show at a time 
+                (
+                    <div
+                        id='subdrop'
+                        role='tabpanel'
+                        aria-labelledby={`panel-id-${array.title}`}
+                        onClick={(e) => e.stopPropagation()}
+                    >
+                        {
+                            array.subMenu.map((item, index) => (
+                                <Anchor
+                                    key={item.id}
+                                    color={window.location.pathname === "/auth" + item.route && "#00BFFF"}
+                                    onClick={(e) => {
+                                        e.stopPropagation();
+                                        moveTo(item.route || "#")
+                                    }}
+                                >
+                                    {item.title}
+                                </Anchor>
+                            ))
+                        }
+                    </div>
+                )
+            }
+        </>
+    )
+}
+
 const PageSide = () => {
     const [width, setWidth] = useState(55)
     const [select, setSelect] = useState();
     const [showSub, setShowSub] = useState(false);
 
-    const handeWidth = () => {
-        setWidth((prev) => prev === 210 ? 55 : 210)
-    }
+    const handeWidth = () => setWidth((prev) => prev === 210 ? 55 : 210)
 
     const subhandel = (e) => {
         if (e === select) return setSelect();
@@ -55,6 +131,9 @@ const PageSide = () => {
         setSelect()
         setWidth(60);
     }
+
+    // handel navigation
+    const viewPage = (id) => window.location.href = `/auth${id}`;
 
     return (
         <>
@@ -89,25 +168,37 @@ const PageSide = () => {
                                             window.location.pathname === "/auth" + item.route
                                         }>
                                             <i>{item.icon}</i>
-                                            {width === 210 && item.title}
+                                            {item.title}
                                         </Span>
                                         {
                                             showSub && item.id === select &&
-                                            <div id="drop">
+                                            <div
+                                                id="drop"
+                                                onClick={(e) => e.stopPropagation()}
+                                            >
                                                 {
                                                     Array.isArray(item.drop) && item.drop.map((drop, index) => (
                                                         <Anchor
-                                                            id={drop.title}
                                                             key={index}
-                                                            href={"/auth" + drop.route}
-                                                            onClick={
-                                                                handeWidth
-                                                            }
-                                                            color={
-                                                                window.location.pathname === "/auth" + drop.route ? "#00BFFF" : " "
-                                                            }
+                                                            onClick={() => viewPage(drop.route)}
+                                                            color={window.location.pathname === "/auth" + drop.route && "#00BFFF"}
                                                         >
-                                                            {drop.title}
+                                                            {
+                                                                drop.subMenu ? (
+                                                                    <SubDropdownMenu
+                                                                        array={drop}
+                                                                        moveTo={viewPage}
+                                                                    />
+                                                                ) : (
+                                                                    <p
+                                                                        style={{
+                                                                            fontSize: '13px',
+                                                                        }}
+                                                                    >
+                                                                        {drop.title}
+                                                                    </p>
+                                                                )
+                                                            }
                                                         </Anchor>
                                                     ))
                                                 }

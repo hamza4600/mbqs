@@ -171,7 +171,7 @@ const ListViewPage = (props) => {
                         leftIcon={<MdOutlineAdd size={20} />}
                         onClick={addbusiness}
                     >
-                        Creat New {type}
+                        Register New {type}
                     </Button>
                 </div>
 

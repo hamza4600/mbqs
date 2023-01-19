@@ -1,11 +1,12 @@
 import styled from "styled-components";
 
-const Anchor = styled.a`
-    color : ${(props) => props.color ? props.color : null};
+const Anchor = styled.div`
+    color : ${(props) => props.color ? props.color : 'white'};
     text-decoration: none;
-    font-size: 14px;
+    font-size: 11px !important;
     font-weight: lighter;
     cursor: pointer;
+    padding: 2px 0px;
     `;
 
 export default Anchor;

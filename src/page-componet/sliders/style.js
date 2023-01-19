@@ -32,7 +32,7 @@ export const Wrapper = styled.div`
         margin-bottom: 0;
         display: flex;
         flex-direction: column;
-        margin-left: 35px;
+        margin-left: 45px;
         transition: all 0.3s ease-in-out;
     }
 
@@ -43,6 +43,10 @@ export const Wrapper = styled.div`
 
     #drop a:hover {
         color: #00BFFF;
+    }
+
+    #subdrop {
+        margin-left: 15px;
     }
     `;
 
@@ -66,5 +70,19 @@ export const Span = styled.span`
         scale: 1.5;
         color: #00BFFF;
     }
-    `;
+`;
 
+export const SubMenu = styled.div`
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    color: ${(props) => props.color && "silver"};
+    font-size: 13px;
+
+    .subico {
+        margin-left: 15px !important;
+        margin-right: 5px !important;
+        transform : ${(props) => props.color ? 'rotate(0deg)' : 'rotate(180deg)'};
+    }
+    `;

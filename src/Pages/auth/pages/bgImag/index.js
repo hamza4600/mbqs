@@ -54,17 +54,14 @@ const LeftSection = () => {
 
 
 
-const BackgroundImage = () => {
-    return (
-        <>
-            <Container>
+const BackgroundImage = () => (
+    <>
+        <Container>
+            <RightSection />
+            <LeftSection />
+        </Container>
+    </>
+)
 
-                <RightSection />
-                <LeftSection />
-
-            </Container>
-        </>
-    )
-}
 
 export default BackgroundImage

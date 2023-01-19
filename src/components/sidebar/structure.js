@@ -31,8 +31,6 @@ export const Aside = styled.aside`
   }
   `;
 
-
-
 export const Wrapper = styled.div`
   display: flex;
   margin-top: 0.4rem;
@@ -42,4 +40,6 @@ export const Wrapper = styled.div`
   width: 100%;
   height: -webkit-fill-available;
   position: relative;
+  font-weight: 500;
+  line-height: 18px;
 `;

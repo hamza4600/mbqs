@@ -9,6 +9,55 @@ import { FiSettings } from "react-icons/fi";
 import { authRoutes } from "Pages/auth/routes";
 
 const size = 20;
+// for MBIQS Submenu
+
+const sharMenu = [
+    {
+        id: 99,
+        title: 'Register New Business',
+        route: authRoutes.creatbusines
+    },
+    {
+        id: 80,
+        title: 'Business Profile Page',
+        route: authRoutes.busniessProfile // all data will be shown
+    },
+    {
+        id: 10,
+        title: 'Header Image Slider',
+        route: authRoutes.headerImg
+    },
+    {
+        id: 20,
+        title: 'Background Image',
+        route: authRoutes.backgroundImg
+    },
+    {
+        id: 30,
+        title: 'Text & Image',
+        route: authRoutes.textImg
+    },
+    {
+        id: 40,
+        title: 'Over Lapping Text',
+        route: authRoutes.overLapText
+    },
+    {
+        id: 50,
+        title: 'Videos List',
+        route: authRoutes.viedoList
+    },
+    {
+        id: 60,
+        title: 'Brand Slider',
+        route: authRoutes.brandSlider
+    },
+    {
+        id: 70,
+        title: 'Front Site View',
+        route: authRoutes.frontView
+    }
+]
 
 export const sidebarData = [
     {
@@ -16,51 +65,72 @@ export const sidebarData = [
         title: 'our business',
         icon: <MdOutlineEngineering size={size} />,
         drop: [
+            // main drop with sun drop
+            // {
+            //     id: 3,
+            //     title: 'add new business',
+            //     icon: <HiOutlineBuildingOffice2 size={size} />,
+            //     drop : sharMenu,
+            // },
             {
-                id: 1,
-                title: 'create business page',
-                route: authRoutes.creatbusines
+                id: 300,
+                // title: 'Cash Pairing',
+                title: 'add new business',
+                subMenu: sharMenu,
             },
-            {
-                id: 2,
-                title: 'list business page',
-                route: authRoutes.listbussiness
-            },
-            {
-                id: 3,
-                title: 'business profile',
-                route: authRoutes.busniessProfile
-            }, 
             {
                 id: 4,
-                title: 'background image',
-                route: authRoutes.backgroundImg
+                title: 'List of Business',
+                icon: <HiOutlineBuildingOffice2 size={size} />,
+                drop: sharMenu,
+                route: authRoutes.listAddPage 
             },
-            {
-                id: 5,
-                title: 'image slider',
-                // route: authRoutes.imageSlider
-            }, 
-            {
-                id: 6,
-                title: 'text & business',
-                // route: authRoutes.textBusiness
-            }, 
-            {
-                id: 7,
-                title: 'over lapping text',
-                // route: authRoutes.overlappingText
-            }, 
-            {
-                id: 8,
-                title: 'video list',
-                // route: authRoutes.videoList
-            }, 
-            {
-                id: 9,
-                title: 'brand slider',
-                // route: authRoutes.brandSlider
-            }
+            // {
+            //     id: 400,
+            //     title: 'EV-Fog',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 600,
+            //     title: 'Gym Fighters',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 700,
+            //     title: 'Latex Tire',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 100,
+            //     title: 'MBIQS',
+            //     subMenu: sharMenu, // sub drop down  can have some changes
+            // },
+            // {
+            //     id: 200,
+            //     title: 'Mian Builder',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 1000,
+            //     title: 'Miner Man',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 500,
+            //     title: 'Sagwan Wood',
+            //     subMenu: sharMenu,
+            // },
+            // {
+            //     id: 800,
+            //     title: 'Snaithe',
+            //     subMenu: sharMenu,
+            // },   
+            // {
+            //     id: 900,
+            //     title: 'Warbler Studio',
+            //     subMenu: sharMenu,
+            // },
+
         ]
     },
     {
@@ -110,7 +180,7 @@ export const sidebarData = [
             {
                 id: 2,
                 title: 'List about page',
-                route : authRoutes.addAboutList
+                route: authRoutes.addAboutList
             }
         ]
     },
@@ -147,6 +217,41 @@ export const sidebarData = [
                 id: 1,
                 title: 'creat contact page',
                 route: authRoutes.addContact
+            },
+            {
+                id: 10,
+                title: 'Header Image Slider',
+                route: authRoutes.headerImg
+            },
+            {
+                id: 20,
+                title: 'Background Image',
+                route: authRoutes.backgroundImg
+            },
+            {
+                id: 30,
+                title: 'Text & Image',
+                route: authRoutes.textImg
+            },
+            {
+                id: 40,
+                title: 'Over Lapping Text',
+                route: authRoutes.overLapText
+            },
+            {
+                id: 50,
+                title: 'Videos List',
+                route: authRoutes.viedoList
+            },
+            {
+                id: 60,
+                title: 'Brand Slider',
+                route: authRoutes.brandSlider
+            },
+            {
+                id: 70,
+                title: 'Front Site View',
+                route: authRoutes.frontView
             }
         ]
     },
@@ -155,10 +260,25 @@ export const sidebarData = [
         title: 'setting',
         icon: <FiSettings size={size} />,
         drop: [
+            // {
+            //     id: 3,
+            //     title: 'add new business',
+            //     route: authRoutes.creatbusines
+            // },
+            // {
+            //     id: 4,
+            //     title: 'List of Business',
+            //     route: authRoutes.listAddPage  // list business
+            // },
+            {
+                id: 6,
+                title: 'Menu Edit',
+                route: authRoutes.menuEdit
+            },
             {
                 id: 1,
                 title: 'front website view',
-                route: authRoutes.settAddPage
+                route: authRoutes.frontView
             },
             {
                 id: 2,
@@ -166,15 +286,10 @@ export const sidebarData = [
                 route: authRoutes.headFooter
             },
             {
-                id: 3,
-                title: 'add new page',
-                route: authRoutes.settAddPage
-            },
-            {
-                id: 4,
+                id: 5,
                 title: 'details',
                 route: authRoutes.settAddDetail
-            }
+            },
         ]
     },
 ]

@@ -125,7 +125,6 @@ const Dropdown = forwardRef(
             <>
                 <Wrapper
                     onBlur={handleBlur}
-                    // onFocus={handleFocus}
                     onClick={handleFocus}
                     tabIndex="0"
                     id={`dropdown${id}`}
