@@ -9,7 +9,6 @@ import { FiSettings } from "react-icons/fi";
 import { authRoutes } from "Pages/auth/routes";
 
 const size = 20;
-// for MBIQS Submenu
 
 const sharMenu = [
     {
@@ -65,72 +64,16 @@ export const sidebarData = [
         title: 'our business',
         icon: <MdOutlineEngineering size={size} />,
         drop: [
-            // main drop with sun drop
-            // {
-            //     id: 3,
-            //     title: 'add new business',
-            //     icon: <HiOutlineBuildingOffice2 size={size} />,
-            //     drop : sharMenu,
-            // },
             {
                 id: 300,
-                // title: 'Cash Pairing',
                 title: 'add new business',
                 subMenu: sharMenu,
             },
             {
                 id: 4,
                 title: 'List of Business',
-                icon: <HiOutlineBuildingOffice2 size={size} />,
-                drop: sharMenu,
                 route: authRoutes.listAddPage 
-            },
-            // {
-            //     id: 400,
-            //     title: 'EV-Fog',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 600,
-            //     title: 'Gym Fighters',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 700,
-            //     title: 'Latex Tire',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 100,
-            //     title: 'MBIQS',
-            //     subMenu: sharMenu, // sub drop down  can have some changes
-            // },
-            // {
-            //     id: 200,
-            //     title: 'Mian Builder',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 1000,
-            //     title: 'Miner Man',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 500,
-            //     title: 'Sagwan Wood',
-            //     subMenu: sharMenu,
-            // },
-            // {
-            //     id: 800,
-            //     title: 'Snaithe',
-            //     subMenu: sharMenu,
-            // },   
-            // {
-            //     id: 900,
-            //     title: 'Warbler Studio',
-            //     subMenu: sharMenu,
-            // },
-
+            }
         ]
     },
     {
@@ -260,16 +203,6 @@ export const sidebarData = [
         title: 'setting',
         icon: <FiSettings size={size} />,
         drop: [
-            // {
-            //     id: 3,
-            //     title: 'add new business',
-            //     route: authRoutes.creatbusines
-            // },
-            // {
-            //     id: 4,
-            //     title: 'List of Business',
-            //     route: authRoutes.listAddPage  // list business
-            // },
             {
                 id: 6,
                 title: 'Menu Edit',

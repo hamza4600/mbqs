@@ -16,6 +16,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
 // HOC
 import outisdeClick from "functions/outside";
+import UserMenu from "./usermenu";
 
 const Wrapper = styled.div`
     display: flex;
@@ -37,7 +38,7 @@ const Wrapper = styled.div`
 
 const Ico = styled.i`
     margin: 0 auto;
-    color: ${(props) => props.color ? '#00BFFF' : '#C8CACB'};
+    color: ${(props) => props.color ? '#4CCDF9' : '#C8CACB'};
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     display: flex;
@@ -56,6 +57,28 @@ const Ico = styled.i`
     }
 
 `;
+
+const userData = {
+    name: "John Doe",
+    time: "12:00 PM",
+    avatar: "https://avatars.githubusercontent.com/u/112898030?v=4",
+    logout: "Logout",
+    grouplogin: "Sign Up",
+    otherUser: [
+        {
+            id: 1,
+            name: "Micheal",
+            avatar: "https://avatars.githubusercontent.com/u/78164997?v=4",
+            logtime: "12:00 PM"
+        },
+        {
+            id: 2,
+            name: "Andrew",
+            avatar: "https://avatars.githubusercontent.com/u/78164997?v=4",
+            logtime: "10:30 PM"
+        }
+    ]
+}
 
 const Icon = (props) => {
     const { hover, Click, icon, color } = props;
@@ -136,12 +159,16 @@ const RightSide = () => {
             {
                 searh && <Searchbar />
             }
+            {
+                user && <UserMenu data={userData} />
+            }
+
         </>
     )
 }
 
 const PageNavbar = (props) => {
-   
+
     return (
         <>
             <Navbar

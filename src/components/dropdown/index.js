@@ -8,9 +8,9 @@ const Wrapper = styled.div`
     width: 300px;
     background: transparent;
     font-size: 14px;
+    font-weight: 200;
     height: 28px;
     text-transform: capitalize;
-    color : #00243D;
     line-height: 18px;
     cursor: pointer;
 
@@ -21,6 +21,7 @@ const Wrapper = styled.div`
         width: 100%;
         background: #F0F8FF;
         border: 1px solid #ccc;
+        border-top: none;
         z-index: 1;
     }
 
@@ -48,7 +49,7 @@ const Wrapper = styled.div`
         align-items: center;
         justify-content: start;
         height: 100%;
-        border: 1px solid #ccc;
+        border : 1px solid ${(props) => (props.isOpen ? '#4CCDF9' : '#ccc')};} 
     }
 
     #form {
@@ -93,13 +94,13 @@ const Dropdown = forwardRef(
 
         const handleBlur = (e) => {
             if (onBlur) {
-                close()
+                typeof toggel === 'function' && toggel()
             }
         }
 
         const handleFocus = (e) => {
             if (onFocus) {
-                toggel();
+                typeof toggel === 'function' && toggel()
             }
         }
 
@@ -120,7 +121,6 @@ const Dropdown = forwardRef(
             }
         }
 
-
         return (
             <>
                 <Wrapper
@@ -130,11 +130,12 @@ const Dropdown = forwardRef(
                     id={`dropdown${id}`}
                     ref={ref}
                     type={type}
+                    isOpen={isOpen}
                 >
                     <div
                         id={handelType(type)}
                     >
-                        <p> {value ? value.name : placeholder} </p>
+                        <p> {value ? value : placeholder} </p>
                         <i
                             id={`down_${handelType(type)}`}
                         >

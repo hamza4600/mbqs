@@ -30,6 +30,7 @@ const Page = styled.div`
         // margin-top: 20px;
         flex: 1;
         width: 100%;
+        color: ${({ theme }) => theme.pageText} !important;
     }
 
 

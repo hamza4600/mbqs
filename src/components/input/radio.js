@@ -22,13 +22,13 @@ const Check = styled.input`
 }
 
   :checked {
-    background: ${(props) => (props.bg ? props.bg : "#275482")};
-    border: 1px solid ${(props) => (props.bg ? props.bg : "#275482")};
+    background: ${(props) => (props.bg ? props.bg : "#a1adb9")};
+    border: 1px solid ${(props) => (props.bg ? props.bg : "#a1adb9")};
   }
 
   :focus {
     outline: none;
-    border: 1px solid #275482;
+    border: 1px solid #a1adb9;
   }
 
   :disabled {

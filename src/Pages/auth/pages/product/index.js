@@ -11,8 +11,6 @@ const ProcuctView = (prop) => {
         <>
             <CreatBusiness
                 title={id} />
-
-
         </>
     )
 }

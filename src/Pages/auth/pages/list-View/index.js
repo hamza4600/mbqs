@@ -1,6 +1,6 @@
 // used for  main Page Types
 // Only data will chnage for this page  
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 import { Container, Left, Right } from "./styled";
 import Button from "components/button";
@@ -25,11 +25,11 @@ const LeftSide = (props) => {
     const { query, onChange } = props;
 
     // for filetr
-    const { isOpen: isFone, toggle: Ftoggle, close: fclose, value: fvalue, updateValue: fupadateValue } = useDropDown();
+    const { isOpen: isFone, toggle: Ftoggle, close: fclose } = useDropDown();
     // for calender
-    const { isOpen: isCone, toggle: Ctoggle, close: cclose, value: cvalue, updateValue: cupadateValue } = useDropDown();
+    const { isOpen: isCone, toggle: Ctoggle, close: cclose } = useDropDown();
     // for share
-    const { isOpen: isSone, toggle: Stoggle, close: sclose, value: svalue, updateValue: supadateValue } = useDropDown();
+    const { isOpen: isSone, toggle: Stoggle, close: sclose } = useDropDown();
 
 
     return (
@@ -48,9 +48,6 @@ const LeftSide = (props) => {
                     isOpen={isFone}
                     toggel={Ftoggle}
                     close={fclose}
-                    // onChange={() => handeldropdown(value, 'category')}
-                    // value={fvalue}
-                    // updateValue={fupadateValue}
                     icon={<BiFilterAlt size={20} color={isFone && "#00BFFF"} />}
                     options={sortBy}
                     type='form'
@@ -60,9 +57,6 @@ const LeftSide = (props) => {
                     isOpen={isCone}
                     toggel={Ctoggle}
                     close={cclose}
-                    // onChange={() => handeldropdown(value, 'category')}
-                    // value={cvalue}
-                    // updateValue={cupadateValue}
                     icon={<SlCalender size={20} color={isCone && "#00BFFF"} />}
                     options={sortBy}
                     type='form'
@@ -73,9 +67,6 @@ const LeftSide = (props) => {
                     isOpen={isSone}
                     toggel={Stoggle}
                     close={sclose}
-                    // onChange={() => handeldropdown(value, 'category')}
-                    // value={svalue}
-                    // updateValue={supadateValue}
                     icon={<BsShareFill size={18} color={isSone && "#00BFFF"} />}
                     options={share}
                     type='form'
@@ -89,7 +80,7 @@ const LeftSide = (props) => {
 
 const RightSide = () => {
 
-    const { isOpen, toggle, close, value, updateValue } = useDropDown();
+    const { isOpen, toggle, close } = useDropDown();
 
     const fullScreen = () => {
         const element = document.getElementById("main_page");
@@ -114,14 +105,11 @@ const RightSide = () => {
                     isOpen={isOpen}
                     toggel={toggle}
                     close={close}
-                    // onChange={() => handeldropdown(value, 'category')}
-                    // value={value}
-                    // updateValue={updateValue}
                     icon={<BsChevronDown size={18} color={isOpen && "#00BFFF"} />}
                     options={exportList}
                     type='form'
                 />
-                
+
                 <i>
                     <MdCloseFullscreen
                         size={20}
@@ -145,20 +133,23 @@ const ListViewPage = (props) => {
         setQuery(e.target.value.replace(/\s/g, '').toLocaleLowerCase())
     }
 
-    const filetrArray = ListBod.filter((item) => {
-        if (query === "" || query === " ") { return item }
-        else if (
-            item.businessCat.toLocaleLowerCase().includes(query) ||
-            item.businessName.toLocaleLowerCase().includes(query) ||
-            item.email.toLocaleLowerCase().includes(query) ||
-            item.businessID.includes(query) ||
-            item.regesterDate.includes(query) ||
-            item.contact.includes(query) ||
-            item.compantStatus.toLocaleLowerCase().includes(query)
-        ) {
-            return item
-        }
-    })
+    const filetrArray = useMemo(() => {
+        return ListBod.filter((item) => {
+            if (query === "" || query === " ") { return item }
+            else if (
+                item.businessCat.toLocaleLowerCase().includes(query) ||
+                item.businessName.toLocaleLowerCase().includes(query) ||
+                item.email.toLocaleLowerCase().includes(query) ||
+                item.businessID.trim().toLocaleLowerCase().includes(query) ||
+                item.regesterDate.includes(query) ||
+                item.contact.includes(query) ||
+                item.compantStatus.toLocaleLowerCase().includes(query)
+            ) {
+                return item
+            }
+        })
+    }, [query])
+
 
     return (
         <>

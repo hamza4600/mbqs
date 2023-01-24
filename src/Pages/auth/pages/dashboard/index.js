@@ -33,7 +33,6 @@ const Container = styled.div`
         width: 80%;
 
         img {
-
             width: 300px;
         }
     }

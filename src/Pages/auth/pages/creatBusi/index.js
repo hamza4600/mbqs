@@ -1,4 +1,4 @@
-import { Suspense, useEffect, useState } from 'react';
+import { Suspense, useReducer, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Input from 'components/input';
 import { Grid, Wrapper } from './styled';
@@ -8,59 +8,87 @@ import useDropDown from 'components/dropdown/useDropdown';
 import { H1 } from 'components/a';
 
 
+const initialState = {
+    businessName: '',
+    businessId: '',
+    taxNum: '',
+    vatNum: '',
+    email: '',
+    contactNum: '',
+    address: '',
+    postalCode: '',
+    regesterDate: '',
+    bussLiceseId: '',
+    compBudget: '',
+    opertionBudget: '',
+    compDetails: '',
+    // can we pass other state
+    dropdown: {
+        category: '',
+        subCategory: '',
+    }
+}
+
+const reducer = (state, action) => {
+
+    if (!action.value) return state;
+    if (action.value === 'undefined') return state;
+
+    switch (action.type) {
+        case 'businessName':
+            return { ...state, businessName: action.value };
+        case 'businessId':
+            return { ...state, businessId: action.value };
+        case 'taxNum':
+            return { ...state, taxNum: action.value };
+        case 'vatNum':
+            return { ...state, vatNum: action.value };
+        case 'email':
+            return { ...state, email: action.value };
+        case 'contactNum':
+            return { ...state, contactNum: action.value };
+        case 'address':
+            return { ...state, address: action.value };
+        case 'postalCode':
+            return { ...state, postalCode: action.value };
+        case 'regesterDate':
+            return { ...state, regesterDate: action.value };
+        case 'bussLiceseId':
+            return { ...state, bussLiceseId: action.value };
+        case 'compBudget':
+            return { ...state, compBudget: action.value };
+        case 'opertionBudget':
+            return { ...state, opertionBudget: action.value };
+        case 'compDetails':
+            return { ...state, compDetails: action.value };
+        case 'dropdown':
+            // is an object
+            return { ...state, dropdown: { ...state.dropdown, [action.value.name]: action.value.value } };
+        default:
+            return state;
+    }
+}
+
 const Left = ({ title }) => {
 
-    const { isOpen, toggle, close, value, updateValue } = useDropDown();
+    const { isOpen, toggle, close } = useDropDown();
+    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
-    const [data, setData] = useState({
-        businessName: '',
-        businessId: '',
-        taxNum: '',
-        vatNum: '',
-        email: '',
-        contactNum: '',
-        address: '',
-        postalCode: '',
-        regesterDate: '',
-        bussLiceseId: '',
-        compBudget: '',
-        opertionBudget: '',
-        compDetails: '',
-        // can we pass other state to a state like this
-        dropdown: {
-            category: '',
-            subCategory: '',
-        }
-    });
+    const [data, dispatch] = useReducer(reducer, initialState);
 
-    const handelChange = (e, name) => {
-        setData({
-            ...data,
-            [name]: e?.target?.value
-        })
+    const handelChange = (e) => {
+        dispatch({ type: e.target.id, value: e.target.value })
     }
 
-    const handeldropdown = (e, name) => {
-        console.log(e, name, data);
-        setData({
-            ...data,
-            dropdown: {
-                ...data.dropdown,
-                [name]: e
-            }
-        })
+    const handelDropdown = (value, index) => {
+        dispatch({ type: 'dropdown', value: { name: index, value: value } })
     }
-
-    useEffect(() => {
-        console.log(data);
-    }, [data])
-
 
     return (
         <>
             <div id='sub'>
                 <H1>
-                    {title ? title +" "+"Profile Page" : 'Register New Business'}
+                    {`${title ? title : 'Register New Business '}  Profile Page`}
                 </H1>
                 <Wrapper>
                     <Input
@@ -68,15 +96,16 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Enter your business name"
                         value={data.businessName}
-                        onChange={(e) => handelChange(e, 'businessName')}
-
+                        id="businessName"
+                        onChange={handelChange}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Business Id"
                         value={data.businessId}
-                        onChange={(e) => handelChange(e, 'businessId')}
+                        id="businessId"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -85,16 +114,16 @@ const Left = ({ title }) => {
                         isOpen={isOpen}
                         toggel={toggle}
                         close={close}
-                        onChange={() => handeldropdown(value, 'category')}
-                        value={value}
-                        updateValue={updateValue}
+                        value={data.dropdown.category}
+                        updateValue={(value) => handelDropdown(value.name, 'category')}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
-                        isOpen={isOpen}
-                        value={value}
-                        toggel={toggle}
-                        close={close}
+                        isOpen={isOpen2}
+                        toggel={toggle2}
+                        close={close2}
+                        value={data.dropdown.subCategory}
+                        updateValue={(value) => handelDropdown(value.name, 'subCategory')}
                     />
                 </Wrapper>
 
@@ -104,14 +133,16 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="TAX Number"
                         value={data.taxNum}
-                        onChange={(e) => handelChange(e, 'taxNum')}
+                        id="taxNum"
+                        onChange={handelChange}
                     />
                     <Input
                         inputype="number"
                         type="addData"
                         placeholder="VAT Number"
                         value={data.vatNum}
-                        onChange={(e) => handelChange(e, 'vatNum')}
+                        id="vatNum"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -120,14 +151,16 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Email"
                         value={data.email}
-                        onChange={(e) => handelChange(e, 'email')}
+                        id="email"
+                        onChange={handelChange}
                     />
                     <Input
                         inputype="number"
                         type="addData"
                         placeholder="Contact Number"
                         value={data.contactNum}
-                        onChange={(e) => handelChange(e, 'contactNum')}
+                        id="contactNum"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper full>
@@ -136,7 +169,8 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Enter Address"
                         value={data.address}
-                        onChange={(e) => handelChange(e, 'address')}
+                        id="address"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -145,7 +179,8 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Enter Postal Code"
                         value={data.postalCode}
-                        onChange={(e) => handelChange(e, 'postalCode')}
+                        id="postalCode"
+                        onChange={handelChange}
                     />
                     <Dropdown
                         placeholder="Select City"
@@ -165,14 +200,16 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Registration Date"
                         value={data.regesterDate}
-                        onChange={(e) => handelChange(e, 'regesterDate')}
+                        id="regesterDate"
+                        onChange={handelChange}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Business License ID"
                         value={data.bussLiceseId}
-                        onChange={(e) => handelChange(e, 'bussLiceseId')}
+                        id="bussLiceseId"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -181,14 +218,16 @@ const Left = ({ title }) => {
                         type="addData"
                         placeholder="Company Budget amount"
                         value={data.compBudget}
-                        onChange={(e) => handelChange(e, 'compBudget')}
+                        id="compBudget"
+                        onChange={handelChange}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Opertaion Capital amount"
                         value={data.opertionBudget}
-                        onChange={(e) => handelChange(e, 'opertionBudget')}
+                        id="opertionBudget"
+                        onChange={handelChange}
                     />
                 </Wrapper>
                 <Wrapper full>
@@ -197,7 +236,8 @@ const Left = ({ title }) => {
                         type="text"
                         placeholder="Write description about your business"
                         value={data.compDetails}
-                        onChange={(e) => handelChange(e, 'compDetails')}
+                        id="compDetails"
+                        onChange={handelChange}
                     />
                 </Wrapper>
             </div>
@@ -335,7 +375,7 @@ const Right = () => {
                     id='save'
                 // onClick={() => { }}
                 >
-                    Save and Continue
+                    Next
                 </Button>
             </div>
         </>

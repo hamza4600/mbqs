@@ -56,18 +56,18 @@ const SubDropdownMenu = (props) => {
         setShowSub2(true);
     }
 
-    const handelOutSide = (e) => {
-        // delay 
-        setTimeout(() => {
-            setSubselt();
-            setShowSub2(false);
-        }, 150);
-    }
+    // const handelOutSide = (e) => {
+    //     // delay 
+    //     setTimeout(() => {
+    //         setSubselt();
+    //         setShowSub2(false);
+    //     }, 150);
+    // }
 
     return (
         <>
             <Menu
-                outSide={handelOutSide}
+                // outSide={handelOutSide} // if one then no  use
                 id={'subMenu'}
                 onClick={(e) => {
                     e.stopPropagation();
@@ -97,7 +97,7 @@ const SubDropdownMenu = (props) => {
                             array.subMenu.map((item, index) => (
                                 <Anchor
                                     key={item.id}
-                                    color={window.location.pathname === "/auth" + item.route && "#00BFFF"}
+                                    color={window.location.pathname === "/auth" + item.route && "#4CCDF9"}
                                     onClick={(e) => {
                                         e.stopPropagation();
                                         moveTo(item.route || "#")
@@ -181,7 +181,7 @@ const PageSide = () => {
                                                         <Anchor
                                                             key={index}
                                                             onClick={() => viewPage(drop.route)}
-                                                            color={window.location.pathname === "/auth" + drop.route && "#00BFFF"}
+                                                            color={window.location.pathname === "/auth" + drop.route && "#4CCDF9"}
                                                         >
                                                             {
                                                                 drop.subMenu ? (

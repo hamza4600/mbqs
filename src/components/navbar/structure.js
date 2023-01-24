@@ -8,7 +8,6 @@ export const Nav = styled.nav`
   width: 100%;
   filter : ${(props) => props.blure && 'blur(5px)'};
   cursor : ${(props) => props.blure && 'none !important' };
-
   `;
 
 //  Nav wraper
@@ -20,7 +19,7 @@ export const NavWrapper = styled.div`
   flex: 1;
   height: 100%;
   padding: 0px 20px;
-
+  position: relative;
   
   a img {
     display: flex;

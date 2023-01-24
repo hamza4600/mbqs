@@ -12,7 +12,7 @@ export const Wrapper = styled.div`
     li  {
         margin-bottom: 3px;
         cursor: pointer;
-        font-size: 14px;
+        font-size: 15px;
         display: flex;
         font-weight: lighter;
         flex-direction: column;
@@ -27,7 +27,7 @@ export const Wrapper = styled.div`
     }
 
     #drop {
-        font-size: 12px;
+        font-size: 13px;
         font-weight: lighter;
         margin-bottom: 0;
         display: flex;
@@ -55,7 +55,7 @@ export const Span = styled.span`
     align-items: center;
     justify-content: flex-start;
     flex-direction: row;
-    color: ${({ select }) => select ? '#00BFFF' : ' '}; 
+    color: ${({ select }) => select ? '#4CCDF9' : ' '}; 
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease-in-out;

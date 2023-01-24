@@ -19,7 +19,8 @@ const lightThem = {
 
     footerColor: '#D8E6F1',
     footer: '#204D70',
-    font : 'Poppins , sans-serif'
+    font : 'Open Sans, sans-serif',
+    pageText : '#016089'
 }
 
 const darkThem = {
@@ -39,7 +40,8 @@ const darkThem = {
 
     footerColor: 'white',
     footer: '#B0C4DE',
-    font : 'Poppins, sans-serif'
+    font : 'Open Sans, sans-serif',
+    pageText : '#016089'
 }
 
 const Them = {
@@ -57,9 +59,8 @@ export const GlobalStyle = createGlobalStyle`
     }
    
     body {
-      
         background: ${({ theme }) => theme.body};
-        color: ${({ theme }) => theme.text};
+        color: ${({ theme }) => theme.pageText} !important;
         font-family: ${({ theme }) => theme.font} !important;
         font-weight: 400;
         font-style: normal;

@@ -25,7 +25,6 @@ export const Container = styled.div`
         flex: 1;
         height: 94vh;
         background-color: #F0F8FF;
-        font-family: 'Poppins', sans-serif;
         font-size: 14px; 
         font-weight: 400;
         line-height: 17px;

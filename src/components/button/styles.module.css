@@ -53,3 +53,12 @@
     font-weight: 500;
     padding: 5px 15px;
 }
+
+/* usermodel */
+.usermodel {
+    width: 90%;
+    background-color: transparent;
+    color: white;
+    padding: 3px 18px;
+    margin-top: .5rem;
+}
