@@ -1,11 +1,12 @@
+import EditPageLayout from "page-componet/layout/editPage"
+
+
 const BrandSlider = () => {
     return (
         <>
-            <div>
-                <h1>
-                    Brand Slider
-                </h1>
-            </div>
+            <EditPageLayout
+                rightTitle={'Brand Slider'}
+            />
         </>
     )
 }

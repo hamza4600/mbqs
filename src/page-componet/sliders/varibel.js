@@ -17,20 +17,17 @@ const sharMenu = [
         route: authRoutes.creatbusines
     },
     {
-        id: 80,
-        title: 'Business Profile Page',
-        route: authRoutes.busniessProfile // all data will be shown
+        id: 20,
+        title: 'Background Image',
+        route: authRoutes.backgroundImg
     },
+
     {
         id: 10,
         title: 'Header Image Slider',
         route: authRoutes.headerImg
     },
-    {
-        id: 20,
-        title: 'Background Image',
-        route: authRoutes.backgroundImg
-    },
+
     {
         id: 30,
         title: 'Text & Image',
@@ -55,6 +52,11 @@ const sharMenu = [
         id: 70,
         title: 'Front Site View',
         route: authRoutes.frontView
+    },
+    {
+        id: 80,
+        title: 'Business Profile Page',
+        route: authRoutes.busniessProfile // all data will be shown
     }
 ]
 
@@ -72,7 +74,7 @@ export const sidebarData = [
             {
                 id: 4,
                 title: 'List of Business',
-                route: authRoutes.listAddPage 
+                route: authRoutes.listAddPage
             }
         ]
     },

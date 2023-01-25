@@ -5,14 +5,13 @@ export const Grid = styled.form`
     grid-template-columns: 1fr 1fr;
     height: 100%;
     grid-gap: 8px;
-    align-items: center;
+    align-items: start;
     padding: 10px;
     position: relative;
 
     #sub {
         display: flex;
         flex-direction: column;
-        height: 100%;
         width: 100%;
         justify-content: start;
         gap: 5px;
@@ -82,9 +81,21 @@ export const Wrapper = styled.div`
         width: ${props => props.full && "620px"};
     }
 
+    .btngrp {
+        position: relative;
+        right: 0;
+        left: 35.5rem;
+        top: 6px;
+    }
+
     @media (max-width: 1350px) {
         align-items: center;
         justify-content: center;
+
+        .btngrp {
+            left: 18rem;
+            margin-bottom: 20px;
+        }
     }
 
     @media (max-width: 720px) {
@@ -95,6 +106,9 @@ export const Wrapper = styled.div`
         }
         input {
             width: 0;
+        }
+        .btngrp {
+            display: none;
         }
     }
 

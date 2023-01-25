@@ -1,11 +1,11 @@
+import EditPageLayout from "page-componet/layout/editPage"
+
 const OverLapppinText = () => {
     return (
         <>
-            <div>
-                <h1>
-                    Overlapping Text
-                </h1>
-            </div>
+             <EditPageLayout 
+                rightTitle={'Over Lapping Text'}
+            />
         </>
     )
 }

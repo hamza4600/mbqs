@@ -6,6 +6,7 @@ import Dropdown from 'components/dropdown';
 import Button from 'components/button';
 import useDropDown from 'components/dropdown/useDropdown';
 import { H1 } from 'components/a';
+import { AddIcon, RemoveIcon } from 'page-componet/iconbutton';
 
 
 const initialState = {
@@ -22,6 +23,8 @@ const initialState = {
     compBudget: '',
     opertionBudget: '',
     compDetails: '',
+    referenceName: '',
+    referencelink: '',
     // can we pass other state
     dropdown: {
         category: '',
@@ -61,6 +64,10 @@ const reducer = (state, action) => {
             return { ...state, opertionBudget: action.value };
         case 'compDetails':
             return { ...state, compDetails: action.value };
+        case 'referenceName':
+            return { ...state, referenceName: action.value };
+        case 'referencelink':
+            return { ...state, referencelink: action.value };
         case 'dropdown':
             // is an object
             return { ...state, dropdown: { ...state.dropdown, [action.value.name]: action.value.value } };
@@ -240,6 +247,30 @@ const Left = ({ title }) => {
                         onChange={handelChange}
                     />
                 </Wrapper>
+                <Wrapper>
+                    <Input
+                        inputype="text"
+                        type="addData"
+                        placeholder="Reference Link Name"
+                        value={data.referenceName}
+                        id="referenceName"
+                        onChange={handelChange}
+                    />
+                    <Input
+                        inputype="url"
+                        type="addData"
+                        placeholder="Insert Reference URL"
+                        value={data.referencelink}
+                        id="referencelink"
+                        onChange={handelChange}
+                    />
+                </Wrapper>
+                <Wrapper>
+                    <div className='btngrp'>
+                        <AddIcon />
+                        <RemoveIcon />
+                    </div>
+                </Wrapper>
             </div>
         </>
     )
@@ -258,6 +289,11 @@ const Right = () => {
             file: e.target.files[0],
             fileUrl: URL.createObjectURL(e.target.files[0])
         });
+    }
+
+
+    const nextPage = () => {
+        window.location.href = '/auth/business-profile'
     }
 
     return (
@@ -341,8 +377,8 @@ const Right = () => {
                     <Input
                         inputype="file"
                         type="addDataFile"
-                        placeholder="Choose Image File"
-                        label={files?.file?.name || "Choose Image File"}
+                        placeholder="Drop your Profile Image"
+                        label={files?.file?.name || "Drop your Profile Image"}
                         accept="image/*"
                         // value={files?.fileUrl} // to be post to server value 
                         onChange={handleFileChange}
@@ -361,19 +397,40 @@ const Right = () => {
                     <Input
                         inputype="file"
                         type="addDataFile"
-                        placeholder="Choose PDF File"
-                        label="Choose PDF File"
+                        placeholder="Drop PDF documents"
+                        label="Drop PDF documents"
                         accept="application/pdf"
                         value=""
                         onChange={() => { }}
                     />
+                </Wrapper>
+                {/* new filed */}
 
+                <Wrapper>
+                    <Input
+                        inputype="file"
+                        type="addDataFile"
+                        placeholder="Drop Business Images "
+                        label="Drop Business Images "
+                        accept="image/*"
+                        value=""
+                        onChange={() => { }}
+                    />
+                    <Input
+                        inputype="file"
+                        type="addDataFile"
+                        placeholder="Drop Business Videos"
+                        label="Drop Business Videos"
+                        accept="application/pdf"
+                        value=""
+                        onChange={() => { }}
+                    />
                 </Wrapper>
 
                 <Button
                     type='addData'
                     id='save'
-                // onClick={() => { }}
+                onClick={nextPage}
                 >
                     Next
                 </Button>

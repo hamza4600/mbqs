@@ -1,11 +1,11 @@
+import EditPageLayout from "page-componet/layout/editPage"
+
 const TextImage = () => {
     return (
         <>
-            <div>
-                <h1>
-                    Text Image
-                </h1>
-            </div>
+            <EditPageLayout 
+                rightTitle={'Text & Image'}
+            />
         </>
     )
 }

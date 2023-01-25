@@ -1,9 +1,11 @@
+import CreatBusiness from "../creatBusi";
+
 const BusinessProfile = () => {
     return (
         <>
-            <h1>
-                Business Profle Page
-            </h1>
+           <CreatBusiness 
+              title="MBIQS"
+           />
         </>
     )
 }

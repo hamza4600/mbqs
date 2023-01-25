@@ -17,3 +17,5 @@ export const H1 = styled.h1` // in All pages Header
     color: ${({ theme }) => theme.pageText};
     margin-bottom: 20px;
     `;
+
+
