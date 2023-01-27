@@ -3,9 +3,10 @@ import CreatBusiness from "../creatBusi";
 const BusinessProfile = () => {
     return (
         <>
-           <CreatBusiness 
-              title="MBIQS"
-           />
+            <CreatBusiness
+                title="MBIQS"
+                nextRoute={null}
+            />
         </>
     )
 }

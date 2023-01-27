@@ -10,7 +10,9 @@ const ProcuctView = (prop) => {
     return (
         <>
             <CreatBusiness
-                title={id} />
+                title={id}
+                nextRoute={null}
+            />
         </>
     )
 }

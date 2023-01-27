@@ -52,6 +52,19 @@
     color: #fff;
     font-weight: 500;
     padding: 5px 15px;
+    width: 170px;
+    border-radius: 1px;
+    font-weight: 400;
+}
+/* view Data */
+.view {
+    background-color: #bbdef9;
+    color: black;
+    font-weight: 500;
+    padding: 5px 15px;
+    width: 170px;
+    border-radius: 1px;
+    font-weight: 400;
 }
 
 /* usermodel */

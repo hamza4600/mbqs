@@ -5,7 +5,15 @@ import { BsChevronDown } from "react-icons/bs";
 
 const Wrapper = styled.div`
     position: relative;
-    width: 300px;
+    // if type is addMotion then width is 100%  
+    width: ${({ type }) => {
+        switch (type) {
+            case 'addMotion':
+                return '100%';
+            default:
+                return '300px';
+        }
+    }};
     background: transparent;
     font-size: 14px;
     font-weight: 200;
@@ -65,6 +73,10 @@ const Wrapper = styled.div`
         transform: translateY(-40%);
     }
 
+    #addMotion {
+        justify-content: space-between;
+    }
+
 `;
 
 const option = [
@@ -116,6 +128,8 @@ const Dropdown = forwardRef(
                     return 'form'
                 case 'editData':
                     return 'editData'
+                case 'addMotion':
+                    return 'addMotion'
                 default:
                     return 'addData'
             }
@@ -154,7 +168,6 @@ const Dropdown = forwardRef(
                             </ul>
                         )
                     }
-
                 </Wrapper>
             </>
         )

@@ -276,7 +276,7 @@ const Left = ({ title }) => {
     )
 }
 
-const Right = () => {
+const Right = ({ nextRoute }) => {
     // files state
     const [files, setFiles] = useState({
         file: null,
@@ -293,7 +293,9 @@ const Right = () => {
 
 
     const nextPage = () => {
-        window.location.href = '/auth/business-profile'
+        if (nextRoute !== null) {
+            window.location.href = '/auth/background-img'
+        }
     }
 
     return (
@@ -430,7 +432,7 @@ const Right = () => {
                 <Button
                     type='addData'
                     id='save'
-                onClick={nextPage}
+                    onClick={nextPage}
                 >
                     Next
                 </Button>
@@ -439,13 +441,13 @@ const Right = () => {
     )
 }
 
-const CreatBusiness = ({ title }) => {
+const CreatBusiness = ({ title, nextRoute }) => {
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
                 <Grid>
                     <Left title={title} />
-                    <Right />
+                    <Right nextRoute={nextRoute} />
                 </Grid>
             </Suspense>
         </>

@@ -27,6 +27,7 @@ const Button = memo(
                                 [styles.model]: type === 'login-model',
                                 [styles.addData]: type === 'addData',
                                 [styles.usermodel]: type === 'usermodel',
+                                [styles.view]: type === 'view',
                                 
                             })}
                             onClick={onClick}
