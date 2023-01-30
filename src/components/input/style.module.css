@@ -41,13 +41,12 @@
 .addData {
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
-    /* color : #00243D;  */
-    
     height: 28px;
     padding: 0px 5px;
     text-transform: capitalize;
     min-width: 300px;
     font-size: 13px;
+    width: 100%;
 }
 .addData:focus {
     border: 1px solid #80C1F9 !important;

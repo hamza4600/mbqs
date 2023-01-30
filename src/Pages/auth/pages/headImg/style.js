@@ -1,12 +1,12 @@
 import styled from "styled-components";
 
-export const ViedoContainer = styled.div`
+export const FileContainer = styled.div`
 
     display: flex;
     align-items: center;
     justify-content: center;
 
-    height: 90px;
+    height : ${props => props.height ? props.height : '90px'};
     width: 100%;
     border: 1px solid #C8CACB;
     border-radius: 2px;

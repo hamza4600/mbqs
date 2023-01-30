@@ -8,7 +8,6 @@ import useDropDown from 'components/dropdown/useDropdown';
 import { H1 } from 'components/a';
 import { AddIcon, RemoveIcon } from 'page-componet/iconbutton';
 
-
 const initialState = {
     businessName: '',
     businessId: '',

@@ -180,10 +180,20 @@ export const PreviewBtnGroup = (props) => {
         frontView,
         nextBtnText = 'Next',
         frontBtnText = 'Front Website View',
+        editorBtnText = 'Open Editor'
+
     } = props;
 
     return (
         <BtnContainer>
+            <Button
+                type='view'
+                id='save'
+                onClick={frontView}
+                leftIcon = {<RiDeleteBin4Line size={24} /> }
+            >
+                {editorBtnText}
+            </Button>
             <Button
                 type='view'
                 id='save'

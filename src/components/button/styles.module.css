@@ -55,6 +55,7 @@
     width: 170px;
     border-radius: 1px;
     font-weight: 400;
+    height: 35px;
 }
 /* view Data */
 .view {
@@ -65,6 +66,8 @@
     width: 170px;
     border-radius: 1px;
     font-weight: 400;
+    color: #003153;
+    height: 35px;
 }
 
 /* usermodel */

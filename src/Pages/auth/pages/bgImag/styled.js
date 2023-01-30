@@ -4,7 +4,7 @@ export const FileInput = styled.div`
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
     height: 40px;
-    width: 90%;   
+    width: 100%;   
     padding: 0px 5px;
     min-width: 300px !important;
     font-size: 13px;

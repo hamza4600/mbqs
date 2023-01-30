@@ -24,6 +24,7 @@ export const Container = styled.div`
         flex: 1;
         min-height: 94vh;
         flex-direction: column;
+        min-width: 90%;
     }
 
     #right {
@@ -105,9 +106,8 @@ export const SequienceContainer = styled.div`
 `;
 
 export const InputContainer = styled.div`
-    margin: 0 auto;
     position: relative;
-    width: 90%;
+    max-width: 85%;  
 `;
 
 export const BtnContainer = styled.div`
@@ -128,3 +128,4 @@ export const BtnContainer = styled.div`
     }
 
 `;
+

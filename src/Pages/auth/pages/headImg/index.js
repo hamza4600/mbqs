@@ -1,9 +1,9 @@
+import React from 'react'
 import Dropdown from 'components/dropdown'
 import useDropDown from 'components/dropdown/useDropdown'
 import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage'
 import { Container, InputContainer } from 'page-componet/layout/style'
-import React from 'react'
-import { PrevieContainer, ViedoContainer } from './style'
+import { PrevieContainer, FileContainer } from './style'
 
 
 const motions = [
@@ -62,23 +62,24 @@ const ImageSliderSection = () => {
                 iconText="All Images should be of same sizes"
             >
                 <InputContainer>
-                    <Dropdown
-                        placeholder="Select Motion"
-                        isOpen={isOpen}
-                        options={motions}
-                        toggel={toggle}
-                        close={close}
-                        value={data.name}
-                        updateValue={(value) => setData(value)}
-                        type="addMotion"
-                    />
+                            <Dropdown
+                                placeholder="Select Motion"
+                                isOpen={isOpen}
+                                options={motions}
+                                toggel={toggle}
+                                close={close}
+                                value={data.name}
+                                updateValue={(value) => setData(value)}
+                                type="addMotion"
+                            />
 
                     {
                         fields.map((item, index) => (
                             <div key={item.id}>
-                                <ViedoContainer id={item.name} >
+                                {/* is a dummp orignal have input field */}
+                                <FileContainer id={item.name} > 
                                     <span>{item.name}</span>
-                                </ViedoContainer>
+                                </FileContainer>
                             </div>
                         ))
                     }
