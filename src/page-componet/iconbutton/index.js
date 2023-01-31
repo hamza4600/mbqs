@@ -38,7 +38,7 @@ const Icon = (props) => {
     )
 }
 
-const AddIcon = (props) => <Icon src={add}  {...props} />
+const AddIcon = (props) => <Icon src={add}  size="19px" {...props} />
 const RemoveIcon = (props) => <Icon src={remove} size="20px" {...props} />
 
 export { AddIcon, RemoveIcon }

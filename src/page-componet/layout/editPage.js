@@ -5,7 +5,7 @@ import { BtnContainer, Container, SequienceContainer } from './style';
 import Input from 'components/input';
 import { RiDeleteBin4Line } from "react-icons/ri";
 import Button from 'components/button'
-
+import logo from "./editor.svg"
 
 const RightSection = (props) => {
     const {
@@ -163,10 +163,7 @@ export const PreviewSectionHeader = (props) => {
                     <H1>{title}</H1>
                 </div>
 
-                {React.Children.map(children, child => {
-                    return child
-                })}
-
+                {children}
             </div>
         </>
     )
@@ -180,20 +177,24 @@ export const PreviewBtnGroup = (props) => {
         frontView,
         nextBtnText = 'Next',
         frontBtnText = 'Front Website View',
+        showEditorBtn = false,
         editorBtnText = 'Open Editor'
-
     } = props;
 
     return (
         <BtnContainer>
-            <Button
-                type='view'
-                id='save'
-                onClick={frontView}
-                leftIcon = {<RiDeleteBin4Line size={24} /> }
-            >
-                {editorBtnText}
-            </Button>
+            {
+                showEditorBtn && (
+                    <Button
+                        type='view'
+                        id='save'
+                        onClick={frontView}
+                        leftIcon={<img src={logo} alt="logo" />}
+                    >
+                        {editorBtnText}
+                    </Button>
+                )
+            }
             <Button
                 type='view'
                 id='save'

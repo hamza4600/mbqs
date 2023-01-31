@@ -1,4 +1,4 @@
-import React, { forwardRef } from "react";
+import React, { forwardRef, useCallback } from "react";
 import styled from "styled-components";
 import { BsChevronDown } from "react-icons/bs";
 
@@ -106,7 +106,8 @@ const Dropdown = forwardRef(
 
         const handleBlur = (e) => {
             if (onBlur) {
-                typeof toggel === 'function' && toggel()
+                typeof toggel === 'function' &&
+                    isOpen && close()
             }
         }
 
@@ -116,11 +117,12 @@ const Dropdown = forwardRef(
             }
         }
 
-        const handleSelectItem = (option, index) => {
+        const handleSelectItem = useCallback((option, index) => {
             updateValue && typeof updateValue === 'function' && updateValue(option, index)
             onChange && typeof onChange === 'function' && onChange()
             close()
-        }
+        }, [updateValue, onChange, close])
+
 
         const handelType = (type) => {
             switch (type) {

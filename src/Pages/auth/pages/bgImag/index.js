@@ -48,8 +48,6 @@ const RightSection = ({ inputImage, setInputImage }) => {
         setInputImage(newInputFields);
     }
 
-    console.log(inputImage)
-
     return (
         <>
             <EditPageHeader

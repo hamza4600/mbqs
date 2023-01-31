@@ -62,22 +62,22 @@ const ImageSliderSection = () => {
                 iconText="All Images should be of same sizes"
             >
                 <InputContainer>
-                            <Dropdown
-                                placeholder="Select Motion"
-                                isOpen={isOpen}
-                                options={motions}
-                                toggel={toggle}
-                                close={close}
-                                value={data.name}
-                                updateValue={(value) => setData(value)}
-                                type="addMotion"
-                            />
+                    <Dropdown
+                        placeholder="Select Motion"
+                        isOpen={isOpen}
+                        options={motions}
+                        toggel={toggle}
+                        close={close}
+                        value={data.name}
+                        updateValue={(value) => setData(value)}
+                        type="addMotion"
+                    />
 
                     {
                         fields.map((item, index) => (
                             <div key={item.id}>
                                 {/* is a dummp orignal have input field */}
-                                <FileContainer id={item.name} > 
+                                <FileContainer id={item.name} >
                                     <span>{item.name}</span>
                                 </FileContainer>
                             </div>

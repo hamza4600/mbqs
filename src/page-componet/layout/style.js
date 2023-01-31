@@ -127,5 +127,28 @@ export const BtnContainer = styled.div`
         margin-right: 10px !important;
     }
 
+    & > div:nth-child(2) {
+        margin-right: 10px !important;
+    }
+
 `;
 
+// use in all application
+export const Box = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+    gap: 10px;
+
+    // if have  children  width
+    & > * {
+        flex-basis: ${props => props.full ? '100%' : 'calc(50% - 5px) ! important'};
+    }
+
+}
+
+`;

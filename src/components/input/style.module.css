@@ -2,10 +2,12 @@
     width: 100%;
     flex: 1;
 }
+
 .disable {
     opacity: 0.5;
     cursor: not-allowed;
 }
+
 .login {
     font-size: 1em;
     font-weight: lighter;
@@ -20,12 +22,15 @@
     color: whitesmoke;
     text-transform: capitalize;
 }
+
 .login::placeholder {
     color: #C2BEBE;
 }
+
 .login:focus {
     outline: none;
 }
+
 .passIcon {
     position: relative;
     right: 0;
@@ -48,9 +53,33 @@
     font-size: 13px;
     width: 100%;
 }
+
+/* Add Data form */
+.addDataform {
+    color: inherit;
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    height: 28px;
+    padding: 0px 5px;
+    text-transform: capitalize;
+    font-size: 13px;
+    width: 100%;
+}
+
+.addDataform:focus {
+    border: 1px solid #80C1F9 !important;
+}
+
+.addDataform::placeholder {
+    color: #B0C4DE;
+    letter-spacing: 0.5px;
+    font-weight: lighter;
+}
+
 .addData:focus {
     border: 1px solid #80C1F9 !important;
 }
+
 .addData::placeholder {
     color: #B0C4DE;
     letter-spacing: 0.5px;
@@ -63,14 +92,16 @@
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
     height: 150px;
-    width: 250px;   
+    width: 250px;
     padding: 0px 5px;
     min-width: 300px !important;
     font-size: 13px;
 }
+
 .addDataFile input {
     display: none;
 }
+
 .addDataFile label {
     display: flex;
     align-items: center;
@@ -112,12 +143,36 @@
     border: 1px solid #B0C4DE;
     background-color: #F0F8FF;
     padding: 0.5rem;
-    margin: 3px 0px 0px 0px ;
+    margin: 3px 0px 0px 0px;
     font-size: 13px;
-    
+
     /*  cannot resize */
     resize: none;
 }
+
 .textAreaAddData:focus {
     border: 1px solid #80C1F9 !important;
+}
+
+/*  for forma insert Data */
+.textArea {
+    color: inherit;
+    min-height: 130px;
+    width: 100%;
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    padding: 0px 5px;
+    min-width: 300px !important;
+    font-size: 13px;
+    resize: none;
+}
+
+.textArea:focus {
+    border: 1px solid #80C1F9 !important;
+}
+
+.textArea::placeholder {
+    color: #B0C4DE;
+    letter-spacing: 0.5px;
+    font-weight: lighter;
 }
