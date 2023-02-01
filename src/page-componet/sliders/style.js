@@ -48,6 +48,10 @@ export const Wrapper = styled.div`
     #subdrop {
         margin-left: 15px;
     }
+
+    #subdrop div:hover {
+        border-bottom: 0.5px solid #00BFFA;
+    }
     `;
 
 export const Span = styled.span`

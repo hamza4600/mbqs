@@ -24,8 +24,8 @@ const InputSection = ({ data, setData }) => {
         <>
             <EditPageHeader
                 title="Over Lapping Text"
-                // handelAddIcon={handleAddFields}
-                // handelRemoveIcon={handleRemoveFields}
+            // handelAddIcon={handleAddFields}
+            // handelRemoveIcon={handleRemoveFields}
             >
                 <InputContainer>
                     <Box full>
@@ -36,7 +36,6 @@ const InputSection = ({ data, setData }) => {
                             value={data.textHeader}
                             onChange={event => setData({ field: "textHeader", value: event.target.value })}
                         />
-
                     </Box>
 
                     <Box full>
@@ -98,7 +97,7 @@ const InputSection = ({ data, setData }) => {
 }
 
 const PreviewSection = ({ data }) => {
-    
+
     const nextPage = () => window.location.href = "/auth/viedo-list";
 
     return (

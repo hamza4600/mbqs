@@ -1,8 +1,7 @@
 import Dropdown from "components/dropdown"
 import Input from "components/input"
 import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
-import { Box, Container, InputContainer } from "page-componet/layout/style"
-import { FileInput } from "../bgImag/styled"
+import { Box, Container, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 import useDropDown from "components/dropdown/useDropdown"
 import { memo, useReducer } from "react"
@@ -67,26 +66,26 @@ const TextInputSection = ({ data, setData }) => {
                         />
                     </Box>
 
-                    <FileInput >
-                        <label
-                            htmlFor="file"
-                        >
-                            {data.textImage.name ? data.textImage.name : "Drop Image Here"}
-                        </label>
-                        <input
-                            accept="image/*"
-                            type="file"
-                            id="file"
-                            name="file"
-                            onChange={event => setData(
-                                {
-                                    field: "textImage", value: {
-                                        name: event.target.files[0].name,
-                                        url: URL.createObjectURL(event.target.files[0])
-                                    }
-                                })}
-                        />
-                    </FileInput>
+                        <FileInput >
+                            <label
+                                htmlFor="file"
+                            >
+                                {data.textImage.name ? data.textImage.name : "Drop Image Here"}
+                            </label>
+                            <input
+                                accept="image/*"
+                                type="file"
+                                id="file"
+                                name="file"
+                                onChange={event => setData(
+                                    {
+                                        field: "textImage", value: {
+                                            name: event.target.files[0].name,
+                                            url: URL.createObjectURL(event.target.files[0])
+                                        }
+                                    })}
+                            />
+                        </FileInput>
 
                     <Box>
                         <Dropdown

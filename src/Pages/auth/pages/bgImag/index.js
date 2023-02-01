@@ -1,7 +1,7 @@
 import {  EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import React, { useState } from "react"
-import { FileInput, Grid } from "./styled"
-import { Container, InputContainer } from "page-componet/layout/style"
+import { Grid } from "./styled"
+import { Container, FileInput, InputContainer } from "page-componet/layout/style"
 
 const RightSection = ({ inputImage, setInputImage }) => {
 

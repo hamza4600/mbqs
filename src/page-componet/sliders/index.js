@@ -56,18 +56,9 @@ const SubDropdownMenu = (props) => {
         setShowSub2(true);
     }
 
-    // const handelOutSide = (e) => {
-    //     // delay 
-    //     setTimeout(() => {
-    //         setSubselt();
-    //         setShowSub2(false);
-    //     }, 150);
-    // }
-
     return (
         <>
             <Menu
-                // outSide={handelOutSide} // if one then no  use
                 id={'subMenu'}
                 onClick={(e) => {
                     e.stopPropagation();
@@ -191,9 +182,7 @@ const PageSide = () => {
                                                                     />
                                                                 ) : (
                                                                     <p
-                                                                        style={{
-                                                                            fontSize: '13px',
-                                                                        }}
+                                                                        style={{ fontSize: '13px' }}
                                                                     >
                                                                         {drop.title}
                                                                     </p>
