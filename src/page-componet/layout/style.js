@@ -72,7 +72,7 @@ export const SequienceContainer = styled.div`
     align-items: center;    
     flex-direction: column;
     justify-content: start;
-    width: 100%;
+    width: 85%;
     margin-top: 20px;
 
 
@@ -107,7 +107,18 @@ export const SequienceContainer = styled.div`
 
 export const InputContainer = styled.div`
     position: relative;
-    max-width: 85%;  
+    max-width: 85%;
+ 
+    overflow-y: ${props => props.show ? 'auto' : ''};
+    min-height: ${props => props.show ? '400px' : ' '} !important;
+    max-height: ${props => props.show ? '400px' : ' '} !important;
+    transition: all 0.5s ease-in-out;
+    padding : 0px 6px 0px 0px;
+
+    &::-webkit-scrollbar {
+        width: 5px;
+    }
+
 `;
 
 export const BtnContainer = styled.div`

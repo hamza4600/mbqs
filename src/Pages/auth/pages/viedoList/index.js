@@ -47,7 +47,7 @@ const ViedoInput = ({ data, setData }) => {
                         />
                     </Box>
 
-                    <Box full>
+                    {/* <Box full>
                         <Input
                             nputype="text"
                             type="addDataform"
@@ -55,7 +55,7 @@ const ViedoInput = ({ data, setData }) => {
                             value={data.textTitle}
                             onChange={event => setData({ field: "textTitle", value: event.target.value })}
                         />
-                    </Box>
+                    </Box> */}
 
                     {
                         data.selectViedoType?.id === 1 ?

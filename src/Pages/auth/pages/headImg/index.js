@@ -56,7 +56,7 @@ const ImageSliderSection = () => {
     return (
         <>
             <EditPageHeader
-                title="Header Image"
+                title="Header Image Slider"
                 handelAddIcon={handleAddFields}
                 handelRemoveIcon={handleRemoveFields}
                 iconText="All Images should be of same sizes"
