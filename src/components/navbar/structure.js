@@ -6,7 +6,7 @@ export const Nav = styled.nav`
   background-color: ${({ theme }) => theme.navBar};
   color: ${({ theme }) => theme.color};
   width: 100%;
-  filter : ${(props) => props.blure && 'blur(5px)'};
+  filter : ${(props) => props.blure && 'blur(1px)'};
   cursor : ${(props) => props.blure && 'none !important' };
   `;
 

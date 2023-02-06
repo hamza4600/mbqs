@@ -21,6 +21,9 @@ export const Lwrap = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;        
+    @media (max-width:768px){
+        display: none;
+    }
     `;
 
 export const Rwrap = styled.div`
