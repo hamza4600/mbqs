@@ -46,13 +46,18 @@ export const Wrapper = styled.div`
     }
 
     #subdrop {
-        margin-left: 15px;
+        margin-left: 6px;
+        font-size: 12px !important;
+        margin-top: 4px;
     }
 
-    #subdrop div:hover {
-        border-bottom: 0.5px solid #00BFFA;
+    #subdrop div {
+        margin-bottom: 2px;
+        width: 100%;
+        flex-basis: 100%;
     }
-    `;
+
+`;
 
 export const Span = styled.span`
     display: flex;
@@ -81,7 +86,6 @@ export const SubMenu = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    color: ${(props) => props.color && "silver"};
     font-size: 13px;
 
     .subico {

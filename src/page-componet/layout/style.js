@@ -154,21 +154,23 @@ export const Box = styled.div`
     width: 100%;
     margin-bottom: 10px;
     gap: 10px;
+    margin-top: ${props => props.marginTop && props.marginTop};
 
     // if have  children  width
     & > * {
         flex-basis: ${props => props.full ? '100%' : 'calc(50% - 5px) ! important'};
     }
+
 }
 
 `;
-
 
 // for file input 
 export const FileInput = styled.div`
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
-    height: 40px;
+    height: ${props => props.large ? '90px' : '40px'};
+    margin-top: ${props => props.large && '10px'}; 
     width: 100%;   
     padding: 0px 5px;
     min-width: 300px !important;

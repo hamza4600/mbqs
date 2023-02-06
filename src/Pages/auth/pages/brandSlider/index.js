@@ -1,6 +1,6 @@
 import Input from "components/input";
-import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
-import { Box, Container, FileInput, InputContainer } from "page-componet/layout/style";
+import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
+import { Box, FileInput, InputContainer } from "page-componet/layout/style";
 import React, { memo, useEffect, useState } from "react";
 
 
@@ -190,7 +190,7 @@ const BrandSlider = () => {
 
     return (
         <>
-            <Container>
+            <EditPageLayout>
                 <SliderInput
                     images={images}
                     setImages={setImages}
@@ -199,7 +199,7 @@ const BrandSlider = () => {
                     images={images}
                 />
 
-            </Container>
+            </EditPageLayout>
         </>
     )
 }

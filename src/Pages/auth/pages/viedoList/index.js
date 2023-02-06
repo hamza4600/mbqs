@@ -1,8 +1,8 @@
 import Dropdown from "components/dropdown";
 import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
-import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
-import { Box, Container, FileInput, InputContainer } from "page-componet/layout/style";
+import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
+import { Box, FileInput, InputContainer } from "page-componet/layout/style";
 import { memo, useEffect, useReducer } from "react";
 
 const viedoType = [
@@ -192,7 +192,7 @@ const ViedoList = () => {
 
     return (
         <>
-            <Container>
+            <EditPageLayout>
                 <ViedoInput
                     data={data}
                     setData={setData}
@@ -200,7 +200,7 @@ const ViedoList = () => {
                 <ViedoPreview
                     data={data}
                 />
-            </Container>
+            </EditPageLayout>
         </>
     );
 }

@@ -1,3 +1,4 @@
+// all routes and data for slider page
 import { MdOutlineEngineering } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { IoDocumentTextOutline } from "react-icons/io5";
@@ -21,13 +22,11 @@ const sharMenu = [
         title: 'Background Image',
         route: authRoutes.backgroundImg
     },
-
     {
         id: 10,
         title: 'Header Image Slider',
         route: authRoutes.headerImg
     },
-
     {
         id: 30,
         title: 'Text & Image',
@@ -59,6 +58,165 @@ const sharMenu = [
         route: authRoutes.busniessProfile // all data will be shown
     }
 ]
+// For News
+const newsMenu = [
+    {
+        id: 1,
+        title: 'header image slider',
+        route: authRoutes.newNewsPage
+    },
+    {
+        id: 2,
+        title: 'background image',
+        route: "#"
+    },
+    {
+        id: 3,
+        title: 'over lapping text',
+        route: "#"
+    },
+    {
+        id: 4,
+        title: 'news details',
+        route: "#"
+    }
+];
+// For Events
+const eventMenu = [
+    {
+        id: 1,
+        title: 'header image slider',
+        route: authRoutes.addEvent
+    },
+    {
+        id: 2,
+        title: 'background image',
+        route: "#"
+    },
+    {
+        id: 3,
+        title: 'over lapping text',
+        route: "#"
+    },
+    {
+        id: 4,
+        title: 'event details',
+        route: "#"
+    }
+];
+
+// For About
+const aboutMenu = [
+    {
+        id: 1,
+        title: 'header image slider',
+        route: authRoutes.addAbout
+    },
+    {
+        id: 2,
+        title: 'background image',
+        route: "#"
+    },
+    {
+        id: 3,
+        title: 'over lapping text',
+        route: "#"
+    },
+    {
+        id: 4,
+        title: 'event details',
+        route: "#"
+    }
+];
+// Privacy Policy
+const privacyMenu = [
+    {
+        id: 1,
+        title: 'header image slider',
+        route: authRoutes.addPrivacy
+    },
+    {
+        id: 2,
+        title: 'background image',
+        route: "#"
+    },
+    {
+        id: 4,
+        title: 'privacy policy',
+        route: "#"
+    }
+];
+// terms & conditions
+const termsMenu = [
+    {
+        id: 1,
+        title: 'header image slider',
+        route: authRoutes.addTerms
+    },
+    {
+        id: 2,
+        title: 'background image',
+        route: "#"
+    },
+    {
+        id: 4,
+        title: 'privacy policy',
+        route: "#"
+    }
+];
+// contact us
+const contactMenu = [
+    {
+        id: 10,
+        title: 'Header Image Slider',
+        route: authRoutes.headerImg
+    },
+    {
+        id: 20,
+        title: 'Background Image',
+        route: authRoutes.backgroundImg
+    },
+    {
+        id: 40,
+        title: 'Over Lapping Text',
+        route: authRoutes.overLapText
+    },
+    {
+        id: 50,
+        title: 'FQA',
+        route: "/#"
+    },
+     {
+        id: 60,
+        title: 'contact details',
+        route: '/#'
+    },
+     {
+        id: 70,
+        title: 'Map',
+        route: '/#'
+    },
+    // {
+    //     id: 30,
+    //     title: 'Text & Image',
+    //     route: authRoutes.textImg
+    // },
+    // {
+    //     id: 50,
+    //     title: 'Videos List',
+    //     route: authRoutes.viedoList
+    // },
+    // {
+    //     id: 60,
+    //     title: 'Brand Slider',
+    //     route: authRoutes.brandSlider
+    // },
+    // {
+    //     id: 70,
+    //     title: 'Front Site View',
+    //     route: authRoutes.frontView
+    // }
+];
 
 export const sidebarData = [
     {
@@ -85,12 +243,12 @@ export const sidebarData = [
         drop: [
             {
                 id: 1,
-                title: 'creat news page',
-                route: authRoutes.newPage
+                title: 'add new page',
+                subMenu: newsMenu,
             },
             {
                 id: 2,
-                title: 'list news page',
+                title: 'list of news pages',
                 route: authRoutes.newPageList
             }
         ]
@@ -103,7 +261,7 @@ export const sidebarData = [
             {
                 id: 1,
                 title: 'create event page',
-                route: authRoutes.addEvent
+                subMenu: eventMenu,
             },
             {
                 id: 2,
@@ -114,17 +272,17 @@ export const sidebarData = [
     },
     {
         id: 8,
-        title: 'about us',
+        title: 'about',
         icon: <RiUser2Line size={size} />,
         drop: [
             {
                 id: 1,
                 title: 'creat about page',
-                route: authRoutes.addAbout
+                subMenu: aboutMenu,
             },
             {
                 id: 2,
-                title: 'List about page',
+                title: 'List about pages',
                 route: authRoutes.addAboutList
             }
         ]
@@ -137,7 +295,12 @@ export const sidebarData = [
             {
                 id: 1,
                 title: 'creat privacy page',
-                route: authRoutes.addPrivacy
+                subMenu: privacyMenu,
+            },
+            {
+                id: 2,
+                title: 'List privacy pages',
+                route: '/#'
             }
         ]
     },
@@ -149,7 +312,12 @@ export const sidebarData = [
             {
                 id: 1,
                 title: 'creat terms page',
-                route: authRoutes.addTerms
+                subMenu: termsMenu,
+            },
+            {
+                id: 2,
+                title: 'List terms pages',
+                route: '/#'
             }
         ]
     },
@@ -160,43 +328,14 @@ export const sidebarData = [
         drop: [
             {
                 id: 1,
-                title: 'creat contact page',
-                route: authRoutes.addContact
+                title: 'add contact page',
+                // route: authRoutes.addContact
+                subMenu: contactMenu,
             },
             {
                 id: 10,
-                title: 'Header Image Slider',
-                route: authRoutes.headerImg
-            },
-            {
-                id: 20,
-                title: 'Background Image',
-                route: authRoutes.backgroundImg
-            },
-            {
-                id: 30,
-                title: 'Text & Image',
-                route: authRoutes.textImg
-            },
-            {
-                id: 40,
-                title: 'Over Lapping Text',
-                route: authRoutes.overLapText
-            },
-            {
-                id: 50,
-                title: 'Videos List',
-                route: authRoutes.viedoList
-            },
-            {
-                id: 60,
-                title: 'Brand Slider',
-                route: authRoutes.brandSlider
-            },
-            {
-                id: 70,
-                title: 'Front Site View',
-                route: authRoutes.frontView
+                title: 'List contact pages',
+                route: "/#"
             }
         ]
     },

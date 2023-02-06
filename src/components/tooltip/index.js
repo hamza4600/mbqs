@@ -9,7 +9,7 @@ const P = styled.p`
     font-style: normal;
 `;
 
-const Container = styled.div`
+const Containe = styled.div`
     background-color: ${({ theme }) => theme.toolbar};
     color: ${({ theme }) => theme.toolipText};
     z-index: 100 !important;
@@ -65,7 +65,7 @@ const Tooltip = forwardRef(
         return (
             <>
                 {isShown && (
-                    <Container
+                    <Containe
                         ref={ref}
                         onMouseEnter={mouseEnter}
                         onMouseLeave={mouseLeave}
@@ -75,7 +75,7 @@ const Tooltip = forwardRef(
                         style={typeObject}
                     >
                         <P>{children || content}</P>
-                    </Container>
+                    </Containe>
                 )}
 
             </>

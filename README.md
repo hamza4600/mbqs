@@ -11,7 +11,4 @@ https://billing.misshosting.com/clientarea.php
 decojee@gmail.com
 Iss-34963496
 
-# Siderbar color same 
-# Scroll bar on add 
-# Drop Viedo title 
-<!-- #b0cde4 -->
+# Drop Viedo title

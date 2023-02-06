@@ -1,7 +1,7 @@
-import {  EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
+import {  EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import React, { useState } from "react"
 import { Grid } from "./styled"
-import { Container, FileInput, InputContainer } from "page-componet/layout/style"
+import {  FileInput, InputContainer } from "page-componet/layout/style"
 
 const RightSection = ({ inputImage, setInputImage }) => {
 
@@ -123,7 +123,7 @@ const BackgroundImage = () => {
 
     return (
         <>
-            <Container>
+            <EditPageLayout>
                 <RightSection
                     inputImage={inputImage}
                     setInputImage={setInputImage}
@@ -132,7 +132,7 @@ const BackgroundImage = () => {
                     inputImage={inputImage}
                     setInputImage={setInputImage}
                 />
-            </Container>
+            </EditPageLayout>
         </>
     )
 }

@@ -6,7 +6,7 @@ export const authRoutes = {
     creatbusines: '/creat-business',
     frontView: '/front-view', // front view of website
     busniessProfile: '/business-profile',
-    newPage: '/new-page',
+    newNewsPage: '/creat-news-page',
     newPageList: '/new-page-list',
     addAbout: '/add-about',
     addAboutList: '/add-about-list',
@@ -62,6 +62,7 @@ const OverLapppinText = lazy(() => import('./pages/overlapText'));
 const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
 const EditMenu = lazy(() => import('./pages/menu'));
+// more new Page will be added
 
 const paths = [
     {
@@ -87,7 +88,7 @@ const paths = [
     },
     {
         id: 6,
-        path: authRoutes.newPage,
+        path: authRoutes.newNewsPage,
         component: <CreatnewPage />,
     },
     {

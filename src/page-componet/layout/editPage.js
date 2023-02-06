@@ -7,77 +7,16 @@ import { RiDeleteBin4Line } from "react-icons/ri";
 import Button from 'components/button'
 import logo from "./editor.svg"
 
-const RightSection = (props) => {
-    const {
-        children,
-        rightTitle,
-        showIcon = true,
-    } = props;
-
-    return (
-        <div id="right" className='flex'>
-
-            <div className="margin">
-                <div className="inlineflex">
-                    <H1>{rightTitle}</H1>
-                    {
-                        showIcon && (
-                            <div>
-                                <AddIcon />
-                                <RemoveIcon />
-                            </div>
-                        )
-                    }
-                </div>
-            </div>
-
-            <div>
-                {children}
-            </div>
-        </div>
-    );
-}
-
-const LeftSection = (props) => {
-    const {
-        children,
-        leftTitle = "Preview",
-    } = props;
-    return (
-        <div id="left" className='flex'>
-            <div className="margin" >
-                <H1>{leftTitle}</H1>
-            </div>
-
-            {children}
-        </div>
-    );
-}
-
-const EditPageLayout = (
-    { rightChildren, rightTitle, leftChildren, leftTitle }
+// is used to on all edit page 
+export const EditPageLayout = (
+    { children }
 ) => (
     <>
         <Container>
-            <RightSection
-                rightTitle={rightTitle}
-            >
-                {rightChildren}
-            </RightSection>
-            <LeftSection
-                leftTitle={leftTitle}
-            >
-                {leftChildren}
-            </LeftSection>
+            {children}
         </Container>
     </>
 );
-
-export default EditPageLayout;
-
-
-// when all page are completed remove above code and use this code
-// new componet 
 
 // Dummy data
 const dummyData = [
@@ -115,36 +54,60 @@ export const ListItem = ({ array = dummyData }) => {
     )
 };
 
+// Header title and icon    
+export const HeaderTitleIcons = ({
+    handelAddIcon,
+    handelRemoveIcon,
+    iconText,
+    hideIcon = false,
+    title
+}) => (
+    <>
+        <div className='inlineflex'>
+            <H1>{title}</H1>
+            {!hideIcon && (
+                <>
+                    <div className='line'>
+                        <p className="italic">{iconText}</p>
+                        <AddIcon
+                            onClick={handelAddIcon}
+                        />
+                        <RemoveIcon
+                            onClick={handelRemoveIcon}
+                        />
+                    </div>
+                </>
+            )}
+        </div>
+    </>
+)
+
 export const EditPageHeader = (props) => {
     const {
         title,
         handelAddIcon,
         handelRemoveIcon,
         iconText,
-        children
+        children,
+        hideIcon = false
     } = props;
     return (
         <>
             <div id="right" className="flex">
                 <div className="margin">
-                    <div className="inlineflex">
-                        <H1>{title}</H1>
-                        <div className='line'>
-                            <p className="italic">{iconText}</p>
-                            <AddIcon
-                                onClick={handelAddIcon}
-                            />
-                            <RemoveIcon
-                                onClick={handelRemoveIcon}
-                            />
-                        </div>
-                    </div>
+                    <HeaderTitleIcons
+                        handelAddIcon={handelAddIcon}
+                        handelRemoveIcon={handelRemoveIcon}
+                        iconText={iconText}
+                        hideIcon={hideIcon}
+                        title={title}
+                    />
+                    {/* </div> */}
+
+                    {React.Children.map(children, child => {
+                        return child
+                    })}
                 </div>
-
-                {React.Children.map(children, child => {
-                    return child
-                })}
-
             </div>
         </>
     )

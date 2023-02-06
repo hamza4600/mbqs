@@ -1,8 +1,8 @@
 import Dropdown from "components/dropdown"
 import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
-import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
-import { Box, Container, InputContainer } from "page-componet/layout/style"
+import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
+import { Box, InputContainer } from "page-componet/layout/style"
 import { memo, useReducer } from "react"
 
 const dData = [
@@ -161,7 +161,7 @@ const OverLapppinText = () => {
 
     return (
         <>
-            <Container>
+            <EditPageLayout>
                 <InputSection
                     data={data}
                     setData={setData}
@@ -169,7 +169,7 @@ const OverLapppinText = () => {
                 <PreviewSection
                     data={data}
                 />
-            </Container>
+            </EditPageLayout>
         </>
     )
 }

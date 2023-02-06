@@ -45,7 +45,7 @@ const Menu = outisdeClick(SubMenu)
 
 // sub drop down Handelr
 const SubDropdownMenu = (props) => {
-    const { array, moveTo, } = props;
+    const { array } = props;
 
     const [showSub2, setShowSub2] = useState(false);
     const [subselt, setSubselt] = useState();
@@ -86,16 +86,16 @@ const SubDropdownMenu = (props) => {
                     >
                         {
                             array.subMenu.map((item, index) => (
-                                <Anchor
+                                <div
                                     key={item.id}
-                                    color={window.location.pathname === "/auth" + item.route && "#4CCDF9"}
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        moveTo(item.route || "#")
-                                    }}
                                 >
-                                    {item.title}
-                                </Anchor>
+                                    <Anchor
+                                        color={window.location.pathname === "/auth" + item.route && "#4CCDF9"}
+                                        href={`/auth${item.route || "#"}`}
+                                    >
+                                        {item.title}
+                                    </Anchor>
+                                </div>
                             ))
                         }
                     </div>
@@ -122,9 +122,6 @@ const PageSide = () => {
         setSelect()
         setWidth(60);
     }
-
-    // handel navigation
-    const viewPage = (id) => window.location.href = `/auth${id}`;
 
     return (
         <>
@@ -154,10 +151,12 @@ const PageSide = () => {
                                         aria-selected={item.id === select}
                                         aria-controls={`panel-id-${item.id}`}
                                     >
-                                        <Span select={
-                                            item.id === select ||
-                                            window.location.pathname === "/auth" + item.route
-                                        }>
+                                        <Span
+                                            select={
+                                                item.id === select ||
+                                                window.location.pathname === "/auth" + item.route
+                                            }
+                                        >
                                             <i>{item.icon}</i>
                                             {item.title}
                                         </Span>
@@ -168,28 +167,28 @@ const PageSide = () => {
                                                 onClick={(e) => e.stopPropagation()}
                                             >
                                                 {
-                                                    Array.isArray(item.drop) && item.drop.map((drop, index) => (
-                                                        <Anchor
-                                                            key={index}
-                                                            onClick={() => viewPage(drop.route)}
-                                                            color={window.location.pathname === "/auth" + drop.route && "#4CCDF9"}
-                                                        >
-                                                            {
-                                                                drop.subMenu ? (
-                                                                    <SubDropdownMenu
-                                                                        array={drop}
-                                                                        moveTo={viewPage}
-                                                                    />
-                                                                ) : (
-                                                                    <p
-                                                                        style={{ fontSize: '13px' }}
-                                                                    >
-                                                                        {drop.title}
-                                                                    </p>
-                                                                )
-                                                            }
-                                                        </Anchor>
-                                                    ))
+                                                    Array.isArray(item.drop) && item.drop.map((drop, index) => {
+                                                        if (drop.subMenu) {
+                                                            return (
+                                                                <SubDropdownMenu
+                                                                    key={index}
+                                                                    array={drop}
+                                                                />
+                                                            )
+                                                        }
+                                                        return (
+                                                            <>
+                                                                <Anchor
+                                                                    key={index}
+                                                                    href={`/auth${drop.route}`}
+                                                                    color={window.location.pathname === "/auth" + drop.route && "#4CCDF9"}
+                                                                >
+                                                                    {drop.title}
+                                                                </Anchor>
+                                                            </>
+                                                        )
+                                                    }
+                                                    )
                                                 }
                                             </div>
                                         }

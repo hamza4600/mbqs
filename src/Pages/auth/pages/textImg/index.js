@@ -1,11 +1,10 @@
 import Dropdown from "components/dropdown"
 import Input from "components/input"
-import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
-import { Box, Container, FileInput, InputContainer } from "page-componet/layout/style"
+import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
+import { Box, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 import useDropDown from "components/dropdown/useDropdown"
 import { memo, useReducer } from "react"
-
 
 const initalState = {
     textHeader: "",
@@ -193,7 +192,7 @@ const TextImage = () => {
 
     return (
         <>
-            <Container>
+            <EditPageLayout>
                 <TextInputSection
                     data={data}
                     setData={setData}
@@ -201,7 +200,7 @@ const TextImage = () => {
                 <TextPreviewSection
                     data={data}
                 />
-            </Container>
+            </EditPageLayout>
 
         </>
     )

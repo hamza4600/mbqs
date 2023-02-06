@@ -1,8 +1,8 @@
 import React from 'react'
 import Dropdown from 'components/dropdown'
 import useDropDown from 'components/dropdown/useDropdown'
-import { EditPageHeader, ListItem, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage'
-import { Container, InputContainer } from 'page-componet/layout/style'
+import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage'
+import { InputContainer } from 'page-componet/layout/style'
 import { PrevieContainer, FileContainer } from './style'
 
 
@@ -111,10 +111,10 @@ const ImagePreviewSection = () => {
 const HeaderImage = () => {
     return (
         <>
-            <Container id='conainer'>
+            <EditPageLayout id='conainer'>
                 <ImageSliderSection />
                 <ImagePreviewSection />
-            </Container>
+            </EditPageLayout>
         </>
     )
 }
