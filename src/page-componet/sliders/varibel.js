@@ -68,7 +68,7 @@ const newsMenu = [
     {
         id: 2,
         title: 'background image',
-        route: "#"
+        route: authRoutes.newsBg,
     },
     {
         id: 3,
@@ -249,7 +249,7 @@ export const sidebarData = [
             {
                 id: 2,
                 title: 'list of news pages',
-                route: authRoutes.newPageList
+                route: authRoutes.newsPageList
             }
         ]
     },

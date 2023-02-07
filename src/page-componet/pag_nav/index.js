@@ -1,6 +1,6 @@
 import Navbar from "components/navbar"
 import styled from "styled-components"
-import { useState } from "react";
+import React, { useState } from "react";
 import useHover from "Hooks/useHover";
 
 import logo from "../../assits/MLogo.png"
@@ -16,7 +16,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
 // HOC
 import outisdeClick from "functions/outside";
-import UserMenu from "./usermenu";
+import useBreakpoint from "Hooks/useBreakPoints";
+const UserMenu = React.lazy(() => import("./usermenu"));
 
 const Wrapper = styled.div`
     display: flex;
@@ -135,14 +136,12 @@ const RightSide = () => {
                     icon={<BiSearch size={20} />}
                     Click={search}
                     color={searh}
-                // outSide={() => setSearh(false)}
                 />
                 <Icons
                     hover="Menu"
                     icon={<SlMenu size={20} />}
                     Click={handelMenu}
                     color={state?.dongal}
-                // outSide={() => setMenu(false)}
                 />
                 <Icons
                     hover="User"

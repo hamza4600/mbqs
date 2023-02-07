@@ -3,7 +3,7 @@ import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, FileInput, InputContainer } from "page-componet/layout/style"
-import { useReducer } from "react"
+import { memo, useReducer } from "react"
 
 const dData = [
     { id: 1, name: "News Category 1" },
@@ -64,96 +64,103 @@ const EditSection = ({ state, setState }) => {
 
                     <FileInput large>
                         <label
-                            htmlFor="file"
+                            htmlFor="photo"
                         >
                             {state.textImage.name ? state.textImage.name : "Drop Image Here"}
                         </label>
                         <input
                             accept="image/*"
                             type="file"
-                            id="file"
+                            id="photo"
                             name="file"
-                            onChange={event => setState(
+                            onInput={event => setState(
                                 {
                                     field: "textImage", value: {
                                         name: event.target.files[0].name,
                                         url: URL.createObjectURL(event.target.files[0])
                                     }
                                 })}
+                            onClick={(e) => e.target.value = null}
                         />
                     </FileInput>
 
-                    <FileInput large >
+                    <FileInput large>
                         <label
-                            htmlFor="file"
+                            htmlFor="viedo"
                         >
-                            {state.viedo.name ? state.viedo.name : "Drop Viedo Here"}
+                            {state.textViedo.name ? state.textViedo.name : "Drop Viedo Here"}
                         </label>
                         <input
                             accept="video/*"
                             type="file"
-                            id="file"
-                            name="file"
-                            onChange={event => setState(
+                            id="viedo"
+                            name="viedo"
+                            onInput={event => setState(
                                 {
-                                    field: "viedo", value: {
+                                    field: "textViedo",
+                                    value: {
                                         name: event.target.files[0].name,
                                         url: URL.createObjectURL(event.target.files[0])
                                     }
                                 })}
+                            onClick={(e) => e.target.value = null}
                         />
                     </FileInput>
-                    <ListItem />
+
                 </InputContainer>
+                <ListItem />
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ state }) => {
-    console.log(state)
-    return (
-        <>
-            <PreviewSectionHeader>
-                <div>
-                    <p>{state.selectCategory?.name}</p>
-                    <br />
-                    <p>{state.selectMotion?.name}</p>
-                    <br />
-                    <img src={state.textImage.url} alt={state.textImage.name} />
-                    <br />
-                    {
-                        state.viedo.url && (
-                            <>
-                                <video
-                                    src={state.viedo.url}
-                                    controls
-                                    width="100%"
-                                    height="100%"
-                                />
-                            </>
-                        )
-                    }
-                </div>
+const PreviewSection = ({ state }) => (
+    <>
+        <PreviewSectionHeader>
+            <div>
+                <p>{state.selectCategory?.name}</p>
+                <br />
+                <p>{state.selectMotion?.name}</p>
+                <br />
+                <img
+                    style={{ maxWidth: '50%' }}
+                    src={state.textImage.url}
+                    alt={state.textImage.name}
+                />
+                <br />
+                {
+                    state.textViedo.url && (
+                        <>
+                            <video
+                                style={{ maxWidth: '50%' }}
+                                src={state.textViedo.url}
+                                controls
+                            />
+                        </>
+                    )
+                }
+            </div>
 
+            <PreviewBtnGroup
+                nextPage = {() => window.location.href = "/auth/news-bg"}
+            />
+        </PreviewSectionHeader>
+    </>
+)
 
-                <PreviewBtnGroup />
-            </PreviewSectionHeader>
-        </>
-    )
-}
 
 const initaiValue = {
     selectCategory: "",
     selectMotion: "",
     textImage: { name: "", url: "" },
-    viedo: { name: "", url: "" }
+    textViedo: { name: "", url: "" }
 
 }
 
 const CreatnewPage = () => {
 
     const reducer = (state, { field, value }) => {
+
         return {
             ...state,
             [field]: value
@@ -178,4 +185,4 @@ const CreatnewPage = () => {
     )
 }
 
-export default CreatnewPage
+export default memo(CreatnewPage)

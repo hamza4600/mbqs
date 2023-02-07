@@ -176,9 +176,15 @@ export const FileInput = styled.div`
     min-width: 300px !important;
     font-size: 13px;
     margin-bottom: 10px;
+    position: relative;
 
     input {
-        display: none;
+        position: absolute;
+        top: 0%;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+        opacity: 0;
     }
 
     label {

@@ -6,11 +6,11 @@ import { IoLogOutOutline } from "react-icons/io5";
 const Wrapper = styled.div`
 
     position: absolute;
-    right: 5px;
+    right: 0px;
     width: 280px;
     min-height: 128px;
     background: #275482;
-    top: 44px;
+    top: 42px;
     color: #fff;
     display: flex;
     flex-direction: column;

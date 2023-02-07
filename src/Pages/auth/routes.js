@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 // evevery page will have its own state of data
+// arrage all routes in order 
 export const authRoutes = {
     panel: '/panel',
     addbusines: '/add-business',
@@ -7,7 +8,6 @@ export const authRoutes = {
     frontView: '/front-view', // front view of website
     busniessProfile: '/business-profile',
     newNewsPage: '/creat-news-page',
-    newPageList: '/new-page-list',
     addAbout: '/add-about',
     addAboutList: '/add-about-list',
     addEvent: '/add-event',
@@ -27,6 +27,9 @@ export const authRoutes = {
     overLapText: '/overlap-text',
     viedoList: '/viedo-list',
     brandSlider: '/brand-slider',
+    // new pages 
+    newsPageList: '/new-page-list',
+    newsBg : '/news-bg',
 };
 
 const listPageType = {  // every Page have its own Api for getting Data
@@ -63,6 +66,7 @@ const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
 const EditMenu = lazy(() => import('./pages/menu'));
 // more new Page will be added
+const NewsBg = lazy(() => import('./pages/bgnews'));
 
 const paths = [
     {
@@ -93,7 +97,7 @@ const paths = [
     },
     {
         id: 7,
-        path: authRoutes.newPageList,
+        path: authRoutes.newsPageList,
         component: <ListViewPage type={listPageType.newPage} />,
     },
     {
@@ -186,6 +190,11 @@ const paths = [
         id: 24,
         path: authRoutes.menuEdit,
         component: <EditMenu />
+    },
+    {
+        id: 25,
+        path: authRoutes.newsBg,
+        component: <NewsBg />
     }
 ];
 

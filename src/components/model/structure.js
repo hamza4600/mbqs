@@ -10,7 +10,7 @@ const Model1 = styled.div`
   width: 100vw;
   height: 100vh;
   z-index: 1000;
-  `;
+`;
 
 export const ModelOne = memo(forwardRef(
     function ModelOne(props, ref) {
@@ -24,21 +24,22 @@ export const ModelOne = memo(forwardRef(
 ))
 
 const Model2 = styled.div`
-  /* position: relative;
+  position: relative;
   height: 100%;
-  max-height: 350px; */
+  max-height: 350px; 
   z-index: ${(props) => (props.show ? "-1" : "")};
-  z-index: 2;
   background-color: #003153;
   color: #fff;
   width: 100%;
   max-width: 661px;
   border-radius: 4px;
-    bottom: 100px;
+  bottom: 100px;
 
     @media (max-width: 768px) {
-        /* max-height: 410px; */
-        height: 100%;
+        max-height: 100%;
+        border-radius: 0;
+        bottom: 0;
+        max-width: 100%;
     }
   `;
 
