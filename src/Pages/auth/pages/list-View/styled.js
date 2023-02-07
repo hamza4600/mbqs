@@ -33,8 +33,9 @@ export const Container = styled.div`
 export const Left = styled.div`
 
     #search {
-        width: 250px ;
-        max-width: 250px !important;
+        width: 300px ;
+        /* max-width: 450px; */
+        /* min-width:250px; */
         height: 28px !important;
         border: 1px solid #ccc !important;
         outline: none !important;
@@ -78,9 +79,9 @@ export const Left = styled.div`
 export const Right = styled.div`
     display: inline-flex;
     justify-content: space-between;
-    width: 8rem;
-    gap: 20px;
-    margin-right: 20px;
+    /* width: 8rem;
+    gap: 20px; */
+    margin-right: 30px;
 
     #dropdown {
         width: 80px !important;
@@ -94,4 +95,8 @@ export const Right = styled.div`
         margin-top: 5px;
         cursor: pointer;
     }
+    @media (max-width:930px){
+    /* margin-left:-60px !important;         */
+    display: none;
+}
 `;

@@ -13,6 +13,10 @@ import { BiFilterAlt } from "react-icons/bi";
 import { BsChevronDown } from "react-icons/bs";
 import { BsShareFill } from "react-icons/bs";
 import { SlCalender } from "react-icons/sl";
+// style
+import './style.module.css'
+import styles from "./style.module.css";
+
 
 
 import { ListBody } from "./sub";
@@ -34,7 +38,8 @@ const LeftSide = (props) => {
 
     return (
         <>
-            <Left id="left">
+            <Left className={styles.leftSideBar}>
+                <div className={styles.inputField}>
                 <input
                     type="addData"
                     inputype='text'
@@ -42,7 +47,10 @@ const LeftSide = (props) => {
                     id="search"
                     value={query}
                     onChange={onChange}
+                    className={styles.inputFieldInner}
                 />
+                </div>
+                <div className={styles.dropDownItems}>
                 <Dropdown
                     placeholder="Filter By"
                     isOpen={isFone}
@@ -72,6 +80,7 @@ const LeftSide = (props) => {
                     type='form'
                     id='share'
                 />
+                </div>
 
             </Left>
         </>
@@ -108,14 +117,16 @@ const RightSide = () => {
                     icon={<BsChevronDown size={18} color={isOpen && "#00BFFF"} />}
                     options={exportList}
                     type='form'
-                />
-
+                    />
+           
+                    <span>
                 <i>
                     <MdCloseFullscreen
                         size={20}
                         onClick={fullScreen}
                     />
                 </i>
+                </span>
             </Right>
         </>
     )

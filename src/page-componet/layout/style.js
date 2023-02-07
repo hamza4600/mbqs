@@ -13,12 +13,6 @@ export const Container = styled.div`
         grid-template-columns: 1fr
     }
 
-    #left {
-        padding: 0px 0px 0px 20px; 
-        background-color: #DDE5EC;
-        position: relative;
-    }
-
     .flex {
         display: flex;
         flex: 1;
