@@ -24,9 +24,9 @@ export const ModelOne = memo(forwardRef(
 ))
 
 const Model2 = styled.div`
-  position: relative;
+  /* position: relative;
   height: 100%;
-  max-height: 350px;
+  max-height: 350px; */
   z-index: ${(props) => (props.show ? "-1" : "")};
   z-index: 2;
   background-color: #003153;
@@ -37,7 +37,8 @@ const Model2 = styled.div`
     bottom: 100px;
 
     @media (max-width: 768px) {
-        max-height: 410px;
+        /* max-height: 410px; */
+        height: 100%;
     }
   `;
 
