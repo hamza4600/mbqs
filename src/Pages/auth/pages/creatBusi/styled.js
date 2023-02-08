@@ -18,6 +18,15 @@ export const Grid = styled.form`
         align-items: start;
     }
 
+    #subTwo{
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        justify-content: start;
+        gap: 5px;
+        align-items: start;
+    }
+
     #save {
         position: absolute;
         right: 10rem;
@@ -64,6 +73,31 @@ export const Grid = styled.form`
     }
 
 `;
+export const GridSettings=styled.div`
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    width: 80%;
+    flex-wrap: wrap;
+    /* div {
+        min-width: ${props => props.full && "50px"};
+    }
+    input {
+        width: ${props => props.full && "220px"};
+    } */
+    .dropDownSettings{
+    border: 1px solid #ccc;
+    margin-left: -250px;
+  }
+    
+    @media (max-width:570px){
+            translate: scale(0.7) !important;
+            justify-content: flex-start;
+            align-items: start;
+            width:100%;
+    }
+
+`
 
 
 export const Wrapper = styled.div`
@@ -81,7 +115,6 @@ export const Wrapper = styled.div`
     input {
         width: ${props => props.full && "620px"};
     }
-
     .btngrp {
         position: relative;
         right: 0;
