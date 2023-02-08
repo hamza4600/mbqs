@@ -160,8 +160,10 @@ const PreviewSection = ({ state }) => (
     </>
 )
 
+// hadel 4 different type of background 
+const BackgroundNews = ({ type }) => {
 
-const BackgroundNews = () => {
+    console.log(type);
 
     const [state, setState] = useState({
         selectCategory: null,

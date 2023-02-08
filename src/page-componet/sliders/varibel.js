@@ -73,7 +73,7 @@ const newsMenu = [
     {
         id: 3,
         title: 'over lapping text',
-        route: "#"
+        route: authRoutes.overLaptextNews
     },
     {
         id: 4,
@@ -91,7 +91,7 @@ const eventMenu = [
     {
         id: 2,
         title: 'background image',
-        route: "#"
+        route: authRoutes.eventBg,
     },
     {
         id: 3,
@@ -115,7 +115,7 @@ const aboutMenu = [
     {
         id: 2,
         title: 'background image',
-        route: "#"
+        route: authRoutes.aboutBg,
     },
     {
         id: 3,
@@ -138,7 +138,7 @@ const privacyMenu = [
     {
         id: 2,
         title: 'background image',
-        route: "#"
+        route: authRoutes.privacyBg,
     },
     {
         id: 4,
@@ -156,7 +156,7 @@ const termsMenu = [
     {
         id: 2,
         title: 'background image',
-        route: "#"
+        route: authRoutes.termsBg
     },
     {
         id: 4,
@@ -364,6 +364,16 @@ export const sidebarData = [
                 title: 'details',
                 route: authRoutes.settAddDetail
             },
+            {
+                id: 30,
+                title: 'Add on media icon',
+                route: authRoutes.mediaIcon
+            },
+            {
+                id: 40,
+                title: 'other',
+                route: authRoutes.others
+            }
         ]
     },
 ]

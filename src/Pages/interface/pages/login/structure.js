@@ -95,4 +95,8 @@ export const Head  = styled.h1`
     justify-content: center;
     align-items: center;
     color: #C2BEBE;
-    `;
+
+    @media (max-width: 768px) {
+        margin-right: 60px;
+    }
+`;

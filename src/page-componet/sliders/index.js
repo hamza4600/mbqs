@@ -10,8 +10,6 @@ import { Span, SubMenu, Wrapper } from "./style"
 import { sidebarData } from "./varibel";
 import { BsChevronDown } from "react-icons/bs";
 
-import outisdeClick from "functions/outside";
-
 function Icon(props) {
     const {
         icon, hover, id, select,
@@ -40,10 +38,6 @@ function Icon(props) {
     )
 }
 
-// outSide handel
-const Menu = outisdeClick(SubMenu)
-
-// sub drop down Handelr
 const SubDropdownMenu = (props) => {
     const { array } = props;
 
@@ -58,7 +52,7 @@ const SubDropdownMenu = (props) => {
 
     return (
         <>
-            <Menu
+            <SubMenu
                 id={'subMenu'}
                 onClick={(e) => {
                     e.stopPropagation();
@@ -74,7 +68,7 @@ const SubDropdownMenu = (props) => {
                 <i className="subico" >
                     <BsChevronDown size={12} />
                 </i>
-            </Menu>
+            </SubMenu>
             {
                 showSub2 && array.id === subselt && // only one sub menu show at a time 
                 (
@@ -90,9 +84,10 @@ const SubDropdownMenu = (props) => {
                                     key={item.id}
                                 >
                                     <Anchor
-                                        color={window.location.pathname === "/auth" + item.route && "#4CCDF9"}
+                                        color={window.location.pathname === "/auth" + item.route}
                                         href={`/auth${item.route || "#"}`}
-                                    >
+                                    >   
+
                                         {item.title}
                                     </Anchor>
                                 </div>
@@ -140,13 +135,14 @@ const PageSide = () => {
                         width === 210 ? (<>
                             {
                                 Array.isArray(sidebarData) && sidebarData.map((item, index) => (
-                                    <li
+                                    <div
                                         key={item.id}
                                         id={item.title}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             subhandel(item.id)
                                         }}
+                                        className="list"
                                         role='tab'
                                         aria-selected={item.id === select}
                                         aria-controls={`panel-id-${item.id}`}
@@ -181,18 +177,17 @@ const PageSide = () => {
                                                                 <Anchor
                                                                     key={index}
                                                                     href={`/auth${drop.route}`}
-                                                                    color={window.location.pathname === "/auth" + drop.route && "#4CCDF9"}
+                                                                    color={window.location.pathname === "/auth" + drop.route.trim() && "#4CCDF9"}
                                                                 >
                                                                     {drop.title}
                                                                 </Anchor>
                                                             </>
                                                         )
-                                                    }
-                                                    )
+                                                    })
                                                 }
                                             </div>
                                         }
-                                    </li>
+                                    </div>
                                 ))
                             }
                         </>) : (
@@ -221,7 +216,7 @@ const PageSideBar = () => {
     const state = useSelector(state => state.sidebar)
     return (
         <>
-            {state.dongal ? <PageSide /> : null}
+            {state.dongal ? <PageSide /> : null}    
         </>
     )
 }

@@ -1,41 +1,39 @@
 import styled from "styled-components";
 
-
 function Anch(props) {
     const {
         color,
         onClick,
         href,
         children,
-} = props
+    } = props
 
-if (onClick) {
+    if (onClick) {
+        return (
+            <>
+                <div
+                    onClick={onClick}
+                    style={color ? { color: '#4CCDF9' } : { color: 'white' }}
+                >
+                    {children}
+                </div>
+            </>
+        )
+    }
+
     return (
         <>
-            <div
-                onClick={onClick}
-                color={color}
+            <a
+                href={href}
+                style={color ? { color: '#4CCDF9' } : { color: 'white' }}
             >
                 {children}
-            </div>
+            </a>
         </>
     )
 }
 
-return (
-    <>
-        <a
-            href={href}
-            color={color}
-        >
-            {children}
-        </a>
-    </>
-)
-}
-
 const Anchor = styled(Anch)`
-    color : ${(props) => props.color ? props.color : 'white'};
     text-decoration: none;
     font-size: 13px !important;
     font-weight: lighter;

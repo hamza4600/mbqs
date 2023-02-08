@@ -77,7 +77,7 @@ export const SequienceContainer = styled.div`
 
 
     .oip {
-        width: 80%;
+        width: 100%;
     }
 
     .oip > .item:last-child {

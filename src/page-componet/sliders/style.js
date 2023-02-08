@@ -9,7 +9,7 @@ export const Wrapper = styled.div`
     list-style: none;
     user-select: none;
 
-    li  {
+    .list  {
         margin-bottom: 3px;
         cursor: pointer;
         font-size: 15px;
@@ -17,6 +17,8 @@ export const Wrapper = styled.div`
         font-weight: lighter;
         flex-direction: column;
         margin-left: 10px;
+        // remove the flicker on click
+        -webkit-tap-highlight-color: transparent;
     }
     i {
         margin-right: 15px;
@@ -49,12 +51,14 @@ export const Wrapper = styled.div`
         margin-left: 6px;
         font-size: 12px !important;
         margin-top: 4px;
+        height: auto !important;
     }
 
     #subdrop div {
         margin-bottom: 2px;
         width: 100%;
         flex-basis: 100%;
+        height: auto !important;
     }
 
 `;

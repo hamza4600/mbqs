@@ -1,35 +1,52 @@
-import { lazy } from 'react';
 // evevery page will have its own state of data
-// arrage all routes in order 
+import { lazy } from 'react';
+
+// commmon pages only type of data will be different  
 export const authRoutes = {
     panel: '/panel',
     addbusines: '/add-business',
-    creatbusines: '/creat-business',
-    frontView: '/front-view', // front view of website
-    busniessProfile: '/business-profile',
     newNewsPage: '/creat-news-page',
-    addAbout: '/add-about',
-    addAboutList: '/add-about-list',
+    addContact: '/add-contact',
+    // terms pages
+    addTerms: '/add-terms',
+    addTermsList: '/add-terms-list',
+    termsBg: '/terms-bg',
+    // events pages
     addEvent: '/add-event',
     addEventList: '/add-event-list',
-    addContact: '/add-contact',
-    addTerms: '/add-terms',
+    eventBg: '/event-bg',
+    // about pages
+    addAbout: '/add-about',
+    addAboutList: '/add-about-list',
+    aboutBg: '/about-bg',
+    // privacy pages
     addPrivacy: '/add-privacy',
-    listAddPage: '/list-add-page',
-    settAddDetail: '/setting-app-detail',
-    headFooter: '/setting-head-footer',
-    productView: '/product/:id',
-    menuEdit : '/menu-edit', // edit menu
-    // add new page 
-    headerImg: '/header-img',
+    privacyBg: '/privacy-bg',
+    // news pages 
+    newsPageList: '/new-page-list',
+    newsBg: '/news-bg',
+    overLaptextNews: '/overlap-text-news',
+    newDetail: '/news-detail',
+    // add new business
+    creatbusines: '/creat-business',
     backgroundImg: '/background-img',
+    headerImg: '/header-img',
     textImg: '/text-img',
     overLapText: '/overlap-text',
     viedoList: '/viedo-list',
     brandSlider: '/brand-slider',
-    // new pages 
-    newsPageList: '/new-page-list',
-    newsBg : '/news-bg',
+    // setting pages
+    menuEdit: '/menu-edit', // edit menu
+    settAddDetail: '/setting-app-detail',
+    headFooter: '/setting-head-footer',
+    others: '/others',
+    mediaIcon: '/media-icon',
+    // Common Pages
+    frontView: '/front-view', // front view of website
+    busniessProfile: '/business-profile',
+    listAddPage: '/list-new-page',
+    // Dynamic Pages
+    productView: '/product/:id',
 };
 
 const listPageType = {  // every Page have its own Api for getting Data
@@ -43,6 +60,15 @@ const addType = {
     event: "Add Event Page",
     about: "Add About Page"
 }
+// Baground Images Types Pass all Other Data in below Object  
+const bgType = {
+    event: { name: "Event Background", type: "event" },
+    news: { name: "News Background", type: "news" },
+    business: { name: "Business Background", type: "business" },
+    privacy: { name: "Product Background", type: "product" },
+    about: { name: "About Background", type: "about" },
+    terms : { name: "Terms Background", type: "terms" },
+}
 
 // add trem and privacy and faq and contact are same 
 const Dashboard = lazy(() => import('./pages/dashboard'));
@@ -54,11 +80,9 @@ const CreatnewPage = lazy(() => import('./pages/newPage'));
 const AddAboutPage = lazy(() => import('./pages/addAbout'));
 const EditPrivacy = lazy(() => import('./pages/privacy'));
 const AddContactPage = lazy(() => import('./pages/addContact'));
-const AppDetailSetting = lazy(() => import('./setting'));
 const SettingHeaderFooter = lazy(() => import('./pages/sett-head'));
 const ProductView = lazy(() => import('./pages/product'));
 // new page layout is Same 
-const BackgroundImage = lazy(() => import('./pages/bgImag'));
 const HeaderImage = lazy(() => import('./pages/headImg'));
 const TextImage = lazy(() => import('./pages/textImg'));
 const OverLapppinText = lazy(() => import('./pages/overlapText'));
@@ -66,7 +90,12 @@ const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
 const EditMenu = lazy(() => import('./pages/menu'));
 // more new Page will be added
-const NewsBg = lazy(() => import('./pages/bgnews'));
+const NewsBg = lazy(() => import('./pages/bgnews')); // 4 types of BackGround
+const Others = lazy(() => import('./pages/others'));
+const Social = lazy(() => import('./pages/social'));
+const OverLapTextNews = lazy(() => import('./pages/ovLapnews'));
+const NewsDetail = lazy(() => import('./pages/newsDetail'));
+const SettingAppDetail = lazy(() => import('./pages/set-details'));
 
 const paths = [
     {
@@ -84,7 +113,7 @@ const paths = [
         path: authRoutes.addbusines,
         component: <AddBusiness />,
     },
-    
+
     {
         id: 5,
         path: authRoutes.busniessProfile,
@@ -143,7 +172,7 @@ const paths = [
     {
         id: 15,
         path: authRoutes.settAddDetail,
-        component: <AppDetailSetting />
+        component: <SettingAppDetail />
     },
     {
         id: 16,
@@ -159,22 +188,22 @@ const paths = [
     {
         id: 18,
         path: authRoutes.backgroundImg,
-        component: <BackgroundImage />
+        component: <NewsBg type={bgType.business} />
     },
     {
         id: 19,
         path: authRoutes.headerImg,
-        component: <HeaderImage />  
-    }, 
+        component: <HeaderImage />
+    },
     {
         id: 20,
         path: authRoutes.textImg,
-        component: <TextImage />  
-    }, 
+        component: <TextImage />
+    },
     {
         id: 21,
         path: authRoutes.overLapText,
-        component: <OverLapppinText /> 
+        component: <OverLapppinText />
     },
     {
         id: 22,
@@ -194,7 +223,47 @@ const paths = [
     {
         id: 25,
         path: authRoutes.newsBg,
-        component: <NewsBg />
+        component: <NewsBg type={bgType.news} />
+    },
+    {
+        id: 26,
+        path: authRoutes.others,
+        component: <Others />
+    },
+    {
+        id: 27,
+        path: authRoutes.mediaIcon,
+        component: <Social />
+    },
+    {
+        id: 28,
+        path: authRoutes.overLaptextNews,
+        component: <OverLapTextNews />
+    },
+    {
+        id: 29,
+        path: authRoutes.newDetail,
+        component: <NewsDetail />
+    },
+    {
+        id: 30,
+        path: authRoutes.eventBg,
+        component: <NewsBg type={bgType.event} />
+    },
+    {
+        id: 31,
+        path: authRoutes.aboutBg,
+        component: <NewsBg type={bgType.about} />
+    },
+    {
+        id: 32,
+        path: authRoutes.privacyBg,
+        component: <NewsBg type={bgType.privacy} />
+    },
+    {
+        id: 33,
+        path: authRoutes.termsBg,
+        component: <NewsBg type={bgType.term} />
     }
 ];
 

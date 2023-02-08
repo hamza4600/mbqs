@@ -8,7 +8,14 @@ export const Nav = styled.nav`
   width: 100%;
   filter : ${(props) => props.blure && 'blur(1px)'};
   cursor : ${(props) => props.blure && 'none !important' };
-  `;
+
+
+  @media (max-width: 768px) {
+    filter : blur(0px);
+    cursor : auto;
+  }
+
+`;
 
 //  Nav wraper
 export const NavWrapper = styled.div`
