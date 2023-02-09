@@ -53,6 +53,20 @@
     font-size: 13px;
     width: 100%;
 }
+/* Add Data Menu */
+.addDataMenu {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    height: 28px;
+    padding: 0px 5px;
+    text-transform: capitalize;
+    min-width: 600px;
+    font-size: 13px;
+    width: 100%;
+    margin: 5px 0px;
+}
+
+
 
 /* Add Data form */
 .addDataform {

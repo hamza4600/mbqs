@@ -84,6 +84,7 @@ const Input = forwardRef(
                             [styles.login]: type === "model" || type === "model-password",
                             [styles.disable]: disabled,
                             [styles.addData]: type === "addData",
+                            [styles.addDataMenu]: type === "addDataMenu",
                             [styles.addDataform]: type === "addDataform",
 
 
