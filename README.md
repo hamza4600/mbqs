@@ -5,7 +5,8 @@
  
  # Show  Model when user is offline
  * calculate time of used login
- * Fix bug on file input on all pages 
+ * Fix bug on file input on all pages
+ * Set the types of pages to be used in the system 
  
 
 https://billing.misshosting.com/clientarea.php

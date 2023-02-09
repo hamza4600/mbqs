@@ -78,7 +78,7 @@ const newsMenu = [
     {
         id: 4,
         title: 'news details',
-        route: "#"
+        route: authRoutes.newDetail
     }
 ];
 // For Events
@@ -96,12 +96,12 @@ const eventMenu = [
     {
         id: 3,
         title: 'over lapping text',
-        route: "#"
+        route: authRoutes.overLaptextEvent
     },
     {
         id: 4,
         title: 'event details',
-        route: "#"
+        route: authRoutes.eventDetails
     }
 ];
 
@@ -120,12 +120,12 @@ const aboutMenu = [
     {
         id: 3,
         title: 'over lapping text',
-        route: "#"
+        route: authRoutes.overLaptextAbout
     },
     {
         id: 4,
-        title: 'event details',
-        route: "#"
+        title: 'Text & Image',
+        route: authRoutes.textImagAbout
     }
 ];
 // Privacy Policy
@@ -143,7 +143,7 @@ const privacyMenu = [
     {
         id: 4,
         title: 'privacy policy',
-        route: "#"
+        route: authRoutes.privacy
     }
 ];
 // terms & conditions
@@ -160,8 +160,8 @@ const termsMenu = [
     },
     {
         id: 4,
-        title: 'privacy policy',
-        route: "#"
+        title: 'terms',
+        route: authRoutes.terms
     }
 ];
 // contact us
@@ -179,43 +179,23 @@ const contactMenu = [
     {
         id: 40,
         title: 'Over Lapping Text',
-        route: authRoutes.overLapText
+        route: authRoutes.overLaptextContact
     },
     {
         id: 50,
         title: 'FQA',
-        route: "/#"
+        route: authRoutes.faq
     },
-     {
+    {
         id: 60,
         title: 'contact details',
-        route: '/#'
+        route: authRoutes.contactDetails
     },
-     {
+    {
         id: 70,
         title: 'Map',
-        route: '/#'
-    },
-    // {
-    //     id: 30,
-    //     title: 'Text & Image',
-    //     route: authRoutes.textImg
-    // },
-    // {
-    //     id: 50,
-    //     title: 'Videos List',
-    //     route: authRoutes.viedoList
-    // },
-    // {
-    //     id: 60,
-    //     title: 'Brand Slider',
-    //     route: authRoutes.brandSlider
-    // },
-    // {
-    //     id: 70,
-    //     title: 'Front Site View',
-    //     route: authRoutes.frontView
-    // }
+        route: authRoutes.map
+    }
 ];
 
 export const sidebarData = [
@@ -300,7 +280,7 @@ export const sidebarData = [
             {
                 id: 2,
                 title: 'List privacy pages',
-                route: '/#'
+                route: authRoutes.privacyList
             }
         ]
     },
@@ -317,7 +297,7 @@ export const sidebarData = [
             {
                 id: 2,
                 title: 'List terms pages',
-                route: '/#'
+                route: authRoutes.addTermsList
             }
         ]
     },
@@ -329,13 +309,12 @@ export const sidebarData = [
             {
                 id: 1,
                 title: 'add contact page',
-                // route: authRoutes.addContact
                 subMenu: contactMenu,
             },
             {
                 id: 10,
                 title: 'List contact pages',
-                route: "/#"
+                route: authRoutes.addContactList
             }
         ]
     },

@@ -124,6 +124,7 @@ const RightSide = () => {
 
 const ListViewPage = (props) => {
     const { type } = props;
+    console.log(type)
 
     const addbusiness = () => window.location.href = `/auth/creat-business`
 
@@ -150,19 +151,18 @@ const ListViewPage = (props) => {
         })
     }, [query])
 
-
     return (
         <>
             <Container>
                 <div id="inline">
-                    <H1>{type} List View</H1>
+                    <H1>{type.type} List View</H1>
                     <Button
                         text="Add"
                         type='addData'
                         leftIcon={<MdOutlineAdd size={20} />}
                         onClick={addbusiness}
                     >
-                        Register New {type}
+                        Register New {type.type}
                     </Button>
                 </div>
 

@@ -129,10 +129,8 @@ const SliderInput = ({ images, setImages }) => {
                     />
                 </FileInput>
             </div>
-        ))
-        )
+        )))
     }
-
 
     return (
         <>

@@ -101,7 +101,6 @@ const ViedoInput = ({ data, setData }) => {
                                 </Box>
                             </>
                     }
-
                     <ListItem />
                 </InputContainer>
             </EditPageHeader>

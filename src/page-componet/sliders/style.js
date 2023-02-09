@@ -36,6 +36,7 @@ export const Wrapper = styled.div`
         flex-direction: column;
         margin-left: 45px;
         transition: all 0.3s ease-in-out;
+        font-weight: 400 !important;
     }
 
     #drop a {
@@ -59,6 +60,11 @@ export const Wrapper = styled.div`
         width: 100%;
         flex-basis: 100%;
         height: auto !important;
+        font-weight: 300 !important;
+    }
+    #subMenu {
+        font-weight: 400 !important;
+        color: #f0f0f0 !important;
     }
 
 `;

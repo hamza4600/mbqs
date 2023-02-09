@@ -4,7 +4,8 @@ import { compose } from "redux";
 import PageSpinner from 'components/pageSpinner';
 import InterfaceLayout from 'page-componet/layout';
 import getUserRole from 'functions/getRole';
-import paths from './routes';
+import paths from './paths';
+
 
 const detail = {
     name: "user",

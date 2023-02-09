@@ -148,8 +148,9 @@ const initaValue = {
     positionValue: "",
 }
 
-const OverLapppinText = () => {
-
+const OverLapppinText = ({ type }) => {
+    console.log(type);
+    
     const reducer = (state, { field, value }) => {
         return {
             ...state,

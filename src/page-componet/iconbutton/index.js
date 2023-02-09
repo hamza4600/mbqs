@@ -16,8 +16,7 @@ const IconWrapper = styled.i`
         object-fit: contain;
     }
 
-
-    `;
+`;
 
 const Icon = (props) => {
     const {

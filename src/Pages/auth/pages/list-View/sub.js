@@ -20,7 +20,7 @@ export const ListBody = (props) => {
     const [model, setModel] = useState(false);
     const [id, setId] = useState(0);
 
-    const viewPage = (id) => window.location.href = `/auth/product/${id}`;
+    const viewPage = (id) => window.location.href = `/auth/page/${id}`;
 
     const openModel = (id) => {
         setModel(prev => !prev)

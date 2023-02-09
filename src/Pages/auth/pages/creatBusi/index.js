@@ -31,63 +31,26 @@ const initialState = {
     }
 }
 
-const reducer = (state, action) => {
-
-    if (!action.value) return state;
-    if (action.value === 'undefined') return state;
-
-    switch (action.type) {
-        case 'businessName':
-            return { ...state, businessName: action.value };
-        case 'businessId':
-            return { ...state, businessId: action.value };
-        case 'taxNum':
-            return { ...state, taxNum: action.value };
-        case 'vatNum':
-            return { ...state, vatNum: action.value };
-        case 'email':
-            return { ...state, email: action.value };
-        case 'contactNum':
-            return { ...state, contactNum: action.value };
-        case 'address':
-            return { ...state, address: action.value };
-        case 'postalCode':
-            return { ...state, postalCode: action.value };
-        case 'regesterDate':
-            return { ...state, regesterDate: action.value };
-        case 'bussLiceseId':
-            return { ...state, bussLiceseId: action.value };
-        case 'compBudget':
-            return { ...state, compBudget: action.value };
-        case 'opertionBudget':
-            return { ...state, opertionBudget: action.value };
-        case 'compDetails':
-            return { ...state, compDetails: action.value };
-        case 'referenceName':
-            return { ...state, referenceName: action.value };
-        case 'referencelink':
-            return { ...state, referencelink: action.value };
-        case 'dropdown':
-            // is an object
-            return { ...state, dropdown: { ...state.dropdown, [action.value.name]: action.value.value } };
-        default:
-            return state;
-    }
-}
-
 const Left = ({ title }) => {
 
     const { isOpen, toggle, close } = useDropDown();
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
-    const [data, dispatch] = useReducer(reducer, initialState);
+    const [data, dispatch] = useReducer((state, action) => {
+        return { ...state, [action.type]: action.value }
+    }, initialState)
 
     const handelChange = (e) => {
         dispatch({ type: e.target.id, value: e.target.value })
     }
 
     const handelDropdown = (value, index) => {
-        dispatch({ type: 'dropdown', value: { name: index, value: value } })
+        dispatch({
+            type: 'dropdown', value: {
+                ...data.dropdown,
+                [index]: value
+            }
+        })
     }
 
     return (
@@ -120,16 +83,16 @@ const Left = ({ title }) => {
                         isOpen={isOpen}
                         toggel={toggle}
                         close={close}
-                        value={data.dropdown.category}
-                        updateValue={(value) => handelDropdown(value.name, 'category')}
+                        value={data.dropdown.category?.name}
+                        updateValue={(value) => handelDropdown(value, 'category')}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
                         isOpen={isOpen2}
                         toggel={toggle2}
                         close={close2}
-                        value={data.dropdown.subCategory}
-                        updateValue={(value) => handelDropdown(value.name, 'subCategory')}
+                        value={data.dropdown.subCategory?.name}
+                        updateValue={(value) => handelDropdown(value, 'subCategory')}
                     />
                 </Wrapper>
 
