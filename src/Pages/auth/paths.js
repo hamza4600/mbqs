@@ -7,10 +7,8 @@ const CreatBusiness = lazy(() => import('./pages/creatBusi'));
 const AddBusiness = lazy(() => import('./pages/addBusin'));
 const ListViewPage = lazy(() => import('./pages/list-View'))
 const BusinessProfile = lazy(() => import('./pages/profileBusin'));
-const CreatnewPage = lazy(() => import('./pages/newPage'));
-const AddAboutPage = lazy(() => import('./pages/addAbout'));
-const EditPrivacy = lazy(() => import('./pages/privacy'));
-const AddContactPage = lazy(() => import('./pages/addContact'));
+const CreatnewPage = lazy(() => import('./pages/newPage')); // 7 types of new page
+
 const SettingHeaderFooter = lazy(() => import('./pages/sett-head'));
 const ProductView = lazy(() => import('./pages/product'));
 // new page layout is Same 
@@ -34,7 +32,6 @@ const FAQ = lazy(() => import('./pages/faq'));
 const Map = lazy(() => import('./pages/map'));
 const ContactDetails = lazy(() => import('./pages/contactDetails'));
 
-
 // 7 types of list page
 const listPageType = {  // every Page have its own Api for getting Data
     business: { name: "Business List", type: "business" },
@@ -46,11 +43,7 @@ const listPageType = {  // every Page have its own Api for getting Data
     privacy: { name: "Privacy List", type: "privacy" },
 };
 
-// add type Pages will be same only data will be different
-const addType = {
-    event: "Add Event Page",
-    about: "Add About Page"
-}
+
 // Baground Images Types Pass all Other Data in below Object  
 const bgType = {
     event: { name: "Event Background", type: "event" },
@@ -59,6 +52,7 @@ const bgType = {
     privacy: { name: "Product Background", type: "product" },
     about: { name: "About Background", type: "about" },
     terms: { name: "Terms Background", type: "terms" },
+    contact: { name: "Contact Background", type: "contact" },
 }
 // Overlapping text have 5 types
 const overlapType = {
@@ -68,6 +62,18 @@ const overlapType = {
     about: { name: "About Overlapping Text", type: "about" },
     contact: { name: "Contact Overlapping Text", type: "contact" },
 };
+
+// 7 types of Slider Pages in App
+const sliderTypePages = {
+    business: { name: "Business Slider", type: "business" }, // double
+    news: { name: "News Slider", type: "news" },
+    events: { name: "Events Slider", type: "events" },
+    about: { name: "About Slider", type: "about" },
+    contact: { name: "Contact Slider", type: "contact" }, // missing
+    terms: { name: "Terms Slider", type: "terms" },
+    privacy: { name: "Privacy Slider", type: "privacy" }
+}
+
 
 const paths = [
     {
@@ -94,7 +100,7 @@ const paths = [
     {
         id: 6,
         path: authRoutes.newNewsPage,
-        component: <CreatnewPage />,
+        component: <CreatnewPage type={sliderTypePages.news} />,
     },
     {
         id: 7,
@@ -104,7 +110,7 @@ const paths = [
     {
         id: 8,
         path: authRoutes.addAbout,
-        component: <AddAboutPage type={addType.about} /> // add Event is alos same
+        component: <CreatnewPage type={sliderTypePages.about} />
     },
     {
         id: 9,
@@ -114,7 +120,7 @@ const paths = [
     {
         id: 9,
         path: authRoutes.addEvent,
-        component: <AddAboutPage type={addType.event} /> // add Event is alos same
+        component: <CreatnewPage type={sliderTypePages.events} />
     },
     {
         id: 10,
@@ -124,17 +130,17 @@ const paths = [
     {
         id: 11,
         path: authRoutes.addTerms,
-        component: <EditPrivacy type="edit Term Page" /> // add Event is alos same
+        component: <CreatnewPage type={sliderTypePages.terms} />
     },
     {
         id: 12,
         path: authRoutes.addPrivacy,
-        component: <EditPrivacy type="edit Privacy Page" /> // add Event is alos same
+        component: <CreatnewPage type={sliderTypePages.privacy} />
     },
     {
         id: 13,
         path: authRoutes.addContact,
-        component: <AddContactPage />
+        component: <CreatnewPage type={sliderTypePages.privacy} />
     },
     {
         id: 14,
@@ -301,6 +307,11 @@ const paths = [
         id: 45,
         path: authRoutes.map,
         component: <Map />
+    },
+    {
+        id: 46,
+        path: authRoutes.contactBg,
+        component: <NewsBg type={bgType.contact} />
     }
 ];
 

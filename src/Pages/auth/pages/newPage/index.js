@@ -142,7 +142,7 @@ const PreviewSection = ({ state }) => (
             </div>
 
             <PreviewBtnGroup
-                nextPage = {() => window.location.href = "/auth/news-bg"}
+                nextPage={() => window.location.href = "/auth/news-bg"}
             />
         </PreviewSectionHeader>
     </>
@@ -157,8 +157,8 @@ const initaiValue = {
 
 }
 
-const CreatnewPage = () => {
-
+const CreatnewPage = ({ type }) => {
+    console.log(type)
     const reducer = (state, { field, value }) => {
 
         return {

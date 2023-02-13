@@ -47,16 +47,6 @@ const ViedoInput = ({ data, setData }) => {
                         />
                     </Box>
 
-                    {/* <Box full>
-                        <Input
-                            nputype="text"
-                            type="addDataform"
-                            placeholder="Add Viedo Title"
-                            value={data.textTitle}
-                            onChange={event => setData({ field: "textTitle", value: event.target.value })}
-                        />
-                    </Box> */}
-
                     {
                         data.selectViedoType?.id === 1 ?
                             <>
@@ -71,13 +61,14 @@ const ViedoInput = ({ data, setData }) => {
                                         type="file"
                                         id="file"
                                         name="file"
-                                        onChange={event => setData(
+                                        onInput={event => setData(
                                             {
                                                 field: "viedo", value: {
                                                     name: event.target.files[0].name,
                                                     url: URL.createObjectURL(event.target.files[0])
                                                 }
                                             })}
+                                        onClick={(e) => e.target.value = null}
                                     />
                                 </FileInput>
                             </>
@@ -175,7 +166,7 @@ const initatState = {
     //  two types of viedo 
     // 1. drop viedo
     // 2. insert viedo url
-    viedoList: [], 
+    viedoList: [],
     viedoUrl: "",
     viedoTitle: ""
 }

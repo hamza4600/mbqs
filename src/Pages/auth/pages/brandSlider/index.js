@@ -6,12 +6,7 @@ import React, { memo, useEffect, useState } from "react";
 
 const SliderInput = ({ images, setImages }) => {
 
-
-    // not geting the id of the input field so we can used the 
-
     const inputRef = React.useRef(null);
-    // const selectedRef = React.useRef(null);
-
 
     useEffect(() => {
         setImages([
@@ -40,17 +35,6 @@ const SliderInput = ({ images, setImages }) => {
                         url: ""
                     }
                 }])
-            // const values = [...images];
-            // values.push({
-            //     id: images.length + 1,
-            //     name:   "",
-            //     brandName: "",
-            //     image: {
-            //         name: inputRef.current.value,
-            //         url:    selectedRef.current.value
-            //     }
-            // })
-            // setImages(values)
         }
     }
 
@@ -59,8 +43,6 @@ const SliderInput = ({ images, setImages }) => {
             setImages(images.slice(0, -1))
         }
     }
-
-    console.log(images)
 
     const updateInput = (value, index, field) => {
         const list = [...images];
@@ -76,8 +58,6 @@ const SliderInput = ({ images, setImages }) => {
         if (indexId > list.length) {
             return;
         }
-        console.log(indexId , "=====")
-        // const indexId = list.findIndex(item => item.id === parseInt(id));
         list[indexId].image.name = data.name;
         list[indexId].image.url = data.url;
         setImages(list);
@@ -120,12 +100,13 @@ const SliderInput = ({ images, setImages }) => {
                         id="file"
                         type="file"
                         className={index}
-                        onChange={e => updateImage(
+                        onInput={e => updateImage(
                             {
                                 name: e.target.files[0].name,
                                 url: URL.createObjectURL(e.target.files[0])
                             }
                         )}
+                        onClick={(e) => e.target.value = null}
                     />
                 </FileInput>
             </div>
@@ -139,20 +120,21 @@ const SliderInput = ({ images, setImages }) => {
                 handelAddIcon={addImages}
                 handelRemoveIcon={removeImages}
             >
-
                 <InputContainer
                     show={images.length > 3}
                 >
-                    {/* <RenderImages /> */}
                     {renderImages()}
+                    <ListItem />
                 </InputContainer>
-                <ListItem />
             </EditPageHeader>
         </>
     )
 }
 
 const SliderPreview = ({ images }) => {
+
+    const newPage = window.location.href = '/auth/front-view'
+
     return (
         <>
             <PreviewSectionHeader>
@@ -175,7 +157,7 @@ const SliderPreview = ({ images }) => {
 
                 <PreviewBtnGroup
                     showEditorBtn={true}
-                // nextPage = {"/auth/brandSlider"}
+                    nextPage={newPage}
                 />
             </PreviewSectionHeader>
         </>

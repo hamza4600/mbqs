@@ -72,7 +72,7 @@ export const SequienceContainer = styled.div`
     align-items: center;    
     flex-direction: column;
     justify-content: start;
-    width: 85%;
+    // width: 85%;
     margin-top: 20px;
 
 

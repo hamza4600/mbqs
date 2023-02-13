@@ -169,12 +169,12 @@ const contactMenu = [
     {
         id: 10,
         title: 'Header Image Slider',
-        route: authRoutes.headerImg
+        route: authRoutes.addContact
     },
     {
         id: 20,
         title: 'Background Image',
-        route: authRoutes.backgroundImg
+        route: authRoutes.contactBg
     },
     {
         id: 40,

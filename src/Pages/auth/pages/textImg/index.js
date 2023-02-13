@@ -65,26 +65,27 @@ const TextInputSection = ({ data, setData }) => {
                         />
                     </Box>
 
-                        <FileInput >
-                            <label
-                                htmlFor="file"
-                            >
-                                {data.textImage.name ? data.textImage.name : "Drop Image Here"}
-                            </label>
-                            <input
-                                accept="image/*"
-                                type="file"
-                                id="file"
-                                name="file"
-                                onChange={event => setData(
-                                    {
-                                        field: "textImage", value: {
-                                            name: event.target.files[0].name,
-                                            url: URL.createObjectURL(event.target.files[0])
-                                        }
-                                    })}
-                            />
-                        </FileInput>
+                    <FileInput >
+                        <label
+                            htmlFor="file"
+                        >
+                            {data.textImage.name ? data.textImage.name : "Drop Image Here"}
+                        </label>
+                        <input
+                            accept="image/*"
+                            type="file"
+                            id="file"
+                            name="file"
+                            onInput={event => setData(
+                                {
+                                    field: "textImage", value: {
+                                        name: event.target.files[0].name,
+                                        url: URL.createObjectURL(event.target.files[0])
+                                    }
+                                })}
+                            onClick={(e) => e.target.value = null}
+                        />
+                    </FileInput>
 
                     <Box>
                         <Dropdown

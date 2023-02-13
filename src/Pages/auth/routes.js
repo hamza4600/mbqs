@@ -6,6 +6,7 @@ export const authRoutes = {
     newNewsPage: '/creat-news-page',
     // contact pages
     addContact: '/add-contact',
+    contactBg : '/contact-bg',
     addContactList: '/add-contact-list',
     overLaptextContact: '/overlap-text-contact',
     faq: '/faq',
