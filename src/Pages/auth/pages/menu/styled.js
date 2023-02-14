@@ -7,7 +7,5 @@ export const WrapperMenu = styled.div`
     justify-content: start;
     gap: 20px;
     position: relative;
-
     align-items: center;
-    
 `;

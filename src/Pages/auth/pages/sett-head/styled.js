@@ -9,25 +9,28 @@ export const GridHAF = styled.div`
         padding-left: 7vw;
     }
     .leftSide{
-        /* padding-right: 10px; */
-        padding-right:10px ;
+        padding-right:10px;
     }
+    @media (max-width:1200px){
+        grid-template-columns: 1fr;
+        margin: 0 auto;
+    }
+    @media (max-width:2500px){
+        .rightSide{
+            width: 50%;
+        }
+        .leftSide{
+            width: 50%;
+            margin-right: 30px;
+        }
+    }
+   
 `;
 export const WrapperHAF = styled.div`
-    /* display: flex;
-    flex-direction: row;
-    height: ${(props) => props.height ? props.height : "100%"};
-    
-    justify-content: start;
-    gap: 5px;
-    border: 1px solid blue;
-    position: relative;
-
-    align-items: center; */
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
-    grid-column-gap: 10px;
-    margin: 8px 0px;
+    grid-column-gap: 5px;
+    margin: 4px 0px;
     
 `;

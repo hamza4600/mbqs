@@ -172,8 +172,6 @@ export const BoxTwo = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
-    /* display: inline-block; */
     margin: 10px 0px;
     gap: 10px;
     margin-top: ${props => props.marginTop && props.marginTop};
@@ -182,10 +180,14 @@ export const BoxTwo = styled.div`
     & > * {
         flex-basis: ${props => props.full ? '57%' : 'calc(50% - 5px) ! important'};
     }
+    @media (min-width:1400px) and (max-width:2600px){
+        max-width: 75%;
+    }
 
 }
 
 `;
+
 
 // for file input 
 export const FileInput = styled.div`
