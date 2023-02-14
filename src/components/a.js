@@ -55,7 +55,8 @@ export const H1 = styled.h1` // in All pages Header
     font-weight: 200 !important;
     color: ${({ theme }) => theme.pageText};
     margin-bottom: 20px;
-    `;
+    text-transform: capitalize;
+`;
 
 
 

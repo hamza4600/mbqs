@@ -78,9 +78,7 @@ const EditSection = ({ state, setState }) => {
                 title="Background Image News"
                 hideIcon={true}
             >
-                <InputContainer
-                    show={state.images?.length > 6}
-                >
+                <InputContainer>
                     <Box>
                         <Dropdown
                             placeholder="Select News Category"

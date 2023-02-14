@@ -108,10 +108,6 @@ export const SequienceContainer = styled.div`
 export const InputContainer = styled.div`
     position: relative;
     max-width: 85%;
- 
-    overflow-y: ${props => props.show ? 'auto' : ''};
-    min-height: ${props => props.show ? '400px' : ' '} !important;
-    max-height: ${props => props.show ? '400px' : ' '} !important;
     transition: all 0.5s ease-in-out;
     padding : 0px 6px 0px 0px;
 

@@ -42,10 +42,10 @@ export const Wrapper = styled.div`
     #drop a {
         margin-bottom: 2px;
         padding: 1px;
-    }
 
-    #drop a:hover {
-        color: #00BFFF;
+        &:hover {
+            color: #00BFFF !important;
+        }
     }
 
     #subdrop {

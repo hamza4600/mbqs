@@ -21,9 +21,7 @@ const NewEditSection = ({ data, setData }) => {
                 title="Add News Page"
                 hideIcon={true}
             >
-                <InputContainer
-                // show = {}
-                >
+                <InputContainer>
                     <Box>
                         <Dropdown
                             placeholder="Select Category"

@@ -63,8 +63,6 @@ const SliderInput = ({ images, setImages }) => {
         setImages(list);
     }
 
-    console.log(inputRef.current)
-
     const renderImages = () => {
         return React.Children.toArray(images.map((item, index) => (
             <div
@@ -92,7 +90,7 @@ const SliderInput = ({ images, setImages }) => {
                     <label
                         htmlFor="file"
                     >
-                        {item.image.name ? item.image.name : "Drop Image Here"}
+                        {item.image.name || "Drop Image Here"}
                     </label>
                     <input
                         ref={inputRef}
@@ -120,9 +118,7 @@ const SliderInput = ({ images, setImages }) => {
                 handelAddIcon={addImages}
                 handelRemoveIcon={removeImages}
             >
-                <InputContainer
-                    show={images.length > 3}
-                >
+                <InputContainer>
                     {renderImages()}
                     <ListItem />
                 </InputContainer>
@@ -132,8 +128,6 @@ const SliderInput = ({ images, setImages }) => {
 }
 
 const SliderPreview = ({ images }) => {
-
-    const newPage = window.location.href = '/auth/front-view'
 
     return (
         <>
@@ -157,7 +151,7 @@ const SliderPreview = ({ images }) => {
 
                 <PreviewBtnGroup
                     showEditorBtn={true}
-                    nextPage={newPage}
+                    nextPage={() => window.location.href = '/auth/business-profile'}
                 />
             </PreviewSectionHeader>
         </>
@@ -165,9 +159,7 @@ const SliderPreview = ({ images }) => {
 }
 
 const BrandSlider = () => {
-
     const [images, setImages] = useState([])
-
     return (
         <>
             <EditPageLayout>

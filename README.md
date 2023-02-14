@@ -51,3 +51,6 @@ Iss-34963496
 - git push origin
 
 ## Never push to main branch
+
+
+* change max-widtg of input in login and register
