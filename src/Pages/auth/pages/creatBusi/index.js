@@ -1,4 +1,4 @@
-import { Suspense, useReducer, useState } from 'react';
+import { Suspense, memo, useReducer, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Input from 'components/input';
 import { Grid, Wrapper } from './styled';
@@ -7,50 +7,19 @@ import Button from 'components/button';
 import useDropDown from 'components/dropdown/useDropdown';
 import { H1 } from 'components/a';
 import { AddIcon, RemoveIcon } from 'page-componet/iconbutton';
+import { FileInput } from 'page-componet/layout/style';
 
-const initialState = {
-    businessName: '',
-    businessId: '',
-    taxNum: '',
-    vatNum: '',
-    email: '',
-    contactNum: '',
-    address: '',
-    postalCode: '',
-    regesterDate: '',
-    bussLiceseId: '',
-    compBudget: '',
-    opertionBudget: '',
-    compDetails: '',
-    referenceName: '',
-    referencelink: '',
-    // can we pass other state
-    dropdown: {
-        category: '',
-        subCategory: '',
-    }
-}
-
-const Left = ({ title }) => {
+const Left = ({ title, data, dispatch, handelDropdown }) => {
 
     const { isOpen, toggle, close } = useDropDown();
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
+    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
+    const { isOpen: isOpen4, toggle: toggle4, close: close4 } = useDropDown();
+    const { isOpen: isOpen5, toggle: toggle5, close: close5 } = useDropDown();
 
-    const [data, dispatch] = useReducer((state, action) => {
-        return { ...state, [action.type]: action.value }
-    }, initialState)
 
     const handelChange = (e) => {
-        dispatch({ type: e.target.id, value: e.target.value })
-    }
-
-    const handelDropdown = (value, index) => {
-        dispatch({
-            type: 'dropdown', value: {
-                ...data.dropdown,
-                [index]: value
-            }
-        })
+        dispatch({ field: e.target.id, value: e.target.value })
     }
 
     return (
@@ -153,14 +122,29 @@ const Left = ({ title }) => {
                     />
                     <Dropdown
                         placeholder="Select City"
+                        isOpen={isOpen3}
+                        toggel={toggle3}
+                        close={close3}
+                        value={data.dropdown.city?.name}
+                        updateValue={(value) => handelDropdown(value, 'city')}
                     />
                 </Wrapper>
                 <Wrapper>
                     <Dropdown
                         placeholder="Select State"
+                        isOpen={isOpen4}
+                        toggel={toggle4}
+                        close={close4}
+                        value={data.dropdown.state?.name}
+                        updateValue={(value) => handelDropdown(value, 'state')}
                     />
                     <Dropdown
                         placeholder="Select Country"
+                        isOpen={isOpen5}
+                        toggel={toggle5}
+                        close={close5}
+                        value={data.dropdown.country?.name}
+                        updateValue={(value) => handelDropdown(value, 'country')}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -238,12 +222,15 @@ const Left = ({ title }) => {
     )
 }
 
-const Right = ({ nextRoute }) => {
+const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
     // files state
     const [files, setFiles] = useState({
         file: null,
         fileUrl: null,
     });
+
+    const { isOpen, close, toggle } = useDropDown();
+    const { isOpen: isOpen2, close: close2, toggle: toggle2 } = useDropDown();
 
     // handle file change
     const handleFileChange = (e) => {
@@ -252,7 +239,6 @@ const Right = ({ nextRoute }) => {
             fileUrl: URL.createObjectURL(e.target.files[0])
         });
     }
-
 
     const nextPage = () => {
         if (nextRoute !== null) {
@@ -267,9 +253,20 @@ const Right = ({ nextRoute }) => {
                 <Wrapper>
                     <Dropdown
                         placeholder="Select Role"
+                        isOpen={isOpen}
+                        toggel={toggle}
+                        close={close}
+                        value={data.dropdown.role?.name}
+                        updateValue={(value) => handelDropdown(value, 'role')}
+
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
+                        isOpen={isOpen2}
+                        toggel={toggle2}
+                        close={close2}
+                        value={data.dropdown.subCategory?.name}
+                        updateValue={(value) => handelDropdown(value, 'subCategory')}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -277,15 +274,15 @@ const Right = ({ nextRoute }) => {
                         inputype="text"
                         type="addData"
                         placeholder="First Name"
-                        value=""
-                        onChange={() => { }}
+                        value={data.firstName}
+                        onChange={e => dispatch({ field: 'firstName', value: e.target.value })}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Last Name"
-                        value=""
-                        onChange={() => { }}
+                        value={data.lastName}
+                        onChange={e => dispatch({ field: 'lastName', value: e.target.value })}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -293,15 +290,15 @@ const Right = ({ nextRoute }) => {
                         inputype="text"
                         type="addData"
                         placeholder="Email"
-                        value=""
-                        onChange={() => { }}
+                        value={data.emailLeft}
+                        onChange={e => dispatch({ field: 'emailLeft', value: e.target.value })}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="User Name"
-                        value=""
-                        onChange={() => { }}
+                        value={data.userName}
+                        onChange={(e) => dispatch({ field: 'userName', value: e.target.value })}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -309,15 +306,15 @@ const Right = ({ nextRoute }) => {
                         inputype="text"
                         type="addData"
                         placeholder="Creat Password"
-                        value=""
-                        onChange={() => { }}
+                        value={data.password}
+                        onChange={(e) => dispatch({ field: 'password', value: e.target.value })}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Re-enter Password"
-                        value=""
-                        onChange={() => { }}
+                        value={data.rePassword}
+                        onChange={(e) => dispatch({ field: 'rePassword', value: e.target.value })}
                     />
                 </Wrapper>
                 <Wrapper>
@@ -325,70 +322,110 @@ const Right = ({ nextRoute }) => {
                         inputype="text"
                         type="addData"
                         placeholder="Contact Person Name"
-                        value=""
-                        onChange={() => { }}
+                        value={data.contactPerson}
+                        onChange={(e) => dispatch({ field: 'contactPerson', value: e.target.value })}
                     />
                     <Input
                         inputype="text"
                         type="addData"
                         placeholder="Business Contact Number"
-                        value=""
-                        onChange={() => { }}
+                        value={data.businessNumber}
+                        onChange={(e) => dispatch({ field: 'businessNumber', value: e.target.value })}
                     />
                 </Wrapper>
 
                 <Wrapper>
-                    <Input
-                        inputype="file"
-                        type="addDataFile"
-                        placeholder="Drop your Profile Image"
-                        label={files?.file?.name || "Drop your Profile Image"}
-                        accept="image/*"
-                        // value={files?.fileUrl} // to be post to server value 
-                        onChange={handleFileChange}
-                    />
-                    {
-                        files?.fileUrl && (
-                            <div id="show-img">
-                                <img src={files?.file
-                                    && files?.fileUrl
-                                    // https://via.placeholder.com/150/FF0000/FFFFFF/?text=Image+Size+150x150
-                                } alt="img" />
-                            </div>
-                        )
+                <FileInput box>
+                        <label
+                            htmlFor="file"
+                        >
+                            {data.textImage?.name || "Drop Image Here"}
+                        </label>
+                        <input
+                            accept="image/*"
+                            type="file"
+                            id="file"
+                            name="file"
+                            // onInput={event => setData(
+                            //     {
+                            //         field: "textImage", value: {
+                            //             name: event.target.files[0].name,
+                            //             url: URL.createObjectURL(event.target.files[0])
+                            //         }
+                            //     })}
+                            onClick={(e) => e.target.value = null}
+                        />
+                    </FileInput>
 
-                    }
-                    <Input
-                        inputype="file"
-                        type="addDataFile"
-                        placeholder="Drop PDF documents"
-                        label="Drop PDF documents"
-                        accept="application/pdf"
-                        value=""
-                        onChange={() => { }}
-                    />
+                    <FileInput box>
+                        <label
+                            htmlFor="file"
+                        >
+                            {data.textImage?.name || "Drop PDF Here"}
+                        </label>
+                        <input
+                            accept="pdf/*"
+                            type="file"
+                            id="file"
+                            name="file"
+                            // onInput={event => setData(
+                            //     {
+                            //         field: "textImage", value: {
+                            //             name: event.target.files[0].name,
+                            //             url: URL.createObjectURL(event.target.files[0])
+                            //         }
+                            //     })}
+                            onClick={(e) => e.target.value = null}
+                        />
+                    </FileInput>
+
                 </Wrapper>
                 {/* new filed */}
 
                 <Wrapper>
-                    <Input
-                        inputype="file"
-                        type="addDataFile"
-                        placeholder="Drop Business Images "
-                        label="Drop Business Images "
-                        accept="image/*"
-                        value=""
-                        onChange={() => { }}
-                    />
-                    <Input
-                        inputype="file"
-                        type="addDataFile"
-                        placeholder="Drop Business Videos"
-                        label="Drop Business Videos"
-                        accept="application/pdf"
-                        value=""
-                        onChange={() => { }}
-                    />
+                    <FileInput box>
+                        <label
+                            htmlFor="file"
+                        >
+                            {data.textImage?.name || "Drop Business Image"}
+                        </label>
+                        <input
+                            accept="image/*"
+                            type="file"
+                            id="file"
+                            name="file"
+                            // onInput={event => setData(
+                            //     {
+                            //         field: "textImage", value: {
+                            //             name: event.target.files[0].name,
+                            //             url: URL.createObjectURL(event.target.files[0])
+                            //         }
+                            //     })}
+                            onClick={(e) => e.target.value = null}
+                        />
+                    </FileInput>
+                    <FileInput box>
+                        <label
+                            htmlFor="file"
+                        >
+                            {data.textImage?.name || "Drop Image Here"}
+                        </label>
+                        <input
+                            accept="image/*"
+                            type="file"
+                            id="file"
+                            name="file"
+                            // onInput={event => setData(
+                            //     {
+                            //         field: "textImage", value: {
+                            //             name: event.target.files[0].name,
+                            //             url: URL.createObjectURL(event.target.files[0])
+                            //         }
+                            //     })}
+                            onClick={(e) => e.target.value = null}
+                        />
+                    </FileInput>
+
                 </Wrapper>
 
                 <Button
@@ -403,17 +440,91 @@ const Right = ({ nextRoute }) => {
     )
 }
 
+// initial Value
+const initialState = {
+    businessName: '',
+    businessId: '',
+    taxNum: '',
+    vatNum: '',
+    email: '',
+    contactNum: '',
+    address: '',
+    postalCode: '',
+    regesterDate: '',
+    bussLiceseId: '',
+    compBudget: '',
+    opertionBudget: '',
+    compDetails: '',
+    referenceName: '',
+    referencelink: '',
+    // new state
+    firstName: '',
+    lastName: '',
+    emailLeft: '',
+    userName: '',
+    password: '',
+    rePassword: '',
+    contactNumber: '',
+    businessNumber: '',
+
+    dropdown: {
+        category: '',
+        subCategory: '',
+        city: '',
+        state: '',
+        country: '',
+        // new state
+        role: '',
+    },
+    // files state
+    image: [],
+    pdf: [],
+    businessImage: [],
+    businessVideo: [],
+};
+
+
 const CreatBusiness = ({ title, nextRoute }) => {
+
+    const reducer = (state, { field, value }) => {
+        return {
+            ...state,
+            [field]: value
+        }
+    }
+
+    const [data, dispatch] = useReducer(reducer, initialState);
+
+    const handelDropdown = (value, index) => {
+        dispatch({
+            field: 'dropdown', value: {
+                ...data.dropdown,
+                [index]: value
+            }
+        })
+    }
+
     return (
         <>
             <Suspense fallback={<PageSpinner />}>
                 <Grid>
-                    <Left title={title} />
-                    <Right nextRoute={nextRoute} />
+                    <Left
+                        title={title}
+                        data={data}
+                        dispatch={dispatch}
+                        handelDropdown={handelDropdown}
+                    />
+                    <Right
+                        nextRoute={nextRoute}
+                        data={data}
+                        dispatch={dispatch}
+                        handelDropdown={handelDropdown}
+                    />
                 </Grid>
             </Suspense>
         </>
     )
 }
 
-export default CreatBusiness;
+export default memo(CreatBusiness);
+

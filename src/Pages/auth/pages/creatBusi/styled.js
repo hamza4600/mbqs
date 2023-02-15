@@ -20,8 +20,8 @@ export const Grid = styled.form`
 
     #save {
         position: absolute;
-        right: 10rem;
-        bottom: -18rem;
+        right: 4rem;
+        bottom: -15rem;
         width: 200px;
     }
 
@@ -44,6 +44,7 @@ export const Grid = styled.form`
         grid-template-columns: 1fr;
     
         #sub {
+            position: relative;
             align-items: center;
         }
 

@@ -165,9 +165,9 @@ export const Box = styled.div`
 export const FileInput = styled.div`
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
-    height: ${props => props.large ? '90px' : '40px'};
+    height: ${props => props.large ? '90px' : props.box ? '150px' : '40px' };
     margin-top: ${props => props.large && '10px'}; 
-    width: 100%;   
+    width :  ${props => props.box ? ' ' : '100%'}; 
     padding: 0px 5px;
     min-width: 300px !important;
     font-size: 13px;
