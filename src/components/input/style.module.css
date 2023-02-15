@@ -53,6 +53,59 @@
     font-size: 13px;
     width: 100%;
 }
+/* Add Data Menu */
+.addDataMenu {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    /* border: 1px solid green; */
+    height: 28px;
+    padding: 0px 5px;
+    text-transform: capitalize;
+    min-width: 605px;
+    font-size: 13px;
+    width: 100%;
+    margin: 5px 0px;
+}
+/* add Data Details */
+.addDataDetails {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    height: 28px;
+    padding: 0px 5px;
+    text-transform: capitalize;
+    min-width: 450px;
+    font-size: 13px;
+    width: 80%;
+    margin: 5px 0px;
+}
+@media screen and (max-width:768px) {
+    .addDataMenu{
+        min-width: 200px;
+    }
+}
+@media screen and (max-width:768px) {
+    .addDataDetails{
+        min-width: 200px;
+    }
+}
+@media screen and (max-width:768px) {
+    .addData{
+        min-width: 200px;
+    }
+}
+/* add Data Small */
+.addDataSmall {
+    border: 1px solid #C2BEBE !important;
+    background-color: transparent;
+    height: 28px;
+    align-items: flex-start;
+    text-transform: capitalize;
+    padding: 0px 46px;
+    font-size: 13px;
+    margin: 3px;
+}
+
+
 
 /* Add Data form */
 .addDataform {

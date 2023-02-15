@@ -149,6 +149,7 @@ export const Box = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 10px;
+    /* margin: 10px 0px; */
     gap: 10px;
     margin-top: ${props => props.marginTop && props.marginTop};
 
@@ -160,6 +161,29 @@ export const Box = styled.div`
 }
 
 `;
+// use in all application
+export const BoxTwo = styled.div`
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    margin: 10px 0px;
+    gap: 10px;
+    margin-top: ${props => props.marginTop && props.marginTop};
+
+    // if have  children  width
+    & > * {
+        flex-basis: ${props => props.full ? '57%' : 'calc(50% - 5px) ! important'};
+    }
+    @media (min-width:1400px) and (max-width:2600px){
+        max-width: 75%;
+    }
+
+}
+
+`;
+
 
 // for file input 
 export const FileInput = styled.div`

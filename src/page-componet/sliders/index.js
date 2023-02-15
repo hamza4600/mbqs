@@ -195,6 +195,7 @@ const PageSide = () => {
                                 {
                                     Array.isArray(sidebarData) && sidebarData.map((item, index) => (
                                         <Icon
+                        
                                             key={item.id}
                                             icon={item.icon}
                                             hover={item.title}
