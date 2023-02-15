@@ -57,6 +57,7 @@
 .addDataMenu {
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
+    /* border: 1px solid green; */
     height: 28px;
     padding: 0px 5px;
     text-transform: capitalize;
@@ -69,7 +70,6 @@
 .addDataDetails {
     border: 1px solid #C2BEBE !important;
     background-color: transparent;
-    /* border: 1px solid green; */
     height: 28px;
     padding: 0px 5px;
     text-transform: capitalize;
@@ -78,7 +78,21 @@
     width: 80%;
     margin: 5px 0px;
 }
-
+@media screen and (max-width:768px) {
+    .addDataMenu{
+        min-width: 200px;
+    }
+}
+@media screen and (max-width:768px) {
+    .addDataDetails{
+        min-width: 200px;
+    }
+}
+@media screen and (max-width:768px) {
+    .addData{
+        min-width: 200px;
+    }
+}
 /* add Data Small */
 .addDataSmall {
     border: 1px solid #C2BEBE !important;

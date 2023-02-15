@@ -11,6 +11,11 @@ export const GridHAF = styled.div`
     .leftSide{
         padding-right:10px;
     }
+    @media (max-width:768px){
+        .leftSide{
+            margin-left: 40px;
+        }
+    }
     @media (max-width:1200px){
         grid-template-columns: 1fr;
         margin: 0 auto;
@@ -26,11 +31,15 @@ export const GridHAF = styled.div`
     }
    
 `;
+
 export const WrapperHAF = styled.div`
     width: 100%;
     display: grid;
     grid-template-columns: repeat(2,1fr);
     grid-column-gap: 5px;
     margin: 4px 0px;
-    
+    @media  (max-width:768px){
+        grid-template-columns: 1fr;
+        
+    }  
 `;

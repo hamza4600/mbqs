@@ -16,16 +16,19 @@ const Index = () => {
     youtubeUrl: "",
     instaUrl: "",
     fbUrl: "",
+    iconsArray:[],
     dropdown: {
       category: "",
     },
   };
+  console.log("🚀 ~ file: index.js:24 ~ Index ~ initialState", initialState)
   const { isOpen, toggle, close } = useDropDown();
   const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
   const [select, setSelect] = useState();
-  const [checkedState, setCheckedState] = useState(
-    new Array(iconsSettingsArray.length).fill(false)
-  );
+  const [icons,setIcons]=useState([])
+  // const [checkedState, setCheckedState] = useState(
+  //   new Array(iconsSettingsArray.length).fill(false)
+  // );
   const handelChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
   };
@@ -37,16 +40,21 @@ const Index = () => {
     return { ...state, [action.type]: action.value };
   }, initialState);
 
-  const handleOnChange = (position) => {
-    const updatedCheckedState = checkedState.map((item, index) =>
-      index === position ? !item : item
-    );
+  // const handleOnChange = (position) => {
+  //   const updatedCheckedState = checkedState.map((item, index) =>
+  //     index === position ? !item : item
+  //   );
 
-    setCheckedState(updatedCheckedState);
+  //   setCheckedState(updatedCheckedState);
 
    
 
-  };
+  // };
+  const handleChange=(id) => {
+    console.log("🚀 ~ file: index.js:53 ~ handleChange ~ id", id)
+    const newIcons=initialState.iconsArray.push(id)
+    
+  }
   return (
     <>
       <p className="menu-edit">Menu Edit</p>
@@ -69,11 +77,12 @@ const Index = () => {
               <div className="toppings-list-item">
                   <input
                     type="checkbox"
-                    id={`custom-checkbox-${id}`}
+                    // id={`custom-checkbox-${id}`}
                     name={title}
                     value={title}
-                    checked={checkedState[id]}
-                    onChange={() => handleOnChange(id)}
+                    // checked={checkedState[id]}
+                    // onChange={() => handleOnChange(id)}
+                    onChange={()=>handleChange(id)}
                     style={{marginRight:'6px'}}
                   
                     />

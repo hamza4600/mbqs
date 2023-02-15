@@ -8,6 +8,11 @@ export const GridDetails = styled.div`
     align-items:flex-start;
     width: 85%;
    }
+   @media (max-width:768px){
+    .both{
+        flex-direction: column;
+    }
+   }
    .left-sideBar{
     padding-top: 10px;
    }
@@ -22,6 +27,7 @@ export const GridDetails = styled.div`
     .both{
         width: 60%;
     }
+    
     .extraClass{
         width: 60%;
     }
