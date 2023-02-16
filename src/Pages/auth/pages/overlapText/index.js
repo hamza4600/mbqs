@@ -24,8 +24,6 @@ const InputSection = ({ data, setData }) => {
         <>
             <EditPageHeader
                 title="Over Lapping Text"
-            // handelAddIcon={handleAddFields}
-            // handelRemoveIcon={handleRemoveFields}
             >
                 <InputContainer>
                     <Box full>

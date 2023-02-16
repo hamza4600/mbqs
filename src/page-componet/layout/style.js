@@ -75,7 +75,6 @@ export const SequienceContainer = styled.div`
     // width: 85%;
     margin-top: 20px;
 
-
     .oip {
         width: 100%;
     }
@@ -157,9 +156,7 @@ export const Box = styled.div`
     & > * {
         flex-basis: ${props => props.full ? '100%' : 'calc(50% - 5px) ! important'};
     }
-
 }
-
 `;
 // use in all application
 export const BoxTwo = styled.div`
@@ -179,9 +176,7 @@ export const BoxTwo = styled.div`
     @media (min-width:1400px) and (max-width:2600px){
         max-width: 75%;
     }
-
 }
-
 `;
 
 

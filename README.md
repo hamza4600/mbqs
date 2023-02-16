@@ -54,3 +54,9 @@ Iss-34963496
 
 
 * change max-widtg of input in login and register
+
+# For remote merger
+git checkout master
+git pull origin master
+git merge test
+git push origin master

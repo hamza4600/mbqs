@@ -9,7 +9,7 @@ import { compose } from "redux";
 import TextArea from "./textarea";
 
 const defaultStyle = {
-    // border: 'none',
+    border: 'none',
     MozAppearance: 'none',
     outline: 'none',
     textDecoration: 'none',
@@ -83,7 +83,6 @@ const Input = forwardRef(
                         className={clsx(styles.inputField, {
                             [styles.login]: type === "model" || type === "model-password",
                             [styles.disable]: disabled,
-                            [styles.addData]: type === "addData",
                             [styles.addDataMenu]: type === "addDataMenu",
                             [styles.addDataform]: type === "addDataform",
                             [styles.addDataDetails]: type === "addDataDetails",

@@ -137,7 +137,7 @@ export const PreviewSectionHeader = (props) => {
 export const PreviewBtnGroup = (props) => {
     const {
         nextPage,
-        frontView,
+        frontView = true,
         nextBtnText = 'Next',
         frontBtnText = 'Front Website View',
         showEditorBtn = false,
@@ -151,20 +151,24 @@ export const PreviewBtnGroup = (props) => {
                     <Button
                         type='view'
                         id='save'
-                        onClick={frontView}
+                        // onClick={frontView}
                         leftIcon={<img src={logo} alt="logo" />}
                     >
                         {editorBtnText}
                     </Button>
                 )
             }
-            <Button
-                type='view'
-                id='save'
-                onClick={frontView}
-            >
-                {frontBtnText}
-            </Button>
+            {
+                frontView && (
+                    <Button
+                        type='view'
+                        id='save'
+                        onClick={frontView}
+                    >
+                        {frontBtnText}
+                    </Button>
+                )
+            }
             <Button
                 type='addData'
                 id='save'

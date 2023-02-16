@@ -5,8 +5,7 @@ import "../../../../components/input/style.module.css";
 import { useReducer } from "react";
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
 import Dropdown from "components/dropdown";
-import { Wrapper } from "components/sidebar/structure";
-import { Box } from "page-componet/layout/style";
+
 const Index = () => {
   const initialState = {
     fullName: "",
@@ -38,7 +37,6 @@ const Index = () => {
   };
 
   const { isOpen, toggle, close } = useDropDown();
-  const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
   const handelChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });

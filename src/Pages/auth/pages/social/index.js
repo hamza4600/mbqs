@@ -8,7 +8,7 @@ import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
 import { BoxTwo } from "page-componet/layout/style";
 import { useReducer } from "react";
 import { WrapperMenu } from "../menu/styled";
-import { iconsSettingsArray } from "../../../../page-componet/sliders/varibel";
+import { settingsIcons } from "./variable";
 
 const Index = () => {
   const initialState = {
@@ -16,19 +16,16 @@ const Index = () => {
     youtubeUrl: "",
     instaUrl: "",
     fbUrl: "",
-    iconsArray:[],
+    iconsArray: [],
     dropdown: {
       category: "",
+
     },
   };
   console.log("🚀 ~ file: index.js:24 ~ Index ~ initialState", initialState)
   const { isOpen, toggle, close } = useDropDown();
-  const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
   const [select, setSelect] = useState();
-  const [icons,setIcons]=useState([])
-  // const [checkedState, setCheckedState] = useState(
-  //   new Array(iconsSettingsArray.length).fill(false)
-  // );
+
   const handelChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
   };
@@ -40,21 +37,12 @@ const Index = () => {
     return { ...state, [action.type]: action.value };
   }, initialState);
 
-  // const handleOnChange = (position) => {
-  //   const updatedCheckedState = checkedState.map((item, index) =>
-  //     index === position ? !item : item
-  //   );
 
-  //   setCheckedState(updatedCheckedState);
-
-   
-
-  // };
-  const handleChange=(id) => {
+  const handleChange = (id) => {
     console.log("🚀 ~ file: index.js:53 ~ handleChange ~ id", id)
-    const newIcons=initialState.iconsArray.push(id)
-    
+    const newIcons = initialState.iconsArray.push(id)
   }
+  
   return (
     <>
       <p className="menu-edit">Menu Edit</p>
@@ -71,34 +59,31 @@ const Index = () => {
       </BoxTwo>
       <IconsContainer>
         <ul className="toppings-list">
-        {iconsSettingsArray.map(({ id,title, icon }) => {
-          return (
-            <li key={id}>
-              <div className="toppings-list-item">
+          {settingsIcons.map(({ id, title, icon }) => {
+            return (
+              <li key={id}>
+                <div className="toppings-list-item">
                   <input
                     type="checkbox"
-                    // id={`custom-checkbox-${id}`}
                     name={title}
                     value={title}
-                    // checked={checkedState[id]}
-                    // onChange={() => handleOnChange(id)}
-                    onChange={()=>handleChange(id)}
-                    style={{marginRight:'6px'}}
-                  
-                    />
-     <Icon
-                  key={id}
-                  icon={icon}
-                  hover={title}
-                  id={id}
-                  select={select}
+                    onChange={() => handleChange(id)}
+                    style={{ marginRight: '6px' }}
+
                   />
-                  </div>
-            </li>
-          );
-        })}
-       
-      </ul>
+                  <Icon
+                    key={id}
+                    icon={icon}
+                    hover={title}
+                    id={id}
+                    select={select}
+                  />
+                </div>
+              </li>
+            );
+          })}
+
+        </ul>
 
       </IconsContainer>
       <WrapperMenu>

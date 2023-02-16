@@ -3,12 +3,9 @@ import styled from "styled-components";
 export const Span = styled.div`
   margin-bottom: ${({ width }) => (width === 210 ? "5px" : "3px")};
 `;
-export const BoxTwo=styled.div`
-  
-`
+
 export const IconsContainer = styled.div`
   width: 50%;
- 
 
   .toppings-list {
     display: grid;
@@ -28,7 +25,5 @@ export const IconsContainer = styled.div`
     display: flex;
     padding: 5px;
   }
-
-
 
 `;

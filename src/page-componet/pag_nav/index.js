@@ -1,6 +1,7 @@
+import React, { useState } from "react";
+
 import Navbar from "components/navbar"
 import styled from "styled-components"
-import React, { useState } from "react";
 import useHover from "Hooks/useHover";
 
 import logo from "../../assits/MLogo.png"
@@ -16,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
 // HOC
 import outisdeClick from "functions/outside";
-import useBreakpoint from "Hooks/useBreakPoints";
+
 const UserMenu = React.lazy(() => import("./usermenu"));
 
 const Wrapper = styled.div`

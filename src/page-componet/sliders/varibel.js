@@ -1,16 +1,14 @@
 // all routes and data for slider page
 import { MdOutlineEngineering } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
-import { IoDocumentTextOutline, IoGitCompareSharp } from "react-icons/io5";
+import { IoDocumentTextOutline, } from "react-icons/io5";
 import { RiUser2Line } from "react-icons/ri";
 import { BiMessageAltDetail } from "react-icons/bi";
-import { FiFacebook, FiPhoneCall, FiTwitch, FiTwitter } from "react-icons/fi";
-import { AiOutlineDownload, AiOutlineFileSearch, AiOutlineHome, AiOutlineInstagram, AiOutlineLinkedin, AiOutlineMail, AiOutlineMessage, AiOutlineShake, AiOutlineShopping, AiOutlineWhatsApp, AiOutlineYoutube } from "react-icons/ai";
+import { FiPhoneCall } from "react-icons/fi";
+import { AiOutlineFileSearch } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
+
 import { authRoutes } from "Pages/auth/routes";
-import { BsBasket, BsFacebook, BsGenderFemale, BsTwitter } from "react-icons/bs";
-import { GenIcon } from "react-icons";
-import { FaWindowClose } from "react-icons/fa";
 
 const size = 20;
 
@@ -358,93 +356,4 @@ export const sidebarData = [
             }
         ]
     },
-]
-export const iconsSettingsArray=[
-    {
-        id:1,
-        title:'twitter',
-        icon:<FiTwitter size={size} />
-    },
-    {
-        id:2,
-        title:'facebook',
-        icon:<FiFacebook size={size} />
-    },
-    {
-        id:3,
-        title:'instagram',
-        icon:<AiOutlineInstagram size={size} />
-    
-    },
-    {
-        id:4,
-        title:'whatsapp',
-        icon:<AiOutlineWhatsApp size={size} />
-    },
-    {
-        id:5,
-        title:'facebook',
-        icon:<AiOutlineYoutube size={size} />
-    },
-    {
-        id:6,
-        title:'youtube',
-        icon:<AiOutlineMail size={size} />
-    },
-    {
-        id:7,
-        title:'email',
-        icon:<AiOutlineMail size={size} />
-    },
-    {
-        id:8,
-        title:'share',
-        icon:<AiOutlineShake size={size} />
-    },
-    {
-        id:9,
-        title:'download',
-        icon:<AiOutlineDownload size={size} />
-    },
-    {
-        id:10,
-        title:'love',
-        icon:<BsGenderFemale size={size} />
-    },
-    {
-        id:11,
-        title:'bottle',
-        icon:<FaWindowClose size={size} />
-    },
-    {
-        id:12,
-        title:'linkedin',
-        icon:<AiOutlineLinkedin size={size} />
-    },
-    {
-        id:13,
-        title:'cart',
-        icon:<AiOutlineShopping size={size} />
-    },
-    {
-        id:14,
-        title:'message',
-        icon:<AiOutlineMessage size={size} />
-    },
-    {
-        id:15,
-        title:'home',
-        icon:<AiOutlineHome size={size} />
-    },
-    {
-        id:16,
-        title:'aeroplane',
-        icon:<IoGitCompareSharp size={size} />
-    },
-    {
-        id:17,
-        title:'basket',
-        icon:<BsBasket size={size} />
-    }
-
 ]
