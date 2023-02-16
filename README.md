@@ -11,8 +11,6 @@
 - Set the types of pages to be used in the system
 
 https://billing.misshosting.com/clientarea.php
-decojee@gmail.com
-Iss-34963496
 
 # For Gut hub
 
