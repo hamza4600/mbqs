@@ -139,7 +139,7 @@ const TextInputSection = ({ data, setData }) => {
 
 const TextPreviewSection = ({ data }) => {
 
-    const nextPage = () => window.location.href = "/auth/overlap-text";
+    const nextPage = () => window.location.href = "/auth/overlap-text-business";
     return (
         <>
             <PreviewSectionHeader>

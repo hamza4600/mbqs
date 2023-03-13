@@ -106,15 +106,34 @@ const EditSection = ({ state, setState }) => {
                             onClick={(e) => e.target.value = null}
                         />
                     </FileInput>
-
+                    <ListItem />
                 </InputContainer>
-                <ListItem />
+              
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ state }) => (
+const PreviewSection = ({ state , type}) => {
+
+    const nextPage = () => {
+        if (type === "news") {
+            window.location.href = "/auth/news-bg"
+        } else if (type === "events") {
+            window.location.href = "/auth/event-bg"
+        }  else if (type === "about") {
+            window.location.href = "/auth/about-bg"
+        } else if (type === "privacy") {
+            window.location.href = "/auth/privacy-bg"
+        } else if (type === "terms") {
+            window.location.href = "/auth/terms-bg"
+        } else if (type === "contact") {
+            window.location.href = "/auth/contact-bg"
+        }
+
+        return null
+    }
+    return(
     <>
         <PreviewSectionHeader>
             <div>
@@ -142,11 +161,11 @@ const PreviewSection = ({ state }) => (
             </div>
 
             <PreviewBtnGroup
-                nextPage={() => window.location.href = "/auth/news-bg"}
+                nextPage={nextPage}
             />
         </PreviewSectionHeader>
     </>
-)
+)}
 
 
 const initaiValue = {
@@ -179,6 +198,7 @@ const CreatnewPage = ({ type }) => {
                 />
                 <PreviewSection
                     state={state}
+                    type={type.type}
                 />
             </EditPageLayout>
         </>

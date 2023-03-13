@@ -94,9 +94,31 @@ const InputSection = ({ data, setData }) => {
     )
 }
 
-const PreviewSection = ({ data }) => {
+const PreviewSection = ({ data , type }) => {
 
-    const nextPage = () => window.location.href = "/auth/viedo-list";
+    // const nextPage = () => window.location.href = "/auth/viedo-list";
+    const nextPage = () => {
+        switch (type) {
+            case "news":
+                window.location.href = "/auth/news-detail";
+                break;  
+            case "image":
+                window.location.href = "/auth/image-list";
+                break;
+            case "event":
+                window.location.href = "/auth/event-details";
+                break;
+            case "about":
+                window.location.href = "/auth/text-img-about";
+                break;
+            case "contact":
+                window.location.href = "/auth/faq";
+                break;
+            default:
+                window.location.href = "/auth/viedo-list";
+                break;
+        }
+    }
 
     return (
         <>
@@ -167,6 +189,7 @@ const OverLapppinText = ({ type }) => {
                 />
                 <PreviewSection
                     data={data}
+                    type={type.type}
                 />
             </EditPageLayout>
         </>

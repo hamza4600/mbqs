@@ -1,14 +1,12 @@
-import { AddIcon, RemoveIcon } from 'page-componet/iconbutton';
-import { Box, FileInput } from 'page-componet/layout/style';
-import useDropDown from 'components/dropdown/useDropdown';
-import Input from 'components/input';
-import Dropdown from 'components/dropdown';
-import { useState } from 'react';
-import { H1 } from 'components/a';
-
+import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
+import { Box, FileInput } from "page-componet/layout/style";
+import useDropDown from "components/dropdown/useDropdown";
+import Input from "components/input";
+import Dropdown from "components/dropdown";
+import { H1 } from "components/a";
+import { ReferWrapper } from "./style";
 
 export const Left = ({ title, data, dispatch, handelDropdown }) => {
-
     const { isOpen, toggle, close } = useDropDown();
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
     const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
@@ -16,8 +14,8 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
     const { isOpen: isOpen5, toggle: toggle5, close: close5 } = useDropDown();
 
     const handelChange = (e) => {
-        dispatch({ field: e.target.id, value: e.target.value })
-    }
+        dispatch({ field: e.target.id, value: e.target.value });
+    };
 
     const handelAddNewField = () => {
         let copy = [...data.addNewField];
@@ -25,40 +23,41 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
         for (let i = 0; i < 2; i++) {
             copy.push({
                 id: Math.floor(Math.random() * 1000),
-                value: '',
-            })
+                value: "",
+                placeholder: i === 0 ? "Reference Link Name" : "Insert Reference URL",
+            });
         }
-        // update data.addNewField  
-        dispatch({ field: 'addNewField', value: copy })
-    }
+        // update data.addNewField
+        dispatch({ field: "addNewField", value: copy });
+    };
 
     const handelRemoveField = () => {
         let copy = [...data.addNewField];
-        copy.splice(-2, 2);
-        dispatch({ field: 'addNewField', value: copy })
-    }
+        if (copy.length > 2) {
+            copy.splice(-2, 2);
+            // update data.addNewField
+            dispatch({ field: "addNewField", value: copy });
+        }
+    };
 
     // update nested Input value
     const handelNestedInput = (e, id) => {
-
         const copy = data.addNewField.map((item) => {
             if (item.id === id) {
-                return { ...item, value: e.target.value }
+                return { ...item, value: e.target.value };
             }
             return item;
-        })
+        });
 
         dispatch({
-            field: 'addNewField',
-            value: copy
-        })
-    }
-
+            field: "addNewField",
+            value: copy,
+        });
+    };
 
     return (
         <>
-            <div id='sub'>
-
+            <div id="sub">
                 <Box>
                     <Input
                         inputype="text"
@@ -84,7 +83,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         toggel={toggle}
                         close={close}
                         value={data.dropdown.category?.name}
-                        updateValue={(value) => handelDropdown(value, 'category')}
+                        updateValue={(value) => handelDropdown(value, "category")}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
@@ -92,7 +91,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         toggel={toggle2}
                         close={close2}
                         value={data.dropdown.subCategory?.name}
-                        updateValue={(value) => handelDropdown(value, 'subCategory')}
+                        updateValue={(value) => handelDropdown(value, "subCategory")}
                     />
                 </Box>
 
@@ -104,7 +103,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         value={data.taxNum}
                         id="taxNum"
                         onChange={handelChange}
-                    />  
+                    />
                     <Input
                         inputype="number"
                         type="addDataform"
@@ -157,7 +156,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         toggel={toggle3}
                         close={close3}
                         value={data.dropdown.city?.name}
-                        updateValue={(value) => handelDropdown(value, 'city')}
+                        updateValue={(value) => handelDropdown(value, "city")}
                     />
                 </Box>
                 <Box>
@@ -167,7 +166,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         toggel={toggle4}
                         close={close4}
                         value={data.dropdown.state?.name}
-                        updateValue={(value) => handelDropdown(value, 'state')}
+                        updateValue={(value) => handelDropdown(value, "state")}
                     />
                     <Dropdown
                         placeholder="Select Country"
@@ -175,7 +174,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                         toggel={toggle5}
                         close={close5}
                         value={data.dropdown.country?.name}
-                        updateValue={(value) => handelDropdown(value, 'country')}
+                        updateValue={(value) => handelDropdown(value, "country")}
                     />
                 </Box>
                 <Box>
@@ -243,68 +242,70 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                     />
                 </Box>
 
-                <div style={{ display: 'flex', justifyContent: 'end' }}>
-                    <AddIcon
-                        onClick={handelAddNewField}
-                    />
-                    <RemoveIcon
-                        onClick={handelRemoveField}
-                    />
-                </div>
-
-                <div
-                    style={{
-                        display: 'grid',
-                        gridTemplateColumns: '1fr 1fr',
-                        gridGap: '0.5rem',
-                        width: '100%',
-                        height: '100%'
-                    }}
-                >
-                    {
-                        data.addNewField.length > 0 &&
+                <ReferWrapper>
+                    {data.addNewField.length > 0 &&
                         data.addNewField.map((item, index) => (
-                            <div key={item.id} id='mxn'>
-                                <Input
-                                    inputype="text"
-                                    type="addDataform"
-                                    placeholder="Reference Link Name"
-                                    value={item.name}
-                                    onChange={(e) => handelNestedInput(e, item.id)}
+                            <div key={item.id} id="mxn">
+                                <input
+                                    type="text"
+                                    placeholder={item.placeholder}
                                     id={item.id}
+                                    value={item.value}
+                                    onChange={(e) => handelNestedInput(e, item.id)}
                                 />
                             </div>
-                        ))
-                    }
+                        ))}
+                </ReferWrapper>
+                {/* controllers */}
+                <div
+                    style={{ display: "flex", justifyContent: "end", marginTop: "1rem" }}
+                >
+                    <AddIcon onClick={handelAddNewField} />
+                    <RemoveIcon onClick={handelRemoveField} />
                 </div>
             </div>
         </>
-    )
-}
-
+    );
+};
 
 export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
     // files state
-    const [files, setFiles] = useState({
-        file: null,
-        fileUrl: null,
-    });
+   
+    // add all selected files to data.files array
+    const handleFileChange = (e, indexx) => {
+        //access key of object using variable
+        let main = data[indexx];
+        console.log(main, "====>");
+        if (main === undefined) {
+            main = [];
+        }
+        main.push({
+            id: Math.floor(Math.random() * 1000),
+            image: e.target.files[0],
+            fileUrl: URL.createObjectURL(e.target.files[0]),
+        });
+        // dispatch({
+        //     field: "image",
+        //     value: main,
+        // }); 
+        // make copy of previous state
+        let copy = { ...data };
+        // update state
+        copy[indexx] = main;
+        // set state
+        dispatch({
+            field: "files",
+            value: copy,
+        });
+        
+    };
 
     const { isOpen, close, toggle } = useDropDown();
     const { isOpen: isOpen2, close: close2, toggle: toggle2 } = useDropDown();
 
-    // handle file change
-    const handleFileChange = (e) => {
-        setFiles({
-            file: e.target.files[0],
-            fileUrl: URL.createObjectURL(e.target.files[0])
-        });
-    }
-
-
     return (
         <>
-            <div id='sub'>
+            <div id="sub">
                 <H1>Enter the specifics of your position</H1>
                 <Box>
                     <Dropdown
@@ -313,8 +314,7 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         toggel={toggle}
                         close={close}
                         value={data.dropdown.role?.name}
-                        updateValue={(value) => handelDropdown(value, 'role')}
-
+                        updateValue={(value) => handelDropdown(value, "role")}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
@@ -322,7 +322,7 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         toggel={toggle2}
                         close={close2}
                         value={data.dropdown.subCategory?.name}
-                        updateValue={(value) => handelDropdown(value, 'subCategory')}
+                        updateValue={(value) => handelDropdown(value, "subCategory")}
                     />
                 </Box>
                 <Box>
@@ -331,14 +331,18 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         type="addDataform"
                         placeholder="First Name"
                         value={data.firstName}
-                        onChange={e => dispatch({ field: 'firstName', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "firstName", value: e.target.value })
+                        }
                     />
                     <Input
                         inputype="text"
                         type="addDataform"
                         placeholder="Last Name"
                         value={data.lastName}
-                        onChange={e => dispatch({ field: 'lastName', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "lastName", value: e.target.value })
+                        }
                     />
                 </Box>
                 <Box>
@@ -347,14 +351,18 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         type="addDataform"
                         placeholder="Email"
                         value={data.emailLeft}
-                        onChange={e => dispatch({ field: 'emailLeft', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "emailLeft", value: e.target.value })
+                        }
                     />
                     <Input
                         inputype="text"
                         type="addDataform"
                         placeholder="User Name"
                         value={data.userName}
-                        onChange={(e) => dispatch({ field: 'userName', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "userName", value: e.target.value })
+                        }
                     />
                 </Box>
                 <Box>
@@ -363,14 +371,18 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         type="addDataform"
                         placeholder="Creat Password"
                         value={data.password}
-                        onChange={(e) => dispatch({ field: 'password', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "password", value: e.target.value })
+                        }
                     />
                     <Input
                         inputype="text"
                         type="addDataform"
                         placeholder="Re-enter Password"
                         value={data.rePassword}
-                        onChange={(e) => dispatch({ field: 'rePassword', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "rePassword", value: e.target.value })
+                        }
                     />
                 </Box>
                 <Box>
@@ -379,112 +391,124 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
                         type="addDataform"
                         placeholder="Contact Person Name"
                         value={data.contactPerson}
-                        onChange={(e) => dispatch({ field: 'contactPerson', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "contactPerson", value: e.target.value })
+                        }
                     />
                     <Input
                         inputype="text"
                         type="addDataform"
                         placeholder="Business Contact Number"
                         value={data.businessNumber}
-                        onChange={(e) => dispatch({ field: 'businessNumber', value: e.target.value })}
+                        onChange={(e) =>
+                            dispatch({ field: "businessNumber", value: e.target.value })
+                        }
                     />
                 </Box>
 
                 <Box>
                     <FileInput box>
-                        <label
-                            htmlFor="file"
-                        >
-                            {data.textImage?.name || "Drop Image Here"}
+                        <label htmlFor="file">
+                            {data.image?.length > 0
+                                ? data.image.map((item, index) => (
+                                    <div key={item.id}>
+                                        <>{item.image.name}</>
+                                    </div>
+                                ))
+                                : "Drop Image Here"}
                         </label>
                         <input
                             accept="image/*"
                             type="file"
                             id="file"
                             name="file"
-                            // onInput={event => setData(
-                            //     {
-                            //         field: "textImage", value: {
-                            //             name: event.target.files[0].name,
-                            //             url: URL.createObjectURL(event.target.files[0])
-                            //         }
-                            //     })}
-                            onClick={(e) => e.target.value = null}
+                            multiple="multiple"
+                            onInput={(e) => handleFileChange(e, "image")}
+                            onClick={(e) => (e.target.value = null)}
                         />
                     </FileInput>
 
                     <FileInput box>
-                        <label
-                            htmlFor="file"
-                        >
-                            {data.textImage?.name || "Drop PDF Here"}
+                        <label htmlFor="file1">
+                            {data.pdf?.length > 0
+                                ? data.pdf.map((item, index) => (
+                                    <div key={item.id}>
+                                        <>{item.image.name}</>
+                                    </div>
+                                ))
+                                : "Drop PDF Here"}
                         </label>
                         <input
                             accept="pdf/*"
                             type="file"
-                            id="file"
+                            id="file1"
                             name="file"
-                            // onInput={event => setData(
-                            //     {
-                            //         field: "textImage", value: {
-                            //             name: event.target.files[0].name,
-                            //             url: URL.createObjectURL(event.target.files[0])
-                            //         }
-                            //     })}
-                            onClick={(e) => e.target.value = null}
+                            multiple="multiple"
+                            onInput={(e) => handleFileChange(e, "pdf")}
+                            onClick={(e) => (e.target.value = null)}
                         />
                     </FileInput>
-
                 </Box>
                 {/* new filed */}
 
                 <Box>
                     <FileInput box>
-                        <label
-                            htmlFor="file"
-                        >
-                            {data.textImage?.name || "Drop Business Image"}
+                        <label htmlFor="file2">
+                            {data.businessImage?.length > 0
+                                ? data.businessImage.map((item, index) => (
+                                    <div key={item.id}>
+                                        <>{item.image.name}</>
+                                    </div>
+                                ))
+                                : "Drop Image Here"}
                         </label>
                         <input
                             accept="image/*"
                             type="file"
-                            id="file"
+                            id="file2"
                             name="file"
-                            // onInput={event => setData(
-                            //     {
-                            //         field: "textImage", value: {
-                            //             name: event.target.files[0].name,
-                            //             url: URL.createObjectURL(event.target.files[0])
-                            //         }
-                            //     })}
-                            onClick={(e) => e.target.value = null}
+                            multiple="multiple"
+                            onInput={(e) => handleFileChange(e, "businessImage")}
+                            onClick={(e) => (e.target.value = null)}
                         />
                     </FileInput>
                     <FileInput box>
-                        <label
-                            htmlFor="file"
-                        >
-                            {data.textImage?.name || "Drop Image Here"}
+                        <label htmlFor="file3">
+                            {data.businessVideo?.length > 0
+                                ? data.businessVideo.map((item, index) => (
+                                    <div key={item.id}>
+                                        <>{item.image.name}</>
+                                    </div>
+                                ))
+                                : "Drop Business Videos"}
                         </label>
                         <input
                             accept="image/*"
                             type="file"
-                            id="file"
+                            id="file3"
                             name="file"
-                            // onInput={event => setData(
-                            //     {
-                            //         field: "textImage", value: {
-                            //             name: event.target.files[0].name,
-                            //             url: URL.createObjectURL(event.target.files[0])
-                            //         }
-                            //     })}
-                            onClick={(e) => e.target.value = null}
+                            multiple="multiple"
+                            onInput={(e) => handleFileChange(e, "businessVideo")}
+                            onClick={(e) => (e.target.value = null)}
                         />
                     </FileInput>
-
                 </Box>
-
             </div>
         </>
-    )
-}
+    );
+};
+
+// Map Images
+export const MapImages = ({ data, title }) => (
+        <>
+            {data.length > 0 ? <H1> {title} </H1> : null}
+
+            <div className="img-grid">
+                {data.map((item, index) => (
+                    <div key={index}>
+                        <img src={item.fileUrl} alt={item.name} />
+                    </div>
+                ))}
+            </div>
+        </>
+    );

@@ -128,16 +128,47 @@ const EditSection = ({ state, setState }) => {
                             </FileInput>
                         ))
                     }
-
+                    <ListItem />
                 </InputContainer>
-                <ListItem />
+                
 
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ state }) => (
+const PreviewSection = ({ state , type}) => {
+
+    const moveNextPage = () => {
+        console.log("next page");
+        switch (type) {
+            case "business":
+                window.location.href = "/auth/header-img";
+                break;
+            case "news":
+                window.location.href = "/auth/overlap-text-news";
+                break;
+            case "event":
+                window.location.href = "/auth/overlap-text-event";
+                break;
+            case "about":
+                window.location.href = "/auth/overlap-text-about";
+                break;
+            case "privacy":
+                window.location.href = "/auth/privacy";
+                break;
+            case "terms":
+                window.location.href = "/auth/terms";
+                break;
+            case "contact":
+                window.location.href = "/auth/overlap-text-contact";
+                break;
+            default:
+                break;
+        }
+    }
+
+    return(
     <>
         <PreviewSectionHeader>
             <Flex>
@@ -153,10 +184,13 @@ const PreviewSection = ({ state }) => (
                     )
                 }
             </Flex>
-            <PreviewBtnGroup />
+            <PreviewBtnGroup
+                nextPage = {moveNextPage}
+            />
         </PreviewSectionHeader>
     </>
-)
+    )
+}
 
 // hadel 4 different type of background 
 const BackgroundNews = ({ type }) => {
@@ -177,6 +211,7 @@ const BackgroundNews = ({ type }) => {
                 />
                 <PreviewSection
                     state={state}
+                    type= {type.type}
                 />
             </EditPageLayout>
         </>

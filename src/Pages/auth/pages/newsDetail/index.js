@@ -137,6 +137,9 @@ const NewsPreviewSection = ({ data }) => {
 
                 <PreviewBtnGroup
                     showEditorBtn={true}
+                    nextPage = {() => { 
+                        window.location.href = "/auth/new-page-list"
+                    }}
                 />
             </PreviewSectionHeader>
         </>

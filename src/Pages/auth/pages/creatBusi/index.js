@@ -1,7 +1,8 @@
 import { Suspense, memo, useReducer, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import { EditPageHeader, EditPageLayout, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage';
-import { Left, Right } from './componets';
+import { Left, MapImages, Right } from './componets';
+import { PreviewImage } from './style';
 
 const EditSection = ({ title, data, dispatch, handelDropdown, section, setSection }) => {
     return (
@@ -10,7 +11,6 @@ const EditSection = ({ title, data, dispatch, handelDropdown, section, setSectio
                 title={`${title ? title : 'Register New Business '}   Page`}
                 hideIcon={true}
             >
-                {/* <InputContainer> */}
                     {
                         section === 'right' ?
                             <Right
@@ -25,14 +25,13 @@ const EditSection = ({ title, data, dispatch, handelDropdown, section, setSectio
                                 handelDropdown={handelDropdown}
                             />
                     }
-                {/* </InputContainer> */}
             </EditPageHeader>
         </>
     )
 }
 
 const PreviewSection = ({ nextRoute, setSection, section , data}) => {
-
+    console.log(data)
     const nextPage = () => {
         if (nextRoute !== null) {
 
@@ -44,15 +43,41 @@ const PreviewSection = ({ nextRoute, setSection, section , data}) => {
                 window.location.href = '/auth/background-img'
             }
         }
+        if (nextRoute === null) {
+            window.location.href = '/auth/list-new-page'
+        }
     }
 
     return (
         <>
             <PreviewSectionHeader>
+            
+                <PreviewImage>
+                        {/* image */}
+                        <MapImages
+                            data={data.image}
+                            title={'Images'}
+                            />
+                        {/* pdf */}
+                        <MapImages
+                            data={data.pdf}
+                            title={'PDF'}
+                        />
+                        {/* business image */}
+                        <MapImages
+                            data={data.businessImage}
+                            title={'Business Image'}
+                        />
+                        {/* business video */}
+                        <MapImages
+                            data={data.businessVideo}
+                            title={'Business Video'}
+                        />
+
+                </PreviewImage>
 
 
-
-                <PreviewBtnGroup
+                <PreviewBtnGroup    
                     showEditorBtn={false}
                     frontView={false}
                     nextPage={nextPage}
@@ -110,7 +135,6 @@ const CreatBusiness = ({ title, nextRoute }) => {
 }
 
 export default memo(CreatBusiness);
-
 
 // initial Value
 const initialState = {

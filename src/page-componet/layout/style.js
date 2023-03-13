@@ -192,6 +192,7 @@ export const FileInput = styled.div`
     font-size: 13px;
     margin-bottom: 10px;
     position: relative;
+    overflow: hidden !important;
 
     input {
         position: absolute;

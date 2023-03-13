@@ -14,7 +14,7 @@ const ProductView = lazy(() => import('./pages/product'));
 // new page layout is Same 
 const HeaderImage = lazy(() => import('./pages/headImg'));
 const TextImage = lazy(() => import('./pages/textImg'));
-const OverLapppinText = lazy(() => import('./pages/overlapText'));
+const OverLapppinText = lazy(() => import('./pages/overlapText')); // 4 types of OverLapppinText
 const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
 const EditMenu = lazy(() => import('./pages/menu'));
@@ -49,7 +49,7 @@ const bgType = {
     event: { name: "Event Background", type: "event" },
     news: { name: "News Background", type: "news" },
     business: { name: "Business Background", type: "business" },
-    privacy: { name: "Product Background", type: "product" },
+    privacy: { name: "privacy Background", type: "privacy" },
     about: { name: "About Background", type: "about" },
     terms: { name: "Terms Background", type: "terms" },
     contact: { name: "Contact Background", type: "contact" },
@@ -140,7 +140,7 @@ const paths = [
     {
         id: 13,
         path: authRoutes.addContact,
-        component: <CreatnewPage type={sliderTypePages.privacy} />
+        component: <CreatnewPage type={sliderTypePages.contact} />
     },
     {
         id: 14,
@@ -250,7 +250,7 @@ const paths = [
     },
     {
         id: 34,
-        path: authRoutes.overLaptextEvent,
+        path: authRoutes.overLaptextAbout,
         component: <OverLapppinText type={overlapType.about} />
     },
     {

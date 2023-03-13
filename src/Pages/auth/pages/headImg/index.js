@@ -83,9 +83,9 @@ const ImageSliderSection = () => {
                             </div>
                         ))
                     }
-
+                    <ListItem />
                 </InputContainer>
-                <ListItem />
+              
             </EditPageHeader>
         </>
     )

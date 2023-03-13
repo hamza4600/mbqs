@@ -30,7 +30,7 @@ const Wrapper = styled.div`
         background: #F0F8FF;
         border: 1px solid #ccc;
         border-top: none;
-        z-index: 1;
+        z-index: 9999;
     }
 
     li {
