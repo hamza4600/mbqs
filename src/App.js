@@ -5,8 +5,8 @@ import { compose } from "redux";
 
 import { ThemeProvider } from 'styled-components'
 import Them, { GlobalStyle } from 'them/themColors';
+import ErrorBoundary from 'components/errBoundary';
 
-const ErrorBoundary = lazy(() => import('components/errBoundary'));
 const InterfacePages = lazy(() => import('Pages/interface'));
 const AuthPages = lazy(() => import('Pages/auth'));
 
@@ -23,16 +23,16 @@ const ThemWrapper = ({ children }) => (
 function App() {
   return (
     <>
-      <Suspense fallback={<PageSpinner />}>
-        <ErrorBoundary>
+      <ErrorBoundary>
+        <Suspense fallback={<PageSpinner />}>
           <ThemWrapper>
             <Routes>
               <Route path="/*" element={<InterfacePages />} />
               <Route path="/auth/*" element={<AuthPages />} />
             </Routes>
           </ThemWrapper>
-        </ErrorBoundary>
-      </Suspense>
+        </Suspense>
+      </ErrorBoundary>
     </>
   );
 }

@@ -77,3 +77,17 @@
     padding: 3px 18px;
     margin-top: .5rem;
 }
+
+/* showicon */
+.showicon {
+    position: absolute;
+    right: 6%;
+    bottom: 10%;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #003153;
+    background-color: #D8E6F1;
+    border-radius: 2px;
+    border: 1px solid #0000;
+    font-size: 18px;
+}

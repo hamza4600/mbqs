@@ -306,7 +306,6 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
     return (
         <>
             <div id="sub">
-                <H1>Enter the specifics of your position</H1>
                 <Box>
                     <Dropdown
                         placeholder="Select Role"

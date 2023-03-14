@@ -5,6 +5,8 @@ import { Box, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 import useDropDown from "components/dropdown/useDropdown"
 import { memo, useReducer } from "react"
+import Button from "components/button"
+import { ReferWrapper } from "../creatBusi/style"
 
 const initalState = {
     textHeader: "",
@@ -12,9 +14,7 @@ const initalState = {
     textDetails: "",
     textImage: { name: "", url: "" },
     variation: "",
-    subVariation: "",
-    refenceLink: "",
-    refenceUrl: "",
+    refence: []
 };
 
 // drop down menu
@@ -22,8 +22,6 @@ const dData = [
     { id: 1, name: "Variation 1" },
     { id: 2, name: "Variation 2" },
     { id: 3, name: "Variation 3" },
-    { id: 4, name: "Variation 4" },
-    { id: 5, name: "Variation 5" },
 ];
 
 
@@ -31,13 +29,59 @@ const TextInputSection = ({ data, setData }) => {
 
     const { isOpen, toggle, close } = useDropDown()
 
+    const addNewField = () => {
+        const field = [...data.refence]
+        for (let i = 0; i < 2; i++) {
+            field.push({
+                id: Math.floor(Math.random() * 1000),
+                value: "",
+                placeholder: i === 0 ? "Reference Link Name" : "Insert Reference URL",
+            })
+        }
+        setData({ field: "refence", value: field })
+    }
+
+    const removeNewField = () => {
+        let field = [...data.refence]
+        if (field.length > 0) {
+            field.splice(-2, 2)
+        }
+        setData({ field: "refence", value: field })
+    }
+
+    const handelNestedInput = (event, id) => {
+        const fied = data.refence.map((item) => {
+            if (item.id === id) {
+                return {
+                    ...item,
+                    value: event.target.value
+                }
+            }
+            return item
+        })
+        setData({ field: "refence", value: fied })
+    }
+
+    // add and remove section 
+    const addNewSection = () => {
+        console.log("add new section")
+    }
+
+    const removeNewSection = () => {
+        console.log("remove new section")
+    }
+
+
     return (
         <>
             <EditPageHeader
                 title="Text & Image"
+                handelAddIcon = {addNewSection}
+                handelRemoveIcon = {removeNewSection}
             >
                 <InputContainer>
-
+                
+                    {/* new section  */}
                     <Box>
                         <Input
                             inputype="text"
@@ -69,7 +113,7 @@ const TextInputSection = ({ data, setData }) => {
                         <label
                             htmlFor="file"
                         >
-                            {data.textImage.name ? data.textImage.name : "Drop Image Here"}
+                            {data.textImage.name ? data.textImage.name : "Drop Image"}
                         </label>
                         <input
                             accept="image/*"
@@ -90,7 +134,7 @@ const TextInputSection = ({ data, setData }) => {
                     <Box>
                         <Dropdown
                             options={dData}
-                            placeholder="Select Motion"
+                            placeholder="Select Variation"
                             type="addDataform"
                             isOpen={isOpen}
                             toggel={toggle}
@@ -102,36 +146,37 @@ const TextInputSection = ({ data, setData }) => {
                             inputype="text"
                             type="addDataform"
                             placeholder="Sub Variation"
-                            value={data.subVariation}
-                            onChange={event => setData({ field: "subVariation", value: event.target.value })}
+                            value={data.variation?.name}
                         />
                     </Box>
 
-                    <Box>
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Reference Link Name"
-                            value={data.refenceLink}
-                            onChange={event => setData({ field: "refenceLink", value: event.target.value })}
-                        />
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Reference Link Url"
-                            value={data.refenceUrl}
-                            onChange={event => setData({ field: "refenceUrl", value: event.target.value })}
-                        />
-                    </Box>
+                    <ReferWrapper>
+                        {
+                            data.refence.length > 0 && data.refence.map((item, index) => (
+                                <div key={index}>
+                                    <input
+                                        type="text"
+                                        placeholder={item.placeholder}
+                                        id={item.id}
+                                        value={item.value}
+                                        onChange={(e) => handelNestedInput(e, item.id)}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </ReferWrapper>
                     <div
                         style={{ display: "flex", justifyContent: "flex-end" }}
                     >
-                        <AddIcon />
-                        <RemoveIcon />
+                        <AddIcon onClick={addNewField} />
+                        <RemoveIcon onClick={removeNewField} />
                     </div>
 
                     <ListItem />
                 </InputContainer>
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )
@@ -151,22 +196,16 @@ const TextPreviewSection = ({ data }) => {
 
                     <picture>
                         <img
+                            style={{
+                                maxWidth: "350px",
+                                maxHeight: "350px",
+                                objectFit: "cover",
+                            }}
                             src={data.textImage.url}
                             alt={data.textImage.name}
                         />
                     </picture>
                 </div>
-
-                <p>
-                    <span>{data.variation?.name}</span>
-                    <span>{data.subVariation}</span>
-                </p>
-                <p>
-                    <span>{data.refenceLink}</span>
-                </p>
-                <p>
-                    <span>{data.refenceUrl}</span>
-                </p>
 
                 <PreviewBtnGroup
                     showEditorBtn
@@ -182,7 +221,6 @@ const TextImage = () => {
 
     // reducer function
     const reducer = (state, { field, value }) => {
-        if (value === "" || value === undefined || value === " ") return state;
         return {
             ...state,
             [field]: value,

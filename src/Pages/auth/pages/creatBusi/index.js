@@ -3,12 +3,13 @@ import PageSpinner from 'components/pageSpinner';
 import { EditPageHeader, EditPageLayout, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage';
 import { Left, MapImages, Right } from './componets';
 import { PreviewImage } from './style';
+import Button from 'components/button';
 
 const EditSection = ({ title, data, dispatch, handelDropdown, section, setSection }) => {
     return (
         <>
             <EditPageHeader
-                title={`${title ? title : 'Register New Business '}   Page`}
+                title={`${title ? title : section === 'right' ? 'Enter the specifics of your position' : 'Register New Business'} `}
                 hideIcon={true}
             >
                     {
@@ -25,6 +26,9 @@ const EditSection = ({ title, data, dispatch, handelDropdown, section, setSectio
                                 handelDropdown={handelDropdown}
                             />
                     }
+                    <Button
+                        type='showicon'
+                    >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )

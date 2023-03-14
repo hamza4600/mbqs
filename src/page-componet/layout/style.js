@@ -28,6 +28,7 @@ export const Container = styled.div`
     }
 
     #right {
+        position: relative;
         background-color: #F0F8FF;
         font-size: 14px; 
         font-weight: 400;
@@ -188,7 +189,7 @@ export const FileInput = styled.div`
     margin-top: ${props => props.large && '10px'}; 
     width :  ${props => props.box ? ' ' : '100%'}; 
     padding: 0px 5px;
-    min-width: 300px !important;
+    // min-width: 300px !important;
     font-size: 13px;
     margin-bottom: 10px;
     position: relative;

@@ -17,8 +17,8 @@ const detail = {
 
 const AuthPages = () => (
     <>
-        <Suspense fallback={<PageSpinner />}>
-            <InterfaceLayout blurnav= {false}>
+        <InterfaceLayout blurnav={false}>
+            <Suspense fallback={<PageSpinner />}>
                 <Routes>
                     {paths.map((path) => (
                         <Route
@@ -27,8 +27,8 @@ const AuthPages = () => (
                             element={path.component} />
                     ))}
                 </Routes>
-            </InterfaceLayout>
-        </Suspense>
+            </Suspense>
+        </InterfaceLayout>
     </>
 )
 

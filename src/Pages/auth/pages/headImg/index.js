@@ -4,7 +4,7 @@ import useDropDown from 'components/dropdown/useDropdown'
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage'
 import { InputContainer } from 'page-componet/layout/style'
 import { PrevieContainer, FileContainer } from './style'
-
+import Button from 'components/button'
 
 const motions = [
     { id: 1, name: "Motion 1" },
@@ -12,7 +12,7 @@ const motions = [
     { id: 3, name: "Motion 3" },
     { id: 4, name: "Motion 4" },
     { id: 5, name: "Motion 5" },
-]
+];
 
 const ImageSliderSection = () => {
     const { isOpen, toggle, close } = useDropDown();
@@ -25,9 +25,9 @@ const ImageSliderSection = () => {
         let values = [];
         for (let i = 0; i < 2; i++) {
             values.push({
-                id: i + 1,
-                name: `Drop  Viedo ${i + 1} Here`,
-            });
+                id: Math.floor(Math.random() * 1000),
+                name: i === 0 ? `Drop  image` : `Drop  Viedo`
+            })
         }
         setFields(values);
     }, [])
@@ -36,10 +36,12 @@ const ImageSliderSection = () => {
     const handleAddFields = () => {
         if (fields.length <= 9) {
             const values = [...fields];
-            values.push({
-                id: values.length + 1,
-                name: `Drop  Viedo ${values.length + 1} Here`,
-            });
+            for (let i = 0; i < 2; i++) {
+                values.push({
+                    id: Math.floor(Math.random() * 1000),
+                    name: i === 0 ? `Drop  image` : `Drop  Viedo`
+                })
+            }
             setFields(values);
         }
     }
@@ -47,11 +49,10 @@ const ImageSliderSection = () => {
     const handleRemoveFields = () => {
         if (fields.length > 2) {
             const values = [...fields];
-            values.splice(values.length - 1, 1);
+            values.splice(values.length - 2, 2);
             setFields(values);
         }
     }
-
 
     return (
         <>
@@ -85,7 +86,9 @@ const ImageSliderSection = () => {
                     }
                     <ListItem />
                 </InputContainer>
-              
+                <Button
+                        type='showicon'
+                    >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )

@@ -5,6 +5,8 @@ import Input from "components/input";
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
 import { Box, FileInput, InputContainer } from "page-componet/layout/style";
 import styled from "styled-components";
+import Button from "components/button";
+import { useCallback } from "react";
 
 const dData = [
     { id: 1, name: "News Category 1" },
@@ -13,7 +15,7 @@ const dData = [
     { id: 4, name: "News Category 4" },
 ]
 
-const EditSection = ({ state, setState }) => {
+const EditSection = ({ state, setState, type }) => {
 
     const { isOpen, toggle, close } = useDropDown();
 
@@ -75,38 +77,50 @@ const EditSection = ({ state, setState }) => {
     return (
         <>
             <EditPageHeader
-                title="Background Image News"
-                hideIcon={true}
+                title="Background Image"
+                // hideIcon={true}
+                handelAddIcon={type === 'business' && addImages}
+                handelRemoveIcon={type === 'business' && removeImages}
             >
+
                 <InputContainer>
-                    <Box>
-                        <Dropdown
-                            placeholder="Select News Category"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
-                            options={dData}
-                            type="addDataform"
-                            value={state.selectCategory?.name}
-                            updateValue={(value) => setState({ ...state, selectCategory: value })}
-                        />
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Section Name"
-                            value={state.selectCategory?.name || " Select News Category"}
-                            readOnly={true}
-                        />
-                    </Box>
+                    {
+                        type === 'business ' && null
+                    }
+                    {
+                        type === 'news' &&
+                        (<>
+                            <Box>
+                                <Dropdown
+                                    placeholder="Select News Category"
+                                    isOpen={isOpen}
+                                    toggel={toggle}
+                                    close={close}
+                                    options={dData}
+                                    type="addDataform"
+                                    value={state.selectCategory?.name}
+                                    updateValue={(value) => setState({ ...state, selectCategory: value })}
+                                />
+                                <Input
+                                    inputype="text"
+                                    type="addDataform"
+                                    placeholder="Section Name"
+                                    value={state.selectCategory?.name || " Select News Category"}
+                                    readOnly={true}
+                                />
+                            </Box>
+                        </>)
+                    }
 
-                    <Box full marginTop='2rem'>
-                        <HeaderTitleIcons
-                            title="Background Image"
-                            handelAddIcon={addImages}
-                            handelRemoveIcon={removeImages}
-                        />
-                    </Box>
-
+                    {type === 'business' && null}
+                    {/*                        
+                        // <Box full marginTop='2rem'>
+                            //     <HeaderTitleIcons
+                            //         title="Background Image"
+                            //         handelAddIcon={addImages}
+                            //         handelRemoveIcon={removeImages}
+                            //     />
+                            // </Box> */}
                     {
                         state.images.map((item, index) => (
                             <FileInput>
@@ -130,16 +144,18 @@ const EditSection = ({ state, setState }) => {
                     }
                     <ListItem />
                 </InputContainer>
-                
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
 
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ state , type}) => {
+const PreviewSection = ({ state, type }) => {
 
-    const moveNextPage = () => {
+    const moveNextPage = useCallback(() => {
         console.log("next page");
         switch (type) {
             case "business":
@@ -166,29 +182,28 @@ const PreviewSection = ({ state , type}) => {
             default:
                 break;
         }
-    }
+    }, [type])
 
-    return(
-    <>
-        <PreviewSectionHeader>
-            <Flex>
-                {
-                    state.images.length > 0 && state.images.map((item, index) => {
-                        return item.url !== "" &&
-                            <img
-                                key={index}
-                                src={item.url}
-                                alt={item.name}
-                            />
+    return (
+        <>
+            <PreviewSectionHeader>
+                <Flex>
+                    {
+                        state.images.length > 0 && state.images.map((item, index) => {
+                            return item.url !== "" &&
+                                <img
+                                    key={index}
+                                    src={item.url}
+                                    alt={item.name}
+                                />
+                        })
                     }
-                    )
-                }
-            </Flex>
-            <PreviewBtnGroup
-                nextPage = {moveNextPage}
-            />
-        </PreviewSectionHeader>
-    </>
+                </Flex>
+                <PreviewBtnGroup
+                    nextPage={moveNextPage}
+                />
+            </PreviewSectionHeader>
+        </>
     )
 }
 
@@ -208,10 +223,11 @@ const BackgroundNews = ({ type }) => {
                 <EditSection
                     state={state}
                     setState={setState}
+                    type={type.type}
                 />
                 <PreviewSection
                     state={state}
-                    type= {type.type}
+                    type={type.type}
                 />
             </EditPageLayout>
         </>

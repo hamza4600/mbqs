@@ -102,7 +102,6 @@ export const EditPageHeader = (props) => {
                         hideIcon={hideIcon}
                         title={title}
                     />
-                    {/* </div> */}
 
                     {React.Children.map(children, child => {
                         return child
