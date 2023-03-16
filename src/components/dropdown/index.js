@@ -124,7 +124,7 @@ const Dropdown = forwardRef(
         }, [updateValue, onChange, close])
 
 
-        const handelType = (type) => {
+        const handelType = useCallback((type) => {
             switch (type) {
                 case 'form':
                     return 'form'
@@ -137,7 +137,7 @@ const Dropdown = forwardRef(
                 default:
                     return 'addData'
             }
-        }
+        }, [])
 
         return (
             <>

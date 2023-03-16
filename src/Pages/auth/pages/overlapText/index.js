@@ -1,16 +1,15 @@
+import Button from "components/button"
 import Dropdown from "components/dropdown"
 import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, InputContainer } from "page-componet/layout/style"
-import { memo, useReducer } from "react"
-
+import { memo, useCallback, useReducer } from "react"
+    
 const dData = [
     { id: 1, name: "Variation 1" },
     { id: 2, name: "Variation 2" },
     { id: 3, name: "Variation 3" },
-    { id: 4, name: "Variation 4" },
-    { id: 5, name: "Variation 5" },
 ];
 
 const InputSection = ({ data, setData }) => {
@@ -19,32 +18,95 @@ const InputSection = ({ data, setData }) => {
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
 
     // can addd more input field
+    const addInputField =() => {
+        console.log("addInputField" , data)
+        setData({
+            field: "textAray",
+            value: [
+                ...data.textAray,
+                {
+                    id: data.textAray.length + 1,
+                    field: "input",
+                    value: "",
+                    placeholder: "Insert text header",
+                },
+                {
+                    id: data.textAray.length + 2,
+                    field: "textarea",
+                    value: "",
+                    placeholder: "Enter Your Text Here",
+                }
+            ]
+        })
+    }
+
+    const removeField = () => {
+        
+        if (data.textAray.length > 2)  {
+            console.log("removeField" , data.textAray)
+            setData({
+                field: "textAray",
+                value: data.textAray.slice(0, -2)
+            })
+        }
+    }
+
+    const updateNestedValue = (event , id , field) => {
+
+        setData({
+            field: "textAray",
+            value: data.textAray.map((item) => {
+                if (item.id === id) {
+                    return {
+                        ...item,
+                        [field]: event.target.value
+                    }
+                }
+                return item
+            })
+        })
+    }
+
 
     return (
         <>
             <EditPageHeader
                 title="Over Lapping Text"
+                handelAddIcon = {addInputField}
+                handelRemoveIcon = {removeField}
             >
                 <InputContainer>
-                    <Box full>
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Insert text header"
-                            value={data.textHeader}
-                            onChange={event => setData({ field: "textHeader", value: event.target.value })}
-                        />
-                    </Box>
-
-                    <Box full>
-                        <Input.TextArea
-                            type="text"
-                            styleType="addDataArea"
-                            placeholder="Enter Your Text Here"
-                            value={data.textDetails}
-                            onChange={event => setData({ field: "textDetails", value: event.target.value })}
-                        />
-                    </Box>
+                    {
+                        Array.isArray(data.textAray) &&
+                        data.textAray.map((item, index) => {
+                            if (item.field === "input") {
+                                return (
+                                    <Box full key={item.id}>
+                                        <Input
+                                            inputype="text"
+                                            type="addDataform"
+                                            placeholder={item.placeholder}
+                                            value={item.value}
+                                            onChange={(event) => updateNestedValue(event , item.id , "value")}
+                                        />
+                                    </Box>
+                                )
+                            }
+                            if (item.field === "textarea") {
+                                return (
+                                    <Box full key={item.id}>
+                                        <Input.TextArea
+                                            type="text"
+                                            styleType="addDataArea"
+                                            placeholder={item.placeholder}
+                                            value={item.value}
+                                            onChange={(event) => updateNestedValue(event , item.id , "value")}
+                                        />
+                                    </Box>
+                                )
+                            }
+                        })
+                    }
 
                     <Box>
                         <Dropdown
@@ -61,8 +123,7 @@ const InputSection = ({ data, setData }) => {
                             inputype="text"
                             type="addDataform"
                             placeholder="Sub Variation"
-                            value={data.subVariation}
-                            onChange={event => setData({ field: "subVariation", value: event.target.value })}
+                            value={data.variation?.name}
                         />
                     </Box>
 
@@ -81,27 +142,27 @@ const InputSection = ({ data, setData }) => {
                             inputype="text"
                             type="addDataform"
                             placeholder="Select Position"
-                            value={data.positionValue}
-                            onChange={event => setData({ field: "positionValue", value: event.target.value })}
+                            value={data.position?.name}
                         />
                     </Box>
 
                     <ListItem />
                 </InputContainer>
-
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ data , type }) => {
+const PreviewSection = ({ data, type }) => {
 
-    // const nextPage = () => window.location.href = "/auth/viedo-list";
-    const nextPage = () => {
+    const nextPage = useCallback(() => {
         switch (type) {
             case "news":
                 window.location.href = "/auth/news-detail";
-                break;  
+                break;
             case "image":
                 window.location.href = "/auth/image-list";
                 break;
@@ -118,35 +179,36 @@ const PreviewSection = ({ data , type }) => {
                 window.location.href = "/auth/viedo-list";
                 break;
         }
-    }
+    }, [type])
 
     return (
         <>
             <PreviewSectionHeader>
 
-                <div>
-                    <h1>
-                        {data.textHeader}
-                    </h1>
-                    <p>
-                        {data.textDetails}
-                    </p>
+                <div
+                    style={{
+                        color: 'black',
+                        display: 'grid',
+                        gridTemplateColumns: 'repeat(1, 2fr)',
+                        girTemplateRows: 'repeat(2, 1fr)',
+                        gridGap: '15px',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        textAlign: 'center',
+                    }}
+                >
+                    {
+                        Array.isArray(data.textAray) &&
+                        data.textAray.map((item, index) => {
+                            return (
+                                <div key={item.id}>
+                                    {item.field === "input" && <h1>{item.value}</h1>}
+                                    {item.field === "textarea" && <p>{item.value}</p>}
+                                </div>
+                            )
+                        })
+                    }
                     <br />
-                    <p>
-                        {data.variation?.name}
-                    </p>
-                    <br />
-                    <p>
-                        {data.subVariation}
-                    </p>
-                    <br />
-                    <p>
-                        {data.position?.name}
-                    </p>
-                    <br />
-                    <p>
-                        {data.positionValue}
-                    </p>
 
                 </div>
                 <PreviewBtnGroup
@@ -160,17 +222,27 @@ const PreviewSection = ({ data , type }) => {
 }
 
 const initaValue = {
-    textHeader: "",
-    textDetail: "",
+    textAray: [
+        {
+            id: 1,
+            field: "input",
+            value: "",
+            placeholder: "Insert text header",
+        },
+        {
+            id: 2,
+            field: "textarea",
+            value: "",
+            placeholder: "Enter Your Text Here",
+        }
+    ],
     variation: "",
     subVariation: "",
-    position: "",
-    positionValue: "",
 }
 
 const OverLapppinText = ({ type }) => {
     console.log(type);
-    
+
     const reducer = (state, { field, value }) => {
         return {
             ...state,

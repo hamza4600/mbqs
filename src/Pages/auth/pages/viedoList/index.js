@@ -1,15 +1,15 @@
+import { memo, useEffect, useReducer } from "react";
+import Button from "components/button";
 import Dropdown from "components/dropdown";
 import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
 import { Box, FileInput, InputContainer } from "page-componet/layout/style";
-import { memo, useEffect, useReducer } from "react";
 
 const viedoType = [
     { id: 1, name: "drop viedo" }, // drop viedo
     { id: 2, name: "enter viedo url" }, // insert viedo url
 ]
-
 
 const ViedoInput = ({ data, setData }) => {
 
@@ -50,6 +50,15 @@ const ViedoInput = ({ data, setData }) => {
                     {
                         data.selectViedoType?.id === 1 ?
                             <>
+                                <Box full>
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Add Viedo Title"
+                                        value={data.viedoTitle}
+                                        onChange={event => setData({ field: "viedoTitle", value: event.target.value })}
+                                    />
+                                </Box>
                                 <FileInput >
                                     <label
                                         htmlFor="file"
@@ -94,6 +103,9 @@ const ViedoInput = ({ data, setData }) => {
                     }
                     <ListItem />
                 </InputContainer>
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )
@@ -131,15 +143,6 @@ const ViedoPreview = ({ data }) => {
                             <div>
                                 {/* https://www.youtube.com/embed/2g811Eo7K8U */}
                                 <h1>{data.viedoTitle}</h1>
-                                <iframe
-                                    style={{
-                                        maxWidth: "80%",
-                                    }}
-                                    src={data.viedoUrl}
-                                    controls
-                                    title="YouTube video player"
-                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                ></iframe>
                             </div>
                         )
                     }
