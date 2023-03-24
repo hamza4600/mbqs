@@ -1,9 +1,10 @@
-import { Suspense, memo, useReducer, useState } from 'react';
+import { Suspense, memo, useEffect, useReducer, useState } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import { EditPageHeader, EditPageLayout, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage';
 import { Left, MapImages, Right } from './componets';
 import { PreviewImage } from './style';
 import Button from 'components/button';
+import useWindowSize from 'Hooks/useViewport';
 
 const EditSection = ({ title, data, dispatch, handelDropdown, section, setSection }) => {
     return (
@@ -12,30 +13,57 @@ const EditSection = ({ title, data, dispatch, handelDropdown, section, setSectio
                 title={`${title ? title : section === 'right' ? 'Enter the specifics of your position' : 'Register New Business'} `}
                 hideIcon={true}
             >
-                    {
-                        section === 'right' ?
-                            <Right
-                                data={data}
-                                dispatch={dispatch}
-                                handelDropdown={handelDropdown}
-                                setSection={setSection}
-                            /> :
-                            <Left
-                                data={data}
-                                dispatch={dispatch}
-                                handelDropdown={handelDropdown}
-                            />
-                    }
-                    <Button
-                        type='showicon'
-                    >Show Media Icons</Button>
+                {
+                    section === 'right' ?
+                        <Right
+                            data={data}
+                            dispatch={dispatch}
+                            handelDropdown={handelDropdown}
+                            setSection={setSection}
+                        /> :
+                        <Left
+                            data={data}
+                            dispatch={dispatch}
+                            handelDropdown={handelDropdown}
+                        />
+                }
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )
 }
 
-const PreviewSection = ({ nextRoute, setSection, section , data}) => {
+const PreviewSection = ({ nextRoute, setSection, section, data }) => {
     console.log(data)
+ 
+    const { width } = useWindowSize();
+
+    const preivew = document.getElementById('left');
+    const btngrp = document.getElementById('btngrp');
+    const edit = document.getElementById('right');
+
+    useEffect(() => {
+        if (width < 868) {
+            preivew.style.display = 'none'
+            edit.appendChild(btngrp)
+            btngrp.style.width = '100%'
+            btngrp.style.display = 'flex'
+            btngrp.style.alignItems = 'center'
+            btngrp.style.justifyContent = 'center'
+            btngrp.style.top = '46rem'
+        } else if (width > 868) {
+            preivew.style.display = 'block'
+            preivew.appendChild(btngrp)
+            btngrp.style.width = ''
+            btngrp.style.display = ''
+            btngrp.style.alignItems = ''
+            btngrp.style.justifyContent = ''
+            btngrp.style.top = ''
+        }
+    }, [width])
+
     const nextPage = () => {
         if (nextRoute !== null) {
 
@@ -55,33 +83,32 @@ const PreviewSection = ({ nextRoute, setSection, section , data}) => {
     return (
         <>
             <PreviewSectionHeader>
-            
                 <PreviewImage>
-                        {/* image */}
-                        <MapImages
-                            data={data.image}
-                            title={'Images'}
-                            />
-                        {/* pdf */}
-                        <MapImages
-                            data={data.pdf}
-                            title={'PDF'}
-                        />
-                        {/* business image */}
-                        <MapImages
-                            data={data.businessImage}
-                            title={'Business Image'}
-                        />
-                        {/* business video */}
-                        <MapImages
-                            data={data.businessVideo}
-                            title={'Business Video'}
-                        />
+                    {/* image */}
+                    <MapImages
+                        data={data.image}
+                        title={'Images'}
+                    />
+                    {/* pdf */}
+                    <MapImages
+                        data={data.pdf}
+                        title={'PDF'}
+                    />
+                    {/* business image */}
+                    <MapImages
+                        data={data.businessImage}
+                        title={'Business Image'}
+                    />
+                    {/* business video */}
+                    <MapImages
+                        data={data.businessVideo}
+                        title={'Business Video'}
+                    />
 
                 </PreviewImage>
 
 
-                <PreviewBtnGroup    
+                <PreviewBtnGroup
                     showEditorBtn={false}
                     frontView={false}
                     nextPage={nextPage}

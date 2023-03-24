@@ -62,6 +62,10 @@ const Wrapper = styled.div`
         flex-direction: column;
         margin-top: 10px;
     }
+
+    @media (max-width: 768px) {
+        width: 220px;
+    }
     `;
 
 const UserMenu = ({ data }) => {

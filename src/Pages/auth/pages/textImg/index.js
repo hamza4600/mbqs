@@ -1,10 +1,10 @@
+import { memo, useReducer, useMemo } from "react"
 import Dropdown from "components/dropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 import useDropDown from "components/dropdown/useDropdown"
-import { memo, useReducer } from "react"
 import Button from "components/button"
 import { ReferWrapper } from "../creatBusi/style"
 import { PreviewImage } from "./style"
@@ -172,7 +172,7 @@ const TextInputSection = ({ data, setData }) => {
         })
         setData({ field: "section", value: field })
     }
-    
+
     return (
         <>
             <EditPageHeader
@@ -292,55 +292,85 @@ const TextInputSection = ({ data, setData }) => {
 const TextPreviewSection = ({ data }) => {
 
     const nextPage = () => window.location.href = "/auth/overlap-text-business";
+
+    const requiredData = useMemo(() => {
+        let arr = [];
+        let subArr = [];
+        let row = [];
+
+        for (let i = 0; i < data.section.length; i++) {
+            const item = data.section[i];
+            if (item.text === "text") {
+                // add value of text in row
+                row = item.row.map((item) => {
+                    return {
+                        ...item,
+                        value: item.value,
+                    };
+                });
+                subArr.push({
+                    type: "text",
+                    row : row 
+                });
+            } else if (item.text === "area") {
+                // add value of area in row 
+                row.push({
+                    type: "area",
+                    value: item.value,
+                });
+            } else if (item.text === "image") {
+                subArr.push({
+                    type: "image",
+                    url: item.value.url,
+                    name: item.value.name,
+                });
+            }
+
+            if (subArr.length === 2) {
+                arr.push(subArr);
+                subArr = [];
+            }
+        }
+
+        if (subArr.length > 0) {
+            arr.push(subArr);
+        }
+
+        return arr;
+    }, [data]);
+
     return (
         <>
             <PreviewSectionHeader>
-
                 <PreviewImage>
-                    <div id ='grid'>
-                    {
-                        data.section.map((item, index) => {
-                            // text and area should be in one box
-                            if (item.text === "text" && item.row) {
-                                return (
-                                    <div key={index}>
-                                        {item.row.map((ite, index) => (
-                                            <>
-                                                <p
-                                                    key={index}
-                                                    id={ite.id}
-                                                >{ite.value}</p>
-                                            </>
-                                        )
-                                        )}
-                                    </div>
-                                )
-                            } else if (item.text === "area") {
-                                return (
-                                    <>
-                                        <p key={index}> {item.value}</p>
-                                    </>
-                                )
-                            } else if (item.text === "image") {
-                                return (
-                                    <>
-                                        <picture key={index} >
-                                            <img
-                                                style={{
-                                                    maxWidth: "350px",
-                                                    maxHeight: "300px",
-                                                    objectFit: "cover",
-                                                }}
-                                                src={item.value.url}
-                                                alt={item.value.name}
-                                            />
-                                        </picture>
-                                    </>
-                                )
-                            }
+                    <div id='grid'>
+                        {
+                            requiredData.map((item, index) => (
+                                <div className="item" key={index}>
+                                    {item.map((ite, index) => (
+                                        <div id="txt" key={index}>
+                                            {ite.type === "text" ? (
+                                                <>
+                                                    {ite.row.map((ite, index) => (
+                                                        index === 0 ? 
+                                                        <h1 key={index}>{ite.value}</h1> : 
+                                                        <p key={index} id={ite.type ? ite.type : null}>{ite.value}</p> 
+                                                    ))}
+                                                </>
+                                            ) 
+                                            : ite.type === "image" ? (
+                                                <>
+                                                    <img
+                                                        src={ite.url}
+                                                        alt={ite.name}
+                                                    />
+                                                </>
+                                            ) : null}
+                                        </div>
+                                    ))}
+                                </div>
+                            ))
                         }
-                        )
-                    }
                     </div>
                 </PreviewImage>
 
@@ -349,7 +379,6 @@ const TextPreviewSection = ({ data }) => {
                     nextPage={nextPage}
                 />
             </PreviewSectionHeader>
-
         </>
     )
 }

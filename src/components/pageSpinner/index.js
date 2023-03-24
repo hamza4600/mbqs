@@ -1,7 +1,6 @@
 import Spinner from 'components/spinner/spinner';
 import { forwardRef, memo } from 'react';
 import styled from 'styled-components';
-// import logo from '../../assits/Logo.svg';
 
 const PageSpinner = memo(forwardRef(
     function PageSpinner(props, ref) {
@@ -9,7 +8,6 @@ const PageSpinner = memo(forwardRef(
             <>
                 <Backdrop ref={ref} {...props} >
                     <Spinner sizeKey="large" color="#fff" isVisable={true}/>
-                    {/* <img src={logo} alt="logo" /> */}
                 </Backdrop>
             </>
         )

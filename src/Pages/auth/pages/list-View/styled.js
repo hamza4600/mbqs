@@ -26,7 +26,20 @@ export const Container = styled.div`
         margin-top: 20px;
     }
 
-
+    @media (max-width: 768px) {
+        #inline {
+            #addData {
+                display: none;
+            }
+        }
+    }
+    @media (max-width: 868px) {
+        #inline {
+            #addData {
+                width: 170px;
+            }
+        }
+    }
 `;
 
 
@@ -72,6 +85,18 @@ export const Left = styled.div`
     #dropdownshare p {
         margin-left: 15px;
     }
+
+    @media (max-width: 868px) {
+        #search {
+            display: none;
+        }
+        #dropdown {
+            width: unset !important;
+        }
+        #dropdownshare {
+            width: unset !important;
+        }
+    }
    
 `;
 
@@ -94,4 +119,9 @@ export const Right = styled.div`
         margin-top: 5px;
         cursor: pointer;
     }
+
+    @media (max-width: 868px) {
+        display: none;
+    }
+
 `;

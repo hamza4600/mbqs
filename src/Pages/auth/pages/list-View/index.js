@@ -159,6 +159,7 @@ const ListViewPage = (props) => {
                     <Button
                         text="Add"
                         type='addData'
+                        id = 'addData'
                         leftIcon={<MdOutlineAdd size={20} />}
                         onClick={addbusiness}
                     >

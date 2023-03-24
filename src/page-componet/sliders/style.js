@@ -67,6 +67,18 @@ export const Wrapper = styled.div`
         color: #f0f0f0 !important;
     }
 
+    @media (max-width: 768px) {
+
+        .list {
+            margin-left: 0px;
+        }
+
+        #drop {
+            font-size: 13px;
+            font-weight: lighter !important;
+        }
+    }
+
 `;
 
 export const Span = styled.span`

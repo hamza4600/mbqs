@@ -144,11 +144,11 @@ export const PreviewBtnGroup = (props) => {
     } = props;
 
     return (
-        <BtnContainer>
+        <BtnContainer id='btngrp'>
             {
                 showEditorBtn && (
                     <Button
-                        type='view'
+                        type='viewedit'
                         id='save'
                         // onClick={frontView}
                         leftIcon={<img src={logo} alt="logo" />}

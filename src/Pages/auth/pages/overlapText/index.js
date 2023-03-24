@@ -91,7 +91,7 @@ const InputSection = ({ data, setData }) => {
                                         />
                                     </Box>
                                 )
-                            }
+                            } //xss
                             if (item.field === "textarea") {
                                 return (
                                     <Box full key={item.id}>

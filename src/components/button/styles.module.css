@@ -56,9 +56,22 @@
     border-radius: 1px;
     font-weight: 400;
     height: 35px;
+    text-transform: capitalize;
 }
+
 /* view Data */
 .view {
+    background-color: #bbdef9;
+    color: black;
+    padding: 5px 15px;
+    width: 170px;
+    border-radius: 1px;
+    font-weight: 400;
+    color: #003153;
+    height: 35px;
+}
+/* view Data Edit */
+.viewedit {
     background-color: #bbdef9;
     color: black;
     padding: 5px 15px;
@@ -90,4 +103,19 @@
     border-radius: 2px;
     border: 1px solid #0000;
     font-size: 18px;
+}
+
+@media (max-width: 868px) {
+    .showicon {
+      display: none;
+    }
+    .addData {
+        width: 135px;
+    }
+    .view {
+        width: 135px;
+    }
+    .viewedit {
+        display: none;
+    }
 }

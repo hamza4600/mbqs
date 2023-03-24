@@ -29,10 +29,14 @@ const Wrapper = styled.div`
     }
 
     @media screen and (max-width: 768px) {
-        right: 180px;
+        right: 0;
+        background: #204D70;
+        top: 39px;
+        width: 100%;
 
         input {
-            width: 220px;
+            position: relative;
+            left: 4rem;
         }
     }
 

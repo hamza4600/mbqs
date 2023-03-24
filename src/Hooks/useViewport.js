@@ -10,14 +10,18 @@ function useWindowSize() {
   // make user of LayoutEffect
 
   useLayoutEffect(() => {
-    // Handler to call on window resize
+   
+    let timeout;
     function handleResize() {
-      // Set window width/height to state
-      setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
-      });
+      clearTimeout(timeout);
+      timeout = setTimeout(() => {
+        setWindowSize({
+          width: window.innerWidth,
+          height: window.innerHeight,
+        });
+      }, 200);
     }
+
     // Add event listener
     if (!visualPort) {
       window.addEventListener("resize", handleResize);

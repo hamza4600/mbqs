@@ -12,7 +12,7 @@ const Button = memo(
                 isDisabled = false,
                 type,
                 onClick,
-
+                className,
             } = props;
             return (
                 <>
@@ -22,13 +22,14 @@ const Button = memo(
                             type={type}
                             disabled={isDisabled}
                             onClickCapture={(e) => { e.preventDefault(); }}
-                            className={clsx(styles.button, {
+                            className={clsx(styles.button, className, {
                                 [styles.disabled]: isDisabled,
                                 [styles.model]: type === 'login-model',
                                 [styles.addData]: type === 'addData',
                                 [styles.usermodel]: type === 'usermodel',
                                 [styles.view]: type === 'view',
                                 [styles.showicon]: type === 'showicon',
+                                [styles.viewedit]: type === 'viewedit',
                             })}
                             onClick={onClick}
                             {...props}

@@ -2,7 +2,6 @@ import { Suspense } from 'react';
 import PageSpinner from 'components/pageSpinner';
 import Edit from "../../../../assits/Dash.png";
 import styled from 'styled-components';
-//  all components are lazy loaded 
 
 const Container = styled.div`
     display: flex;
@@ -31,7 +30,7 @@ const Container = styled.div`
     @media (max-width: 768px) {
         
         width: 80%;
-
+        height: 92%;
         img {
             width: 300px;
         }

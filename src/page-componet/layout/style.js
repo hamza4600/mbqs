@@ -63,6 +63,26 @@ export const Container = styled.div`
     .line > p {
         margin-right: 10px;
     }
+
+    @media (max-width: 768px) {
+        .inlineflex {
+            h1 {
+                font-size: 18px;
+            }
+        }
+
+        #left {
+            height: 50vh;
+            margin-top: 20px;
+            right: 1rem;
+        }
+        .flex {
+            min-height: auto;
+        }
+        .italic {
+            display: none;
+        }
+    }
 `;
 
 
@@ -115,6 +135,10 @@ export const InputContainer = styled.div`
         width: 5px;
     }
 
+    @media (max-width: 768px) {
+        max-width: 94%;
+    }
+
 `;
 
 export const BtnContainer = styled.div`
@@ -138,6 +162,9 @@ export const BtnContainer = styled.div`
         margin-right: 10px !important;
     }
 
+    @media (max-width: 768px) {
+        right: 0px;
+    }
 `;
 
 // use in all application

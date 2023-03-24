@@ -1,7 +1,10 @@
 import Footer from "components/footer";
 import MakePage from "components/makepage"
+import Spinner from "components/spinner/spinner";
 import PageNavbar from "page-componet/pag_nav";
-import PageSideBar from "page-componet/sliders";
+import { Suspense, lazy } from "react";
+
+const PageSideBar = lazy(() => import("page-componet/sliders"));
 
 const InterfaceLayout = (props) => {
     const { children, sidebar = true, blurnav } = props;
@@ -11,7 +14,13 @@ const InterfaceLayout = (props) => {
             <MakePage>
                 <PageNavbar blure={blurnav} />
                 <main>
-                    {sidebar && <PageSideBar />}
+                    {
+                        sidebar && (
+                            <Suspense fallback={<Spinner sizeKey="small" color="#fff" isVisable={true} />}>
+                                <PageSideBar />
+                            </Suspense>
+                        )
+                    }
                     <div className={sidebar ? "main-page" : null} >
                         {children}
                     </div>

@@ -27,7 +27,7 @@ export const Aside = styled.aside`
   }
 
   @media (max-width: 768px) {
-
+    width: ${(props) => (props.width ? props.width - 10 : "230")}px;
   }
   `;
 

@@ -47,7 +47,19 @@ const DialOuter = styled.div`
         background: #D9D9D9;
     }
 
-    `;
+    @media (max-width: 768px) {
+        #delete {
+            width: 90%;
+            height: 326px;
+        }
+
+        #delete h2 {
+            font-size: 20px;
+            font-weight: 300;
+        }
+
+    }
+`;
 
 
 const DialInner = styled.div`
@@ -82,13 +94,18 @@ const DialInner = styled.div`
         width: 100%;
         margin: 0 10px;
         padding: 8px 16px;
-        border-radius: 5px;
+        border-radius: 2px;
         border: none;
         outline: none;
         cursor: pointer;
         font-size: 18px;
     }
-        
+    
+    @media (max-width: 768px) {
+        #dialog_footer {
+            width: 72%;
+        }
+    }
 `;
 
 const DialogBox = memo(forwardRef(

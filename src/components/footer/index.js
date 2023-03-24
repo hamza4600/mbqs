@@ -14,6 +14,11 @@ const PageFoot = styled.footer`
     
     @media (max-width: 750px) {
         max-height: 50px;
+
+        p {
+            padding: 10px 0px;
+            text-align: center;
+        }
     }
     `;
 

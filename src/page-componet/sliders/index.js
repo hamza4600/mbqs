@@ -217,7 +217,7 @@ const PageSideBar = () => {
     const state = useSelector(state => state.sidebar)
     return (
         <>
-            {state.dongal ? <PageSide /> : null}    
+            {state.dongal ? <PageSide /> : null}  
         </>
     )
 }

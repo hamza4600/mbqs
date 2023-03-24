@@ -3,7 +3,6 @@
     background-color: transparent;
     margin-top: 10px;
     overflow: auto;
-   
 }
 
 .table table {
@@ -73,4 +72,20 @@
 .svg:hover {
     cursor: pointer;
     color: white;
+}
+
+@media (max-width: 768px) {
+    td {
+        width: 11%;
+    }
+    .table table th {
+        font-size: 14px;
+        font-weight: 400;
+    }
+    .table table tbody td {
+        font-size: 12px;
+    }
+    .table table {
+        min-width: 1120px;
+    }
 }

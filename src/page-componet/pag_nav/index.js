@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Suspense, useState } from "react";
 
 import Navbar from "components/navbar"
 import styled from "styled-components"
@@ -17,6 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
 // HOC
 import outisdeClick from "functions/outside";
+import Spinner from "components/spinner/spinner";
 
 const UserMenu = React.lazy(() => import("./usermenu"));
 
@@ -137,6 +138,7 @@ const RightSide = () => {
                     icon={<BiSearch size={20} />}
                     Click={search}
                     color={searh}
+                    outSide={() => setSearh(false)}
                 />
                 <Icons
                     hover="Menu"
@@ -157,10 +159,14 @@ const RightSide = () => {
                 />
             </Wrapper>
             {
-                searh && <Searchbar />
+                searh && <Suspense fallback={<Spinner sizeKey="small" color="#fff" isVisable={true}/>}>
+                    <Searchbar />
+                </Suspense>
             }
             {
-                user && <UserMenu data={userData} />
+                user && <Suspense fallback={<Spinner sizeKey="small" color="#fff" isVisable={true}/>}>
+                    <UserMenu data={userData} />
+                </Suspense>
             }
 
         </>
