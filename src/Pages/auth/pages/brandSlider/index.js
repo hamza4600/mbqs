@@ -22,7 +22,7 @@ const SliderInput = ({ images, setImages }) => {
                     {
                         id: Math.floor(Math.random() * 1000),
                         value: "",
-                        placeholder: "Insert list header",
+                        placeholder: "Insert brand header",
                     }
                 ]
             },

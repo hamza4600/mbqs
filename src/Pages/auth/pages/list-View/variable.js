@@ -59,7 +59,7 @@ export const ListBod = [
     email: "info@mainbuilder.com",
     contact: "+46 000 000 000",
     regesterDate: "2021-01-01",
-    compantStatus: "Deactive",
+    compantStatus: "Active",
   }, 
   {
     id: 4,
@@ -109,7 +109,7 @@ export const ListBod = [
     email: "info@mainbuilder.com",
     contact: "+46 000 000 000",
     regesterDate: "2021-01-01",
-    compantStatus: "Deactive",
+    compantStatus: "Active",
   }, 
   {
     id: 9,

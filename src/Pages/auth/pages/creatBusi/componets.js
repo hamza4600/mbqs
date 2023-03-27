@@ -32,7 +32,7 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
     };
 
     const handelRemoveField = () => {
-        let copy = [...data.addNewField];
+        let copy = [...data.addNewField];   
         if (copy.length > 2) {
             copy.splice(-2, 2);
             // update data.addNewField

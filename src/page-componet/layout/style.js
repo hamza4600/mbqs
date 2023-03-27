@@ -72,7 +72,7 @@ export const Container = styled.div`
         }
 
         #left {
-            height: 50vh;
+            min-height: 50vh;
             margin-top: 20px;
             right: 1rem;
         }

@@ -46,6 +46,10 @@ export const PreviewImage = styled.div`
         top: 20px;
     }
 
+    #txt {
+        text-align: center;
+    }
+
     @media (max-width: 768px) {
         .item {
             flex-direction: column;

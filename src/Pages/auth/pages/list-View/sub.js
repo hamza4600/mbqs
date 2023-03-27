@@ -29,7 +29,7 @@ export const ListBody = (props) => {
 
     const deleteBusiness = () => {
         // remove index of item
-        array.splice(id, 1);
+        // array.splice(id, 1);
         setModel(prev => !prev)
     }
 
@@ -104,13 +104,10 @@ export const ListBody = (props) => {
     );
 };
 
-const Text = (props) => {
-    const { text, placeholder } = props;
-    return (
-        <>
-            <div>
-                <textarea name="" id="reason" cols="10" rows="10" value={text} placeholder={placeholder} />
-            </div>
-        </>
-    );
-}
+const Text = ({ text, placeholder }) => (
+    <>
+        <div>
+            <textarea name="" id="reason" cols="10" rows="10" value={text} placeholder={placeholder} />
+        </div>
+    </>
+);

@@ -18,4 +18,9 @@ export const PrevieContainer = styled.div`
 
     padding: 0px 14px 0px 0px;
     height: 500px;
+
+    iframe {
+        width: 300px;
+        height: 300px;
+    }
 `;

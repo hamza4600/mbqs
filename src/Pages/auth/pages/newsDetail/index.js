@@ -44,8 +44,7 @@ const NewEditSection = ({ data, setData }) => {
                     <Box full marginTop="2rem">
                         <HeaderTitleIcons
                             title="News Details"
-                        // handelAddIcon={}
-                        // handelRemoveIcon={}
+                            hideIcon={true}
                         />
                     </Box>
 
@@ -123,7 +122,7 @@ const NewsPreviewSection = ({ data }) => {
     return (
         <>
             <PreviewSectionHeader>
- 
+
                 <h2 >{data.selectCategory?.name}</h2>
                 <h1 >{data.newHeader}</h1>
                 <p >{data.newDetail}</p>
@@ -137,7 +136,7 @@ const NewsPreviewSection = ({ data }) => {
 
                 <PreviewBtnGroup
                     showEditorBtn={true}
-                    nextPage = {() => { 
+                    nextPage={() => {
                         window.location.href = "/auth/new-page-list"
                     }}
                 />

@@ -1,25 +1,27 @@
+import { memo, useCallback, useMemo, useReducer } from "react"
+
 import Button from "components/button"
 import Dropdown from "components/dropdown"
 import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
-import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
+import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, InputContainer } from "page-componet/layout/style"
-import { memo, useCallback, useReducer } from "react"
-    
+
 const dData = [
     { id: 1, name: "Variation 1" },
     { id: 2, name: "Variation 2" },
     { id: 3, name: "Variation 3" },
 ];
 
-const InputSection = ({ data, setData }) => {
+const InputSection = ({ data, setData, type }) => {
 
     const { isOpen, toggle, close } = useDropDown()
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
+    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown()
 
     // can addd more input field
-    const addInputField =() => {
-        console.log("addInputField" , data)
+    const addInputField = () => {
+        console.log("addInputField", data)
         setData({
             field: "textAray",
             value: [
@@ -41,9 +43,9 @@ const InputSection = ({ data, setData }) => {
     }
 
     const removeField = () => {
-        
-        if (data.textAray.length > 2)  {
-            console.log("removeField" , data.textAray)
+
+        if (data.textAray.length > 2) {
+            console.log("removeField", data.textAray)
             setData({
                 field: "textAray",
                 value: data.textAray.slice(0, -2)
@@ -51,8 +53,7 @@ const InputSection = ({ data, setData }) => {
         }
     }
 
-    const updateNestedValue = (event , id , field) => {
-
+    const updateNestedValue = (event, id, field) => {
         setData({
             field: "textAray",
             value: data.textAray.map((item) => {
@@ -67,15 +68,75 @@ const InputSection = ({ data, setData }) => {
         })
     }
 
+    const title = useMemo(() => {
+        switch (type) {
+            case "business":
+                return "Over Lapping Text";
+            case "news":
+                return "Add News Page";
+            case "event":
+                return "Over Lapping Text";
+            case "about":
+                return "Over Lapping Text";
+            case "privacy":
+                return "Over Lapping Text";
+            case "terms":
+                return "Over Lapping Text";
+            case "contact":
+                return "Over Lapping Text";
+            default:
+                break;
+        }
+    }, [type])
 
     return (
         <>
             <EditPageHeader
-                title="Over Lapping Text"
-                handelAddIcon = {addInputField}
-                handelRemoveIcon = {removeField}
+                title={title}
+                handelAddIcon={addInputField}
+                handelRemoveIcon={removeField}
+                hideIcon={type === 'news' ? true : false}
             >
                 <InputContainer>
+                    {
+                        type === 'news' && (
+                            <>
+                                <Box>
+                                <Dropdown
+                                    placeholder="Select News Category"
+                                    isOpen={isOpen3}
+                                    toggel={toggle3}
+                                    close={close3}
+                                    options={dData}
+                                    type="addDataform"
+                                    value = {data.category?.name}
+                                    updateValue = {(value) => setData({field: "category", value: value})}
+                                />
+                                <Input
+                                    inputype="text"
+                                    type="addDataform"
+                                    placeholder="Section Name"
+                                    value = {data.category?.name || " Select News Category"}
+                                    readOnly={true}
+                                />
+                            </Box>
+                            </>
+                        )
+                    }
+
+                    {
+                        type === 'news' && (
+                            <>
+                                <Box full marginTop='2rem'>
+                                    <HeaderTitleIcons
+                                        title="Background Image"
+                                        handelAddIcon={addInputField}
+                                        handelRemoveIcon={removeField}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
                     {
                         Array.isArray(data.textAray) &&
                         data.textAray.map((item, index) => {
@@ -87,11 +148,11 @@ const InputSection = ({ data, setData }) => {
                                             type="addDataform"
                                             placeholder={item.placeholder}
                                             value={item.value}
-                                            onChange={(event) => updateNestedValue(event , item.id , "value")}
+                                            onChange={(event) => updateNestedValue(event, item.id, "value")}
                                         />
                                     </Box>
                                 )
-                            } //xss
+                            }
                             if (item.field === "textarea") {
                                 return (
                                     <Box full key={item.id}>
@@ -100,7 +161,7 @@ const InputSection = ({ data, setData }) => {
                                             styleType="addDataArea"
                                             placeholder={item.placeholder}
                                             value={item.value}
-                                            onChange={(event) => updateNestedValue(event , item.id , "value")}
+                                            onChange={(event) => updateNestedValue(event, item.id, "value")}
                                         />
                                     </Box>
                                 )
@@ -238,6 +299,8 @@ const initaValue = {
     ],
     variation: "",
     subVariation: "",
+    position: "",
+    category: "",
 }
 
 const OverLapppinText = ({ type }) => {
@@ -258,6 +321,7 @@ const OverLapppinText = ({ type }) => {
                 <InputSection
                     data={data}
                     setData={setData}
+                    type={type.type}
                 />
                 <PreviewSection
                     data={data}

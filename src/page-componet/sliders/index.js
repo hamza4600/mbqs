@@ -12,7 +12,7 @@ import { BsChevronDown } from "react-icons/bs";
 
 function Icon(props) {
     const {
-        icon, hover, id, select,
+        icon, hover, id, select, key
     } = props
     const [ref, isHovering] = useHover()
 
@@ -20,7 +20,7 @@ function Icon(props) {
         <>
             <Span
                 ref={ref}
-                key={id}
+                key={id + key}
                 role='tab'
                 aria-selected={id === select}
                 aria-controls={`panel-id-${id}`}
@@ -195,8 +195,7 @@ const PageSide = () => {
                                 {
                                     Array.isArray(sidebarData) && sidebarData.map((item, index) => (
                                         <Icon
-                        
-                                            key={item.id}
+                                            key={item.id + index}
                                             icon={item.icon}
                                             hover={item.title}
                                             id={item.id}

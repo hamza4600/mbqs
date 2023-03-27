@@ -310,7 +310,7 @@ const TextPreviewSection = ({ data }) => {
                 });
                 subArr.push({
                     type: "text",
-                    row : row 
+                    row: row
                 });
             } else if (item.text === "area") {
                 // add value of area in row 
@@ -352,20 +352,20 @@ const TextPreviewSection = ({ data }) => {
                                             {ite.type === "text" ? (
                                                 <>
                                                     {ite.row.map((ite, index) => (
-                                                        index === 0 ? 
-                                                        <h1 key={index}>{ite.value}</h1> : 
-                                                        <p key={index} id={ite.type ? ite.type : null}>{ite.value}</p> 
+                                                        index === 0 ?
+                                                            <h1 key={index}>{ite.value}</h1> :
+                                                            <p key={index} id={ite.type ? ite.type : null}>{ite.value}</p>
                                                     ))}
                                                 </>
-                                            ) 
-                                            : ite.type === "image" ? (
-                                                <>
-                                                    <img
-                                                        src={ite.url}
-                                                        alt={ite.name}
-                                                    />
-                                                </>
-                                            ) : null}
+                                            )
+                                                : ite.type === "image" ? (
+                                                    <>
+                                                        <img
+                                                            src={ite.url}
+                                                            alt={ite.name}
+                                                        />
+                                                    </>
+                                                ) : null}
                                         </div>
                                     ))}
                                 </div>

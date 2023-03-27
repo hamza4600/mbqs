@@ -1,3 +1,4 @@
+import { memo, useReducer } from "react"
 import { H1 } from "components/a"
 import Dropdown from "components/dropdown"
 import useDropDown from "components/dropdown/useDropdown"
@@ -5,7 +6,10 @@ import Input from "components/input"
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { FileInput } from "page-componet/layout/style"
 import { Box, InputContainer } from "page-componet/layout/style"
-import { memo, useReducer } from "react"
+import map from "./map.png"
+import Button from "components/button"
+import { ReferWrapper } from "../creatBusi/style"
+import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 
 const dData = [
     { id: 1, name: "News Category 1" },
@@ -19,6 +23,32 @@ const EditDetailSection = ({ state, setState }) => {
     const { isOpen, toggle, close } = useDropDown();
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
     const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
+
+    const handelAddNewField = () => {
+        let copy = [...state.refarance]
+        for (let i = 0; i < 2; i++) {
+            copy.push({
+                id: Math.floor(Math.random() * 1000),
+                value: "",
+                placeholder: i === 0 ? "Reference Link Name" : "Insert Reference URL"
+            })
+        }
+        setState({
+            field: 'refarance',
+            value: copy
+        })
+    }
+
+    const handelRemoveField = () => {
+        let copy = [...state.refarance];
+        if (copy.length > 2) {
+            copy.splice(-2, 2);
+            setState({
+                field: 'refarance',
+                value: copy
+            })
+        }
+    }
 
     return (
         <>
@@ -215,28 +245,51 @@ const EditDetailSection = ({ state, setState }) => {
                         />
                     </FileInput>
                     <Box full><H1>Select Location on Map</H1></Box>
+                    <Box full>
+                        <img
+                            style={
+                                {
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "cover"
+                                }
+                            }
+                            src={map} alt="map" />
+                    </Box>
 
                     {/* Map APi Call */}
 
-                    <Box>
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Reference Link Name"
-                            value={state.refLinkName}
-                            onChange={(e) => setState({ field: "refLinkName", value: e.target.value })}
+                    <ReferWrapper>
+                        {
+                            state.refarance.map((item, index) => (
+                                <div key={item.id} id="mxn">
+                                    <input
+                                        type="text"
+                                        placeholder={item.placeholder}
+                                        id={item.id}
+                                    // value={item.value}
+                                    // onChange={(e) => handelNestedInput(e, item.id)}
+                                    />
+                                </div>
+                            ))
+                        }
+                    </ReferWrapper>
+                    <div
+                        style={{ display: "flex", justifyContent: "end", marginTop: "1rem" }}
+                    >
+                        <AddIcon
+                            onClick={handelAddNewField}
                         />
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Insert Reference URL"
-                            value={state.refLinkUrl}
-                            onChange={(e) => setState({ field: "refLinkUrl", value: e.target.value })}
+                        <RemoveIcon
+                            onClick={handelRemoveField}
                         />
-                    </Box>
+                    </div>
 
                     <ListItem />
                 </InputContainer>
+                <Button
+                    type='showicon'
+                >Show Media Icons</Button>
             </EditPageHeader>
         </>
     )
@@ -246,38 +299,12 @@ const PreviewDetailSection = ({ state }) => (
     <>
         <PreviewSectionHeader>
 
-            <h1>{state.header}</h1>
-            <p>{state.descritpion}</p>
-            {
-                state.image.url && <img src={state.image.url} alt="preview" />
-            }
-            <h2>Address</h2>
-            <p>{state.address}</p>
-            <p>{state.postCode}</p>
-            <p>{state.city?.name}</p>
-            <p>{state.state?.name}</p>
-            <p>{state.country?.name}</p>
-            <p>Hall ID: {state.hallId}</p>
-            <p>Exibation ID: {state.exibationId}</p>
-            <p>Event Date: {state.eventDate}</p>
-            <p>Opening Hours: {state.openingHours}</p>
-            <p>Closing Hours: {state.closingHours}</p>
-            <p>No of Vistor: {state.noOfVistor}</p>
-            <p>Ticket Price: {state.ticketPrice}</p>
-            <p>Sponser: {state.sponser}</p>
-            <p>Partners: {state.partners}</p>
-            {
-                state.sliderfile.url && <img src={state.sliderfile.url} alt="preview" />
-            }
-            <h2>Reference Link</h2>
-            <p>Reference Link Name: {state.refLinkName}</p>
-            <p>Reference Link URL: {state.refLinkUrl}</p>
-
+            <pre>{JSON.stringify(state, null, 4)}</pre>
 
             <PreviewBtnGroup
                 nextPage={() => window.location.href = "/auth/add-event-list"}
-                showEditorBtn={false}
-                nextBtnText = 'Save & Exit to list'
+                showEditorBtn
+                nextBtnText={'Save & Exit to list'}
             />
         </PreviewSectionHeader>
     </>
@@ -302,8 +329,21 @@ const initaiValue = {
     sponser: "",
     partner: "",
     sliderfile: { name: "", url: "" },
-    refLinkName: "",
-    refLinkUrl: "",
+    map: "",
+    refarance: [
+        {
+            id: 1,
+            name: "",
+            placeholder: "Reference Link Name",
+            value: "",
+        },
+        {
+            id: 2,
+            name: "",
+            placeholder: "Insert Reference URL",
+            value: "",
+        }
+    ]
 };
 
 const Index = () => {

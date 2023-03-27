@@ -164,7 +164,7 @@ const RightSide = () => {
                 </Suspense>
             }
             {
-                user && <Suspense fallback={<Spinner sizeKey="small" color="#fff" isVisable={true}/>}>
+                user && <Suspense fallback={<p>...</p>}>
                     <UserMenu data={userData} />
                 </Suspense>
             }

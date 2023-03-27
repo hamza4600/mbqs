@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from "react";
+import { memo, useEffect, useState, useCallback, useMemo } from "react";
 import Dropdown from "components/dropdown";
 import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
@@ -6,7 +6,6 @@ import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnG
 import { Box, FileInput, InputContainer } from "page-componet/layout/style";
 import styled from "styled-components";
 import Button from "components/button";
-import { useCallback } from "react";
 
 const dData = [
     { id: 1, name: "News Category 1" },
@@ -74,19 +73,37 @@ const EditSection = ({ state, setState, type }) => {
         })
     }
 
+    const title = useMemo(() => {
+        switch (type) {
+            case "business":
+                return "Background Image";
+            case "news":
+                return "Add News Page";
+            case "event":
+                return "Background Image";
+            case "about":
+                return "About Background Image";
+            case "privacy":
+                return "Privacy Background Image";
+            case "terms":
+                return "Terms Background Image";
+            case "contact":
+                return "Contact Background Image";
+            default:
+                break;
+        }
+    }, [type])
+
     return (
         <>
             <EditPageHeader
-                title="Background Image"
-                // hideIcon={true}
-                handelAddIcon={type === 'business' && addImages}
-                handelRemoveIcon={type === 'business' && removeImages}
+                title={title}
+                hideIcon={type === 'news' ? true : false}
+                handelAddIcon={addImages}
+                handelRemoveIcon={removeImages}
             >
 
                 <InputContainer>
-                    {
-                        type === 'business ' && null
-                    }
                     {
                         type === 'news' &&
                         (<>
@@ -112,15 +129,17 @@ const EditSection = ({ state, setState, type }) => {
                         </>)
                     }
 
-                    {type === 'business' && null}
-                    {/*                        
-                        // <Box full marginTop='2rem'>
-                            //     <HeaderTitleIcons
-                            //         title="Background Image"
-                            //         handelAddIcon={addImages}
-                            //         handelRemoveIcon={removeImages}
-                            //     />
-                            // </Box> */}
+                    {type === 'news' && (
+                        <>
+                            <Box full marginTop='2rem'>
+                                <HeaderTitleIcons
+                                    title="Background Image"
+                                    handelAddIcon={addImages}
+                                    handelRemoveIcon={removeImages}
+                                />
+                            </Box>
+                        </>
+                    )}
                     {
                         state.images.map((item, index) => (
                             <FileInput>
