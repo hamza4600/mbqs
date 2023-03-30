@@ -1,4 +1,4 @@
-import { memo, useCallback, useReducer } from "react"
+import { memo, useCallback, useMemo, useReducer } from "react"
 
 import Dropdown from "components/dropdown"
 import useDropDown from "components/dropdown/useDropdown"
@@ -18,6 +18,8 @@ const EditSection = ({ state, setState, type }) => {
 
     const { isOpen, toggle, close } = useDropDown();
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
+    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
+
     console.log(state);
 
     const addNewSection = () => {
@@ -50,35 +52,80 @@ const EditSection = ({ state, setState, type }) => {
             })
     }
 
+    const typee = useMemo(() => {
+        switch (type) {
+            case "events":
+                return "Header Image Slider"
+            case "about":
+                return "Add About Page"
+            case "terms":
+                return "Add Terms Page"
+            default:
+                return "Add New Page"
+        }
+    }, [type])
+
     return (
         <>
             <EditPageHeader
-                title={type === "events" ? "Header Image Slider" : "Add New Page"}
+                title={typee}
                 hideIcon={type === "events" ? false : true}
                 iconText="All Images should be of same sizes"
                 handelAddIcon={addNewSection}
                 handelRemoveIcon={removeSection}
             >
                 <InputContainer>
-                    <Box>
-                        <Dropdown
-                            placeholder="Select News Category"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
-                            options={dData}
-                            type="addDataform"
-                            value={state.selectCategory?.name}
-                            updateValue={(value) => setState({ field: "selectCategory", value })}
-                        />
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="Section Name"
-                            value={state.selectCategory?.name || " Select News Category"}
-                            readOnly={true}
-                        />
-                    </Box>
+                    {
+                        type === "events" ? null : (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        placeholder="Select Business"
+                                        isOpen={isOpen}
+                                        toggel={toggle}
+                                        close={close}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={state.selectPage?.name}
+                                        updateValue={(value) => setState({ field: "selectPage", value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={state.selectPage?.name || " Select Page Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
+
+                    {
+                        (type === "about" || type === "terms") && (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        placeholder="Select Page"
+                                        isOpen={isOpen3}
+                                        toggel={toggle3}
+                                        close={close3}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={state.selectCategory?.name}
+                                        updateValue={(value) => setState({ field: "selectCategory", value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={state.selectCategory?.name}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
 
                     {
                         type === "events" ? null : (
@@ -214,7 +261,8 @@ const initaiValue = {
             url: '',
             name: ''
         }
-    ]
+    ],
+    selectPage: ""
 }
 
 const CreatnewPage = ({ type }) => {

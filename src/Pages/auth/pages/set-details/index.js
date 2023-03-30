@@ -358,7 +358,7 @@ const Index = () => {
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
         </BoxDetails>
-          <div className="extraClass">
+        <div className="extraClass">
           <Input
             inputype="text"
             type="addDataDetails"
@@ -367,7 +367,7 @@ const Index = () => {
             id="oldPass"
             onChange={handelChange}
           />
-          </div>
+        </div>
         <DetailsWrapper>
           <div className="both">
             <Input

@@ -18,6 +18,7 @@ const InputSection = ({ data, setData, type }) => {
     const { isOpen, toggle, close } = useDropDown()
     const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
     const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown()
+    const { isOpen: isOpen4, toggle: toggle4, close: close4 } = useDropDown()
 
     // can addd more input field
     const addInputField = () => {
@@ -95,37 +96,63 @@ const InputSection = ({ data, setData, type }) => {
                 title={title}
                 handelAddIcon={addInputField}
                 handelRemoveIcon={removeField}
-                hideIcon={type === 'news' ? true : false}
+                hideIcon={(type === 'news' || type === "about") ? true : false}
             >
                 <InputContainer>
                     {
-                        type === 'news' && (
+                        (type === 'news' || type === "about") && (
                             <>
                                 <Box>
-                                <Dropdown
-                                    placeholder="Select News Category"
-                                    isOpen={isOpen3}
-                                    toggel={toggle3}
-                                    close={close3}
-                                    options={dData}
-                                    type="addDataform"
-                                    value = {data.category?.name}
-                                    updateValue = {(value) => setData({field: "category", value: value})}
-                                />
-                                <Input
-                                    inputype="text"
-                                    type="addDataform"
-                                    placeholder="Section Name"
-                                    value = {data.category?.name || " Select News Category"}
-                                    readOnly={true}
-                                />
-                            </Box>
+                                    <Dropdown
+                                        placeholder="Select News Category"
+                                        isOpen={isOpen3}
+                                        toggel={toggle3}
+                                        close={close3}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={data.category?.name}
+                                        updateValue={(value) => setData({ field: "category", value: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={data.category?.name || " Select News Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
                             </>
                         )
                     }
 
                     {
-                        type === 'news' && (
+                        type === 'about' && (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        placeholder="Select News Category"
+                                        isOpen={isOpen4}
+                                        toggel={toggle4}
+                                        close={close4}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={data.category?.name}
+                                        updateValue={(value) => setData({ field: "category", value: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={data.category?.name || " Select News Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
+
+                    {
+                        (type === 'news' || type === "about") && (
                             <>
                                 <Box full marginTop='2rem'>
                                     <HeaderTitleIcons

@@ -27,12 +27,16 @@ const Page = styled.div`
 
     .main-page {
         padding-left: 75px;
-        // margin-top: 20px;
         flex: 1;
         width: 100%;
         color: ${({ theme }) => theme.pageText} !important;
     }
 
+    @media (max-width: 768px) {
+        .main-page {
+            padding-left: 62px;
+        }
+    }
 
     `;
 

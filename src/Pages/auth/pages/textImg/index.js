@@ -1,7 +1,7 @@
-import { memo, useReducer, useMemo } from "react"
+import { memo, useReducer, useMemo, useCallback } from "react"
 import Dropdown from "components/dropdown"
 import Input from "components/input"
-import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
+import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 import useDropDown from "components/dropdown/useDropdown"
@@ -39,7 +39,8 @@ const initalState = {
             text: "image",
             value: "",
         }
-    ]
+    ],
+
 };
 
 // drop down menu
@@ -50,9 +51,11 @@ const dData = [
 ];
 
 
-const TextInputSection = ({ data, setData }) => {
+const TextInputSection = ({ data, setData, type }) => {
 
     const { isOpen, toggle, close } = useDropDown()
+    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
+    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown()
 
     const addNewField = () => {
         const field = [...data.refence]
@@ -173,15 +176,69 @@ const TextInputSection = ({ data, setData }) => {
         setData({ field: "section", value: field })
     }
 
+    // type
+    console.log(type)
     return (
         <>
             <EditPageHeader
-                title="Text & Image"
+                title={type === "about" ? "Add About Page" : "Text & Image"}
                 handelAddIcon={addNewSection}
                 handelRemoveIcon={removeNewSection}
+                hideIcon={type === "about" ? true : false}
             >
                 <InputContainer>
+                    {
+                        type === "about" && (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        // placeholder="Select Business"
+                                        isOpen={isOpen2}
+                                        toggel={toggle2}
+                                        close={close2}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={data.category?.name}
+                                        updateValue={(value) => setData({ field: "category", value: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={data.category?.name || " Select Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                                <Box>
+                                    <Dropdown
+                                        placeholder="Select Page"
+                                        isOpen={isOpen3}
+                                        toggel={toggle3}
+                                        close={close3}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={data.category?.name}
+                                        updateValue={(value) => setData({ field: "category", value: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={data.category?.name || " Select Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
 
+                                <Box full marginTop='2rem'>
+                                    <HeaderTitleIcons
+                                        title="Text & Image"
+                                        handelAddIcon={addNewSection}
+                                        handelRemoveIcon={removeNewSection}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
                     {
                         data.section.map((item, index) => {
                             if (item.text === "text" && item.row) {
@@ -289,9 +346,15 @@ const TextInputSection = ({ data, setData }) => {
     )
 }
 
-const TextPreviewSection = ({ data }) => {
+const TextPreviewSection = ({ data , type }) => {
 
-    const nextPage = () => window.location.href = "/auth/overlap-text-business";
+    const nextPage = useCallback(() => {
+        if (type === "about") {
+            window.location.href = "/auth/add-about-list";
+        } else {
+            window.location.href = "/auth/overlap-text-business";
+        }
+    } , [type])
 
     const requiredData = useMemo(() => {
         let arr = [];
@@ -383,7 +446,7 @@ const TextPreviewSection = ({ data }) => {
     )
 }
 
-const TextImage = () => {
+const TextImage = ({ type }) => {
 
     // reducer function
     const reducer = (state, { field, value }) => {
@@ -401,9 +464,11 @@ const TextImage = () => {
                 <TextInputSection
                     data={data}
                     setData={setData}
+                    type={type.type}
                 />
                 <TextPreviewSection
                     data={data}
+                    type={type.type}
                 />
             </EditPageLayout>
 

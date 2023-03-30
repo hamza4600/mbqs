@@ -52,7 +52,7 @@ const PreviewSection = ({ nextRoute, setSection, section, data }) => {
             btngrp.style.display = 'flex'
             btngrp.style.alignItems = 'center'
             btngrp.style.justifyContent = 'center'
-            btngrp.style.top = '46rem'
+            btngrp.style.top = '44rem'
         } else if (width > 868) {
             preivew.style.display = 'block'
             preivew.appendChild(btngrp)

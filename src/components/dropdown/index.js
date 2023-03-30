@@ -77,6 +77,10 @@ const Wrapper = styled.div`
         justify-content: space-between;
     }
 
+    @media (max-width: 768px) {
+        font-size: 12px !important;
+    }
+
 `;
 
 const option = [

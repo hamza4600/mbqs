@@ -41,7 +41,7 @@ export const Container = styled.div`
     }
 
     .inlineflex {
-        width: 90%;
+        width: 100%;
         display: inline-flex;
         justify-content: space-between;
         height: 40px;
@@ -93,7 +93,6 @@ export const SequienceContainer = styled.div`
     align-items: center;    
     flex-direction: column;
     justify-content: start;
-    // width: 85%;
     margin-top: 20px;
 
     .oip {
@@ -127,16 +126,11 @@ export const SequienceContainer = styled.div`
 
 export const InputContainer = styled.div`
     position: relative;
-    max-width: 85%;
     transition: all 0.5s ease-in-out;
     padding : 0px 6px 0px 0px;
 
     &::-webkit-scrollbar {
         width: 5px;
-    }
-
-    @media (max-width: 768px) {
-        max-width: 94%;
     }
 
 `;

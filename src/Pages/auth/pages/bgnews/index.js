@@ -17,6 +17,7 @@ const dData = [
 const EditSection = ({ state, setState, type }) => {
 
     const { isOpen, toggle, close } = useDropDown();
+    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
     useEffect(() => {
         let images = [];
@@ -82,11 +83,11 @@ const EditSection = ({ state, setState, type }) => {
             case "event":
                 return "Background Image";
             case "about":
-                return "About Background Image";
+                return "Add About Page";
             case "privacy":
-                return "Privacy Background Image";
+                return "Add Privacy Page";
             case "terms":
-                return "Terms Background Image";
+                return "Add Terms Page";
             case "contact":
                 return "Contact Background Image";
             default:
@@ -98,18 +99,17 @@ const EditSection = ({ state, setState, type }) => {
         <>
             <EditPageHeader
                 title={title}
-                hideIcon={type === 'news' ? true : false}
+                hideIcon={(type === 'news' || type === 'about' || type === "privacy" || type === "terms") ? true : false}
                 handelAddIcon={addImages}
                 handelRemoveIcon={removeImages}
             >
-
                 <InputContainer>
                     {
-                        type === 'news' &&
+                        (type === 'news' || type === "about" || type === "terms") &&
                         (<>
                             <Box>
                                 <Dropdown
-                                    placeholder="Select News Category"
+                                    placeholder={type === 'news' ? "Select News Category" : "Select Business"}
                                     isOpen={isOpen}
                                     toggel={toggle}
                                     close={close}
@@ -122,14 +122,39 @@ const EditSection = ({ state, setState, type }) => {
                                     inputype="text"
                                     type="addDataform"
                                     placeholder="Section Name"
-                                    value={state.selectCategory?.name || " Select News Category"}
+                                    value={state.selectCategory?.name || " Select Category"}
                                     readOnly={true}
                                 />
                             </Box>
                         </>)
                     }
+                    {
+                        (type === 'about' || type === "privacy" || type === "terms") && (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        placeholder={"Select Page"}
+                                        isOpen={isOpen2}
+                                        toggel={toggle2}
+                                        close={close2}
+                                        options={dData}
+                                        type="addDataform"
+                                        value={state.selectPage?.name}
+                                        updateValue={(value) => setState({ ...state, selectPage: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={state.selectPage?.name || " Select Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
 
-                    {type === 'news' && (
+                    {(type === 'news' || type === "about" || type === "privacy" || type === "terms") && (
                         <>
                             <Box full marginTop='2rem'>
                                 <HeaderTitleIcons
@@ -234,6 +259,7 @@ const BackgroundNews = ({ type }) => {
     const [state, setState] = useState({
         selectCategory: null,
         images: [],
+        selectPage: ""
     })
 
     return (

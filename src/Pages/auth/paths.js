@@ -13,7 +13,7 @@ const SettingHeaderFooter = lazy(() => import('./pages/sett-head'));
 const ProductView = lazy(() => import('./pages/product'));
 // new page layout is Same 
 const HeaderImage = lazy(() => import('./pages/headImg'));
-const TextImage = lazy(() => import('./pages/textImg'));
+const TextImage = lazy(() => import('./pages/textImg')); // 2 types of TextImage
 const OverLapppinText = lazy(() => import('./pages/overlapText')); // 4 types of OverLapppinText
 const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
@@ -25,7 +25,6 @@ const Social = lazy(() => import('./pages/social'));
 const NewsDetail = lazy(() => import('./pages/newsDetail'));
 const SettingAppDetail = lazy(() => import('./pages/set-details'));
 const EventDetail = lazy(() => import('./pages/event-details'));
-const TextImagAbout = lazy(() => import('./pages/text-imgAbout'));
 const PrivacyPolicy = lazy(() => import('./pages/privacyPolicy'));
 const Terms = lazy(() => import('./pages/terms'));
 const FAQ = lazy(() => import('./pages/faq'));
@@ -74,6 +73,11 @@ const sliderTypePages = {
     privacy: { name: "Privacy Slider", type: "privacy" }
 }
 
+// Text and Image have 2 types
+const txtImg = {
+    business: { name: "Business Text and Image", type: "business" },
+    about: { name: "About Text and Image", type: "about" }
+}
 
 const paths = [
     {
@@ -176,7 +180,7 @@ const paths = [
     {
         id: 20,
         path: authRoutes.textImg,
-        component: <TextImage />
+        component: <TextImage type={txtImg.business} />
     },
     {
         id: 21,
@@ -266,7 +270,7 @@ const paths = [
     {
         id: 37,
         path: authRoutes.textImagAbout,
-        component: <TextImagAbout />
+        component: <TextImage type={txtImg.about} />
     },
     {
         id: 38,
