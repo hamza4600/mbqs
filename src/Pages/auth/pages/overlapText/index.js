@@ -2,7 +2,6 @@ import { memo, useCallback, useMemo, useReducer } from "react"
 
 import Button from "components/button"
 import Dropdown from "components/dropdown"
-import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, InputContainer } from "page-componet/layout/style"
@@ -14,11 +13,6 @@ const dData = [
 ];
 
 const InputSection = ({ data, setData, type }) => {
-
-    const { isOpen, toggle, close } = useDropDown()
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
-    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown()
-    const { isOpen: isOpen4, toggle: toggle4, close: close4 } = useDropDown()
 
     // can addd more input field
     const addInputField = () => {
@@ -78,13 +72,13 @@ const InputSection = ({ data, setData, type }) => {
             case "event":
                 return "Over Lapping Text";
             case "about":
-                return "Over Lapping Text";
+                return "Add Contact Page";
             case "privacy":
                 return "Over Lapping Text";
             case "terms":
                 return "Over Lapping Text";
             case "contact":
-                return "Over Lapping Text";
+                return "Add Contact Page";
             default:
                 break;
         }
@@ -96,18 +90,15 @@ const InputSection = ({ data, setData, type }) => {
                 title={title}
                 handelAddIcon={addInputField}
                 handelRemoveIcon={removeField}
-                hideIcon={(type === 'news' || type === "about") ? true : false}
+                hideIcon={(type === 'news' || type === "about" || type === "contact") ? true : false}
             >
                 <InputContainer>
                     {
-                        (type === 'news' || type === "about") && (
+                        (type === 'news' || type === "about" || type === "contact" ) && (
                             <>
                                 <Box>
                                     <Dropdown
                                         placeholder="Select News Category"
-                                        isOpen={isOpen3}
-                                        toggel={toggle3}
-                                        close={close3}
                                         options={dData}
                                         type="addDataform"
                                         value={data.category?.name}
@@ -131,9 +122,6 @@ const InputSection = ({ data, setData, type }) => {
                                 <Box>
                                     <Dropdown
                                         placeholder="Select News Category"
-                                        isOpen={isOpen4}
-                                        toggel={toggle4}
-                                        close={close4}
                                         options={dData}
                                         type="addDataform"
                                         value={data.category?.name}
@@ -152,11 +140,11 @@ const InputSection = ({ data, setData, type }) => {
                     }
 
                     {
-                        (type === 'news' || type === "about") && (
+                        (type === 'news' || type === "about" || type === "contact") && (
                             <>
                                 <Box full marginTop='2rem'>
                                     <HeaderTitleIcons
-                                        title="Background Image"
+                                        title="Over Lapping Text"
                                         handelAddIcon={addInputField}
                                         handelRemoveIcon={removeField}
                                     />
@@ -201,9 +189,6 @@ const InputSection = ({ data, setData, type }) => {
                             placeholder="Select Variation"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             value={data.variation?.name}
                             updateValue={(value) => setData({ field: "variation", value: value })}
                         />
@@ -220,9 +205,6 @@ const InputSection = ({ data, setData, type }) => {
                             placeholder="Select Position"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen2}
-                            toggel={toggle2}
-                            close={close2}
                             value={data.position?.name}
                             updateValue={(value) => setData({ field: "position", value: value })}
                         />

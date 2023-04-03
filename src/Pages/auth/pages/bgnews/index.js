@@ -1,6 +1,5 @@
 import { memo, useEffect, useState, useCallback, useMemo } from "react";
 import Dropdown from "components/dropdown";
-import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
 import { Box, FileInput, InputContainer } from "page-componet/layout/style";
@@ -15,9 +14,6 @@ const dData = [
 ]
 
 const EditSection = ({ state, setState, type }) => {
-
-    const { isOpen, toggle, close } = useDropDown();
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
     useEffect(() => {
         let images = [];
@@ -89,7 +85,7 @@ const EditSection = ({ state, setState, type }) => {
             case "terms":
                 return "Add Terms Page";
             case "contact":
-                return "Contact Background Image";
+                return "Add Contact Page";
             default:
                 break;
         }
@@ -105,14 +101,11 @@ const EditSection = ({ state, setState, type }) => {
             >
                 <InputContainer>
                     {
-                        (type === 'news' || type === "about" || type === "terms") &&
+                        (type === 'news' || type === "about" || type === "terms" || type === "contact" ) &&
                         (<>
                             <Box>
                                 <Dropdown
                                     placeholder={type === 'news' ? "Select News Category" : "Select Business"}
-                                    isOpen={isOpen}
-                                    toggel={toggle}
-                                    close={close}
                                     options={dData}
                                     type="addDataform"
                                     value={state.selectCategory?.name}
@@ -129,14 +122,11 @@ const EditSection = ({ state, setState, type }) => {
                         </>)
                     }
                     {
-                        (type === 'about' || type === "privacy" || type === "terms") && (
+                        (type === 'about' || type === "privacy" || type === "terms" || type === "contact") && (
                             <>
                                 <Box>
                                     <Dropdown
                                         placeholder={"Select Page"}
-                                        isOpen={isOpen2}
-                                        toggel={toggle2}
-                                        close={close2}
                                         options={dData}
                                         type="addDataform"
                                         value={state.selectPage?.name}
@@ -154,7 +144,7 @@ const EditSection = ({ state, setState, type }) => {
                         )
                     }
 
-                    {(type === 'news' || type === "about" || type === "privacy" || type === "terms") && (
+                    {(type === 'news' || type === "about" || type === "privacy" || type === "terms" || type === "contact") && (
                         <>
                             <Box full marginTop='2rem'>
                                 <HeaderTitleIcons

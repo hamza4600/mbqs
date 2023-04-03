@@ -25,8 +25,7 @@ const Social = lazy(() => import('./pages/social'));
 const NewsDetail = lazy(() => import('./pages/newsDetail'));
 const SettingAppDetail = lazy(() => import('./pages/set-details'));
 const EventDetail = lazy(() => import('./pages/event-details'));
-const PrivacyPolicy = lazy(() => import('./pages/privacyPolicy'));
-const Terms = lazy(() => import('./pages/terms'));
+const PrivacyPolicy = lazy(() => import('./pages/privacyPolicy')); // 2 types
 const FAQ = lazy(() => import('./pages/faq'));
 const Map = lazy(() => import('./pages/map'));
 const ContactDetails = lazy(() => import('./pages/contactDetails'));
@@ -280,7 +279,7 @@ const paths = [
     {
         id: 39,
         path: authRoutes.terms,
-        component: <Terms />
+        component: <PrivacyPolicy type={"terms"} />
     },
     {
         id: 40,

@@ -1,6 +1,5 @@
 import React from 'react'
 import Dropdown from 'components/dropdown'
-import useDropDown from 'components/dropdown/useDropdown'
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from 'page-componet/layout/editPage'
 import { InputContainer } from 'page-componet/layout/style'
 import { PrevieContainer, FileContainer } from './style'
@@ -15,7 +14,6 @@ const motions = [
 ];
 
 const ImageSliderSection = () => {
-    const { isOpen, toggle, close } = useDropDown();
 
     const [data, setData] = React.useState("")
 
@@ -65,10 +63,7 @@ const ImageSliderSection = () => {
                 <InputContainer>
                     <Dropdown
                         placeholder="Select Motion"
-                        isOpen={isOpen}
                         options={motions}
-                        toggel={toggle}
-                        close={close}
                         value={data.name}
                         updateValue={(value) => setData(value)}
                         type="addMotion"

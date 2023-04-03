@@ -5,7 +5,6 @@ import { useMemo, useState } from "react";
 import { Container, Left, Right } from "./styled";
 import Button from "components/button";
 import Dropdown from "components/dropdown";
-import useDropDown from "components/dropdown/useDropdown";
 // Icons
 import { MdOutlineAdd } from "react-icons/md";
 import { MdCloseFullscreen } from "react-icons/md";
@@ -24,14 +23,6 @@ const LeftSide = (props) => {
 
     const { query, onChange } = props;
 
-    // for filetr
-    const { isOpen: isFone, toggle: Ftoggle, close: fclose } = useDropDown();
-    // for calender
-    const { isOpen: isCone, toggle: Ctoggle, close: cclose } = useDropDown();
-    // for share
-    const { isOpen: isSone, toggle: Stoggle, close: sclose } = useDropDown();
-
-
     return (
         <>
             <Left id="left">
@@ -45,29 +36,20 @@ const LeftSide = (props) => {
                 />
                 <Dropdown
                     placeholder="Filter By"
-                    isOpen={isFone}
-                    toggel={Ftoggle}
-                    close={fclose}
-                    icon={<BiFilterAlt size={20} color={isFone && "#00BFFF"} />}
+                    icon={<BiFilterAlt size={20} />}
                     options={sortBy}
                     type='form'
                 />
                 < Dropdown
                     placeholder="Filter Calender"
-                    isOpen={isCone}
-                    toggel={Ctoggle}
-                    close={cclose}
-                    icon={<SlCalender size={20} color={isCone && "#00BFFF"} />}
+                    icon={<SlCalender size={20} /> }
                     options={sortBy}
                     type='form'
                 />
 
                 <Dropdown
                     placeholder="Share"
-                    isOpen={isSone}
-                    toggel={Stoggle}
-                    close={sclose}
-                    icon={<BsShareFill size={18} color={isSone && "#00BFFF"} />}
+                    icon={<BsShareFill size={18} />}
                     options={share}
                     type='form'
                     id='share'
@@ -79,8 +61,6 @@ const LeftSide = (props) => {
 }
 
 const RightSide = () => {
-
-    const { isOpen, toggle, close } = useDropDown();
 
     const fullScreen = () => {
         const element = document.getElementById("main_page");
@@ -102,10 +82,7 @@ const RightSide = () => {
             <Right>
                 < Dropdown
                     placeholder="Export"
-                    isOpen={isOpen}
-                    toggel={toggle}
-                    close={close}
-                    icon={<BsChevronDown size={18} color={isOpen && "#00BFFF"} />}
+                    icon={<BsChevronDown size={18} />}
                     options={exportList}
                     type='form'
                 />

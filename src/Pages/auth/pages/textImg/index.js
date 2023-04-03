@@ -4,7 +4,6 @@ import Input from "components/input"
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, FileInput, InputContainer } from "page-componet/layout/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
-import useDropDown from "components/dropdown/useDropdown"
 import Button from "components/button"
 import { ReferWrapper } from "../creatBusi/style"
 import { PreviewImage } from "./style"
@@ -52,10 +51,6 @@ const dData = [
 
 
 const TextInputSection = ({ data, setData, type }) => {
-
-    const { isOpen, toggle, close } = useDropDown()
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown()
-    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown()
 
     const addNewField = () => {
         const field = [...data.refence]
@@ -192,10 +187,7 @@ const TextInputSection = ({ data, setData, type }) => {
                             <>
                                 <Box>
                                     <Dropdown
-                                        // placeholder="Select Business"
-                                        isOpen={isOpen2}
-                                        toggel={toggle2}
-                                        close={close2}
+                                        placeholder="Select Business"
                                         options={dData}
                                         type="addDataform"
                                         value={data.category?.name}
@@ -212,9 +204,6 @@ const TextInputSection = ({ data, setData, type }) => {
                                 <Box>
                                     <Dropdown
                                         placeholder="Select Page"
-                                        isOpen={isOpen3}
-                                        toggel={toggle3}
-                                        close={close3}
                                         options={dData}
                                         type="addDataform"
                                         value={data.category?.name}
@@ -300,9 +289,6 @@ const TextInputSection = ({ data, setData, type }) => {
                             options={dData}
                             placeholder="Select Variation"
                             type="addDataform"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             value={data.variation?.name}
                             updateValue={(value) => setData({ field: "variation", value: value })}
                         />

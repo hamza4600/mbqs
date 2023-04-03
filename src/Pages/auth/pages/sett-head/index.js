@@ -2,7 +2,6 @@ import { useReducer } from "react";
 
 import { H1 } from "components/a";
 import Input from "components/input";
-import useDropDown from "components/dropdown/useDropdown";
 import Dropdown from "components/dropdown";
 
 import { WrapperHAF , GridHAF } from "./styled";
@@ -28,14 +27,6 @@ const initialState = {
 };
 
 const SettingHeaderFooter = () => {
-
-  const { isOpen, toggle, close } = useDropDown();
-  const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
-  const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
-  const { isOpen: isOpen4, toggle: toggle4, close: close4 } = useDropDown();
-  const { isOpen: isOpen5, toggle: toggle5, close: close5 } = useDropDown();
-  const { isOpen: isOpen6, toggle: toggle6, close: close6 } = useDropDown();
-  const { isOpen: isOpen7, toggle: toggle7, close: close7 } = useDropDown();
 
   const handelChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
@@ -81,9 +72,6 @@ const SettingHeaderFooter = () => {
 
             <Dropdown
               placeholder="Select City"
-              isOpen={isOpen}
-              toggel={toggle}
-              close={close}
               value={data.dropdown.city}
               updateValue={(value) => handelDropdown(value.name, "city")}
             />
@@ -91,17 +79,11 @@ const SettingHeaderFooter = () => {
           <WrapperHAF>
             <Dropdown
               placeholder="Select State"
-              isOpen={isOpen2}
-              toggel={toggle2}
-              close={close2}
               value={data.dropdown.state}
               updateValue={(value) => handelDropdown(value.name, "state")}
             />
             <Dropdown
               placeholder="Select Country"
-              isOpen={isOpen3}
-              toggel={toggle3}
-              close={close3}
               value={data.dropdown.category}
               updateValue={(value) => handelDropdown(value.name, "category")}
             />
@@ -141,17 +123,11 @@ const SettingHeaderFooter = () => {
           <WrapperHAF>
             <Dropdown
               placeholder="Select Opening Days"
-              isOpen={isOpen4}
-              toggel={toggle4}
-              close={close4}
               value={data.dropdown.category}
               updateValue={(value) => handelDropdown(value.name, "category")}
             />
             <Dropdown
               placeholder="Select Closing Days"
-              isOpen={isOpen5}
-              toggel={toggle5}
-              close={close5}
               value={data.dropdown.category}
               updateValue={(value) => handelDropdown(value.name, "category")}
             />
@@ -159,17 +135,11 @@ const SettingHeaderFooter = () => {
           <WrapperHAF>
             <Dropdown
               placeholder="Select Opening Time"
-              isOpen={isOpen6}
-              toggel={toggle6}
-              close={close6}
               value={data.dropdown.category}
               updateValue={(value) => handelDropdown(value.name, "category")}
             />
             <Dropdown
               placeholder="Select Closing Time"
-              isOpen={isOpen7}
-              toggel={toggle7}
-              close={close7}
               value={data.dropdown.category}
               updateValue={(value) => handelDropdown(value.name, "category")}
             />

@@ -1,7 +1,6 @@
 import { memo, useEffect, useReducer } from "react";
 import Button from "components/button";
 import Dropdown from "components/dropdown";
-import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
 import { Box, FileInput, InputContainer } from "page-componet/layout/style";
@@ -12,8 +11,6 @@ const viedoType = [
 ]
 
 const ViedoInput = ({ data, setData }) => {
-
-    const { isOpen, toggle, close } = useDropDown()
 
     useEffect(() => {
         setData({ field: "selectViedoType", value: viedoType[0] })
@@ -39,9 +36,6 @@ const ViedoInput = ({ data, setData }) => {
                             options={viedoType}
                             placeholder="Select Viedo Type"
                             type="addDataform"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             value={data.selectViedoType?.name}
                             updateValue={(value) => setData({ field: "selectViedoType", value: value })}
                         />

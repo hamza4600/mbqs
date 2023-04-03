@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import Dropdown from "components/dropdown";
-import useDropDown from "components/dropdown/useDropdown";
 import useHover from "Hooks/useHover";
 import { IconsContainer, Span } from "./styled";
 import Input from "components/input";
@@ -23,7 +22,6 @@ const Index = () => {
     },
   };
   console.log("🚀 ~ file: index.js:24 ~ Index ~ initialState", initialState)
-  const { isOpen, toggle, close } = useDropDown();
   const [select, setSelect] = useState();
 
   const handelChange = (e) => {
@@ -50,9 +48,6 @@ const Index = () => {
       <BoxTwo>
         <Dropdown
           placeholder="Select And Enable The Icon Function"
-          isOpen={isOpen}
-          toggel={toggle}
-          close={close}
           value={data.dropdown.category}
           updateValue={(value) => handelDropdown(value.name, "category")}
         />

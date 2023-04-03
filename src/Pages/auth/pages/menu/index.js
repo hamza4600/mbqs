@@ -2,7 +2,6 @@ import { WrapperMenu } from "./styled";
 import Input from "components/input";
 import { useReducer } from "react";
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
-import useDropDown from "components/dropdown/useDropdown";
 import Dropdown from "components/dropdown";
 
 import "../../../../components/input/style.module.css";
@@ -19,8 +18,6 @@ const EditMenu = () => {
       category: "",
     },
   };
-  const { isOpen, toggle, close } = useDropDown();
-  const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
 
   //   if (!action.value) return state;
   //   if (action.value === "undefined") return state;
@@ -66,9 +63,6 @@ const [data, dispatch] = useReducer((state, action) => {
       <BoxTwo  >
       <Dropdown
         placeholder="Select Category"
-        isOpen={isOpen}
-        toggel={toggle}
-        close={close}
         value={data.dropdown.category}
         updateValue={(value) => handelDropdown(value.name, "category")}
       />

@@ -7,11 +7,6 @@ import { H1 } from "components/a";
 import { ReferWrapper } from "./style";
 
 export const Left = ({ title, data, dispatch, handelDropdown }) => {
-    const { isOpen, toggle, close } = useDropDown();
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
-    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
-    const { isOpen: isOpen4, toggle: toggle4, close: close4 } = useDropDown();
-    const { isOpen: isOpen5, toggle: toggle5, close: close5 } = useDropDown();
 
     const handelChange = (e) => {
         dispatch({ field: e.target.id, value: e.target.value });
@@ -79,17 +74,11 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                 <Box>
                     <Dropdown
                         placeholder="Select Category"
-                        isOpen={isOpen}
-                        toggel={toggle}
-                        close={close}
                         value={data.dropdown.category?.name}
                         updateValue={(value) => handelDropdown(value, "category")}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
-                        isOpen={isOpen2}
-                        toggel={toggle2}
-                        close={close2}
                         value={data.dropdown.subCategory?.name}
                         updateValue={(value) => handelDropdown(value, "subCategory")}
                     />
@@ -152,9 +141,6 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                     />
                     <Dropdown
                         placeholder="Select City"
-                        isOpen={isOpen3}
-                        toggel={toggle3}
-                        close={close3}
                         value={data.dropdown.city?.name}
                         updateValue={(value) => handelDropdown(value, "city")}
                     />
@@ -162,17 +148,11 @@ export const Left = ({ title, data, dispatch, handelDropdown }) => {
                 <Box>
                     <Dropdown
                         placeholder="Select State"
-                        isOpen={isOpen4}
-                        toggel={toggle4}
-                        close={close4}
                         value={data.dropdown.state?.name}
                         updateValue={(value) => handelDropdown(value, "state")}
                     />
                     <Dropdown
                         placeholder="Select Country"
-                        isOpen={isOpen5}
-                        toggel={toggle5}
-                        close={close5}
                         value={data.dropdown.country?.name}
                         updateValue={(value) => handelDropdown(value, "country")}
                     />
@@ -300,26 +280,17 @@ export const Right = ({ nextRoute, data, dispatch, handelDropdown }) => {
         
     };
 
-    const { isOpen, close, toggle } = useDropDown();
-    const { isOpen: isOpen2, close: close2, toggle: toggle2 } = useDropDown();
-
     return (
         <>
             <div id="sub">
                 <Box>
                     <Dropdown
                         placeholder="Select Role"
-                        isOpen={isOpen}
-                        toggel={toggle}
-                        close={close}
                         value={data.dropdown.role?.name}
                         updateValue={(value) => handelDropdown(value, "role")}
                     />
                     <Dropdown
                         placeholder="Select Sub Category"
-                        isOpen={isOpen2}
-                        toggel={toggle2}
-                        close={close2}
                         value={data.dropdown.subCategory?.name}
                         updateValue={(value) => handelDropdown(value, "subCategory")}
                     />

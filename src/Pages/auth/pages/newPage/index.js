@@ -1,7 +1,6 @@
 import { memo, useCallback, useMemo, useReducer } from "react"
 
 import Dropdown from "components/dropdown"
-import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { Box, FileInput, InputContainer } from "page-componet/layout/style"
@@ -15,10 +14,6 @@ const dData = [
 ]
 
 const EditSection = ({ state, setState, type }) => {
-
-    const { isOpen, toggle, close } = useDropDown();
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
-    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
 
     console.log(state);
 
@@ -60,6 +55,8 @@ const EditSection = ({ state, setState, type }) => {
                 return "Add About Page"
             case "terms":
                 return "Add Terms Page"
+            case "contact":
+                return "Add Contact Page"
             default:
                 return "Add New Page"
         }
@@ -81,9 +78,6 @@ const EditSection = ({ state, setState, type }) => {
                                 <Box>
                                     <Dropdown
                                         placeholder="Select Business"
-                                        isOpen={isOpen}
-                                        toggel={toggle}
-                                        close={close}
                                         options={dData}
                                         type="addDataform"
                                         value={state.selectPage?.name}
@@ -107,9 +101,6 @@ const EditSection = ({ state, setState, type }) => {
                                 <Box>
                                     <Dropdown
                                         placeholder="Select Page"
-                                        isOpen={isOpen3}
-                                        toggel={toggle3}
-                                        close={close3}
                                         options={dData}
                                         type="addDataform"
                                         value={state.selectCategory?.name}
@@ -145,10 +136,7 @@ const EditSection = ({ state, setState, type }) => {
 
                     <Dropdown
                         placeholder="Select Motion"
-                        isOpen={isOpen2}
                         options={dData}
-                        toggel={toggle2}
-                        close={close2}
                         value={state.selectMotion?.name}
                         updateValue={(value) => setState({ field: "selectMotion", value })}
                         type="addMotion"

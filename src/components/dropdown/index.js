@@ -1,6 +1,7 @@
 import React, { forwardRef, useCallback } from "react";
 import styled from "styled-components";
 import { BsChevronDown } from "react-icons/bs";
+import useDropDown from "./useDropdown";
 
 
 const Wrapper = styled.div`
@@ -99,15 +100,17 @@ const Dropdown = forwardRef(
             onBlur = true,
             onFocus = true,
             icon = <BsChevronDown size={16} />,
-            toggel,
-            isOpen,
-            close,
+            // toggel,
+            // isOpen,
+            // close,
             onChange,
             value,
             updateValue,
             id = ""
         } = props;
-
+        
+        const { isOpen, toggle:toggel, close } = useDropDown()
+        
         const handleBlur = (e) => {
             if (onBlur) {
                 typeof toggel === 'function' &&

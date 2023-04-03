@@ -5,14 +5,11 @@ import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnG
 import { Box, InputContainer } from "page-componet/layout/style"
 import Dropdown from "components/dropdown"
 import Input from "components/input"
-import useDropDown from "components/dropdown/useDropdown"
 import { ReferWrapper } from "../creatBusi/style"
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton"
 
 
-const EditSection = ({ state, setState }) => {
-
-    const { isOpen, toggle, close } = useDropDown()
+const EditSection = ({ state, setState, type }) => {
 
     useEffect(() => {
         addNewField()
@@ -42,8 +39,8 @@ const EditSection = ({ state, setState }) => {
     const addSection = () => {
         const { sectionArray } = state
         const array = []
-       
-        for(let i = 0; i < 3; i++) {
+
+        for (let i = 0; i < 3; i++) {
             array.push({
                 id: Math.floor(Math.random() * 1000),
                 value: "",
@@ -73,10 +70,10 @@ const EditSection = ({ state, setState }) => {
             }
             return item
         })
-     setState ({ ...state, referenceArray: fied })
+        setState({ ...state, referenceArray: fied })
     }
-    
-    const updateNestedValue = (event, id , subId ) => {
+
+    const updateNestedValue = (event, id, subId) => {
         const fied = state.sectionArray.map((item) => {
             if (item.id === id) {
                 return item.map((ite) => {
@@ -91,9 +88,9 @@ const EditSection = ({ state, setState }) => {
             }
             return item
         })
-        setState ({ ...state, sectionArray: fied })
+        setState({ ...state, sectionArray: fied })
     }
-    
+    console.log(type)
     return (
         <>
             <EditPageHeader
@@ -104,9 +101,6 @@ const EditSection = ({ state, setState }) => {
                     <Box>
                         <Dropdown
                             placeholder={"Select Business"}
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             type="addDataform"
                             value={state.selectCategory?.name}
                             updateValue={(value) => setState({ ...state, selectCategory: value })}
@@ -119,12 +113,33 @@ const EditSection = ({ state, setState }) => {
                             readOnly={true}
                         />
                     </Box>
+                    {
+                        type === "terms" && (
+                            <>
+                                <Box>
+                                    <Dropdown
+                                        placeholder={"Select Page"}
+                                        type="addDataform"
+                                        value={state.selectCategory?.name}
+                                        updateValue={(value) => setState({ ...state, selectCategory: value })}
+                                    />
+                                    <Input
+                                        inputype="text"
+                                        type="addDataform"
+                                        placeholder="Section Name"
+                                        value={state.selectCategory?.name || " Select Category"}
+                                        readOnly={true}
+                                    />
+                                </Box>
+                            </>
+                        )
+                    }
 
                     <Box full marginTop='2rem'>
                         <HeaderTitleIcons
                             title="Privacy Policy"
-                        handelAddIcon={addSection}
-                        handelRemoveIcon={removeSection}
+                            handelAddIcon={addSection}
+                            handelRemoveIcon={removeSection}
                         />
                     </Box>
 
@@ -132,7 +147,7 @@ const EditSection = ({ state, setState }) => {
                     {
                         state.sectionArray.map((item, index) => (
                             <div key={index} id="flex">
-                                { item.map((ite, index) => (
+                                {item.map((ite, index) => (
                                     <Box full key={item.id}>
                                         {ite.type === "text" ? (
                                             <Input
@@ -140,17 +155,17 @@ const EditSection = ({ state, setState }) => {
                                                 inputype="text"
                                                 type="addDataform"
                                                 placeholder={ite.placeholder}
-                                            value={ite.value}
-                                            onChange={(event) => updateNestedValue(event, item.id , ite.id)}
+                                                value={ite.value}
+                                                onChange={(event) => updateNestedValue(event, item.id, ite.id)}
                                             />
                                         ) : (
                                             <Input.TextArea
-                                                key={ite.id}    
+                                                key={ite.id}
                                                 type="text"
                                                 styleType="addDataArea"
                                                 placeholder="Enter Your Text Here"
                                                 value={item.value}
-                                            onChange={(event) => updateNestedValue(event, item.id , ite.id)}
+                                                onChange={(event) => updateNestedValue(event, item.id, ite.id)}
                                             />
                                         )}
                                     </Box>
@@ -170,8 +185,8 @@ const EditSection = ({ state, setState }) => {
                                         type="text"
                                         placeholder={item.placeholder}
                                         id={item.id}
-                                    value={item.value}
-                                    onChange={(e) => handelNestedInput(e, item.id)}
+                                        value={item.value}
+                                        onChange={(e) => handelNestedInput(e, item.id)}
                                     />
                                 </>
                             ))
@@ -194,10 +209,14 @@ const EditSection = ({ state, setState }) => {
         </>
     )
 }
-const PreviewSection = ({ state }) => {
-    
+const PreviewSection = ({ state, type }) => {
+
     const nextpage = () => {
-        window.location.href = '/auth/privacy-list'
+        if (type === "terms") {
+            window.location.href = '/auth/add-terms-list'
+        } else {
+            window.location.href = '/auth/privacy-list'
+        }
     }
 
     return (
@@ -205,15 +224,15 @@ const PreviewSection = ({ state }) => {
             <PreviewSectionHeader>
 
                 <PreviewBtnGroup
-                    nextPage = {nextpage}
-                    showEditorBtn = {true}
+                    nextPage={nextpage}
+                    showEditorBtn={true}
                 />
             </PreviewSectionHeader>
         </>
     )
 }
 
-const Index = () => {
+const Index = ({ type }) => {
     const [state, setState] = useState({
         selectBusiness: null,
         sectionArray: [],
@@ -226,9 +245,11 @@ const Index = () => {
                 <EditSection
                     state={state}
                     setState={setState}
+                    type={type}
                 />
                 <PreviewSection
                     state={state}
+                    type={type}
                 />
             </EditPageLayout>
 

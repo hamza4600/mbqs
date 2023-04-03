@@ -1,7 +1,6 @@
 import { memo, useReducer } from "react"
 import { H1 } from "components/a"
 import Dropdown from "components/dropdown"
-import useDropDown from "components/dropdown/useDropdown"
 import Input from "components/input"
 import { EditPageHeader, EditPageLayout, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage"
 import { FileInput } from "page-componet/layout/style"
@@ -19,10 +18,6 @@ const dData = [
 ];
 
 const EditDetailSection = ({ state, setState }) => {
-
-    const { isOpen, toggle, close } = useDropDown();
-    const { isOpen: isOpen2, toggle: toggle2, close: close2 } = useDropDown();
-    const { isOpen: isOpen3, toggle: toggle3, close: close3 } = useDropDown();
 
     const handelAddNewField = () => {
         let copy = [...state.refarance]
@@ -118,9 +113,6 @@ const EditDetailSection = ({ state, setState }) => {
                             placeholder="Select City"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             value={state.city?.name}
                             updateValue={(value) => setState({ field: "city", value: value })}
                         />
@@ -131,9 +123,6 @@ const EditDetailSection = ({ state, setState }) => {
                             placeholder="Select State"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen2}
-                            toggel={toggle2}
-                            close={close2}
                             value={state.state?.name}
                             updateValue={(value) => setState({ field: "state", value: value })}
                         />
@@ -141,9 +130,6 @@ const EditDetailSection = ({ state, setState }) => {
                             placeholder="Select Country"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen3}
-                            toggel={toggle3}
-                            close={close3}
                             value={state.country?.name}
                             updateValue={(value) => setState({ field: "country", value: value })}
                         />

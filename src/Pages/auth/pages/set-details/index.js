@@ -1,5 +1,4 @@
 import Input from "components/input";
-import useDropDown from "components/dropdown/useDropdown";
 import { BoxDetails, DetailsWrapper, GridDetails } from "./styled";
 import "../../../../components/input/style.module.css";
 import { useReducer } from "react";
@@ -36,7 +35,6 @@ const Index = () => {
     },
   };
 
-  const { isOpen, toggle, close } = useDropDown();
 
   const handelChange = (e) => {
     dispatch({ type: e.target.id, value: e.target.value });
@@ -56,9 +54,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
@@ -137,9 +132,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
@@ -190,9 +182,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
@@ -217,9 +206,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
@@ -256,9 +242,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />
@@ -351,9 +334,6 @@ const Index = () => {
         <BoxDetails full>
           <Dropdown
             placeholder="Select Category"
-            isOpen={isOpen}
-            toggel={toggle}
-            close={close}
             value={data.dropdown.category}
             updateValue={(value) => handelDropdown(value.name, "category")}
           />

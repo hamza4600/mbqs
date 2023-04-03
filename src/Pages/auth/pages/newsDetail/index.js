@@ -1,5 +1,4 @@
 import Dropdown from "components/dropdown";
-import useDropDown from "components/dropdown/useDropdown";
 import Input from "components/input";
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
 import { EditPageHeader, EditPageLayout, HeaderTitleIcons, ListItem, PreviewBtnGroup, PreviewSectionHeader } from "page-componet/layout/editPage";
@@ -13,7 +12,6 @@ const dData = [
     { id: 4, name: "Variation 4" },
 ]
 const NewEditSection = ({ data, setData }) => {
-    const { isOpen, toggle, close } = useDropDown();
 
     return (
         <>
@@ -27,9 +25,6 @@ const NewEditSection = ({ data, setData }) => {
                             placeholder="Select Category"
                             options={dData}
                             type="addDataform"
-                            isOpen={isOpen}
-                            toggel={toggle}
-                            close={close}
                             value={data.selectCategory?.name}
                             updateValue={(value) => setData({ field: "selectCategory", value: value })}
                         />
