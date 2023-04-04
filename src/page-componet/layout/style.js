@@ -90,7 +90,7 @@ export const SequienceContainer = styled.div`
 
     position: relative;
     display: flex;
-    align-items: center;    
+    align-items: start;    
     flex-direction: column;
     justify-content: start;
     margin-top: 20px;
