@@ -48,7 +48,6 @@ export const authRoutes = {
     viedoList: '/viedo-list',
     brandSlider: '/brand-slider',
     // setting pages
-    menuEdit: '/menu-edit', // edit menu
     settAddDetail: '/setting-app-detail',
     headFooter: '/setting-head-footer',
     others: '/others',

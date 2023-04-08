@@ -6,7 +6,6 @@ import Input from "components/input";
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
 import { BoxTwo } from "page-componet/layout/style";
 import { useReducer } from "react";
-import { WrapperMenu } from "../menu/styled";
 import { settingsIcons } from "./variable";
 
 const Index = () => {
@@ -81,7 +80,7 @@ const Index = () => {
         </ul>
 
       </IconsContainer>
-      <WrapperMenu>
+      <>
         <Input
           inputype="text"
           type="addDataMenu"
@@ -94,9 +93,9 @@ const Index = () => {
           <AddIcon />
           <RemoveIcon />
         </div>
-      </WrapperMenu>
+      </>
 
-      <WrapperMenu>
+      <>
         <Input
           inputype="text"
           type="addDataMenu"
@@ -109,9 +108,9 @@ const Index = () => {
           <AddIcon />
           <RemoveIcon />
         </div>
-      </WrapperMenu>
+      </>
 
-      <WrapperMenu>
+      <>
         <Input
           inputype="text"
           type="addDataMenu"
@@ -124,9 +123,9 @@ const Index = () => {
           <AddIcon />
           <RemoveIcon />
         </div>
-      </WrapperMenu>
+      </>
 
-      <WrapperMenu>
+      <>
         <Input
           inputype="text"
           type="addDataMenu"
@@ -139,7 +138,7 @@ const Index = () => {
           <AddIcon />
           <RemoveIcon />
         </div>
-      </WrapperMenu>
+      </>
     </>
   );
 };

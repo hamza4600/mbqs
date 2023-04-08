@@ -7,6 +7,8 @@ import { BiMessageAltDetail } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
 import { AiOutlineFileSearch } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
+import { IoMdAdd } from "react-icons/io";
+import { RiShoppingCartLine } from "react-icons/ri";
 
 import { authRoutes } from "Pages/auth/routes";
 
@@ -199,10 +201,29 @@ const contactMenu = [
     }
 ];
 
+// Human Resource
+const humanResource = [
+    {
+        id: 10,
+        title: 'Header Image Slider',
+        route: '/404'
+    },
+    {
+        id: 20,
+        title: 'Background Image',
+        route: '/404'
+    },
+    {
+        id: 40,
+        title: 'Over Lapping Text',
+        route: "/404"
+    }
+] 
+
 export const sidebarData = [
     {
         id: 5,
-        title: 'our business',
+        title: 'MBIQS',
         icon: <MdOutlineEngineering size={size} />,
         drop: [
             {
@@ -215,6 +236,110 @@ export const sidebarData = [
                 title: 'List of Business',
                 route: authRoutes.listAddPage
             }
+        ]
+    },
+    {
+        id: 1500,
+        title: 'Products',
+        icon: <RiShoppingCartLine size={size} />,
+        drop: [
+            {
+                id: 300,
+                title: 'ev fog',
+                route: "/404",
+            },
+            {
+                id: 301,
+                title: 'Gym Fighters',
+                route: "/404",
+            },
+            {
+                id: 302,
+                title: 'ev fog',
+                route: "/404",
+            },
+            {
+                id: 303,
+                title: 'Latex Tyre',
+                route: "/404",
+            },
+            {
+                id: 304,
+                title: 'Miner Man',
+                route: "/404",
+            },
+            {
+                id: 305,
+                title: 'Time for bid',
+                route: "/404",
+            },
+            {
+                id: 306,
+                title: 'Sagwan Wood',
+                route: "/404",
+            },
+            {
+                id: 307,
+                title: 'Snáithe',
+                route: "/404",
+            },
+            {
+                id: 308,
+                title: 'Warbler Studio',
+                route: "/404",
+            },
+        ]
+    },
+    {
+        id: 500,
+        title: 'Brands',
+        icon: <IoMdAdd size={size} />,
+        drop: [
+            {
+                id: 300,
+                title: 'ev fog',
+                route: "/404",
+            },
+            {
+                id: 301,
+                title: 'Gym Fighters',
+                route: "/404",
+            },
+            {
+                id: 302,
+                title: 'ev fog',
+                route: "/404",
+            },
+            {
+                id: 303,
+                title: 'Latex Tyre',
+                route: "/404",
+            },
+            {
+                id: 304,
+                title: 'Miner Man',
+                route: "/404",
+            },
+            {
+                id: 305,
+                title: 'Time for bid',
+                route: "/404",
+            },
+            {
+                id: 306,
+                title: 'Sagwan Wood',
+                route: "/404",
+            },
+            {
+                id: 307,
+                title: 'Snáithe',
+                route: "/404",
+            },
+            {
+                id: 308,
+                title: 'Warbler Studio',
+                route: "/404",
+            },
         ]
     },
     {
@@ -321,19 +446,9 @@ export const sidebarData = [
     },
     {
         id: 13,
-        title: 'setting',
+        title: 'settings',
         icon: <FiSettings size={size} />,
         drop: [
-            {
-                id: 6,
-                title: 'Menu Edit',
-                route: authRoutes.menuEdit
-            },
-            {
-                id: 1,
-                title: 'front website view',
-                route: authRoutes.frontView
-            },
             {
                 id: 2,
                 title: 'header & footer',
@@ -341,7 +456,7 @@ export const sidebarData = [
             },
             {
                 id: 5,
-                title: 'details',
+                title: 'Login Setup',
                 route: authRoutes.settAddDetail
             },
             {
@@ -351,9 +466,19 @@ export const sidebarData = [
             },
             {
                 id: 40,
-                title: 'other',
-                route: authRoutes.others
+                title: 'Human Resource',
+                subMenu: humanResource,
+            },
+            {
+                id: 50,
+                title: 'My Account',
+                route: authRoutes.mediaIcon
+            },
+            {
+                id: 60,
+                title: 'Languages Setup',
+                route: "/404"
             }
         ]
-    },
+    }
 ]

@@ -1,165 +1,291 @@
 import { useReducer } from "react";
 
-import { H1 } from "components/a";
 import Input from "components/input";
 import Dropdown from "components/dropdown";
-
-import { WrapperHAF , GridHAF } from "./styled";
+import {
+    EditPageHeader,
+    EditPageLayout,
+    HeaderTitleIcons,
+} from "page-componet/layout/editPage";
+import { Box, FileInput, InputContainer } from "page-componet/layout/style";
 
 const initialState = {
-  companyName: "",
-  address: "",
-  postalCode: "",
-  cmpName: "",
-  webUrl: "",
-  contactNo: "",
-  officeNo: "",
-  headerMame: "",
-  dropdown: {
-    city: "",
-    state: "",
-    country: "",
-    openingDays: "",
-    closingDays: "",
-    openingTime: "",
-    closingTime: ""
-  },
+    companyName: "",
+    address: "",
+    postalCode: "",
+    email: "",
+    webUrl: "",
+    mobileNo: "",
+    officeNo: "",
+    logo: {},
+    viedo: {},
+    img: {},
+    name2: "",
+    logo2: {},
+    dropdown: {
+        business: "",
+        city: "",
+        state: "",
+        country: "",
+        openingDays: "",
+        closingDays: "",
+        openingTime: "",
+        closingTime: "",
+    },
 };
 
 const SettingHeaderFooter = () => {
 
-  const handelChange = (e) => {
-    dispatch({ type: e.target.id, value: e.target.value });
-  };
-  const handelDropdown = (value, index) => {
-    dispatch({ type: "dropdown", value: { name: index, value: value } });
-  };
-  // const [data, dispatch] = useReducer(reducer, initialState);
-  const [data, dispatch] = useReducer((state, action) => {
-    return { ...state, [action.type]: action.value }
-  }, initialState)
+    const [data, dispatch] = useReducer((state, action) => {
+        return { ...state, [action.type]: action.value };
+    }, initialState);
 
-  return (
-    <>
-      <GridHAF>
-        <div className="rightSide">
-          <H1>Footer</H1>
-          <Input
-            inputype="text"
-            type="addDataMenu"
-            placeholder="Enter the company Name"
-            value={data.companyName}
-            id="companyName"
-            onChange={handelChange}
-          />
-          <Input
-            inputype="text"
-            type="addDataMenu"
-            placeholder="Enter Address"
-            value={data.address}
-            id="address"
-            onChange={handelChange}
-          />
-          <WrapperHAF>
-            <Input
-              inputype="text"
-              type="addData"
-              placeholder="Enter Postal code "
-              value={data.postalCode}
-              id="postalCode"
-              onChange={handelChange}
-            />
+    const handelChange = (e , index) => {
+        dispatch({
+            type: index,
+            value: e.target.value,
+         })
+    };
 
-            <Dropdown
-              placeholder="Select City"
-              value={data.dropdown.city}
-              updateValue={(value) => handelDropdown(value.name, "city")}
-            />
-          </WrapperHAF>
-          <WrapperHAF>
-            <Dropdown
-              placeholder="Select State"
-              value={data.dropdown.state}
-              updateValue={(value) => handelDropdown(value.name, "state")}
-            />
-            <Dropdown
-              placeholder="Select Country"
-              value={data.dropdown.category}
-              updateValue={(value) => handelDropdown(value.name, "category")}
-            />
-          </WrapperHAF>
-          <Input
-            inputype="Enter the Emails"
-            type="addDataMenu"
-            placeholder="Full Name"
-            value={data.cmpName}
-            id="cmpName"
-            onChange={handelChange}
-          />
-          <Input
-            inputype="text"
-            type="addDataMenu"
-            placeholder="Enter the website URL"
-            value={data.webUrl}
-            id="webUrl"
-            onChange={handelChange}
-          />
-          <Input
-            inputype="text"
-            type="addDataMenu"
-            placeholder="Enter the Mobile Contact Numbers"
-            value={data.contactNo}
-            id="contactNo"
-            onChange={handelChange}
-          />
-          <Input
-            inputype="text"
-            type="addDataMenu"
-            placeholder="Enter the Office Contact Numbers"
-            value={data.officeNo}
-            id="officeNo"
-            onChange={handelChange}
-          />
-          <WrapperHAF>
-            <Dropdown
-              placeholder="Select Opening Days"
-              value={data.dropdown.category}
-              updateValue={(value) => handelDropdown(value.name, "category")}
-            />
-            <Dropdown
-              placeholder="Select Closing Days"
-              value={data.dropdown.category}
-              updateValue={(value) => handelDropdown(value.name, "category")}
-            />
-          </WrapperHAF>
-          <WrapperHAF>
-            <Dropdown
-              placeholder="Select Opening Time"
-              value={data.dropdown.category}
-              updateValue={(value) => handelDropdown(value.name, "category")}
-            />
-            <Dropdown
-              placeholder="Select Closing Time"
-              value={data.dropdown.category}
-              updateValue={(value) => handelDropdown(value.name, "category")}
-            />
-          </WrapperHAF>
-        </div>
-        <div className="leftSide">
-          <p>Header</p>
-          <Input
-            inputype="text"
-            type="addDataDetails"
-            placeholder="Enter the Company Name "
-            value={data.headerMame}
-            id="headerMame"
-            onChange={handelChange}
-          />
+    const handelDropdown = (value, index) => {
+        dispatch({
+            type: "dropdown",
+            value: {
+                ...data.dropdown,
+                [index]: value,
+            },
+        });
+    };
 
-        </div>
-      </GridHAF>
-    </>
-  );
+    console.log(data);
+    return (
+        <>
+            <EditPageLayout>
+                <EditPageHeader hideIcon={true} title="Header & Footer">
+                    <InputContainer>
+                        <Box>
+                            <Dropdown
+                                placeholder="Select City"
+                                value={data.dropdown.business}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "business")
+                                }
+                            />
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Select Business "
+                                value={data.dropdown.business}
+                            />
+                        </Box>
+
+                        <Box full marginTop="2rem">
+                            <HeaderTitleIcons title="Footer" hideIcon />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Company Name"
+                                value={data.companyName}
+                                onChange={(e) =>handelChange(e , "companyName")}
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter Address"
+                                value={data.address}
+                                onChange={(e) =>handelChange(e , "address")}
+                            />
+                        </Box>
+                        <Box>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter Postal code "
+                                value={data.postalCode}
+                                onChange={(e) =>handelChange(e , "postalCode")}
+                            />
+                            <Dropdown
+                                placeholder="Select City"
+                                value={data.dropdown.city}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "city")
+                                }
+                            />
+                        </Box>
+
+                        <Box>
+                            <Dropdown
+                                placeholder="Select State"
+                                value={data.dropdown.state}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "state")
+                                }
+                            />
+                            <Dropdown
+                                placeholder="Select Country"
+                                value={data.dropdown.country}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "country")
+                                }
+                            />
+                        </Box>
+
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Email"
+                                value={data.email}
+                                onChange={(e) =>handelChange(e , "email")}
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Websites URL"
+                                value={data.webUrl}
+                                onChange={(e) =>handelChange(e , "webUrl")}
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Mobile Contact Numbers"
+                                value={data.mobileNo}
+                                onChange={(e) =>handelChange(e , "mobileNo")}
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Office Contact Numbers"
+                                value={data.officeNo}
+                                onChange={(e) =>handelChange(e , "officeNo")}
+                            />
+                        </Box>
+
+                        <Box>
+                            <Dropdown
+                                placeholder="Select Opening Days "
+                                value={data.dropdown.openingDays}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "openingDays")
+                                }
+                            />
+                            <Dropdown
+                                placeholder="Select Closing Days "
+                                value={data.dropdown.closingDays}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "closingDays")
+                                }
+                            />
+                        </Box>
+
+                        <Box>
+                            <Dropdown
+                                placeholder="Select Opening Time "
+                                value={data.dropdown.openingTime}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "openingTime")
+                                }
+                            />
+                            <Dropdown
+                                placeholder="Select Closing Time "
+                                value={data.dropdown.closingTime}
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "closingTime")
+                                }
+                            />
+                        </Box>
+
+                        <FileInput>
+                            <label htmlFor={`file-`}>Drop Logo</label>
+                            <input
+                                accept="image/*"
+                                type="file"
+                                id={`file-`}
+                                // onInput={(e) => {
+                                //     let images = [...state.images];
+                                //     images[index].name = e.target.files[0].name;
+                                //     images[index].url = URL.createObjectURL(e.target.files[0]);
+                                //     setState({ ...state, images })
+                                // }}
+                                onClick={(e) => (e.target.value = null)}
+                            />
+                        </FileInput>
+                        <Box>
+                            <FileInput>
+                                <label htmlFor={`file-`}>Drop Video</label>
+                                <input
+                                    accept="image/*"
+                                    type="file"
+                                    id={`file-`}
+                                    // onInput={(e) => {
+                                    //     let images = [...state.images];
+                                    //     images[index].name = e.target.files[0].name;
+                                    //     images[index].url = URL.createObjectURL(e.target.files[0]);
+                                    //     setState({ ...state, images })
+                                    // }}
+                                    onClick={(e) => (e.target.value = null)}
+                                />
+                            </FileInput>{" "}
+                            <FileInput>
+                                <label htmlFor={`file-`}>Drop Image</label>
+                                <input
+                                    accept="image/*"
+                                    type="file"
+                                    id={`file-`}
+                                    // onInput={(e) => {
+                                    //     let images = [...state.images];
+                                    //     images[index].name = e.target.files[0].name;
+                                    //     images[index].url = URL.createObjectURL(e.target.files[0]);
+                                    //     setState({ ...state, images })
+                                    // }}
+                                    onClick={(e) => (e.target.value = null)}
+                                />
+                            </FileInput>
+                        </Box>
+
+                        <Box full marginTop="2rem">
+                            <HeaderTitleIcons title="Header" hideIcon />
+                        </Box>
+
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
+                                placeholder="Enter the Company Name"
+                                value={data.name2}
+                                onChange={(e) =>handelChange(e , "name2")}
+                            />
+                        </Box>
+                        <FileInput>
+                            <label htmlFor={`file-`}>Drop Logo</label>
+                            <input
+                                accept="image/*"
+                                type="file"
+                                id={`file-`}
+                                // onInput={(e) => {
+                                //     let images = [...state.images];
+                                //     images[index].name = e.target.files[0].name;
+                                //     images[index].url = URL.createObjectURL(e.target.files[0]);
+                                //     setState({ ...state, images })
+                                // }}
+                                onClick={(e) => (e.target.value = null)}
+                            />
+                        </FileInput>
+                    </InputContainer>
+                </EditPageHeader>
+            </EditPageLayout>
+        </>
+    );
 };
 
 export default SettingHeaderFooter;

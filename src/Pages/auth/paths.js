@@ -17,10 +17,8 @@ const TextImage = lazy(() => import('./pages/textImg')); // 2 types of TextImage
 const OverLapppinText = lazy(() => import('./pages/overlapText')); // 4 types of OverLapppinText
 const ViedoList = lazy(() => import('./pages/viedoList'));
 const BrandSlider = lazy(() => import('./pages/brandSlider'));
-const EditMenu = lazy(() => import('./pages/menu'));
 // more new Page will be added
 const NewsBg = lazy(() => import('./pages/bgnews')); // 4 types of BackGround
-const Others = lazy(() => import('./pages/others'));
 const Social = lazy(() => import('./pages/social'));
 const NewsDetail = lazy(() => import('./pages/newsDetail'));
 const SettingAppDetail = lazy(() => import('./pages/set-details'));
@@ -197,19 +195,9 @@ const paths = [
         component: <BrandSlider />
     },
     {
-        id: 24,
-        path: authRoutes.menuEdit,
-        component: <EditMenu />
-    },
-    {
         id: 25,
         path: authRoutes.newsBg,
         component: <NewsBg type={bgType.news} />
-    },
-    {
-        id: 26,
-        path: authRoutes.others,
-        component: <Others />
     },
     {
         id: 27,
