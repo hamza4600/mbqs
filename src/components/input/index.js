@@ -1,7 +1,7 @@
-import { forwardRef, useEffect, useMemo } from "react";
+import { forwardRef, useEffect, useMemo, useState } from "react";
 import clsx from "clsx";
 import uuId from "Hooks/uuId";
-import { AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye, AiOutlineEyeInvisible } from "react-icons/ai";
 import styles from "./style.module.css";
 import Radio from "./radio";
 import { compose } from "redux";
@@ -40,6 +40,8 @@ const Input = forwardRef(
 
         const idx = useMemo(() => { return uuId() }, [])
         id = id || idx;
+        
+        const [passIcon , setPassIcon] = useState(false);
 
         useEffect(() => {
             if (autoFocus) {
@@ -48,16 +50,14 @@ const Input = forwardRef(
             }
         }, [id, autoFocus])
 
-        // useEffect(() => {
-
-        // }, [value])
-
         const showPassword = () => {
             const password = document.getElementById(id);
             if (password.type === "password") {
                 password.type = "text";
+                setPassIcon(true);
             } else {
                 password.type = "password";
+                setPassIcon(false);
             }
         };
 
@@ -97,7 +97,12 @@ const Input = forwardRef(
                         
                     />
                     {icon && <i>{icon}</i>}
-                    {type === "model-password" && <i className={styles.passIcon} onClick={showPassword}><AiOutlineEye size={22} /></i>}
+                    {type === "model-password" && (
+                        passIcon ? 
+                        <i className={styles.passIcon} onClick={showPassword}><AiOutlineEye size={22} /></i> :
+                        <i className={styles.passIcon} onClick={showPassword}><AiOutlineEyeInvisible size={22} /></i> 
+                    
+                    )}
                     {error && <p className={styles.error}>{errorMessage}</p>}
                 </div>
             </>

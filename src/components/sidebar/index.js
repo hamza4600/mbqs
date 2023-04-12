@@ -34,13 +34,13 @@ const Sidebar = memo(forwardRef(
                     height={height}
                     onClick={handelClick}
                     role='tablist'
-                    aria-orientation="vertical"
+                    aria-orientation="horizontal"
                     opacity = "0.95"
                 >
                     <Wrapper
                         aria-label="sidebar"
                         aria-haspopup="true"
-                        aria-expanded={trigger}    
+                        aria-expanded={trigger} 
                     >
                         {children}
                     </Wrapper>

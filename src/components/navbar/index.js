@@ -8,8 +8,8 @@ const Navbar = forwardRef(
                 <Nav    
                     ref={ref}
                     aria-label="navbar"
-                    tabIndex={0}
                     blure = {props.blure}
+                    role='tab'
                 >
                     <NavWrapper>
                         {props.Left}

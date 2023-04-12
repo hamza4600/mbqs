@@ -11,15 +11,18 @@ import { SlMenu } from "react-icons/sl";
 import { FaRegUser } from "react-icons/fa";
 
 import Tooltip from "components/tooltip";
-import Searchbar from "./serachbar";
+// import Searchbar from "./serachbar";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
 // HOC
 import outisdeClick from "functions/outside";
 import Spinner from "components/spinner/spinner";
+import UserMenu from "./usermenu";
+import LanguageMenu from "./languagemenu";
 
-const UserMenu = React.lazy(() => import("./usermenu"));
+const Searchbar = React.lazy(() => import("./serachbar"));
+
 
 const Wrapper = styled.div`
     display: flex;
@@ -47,6 +50,8 @@ const Ico = styled.i`
     display: flex;
     flex : 1;
     position: relative;
+    -webkit-tap-highlight-color: transparent;
+
 
     svg:hover{
         color: ${({ theme }) => theme.navhoverIcon};
@@ -62,21 +67,33 @@ const Ico = styled.i`
 `;
 
 const userData = {
-    name: "John Doe",
+    name: "Sara Svensson",
     time: "12:00 PM",
-    avatar: "https://avatars.githubusercontent.com/u/112898030?v=4",
+    avatar: "https://avatars.githubusercontent.com/u/129557364?v=4",
     logout: "Logout",
     grouplogin: "Sign Up",
     otherUser: [
         {
             id: 1,
-            name: "Micheal",
+            name: "Sara Svensson",
+            avatar: "https://avatars.githubusercontent.com/u/129557364?v=4",
+            logtime: "12:00 PM"
+        },
+        {
+            id: 10,
+            name: " Svensson",
+            avatar: "https://avatars.githubusercontent.com/u/129557364?v=4",
+            logtime: "2:30 PM"
+        },
+        {
+            id: 2,
+            name: "Magdalena Strömberg",
             avatar: "https://avatars.githubusercontent.com/u/78164997?v=4",
             logtime: "12:00 PM"
         },
         {
-            id: 2,
-            name: "Andrew",
+            id: 3,
+            name: "Jessica Andersson",
             avatar: "https://avatars.githubusercontent.com/u/78164997?v=4",
             logtime: "10:30 PM"
         }
@@ -92,6 +109,10 @@ const Icon = (props) => {
                 ref={ref}
                 onClick={Click}
                 color={color}
+                // should be access by tab key
+                tabIndex="0"
+                onKeyPress={Click}
+
             >
                 {icon}
 
@@ -112,6 +133,7 @@ const RightSide = () => {
 
     const [searh, setSearh] = useState(false);
     const [user, setUser] = useState(false);
+    const [lang, setLang] = useState(false);
 
     const dispatch = useDispatch();
     const state = useSelector(state => state.sidebar)
@@ -128,6 +150,11 @@ const RightSide = () => {
     const handelUser = () => {
         console.log("user");
         setUser(!user);
+    }
+
+    const handelLang = () => {
+        console.log("lang");
+        setLang(!lang);
     }
 
     return (
@@ -156,6 +183,9 @@ const RightSide = () => {
                 <Icons
                     hover="Language"
                     icon={<img src={flag} id="flag" alt="flag" />}
+                    Click={handelLang}
+                    color={lang}
+                    outSide={() => setLang(false)}
                 />
             </Wrapper>
             {
@@ -164,9 +194,14 @@ const RightSide = () => {
                 </Suspense>
             }
             {
-                user && <Suspense fallback={<p>...</p>}>
+                user && (<>
                     <UserMenu data={userData} />
-                </Suspense>
+                    </>)
+            }
+            {
+                lang && (
+                    <LanguageMenu />
+                )
             }
 
         </>

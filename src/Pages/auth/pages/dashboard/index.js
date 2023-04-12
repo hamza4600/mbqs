@@ -7,6 +7,7 @@ const Container = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
+    flex-direction: column;
     height: 100%;
     width: 90%;
     position : absolute;
@@ -16,6 +17,12 @@ const Container = styled.div`
         transform: all 1s ease-in-out;
         animation: scale 1s linear;
         object-fit: cover;
+    }
+
+    h2 {
+        margin-top: 20px;
+        font-size: 1.5rem;
+        font-weight: 500;
     }
 
     @keyframes scale {
@@ -43,7 +50,10 @@ const Dashboard = () => {
         <>
             <Suspense fallback={<PageSpinner />}>
                 <Container>
-                    <img src={Edit} alt="edit" />
+                    <img src={Edit} alt="MBiQs logo" loading='lazy'/>
+                    <h2>
+                    Welcome to our MBIQS dashboard panel
+                    </h2>
                 </Container>
 
             </Suspense>

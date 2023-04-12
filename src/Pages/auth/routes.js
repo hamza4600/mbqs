@@ -52,6 +52,7 @@ export const authRoutes = {
     headFooter: '/setting-head-footer',
     others: '/others',
     mediaIcon: '/media-icon',
+    account : '/account',
     // Common Pages
     frontView: '/front-view', // front view of website
     busniessProfile: '/business-profile',

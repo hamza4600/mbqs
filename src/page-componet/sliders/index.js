@@ -20,7 +20,8 @@ function Icon(props) {
         <>
             <Span
                 ref={ref}
-                key={id + key}
+                key={`tab-${id + key}`}
+                id={`tab-${id + key}`}
                 role='tab'
                 aria-selected={id === select}
                 aria-controls={`panel-id-${id}`}
@@ -136,8 +137,8 @@ const PageSide = () => {
                             {
                                 Array.isArray(sidebarData) && sidebarData.map((item, index) => (
                                     <div
-                                        key={item.id}
-                                        id={item.title}
+                                        key={`tab-${item.id}`}
+                                        id={`tab-id-${item.id}`}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             subhandel(item.id)

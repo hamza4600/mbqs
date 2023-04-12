@@ -2,6 +2,7 @@ import React, { forwardRef, memo, useMemo } from "react";
 import styled from "styled-components";
 import clsx from "clsx";
 import styles from './style.module.css';
+// import { BsSquare, BsCheck2Square } from "react-icons/bs";
 
 // Props for the check Box
 const Check = styled.input`
@@ -22,7 +23,14 @@ const Check = styled.input`
 }
 
   :checked {
-    background: ${(props) => (props.bg ? props.bg : "#a1adb9")};
+    background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 16 16'%3E%3Cpath fill='%23fff' d='M6.3 11.7L1.6 7 0 8.6l6.3 6.3L16 4.6 14.4 3z'/%3E%3C/svg%3E");
+    // use BsCheck2Square as a check icon
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-position-x: 2px;
+    background-position-y: -2px;
+    z-index: 1;
     border: 1px solid ${(props) => (props.bg ? props.bg : "#a1adb9")};
   }
 
@@ -90,6 +98,7 @@ const Radio = memo(
                     style={style}
                     // {...props}
                 />
+
                 <label style={{ color: typeOf?.color || "inherit" }} htmlFor={id}>{label}</label>
                 {hasError && <p style={{ color: "red" }}>{errorMessage}</p>}
             </div>

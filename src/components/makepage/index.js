@@ -45,7 +45,7 @@ const MakePage = forwardRef(
         return (
             <>
                 <Outer>
-                    <Page ref={ref} id="main_page">
+                    <Page tabIndex={-1} ref={ref} id="main_page">
                         {props.children}
                     </Page>
                 </Outer>

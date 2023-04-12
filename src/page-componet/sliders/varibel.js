@@ -472,7 +472,7 @@ export const sidebarData = [
             {
                 id: 50,
                 title: 'My Account',
-                route: authRoutes.mediaIcon
+                route: authRoutes.account
             },
             {
                 id: 60,

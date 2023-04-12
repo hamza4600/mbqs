@@ -58,3 +58,6 @@ git checkout master
 git pull origin master
 git merge test
 git push origin master
+
+https://github.com/thanhtungdp/vnpt-i/tree/VNPT/
+https://robghchen.medium.com/how-to-use-google-translate-api-e42e5eb380fb

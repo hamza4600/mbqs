@@ -1,5 +1,6 @@
 import { lazy } from 'react';
 import { authRoutes } from './routes';
+import ErrorPage from 'Pages/interface/pages/404';
 
 // add trem and privacy and faq and contact are same 
 const Dashboard = lazy(() => import('./pages/dashboard'));
@@ -27,6 +28,7 @@ const PrivacyPolicy = lazy(() => import('./pages/privacyPolicy')); // 2 types
 const FAQ = lazy(() => import('./pages/faq'));
 const Map = lazy(() => import('./pages/map'));
 const ContactDetails = lazy(() => import('./pages/contactDetails'));
+// new Pages
 
 // 7 types of list page
 const listPageType = {  // every Page have its own Api for getting Data
@@ -303,6 +305,16 @@ const paths = [
         id: 46,
         path: authRoutes.contactBg,
         component: <NewsBg type={bgType.contact} />
+    },
+    // {
+    //     id: 47,
+    //     path: authRoutes.account,
+    //     component: <Account />
+    // },
+    {
+        id: 48,
+        path: "*", // this is the important part
+        component: <ErrorPage />
     }
 ];
 

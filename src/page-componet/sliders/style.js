@@ -81,7 +81,7 @@ export const Wrapper = styled.div`
 
 `;
 
-export const Span = styled.span`
+export const Span = styled.button`
     display: flex;
     align-items: center;
     justify-content: flex-start;
@@ -91,6 +91,13 @@ export const Span = styled.span`
     position: relative;
     transition: all 0.3s ease-in-out;
     margin-left: 8px;
+    border: none;
+    background: none;
+    color: unset;
+    text-transform: capitalize;
+    font-size: 16px;
+    font-weight: 400;
+    margin-bottom: 3px;
     
     &:hover {
         color: #00BFFF;
