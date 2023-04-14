@@ -32,7 +32,7 @@ const Input = forwardRef(
             icon,
             onFocus,
             error,
-            errorMessage,
+            errorMessage = "Put the accurate data in",
             maxLength = 200,
             accept,
             readOnly = false,

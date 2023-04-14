@@ -60,10 +60,14 @@ export const LoginModelWrapper = styled.div`
         justify-content: space-between;
         margin-top: 10px;
         width: 90%;
-        font-size: 10px;
     }
 
-    p{
+    #row button {
+        background: none;
+        border: none;
+        color: #C2BEBE;
+        font-size: 10px;
+        font-weight: 500;
         cursor: pointer;
     }
     
@@ -79,7 +83,11 @@ export const RegesterWrapper = styled.div`
     font-size: 12px !important;
 
     input {
-        margin: 5px 0 !important;
+        margin: 3px 0 !important;
+    }
+
+    #small-modal {
+        max-height: 430px !important;
     }
 
     @media (max-width: 768px) {
@@ -88,11 +96,11 @@ export const RegesterWrapper = styled.div`
 `;
 
 export const Head  = styled.h1`
-    font-size: 26px;
-    font-weight: 500;
+    font-size: 18px;
+    font-weight: 300;
     margin-bottom: 20px;
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
     color: #C2BEBE;
 

@@ -1,7 +1,8 @@
 // check validation of the input
 
 export const isRequired = (value) => ({
-    isValid: value !== "" && value !== null && value !== undefined && value !== 0,
+    isValid:
+        value !== "" && value !== null && value !== undefined && value !== 0,
     label: "This field is required",
 });
 
@@ -52,7 +53,10 @@ export const isYear = (value) => ({
 
 export const isMonth = (value) => ({
     isValid:
-        isNumber(value).isValid && value.length === 2 && value > 0 && value < 13,
+        isNumber(value).isValid &&
+        value.length === 2 &&
+        value > 0 &&
+        value < 13,
     label: "Valid month",
 });
 
@@ -91,48 +95,90 @@ export const isValidName = (value) => {
 };
 
 export const isPassword = (value) => {
-    // const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/; 
-    const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // at least 8 characters, 1 uppercase, 1 lowercase, 1 number
+    // const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // at least 8 characters, 1 uppercase, 1 lowercase, 1 number
+    // only check for length of 8 characters
+    const regex = /(?=.*\w{8,}).*/;
     return {
         isValid: regex.test(value) && value.length > 7 && value.length < 40,
-        label: "Require at least 8 characters, 1 uppercase, 1 lowercase, 1 number",
+        // label: "Require at least 8 characters, 1 uppercase, 1 lowercase, 1 number",
+        label: "Require at least 8 characters",
     };
 };
 
-export const isPasswordMatch = (value, value2) => ({
-    isValid: value === value2,
-    label: "passwords didn,t match",
-});
-export const validation = {
-    isRequired,
-    isEmail,
-    isAlpha,
-    isNumber,
-    isAlphaNumeric,
-    isCurrency,
-    isYear,
-    isMonth,
-    isPhoneNumber,
-    isZipCode,
-    isDomain,
-    isValidName,
-    isPassword,
-    isPasswordMatch,
+export const isPasswordMatch = (value) => {
+    const [value1, value2] = value;
+    // console.log(value1, value2, "value");
+    const isValid = value1 === value2;
+    return {
+        isValid: isValid,
+        label: isValid ? "valid" : "passwords didn,t match",
+    }
 };
 
+// check length of the input
+export const isLength = (value, length = 3) => ({
+    isValid: value.length === length,
+    label: `Must be ${length} characters`,
+});
+
+const map = {
+    required: isRequired,
+    email: isEmail,
+    alpha: isAlpha,
+    number: isNumber,
+    alphaNumeric: isAlphaNumeric,
+    currency: isCurrency,
+    year: isYear,
+    month: isMonth,
+    phoneNumber: isPhoneNumber,
+    zipCode: isZipCode,
+    domain: isDomain,
+    validName: isValidName,
+    password: isPassword,
+    passwordMatch: isPasswordMatch,
+    length: isLength,
+};
 
 // run the validation function
 export const runValidation = (value, validations) => {
     let isValid = true;
-    let label = "";
-    for (let i = 0; i < validations.length; i++) {
-        const validation = validations[i];
-        const result = validation(value);
-        if (!result.isValid) {
-            isValid = false;
-            label = result.label;
-            break;
+    let label = "valid";
+    // check if the value is valid against all the validations
+    if (validations.length === 0) return { isValid, label };
+
+    if (Array.isArray(validations)) {
+        for (let i = 0; i < validations.length; i++) {
+            const validation = validations[i];
+            if (typeof validation === "string") {
+                // check if the validation function is found in the map
+                const result = map[validation];
+                // if not found in the show console error
+                if (!result) {
+                    console.error(
+                        `Validation function ${validation} not found in the map`
+                    );
+                    return null; 
+                } else {
+                    // if found in the map then run the validation function
+                    const result = map[validation](value);
+
+                    // for password 
+                    // if rematch password should pass two values
+                    if (validation === "passwordMatch") {
+                        const result = isPasswordMatch(value);
+                        isValid = result.isValid;
+                        label = result.label;                        
+                    }
+
+
+                    if (!result.isValid) {
+                        isValid = false;
+                        label = result.label;
+                        break;
+                    }
+                }
+            }
         }
+        return { isValid, label };
     }
-    return { isValid, label };
 };

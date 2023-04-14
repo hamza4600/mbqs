@@ -4,7 +4,7 @@ import { Head, LoginModelWrapper } from "./structure"
 import Button from "components/button"
 
 const ResetPass = () => {
-
+// it will be dynamic have another modal in it also for otp
     const [pass, setPass] = useState({
         pass: '',
         cpass: ''
@@ -20,27 +20,17 @@ const ResetPass = () => {
     return (
         <>
             <LoginModelWrapper>
-                <Head>Reset Password</Head>
+                <Head>Forgot Password ?</Head>
                 <Input
-                    placeholder="Enter New Password"
-                    type="model-password"
-                    inputype="password"
+                    placeholder="Enter Your Email OR User Name "
+                    type = "model"
+                    inputype="text"
                     value={pass.pass}
                     onChange={(e) => setValue(e, 'pass')}
                     // error={error()}
-                    errorMessage="Enter Your Password"
-                />
-                <Input
-                    placeholder="Renter New Password"
-                    type="model-password"
-                    inputype="password"
-                    value={pass.cpass}
-                    onChange={(e) => setValue(e, 'cpass')}
-                    // error={error()}
-                    errorMessage="Enter Your Password"
                 />
 
-                <Button type="login-model" onClick={() => { }}>Re-set Password</Button>
+                <Button type="login-model" onClick={() => { }}>Continue</Button>
 
             </LoginModelWrapper>
         </>

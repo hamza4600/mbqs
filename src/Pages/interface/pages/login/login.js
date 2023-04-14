@@ -4,6 +4,8 @@ import { Head, LoginModelWrapper } from "./structure";
 import Button from "components/button";
 import { useDispatch } from "react-redux";
 import { setModelData } from "store/loginModel";
+import { BsSquare, BsCheck2Square } from "react-icons/bs";
+import { runValidation } from "functions/validate";
 
 // part of LoginModel
 
@@ -12,6 +14,10 @@ const LoginModelPart = (props) => {
         username: "",
         password: "",
         remember: false,
+        error : {
+            username : false,
+            password : false,
+        }
     });
 
     const setValue = (e, name) => {
@@ -51,8 +57,34 @@ const LoginModelPart = (props) => {
     };
 
     const handelLogin = () => {
-        //  all logic for login 
-        window.location.href = "/auth/panel";
+        //  all logic for login
+            const name = runValidation(values.username, ["required" , "email"]);
+            const password = runValidation(values.password, ["required" , "password"]);
+            if (!name.isValid || !password.isValid) {
+                setValues({
+                    // empty field 
+                    username : name.isValid ? values.username : "",
+                    password : password.isValid ? values.password : "",
+                    error : {
+                        username : !name.isValid,
+                        password : !password.isValid,
+                    }
+                })
+            } else {
+                // return console.log("Valid Data");
+                setValues({
+                    ...values,
+                    error : {
+                        username : false,
+                        password : false,
+                    }
+                })
+
+                // login logic api request
+                window.location.href = "/auth/panel";
+            }
+
+        // window.location.href = "/auth/panel";
     };
 
     return (
@@ -65,8 +97,7 @@ const LoginModelPart = (props) => {
                     inputype="text"
                     value={values.username}
                     onChange={(e) => setValue(e, "username")}
-                    // error={error()}
-                    errorMessage="Enter Your User Name"
+                    error={values.error.username}
                 />
                 <Input
                     placeholder="Password"
@@ -74,26 +105,37 @@ const LoginModelPart = (props) => {
                     inputype="password"
                     value={values.password}
                     onChange={(e) => setValue(e, "password")}
-                    // error={error()}
-                    errorMessage="Enter Your Password"
+                    error={ values.error.password }
                 />
 
                 <div id="row">
-                    <Input.Radio
-                        type="model"
-                        name="remember"
-                        value="remember"
-                        checked={values.remember}
-                        onChange={(e) =>
-                            setValues({
-                                ...values,
-                                remember: e.target.checked,
-                            })
-                        }
-                        label="Remember Me"
-                    />
-                    <p onClick={forget}>Forgot Password</p>
-                    <p onClick={signup}>Sign Up</p>
+                    <button style={{ display : "inline-flex" , cursor : "pointer"}}>
+                        <input
+                            type="checkbox"
+                            name="remember"
+                            id="remember"
+                            checked={values.remember}
+                            onChange={(e) =>
+                                setValues({
+                                    ...values,
+                                    remember: e.target.checked,
+                                })
+                            }
+                            style={{
+                                opacity: 0,
+                                position: "absolute",
+                            }}
+                        />
+
+                        {values.remember ? (
+                            <BsCheck2Square size={15} />
+                        ) : (
+                            <BsSquare size={15} />
+                        )}
+                        <label style={{marginLeft : "5px"}} htmlFor="remember">Save Credentials</label>
+                    </button>
+                    <button onClick={forget}>Forgot Password</button>
+                    <button onClick={signup}>Sign Up</button>
                 </div>
 
                 <Button type="login-model" onClick={handelLogin}>
@@ -105,33 +147,3 @@ const LoginModelPart = (props) => {
 };
 
 export default LoginModelPart;
-
-// HOC that all logi for Passwerd in pinput 
-
-// function withPassword(WrappedComponent) {
-//     return class extends React.Component {
-//         constructor(props) {
-//             super(props);
-//             this.state = {
-//                 password: "",
-//                 showPassword: false,
-//             };
-//         }
-
-//         togglePassword = () => {
-//             this.setState({
-//                 showPassword: !this.state.showPassword,
-//             });
-//         };
-
-//         render() {
-//             return (
-//                 <WrappedComponent
-//                     {...this.props}
-//                     showPassword={this.state.showPassword}
-//                     togglePassword={this.togglePassword}
-//                 />
-//             );
-//         }
-//     };
-// }

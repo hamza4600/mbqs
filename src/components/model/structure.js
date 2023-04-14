@@ -36,7 +36,7 @@ const Model2 = styled.div`
   bottom: 100px;
 
     @media (max-width: 768px) {
-        max-height: 100%;
+        max-height: 100% !important;
         border-radius: 0;
         bottom: 0;
         max-width: 100%;
