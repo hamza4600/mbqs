@@ -50,7 +50,7 @@ const Right = (props) => {
 
     return (
         <>
-            <Rwrap>
+            <Rwrap id="margin">
                 <ActiveCompt />
             </Rwrap>
         </>

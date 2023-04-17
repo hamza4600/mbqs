@@ -20,7 +20,6 @@
     border-bottom: 1px solid #B0C4DE !important;
     background: transparent;
     color: whitesmoke;
-    text-transform: capitalize;
 }
 
 .login::placeholder {
@@ -159,7 +158,7 @@
 }
 
 .error {
-    color: #C8CACB;
+    color: #FF7B7B;
     font-size: 0.95rem;
     margin: 0px 0px 0px 0px;
 }

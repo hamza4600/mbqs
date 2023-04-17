@@ -90,7 +90,12 @@ const LoginModelPart = (props) => {
     return (
         <>
             <LoginModelWrapper>
-                <Head>Welcome</Head>
+                <Head
+                    size= "26px"
+                    style={{
+                        paddingRight : '20px'
+                    }}
+                >Welcome</Head>
                 <Input
                     placeholder="User Name"
                     type="model"

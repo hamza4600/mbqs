@@ -1,10 +1,14 @@
-import Input from "components/input";
 import { useEffect, useState } from "react";
-import { Head, RegesterWrapper } from "./structure";
+
+import Input from "components/input";
+import { DotShuttler, Head, RegesterWrapper } from "./structure";
 import Button from "components/button";
 import { runValidation } from "functions/validate";
 import { LoginApi } from "api";
-import PageSpinner from "components/pageSpinner";
+import axios from "axios";
+import ServerError from "components/serverError";
+import { useSelector } from "react-redux"
+
 
 const RegesterModel = () => {
     const [values, setValues] = useState({
@@ -25,6 +29,9 @@ const RegesterModel = () => {
     const [responce, setResponce] = useState({});
     const [loading, setLoading] = useState(false);
 
+    const active = useSelector(state => state.loginModel);
+    console.log(active, "===");
+
     const setValue = (e, name) => {
         setValues({
             ...values,
@@ -34,12 +41,15 @@ const RegesterModel = () => {
 
     useEffect(() => {
         const modal = document.getElementById("small-modal");
-        modal.style.maxHeight = "425px";
+
+        if (values.error.employname || values.error.contactNumber ||values.error.email || values.error.password  ) {    
+            modal.style.maxHeight = "425px";
+        }
         // on mobile 768px
         if (window.innerWidth < 768) {
             modal.style.maxHeight = "100%";
         }
-    }, []);
+    }, [values.error.contactNumber, values.error.email, values.error.employname, values.error.password]);
 
     const handelLogin = async () => {
         //  all logic for login
@@ -85,23 +95,23 @@ const RegesterModel = () => {
                 },
             });
             // login Logi
-            console.log("login" , employname , contactNumber , email , password);
             try {
                 setLoading(true);
-                const responce = await fetch(LoginApi.register, {
-                    method: "POST",
-                    body: JSON.stringify({
-                        email: email,
-                        password: password,
-                        name: employname,
-                        contact: contactNumber,
-                        company_name : "MBIQS",
-                    }),
+                const responce = await axios.post(LoginApi.register, {
+                    email: email,
+                    password: password,
+                    name: employname,
+                    contact: contactNumber,
+                    company_name: "MBIQS",
                 });
-                const data = await responce.json();
-                console.log(data);
                 setLoading(false);
-                setResponce(data);
+                setResponce(responce.data);
+                
+                // redirect to login page  after 3 sec chnage to 1 modal
+                setTimeout(() => {
+                    window.location.reload();
+                }, 3000);
+
             } catch (error) {
                 console.error("Error occurred while logging in: ", error);
             }
@@ -111,26 +121,64 @@ const RegesterModel = () => {
     if (loading) {
         return (
             <>
-                <PageSpinner />
+                <RegesterWrapper>
+                    <Head
+                        style={{
+                            textAlign : "center",
+                            padding :"2px 20px"
+                        }}
+                    >Thank you for being patient with us, and we apologize for the delay.</Head>
+                    {/* animation */}
+                    <DotShuttler />
+                </RegesterWrapper>
             </>
-        )
+        );
     }
 
-    // if (responce.status === 200) {
-    //     return (
-    //         <>
-    //             <RegesterWrapper>
-    //                 <Head>Employees sign up with MBIQS</Head>
-    //                 <h1>Registration Successful</h1>
-    //             </RegesterWrapper>
-    //         </>
-    //     )
-    // }
+    if (responce.code === 200) {
+        return (
+            <>
+                <RegesterWrapper>
+                    <Head
+                        size = '25px'
+                    >Congratulations</Head>
+                    <Head>you've successfully registered</Head>
+
+                </RegesterWrapper>
+            </>
+        );
+    }
+    
+    if (responce.code === 500) {
+        return (
+            <>
+                <ServerError />
+
+            </>
+        );
+    }
+
+    
+    if (responce.code === 400) {
+        return (
+            <>
+                <RegesterWrapper>
+                <Head
+                    size = '25px'
+                    >Congratulations</Head>
+                    <Head>your Email is registered</Head>                   
+                </RegesterWrapper>
+            </>
+        );
+    }
 
     return (
         <>
             <RegesterWrapper>
-                <Head>Employees sign up with MBIQS</Head>
+
+                <Head
+                    justify = "start"
+                >Employees sign up with MBIQS</Head>
                 <Input
                     placeholder="Employee Name"
                     type="model"
@@ -148,7 +196,7 @@ const RegesterModel = () => {
                     error={values.error.contactNumber}
                 />
                 <Input
-                    placeholder="email"
+                    placeholder="Email"
                     type="model"
                     inputype="text"
                     value={values.email}

@@ -20,7 +20,12 @@ const ResetPass = () => {
     return (
         <>
             <LoginModelWrapper>
-                <Head>Forgot Password ?</Head>
+                <Head
+                size ='26px'
+                style={{
+                    paddingRight : '20px'
+                }}
+                >Forgot Password ?</Head>
                 <Input
                     placeholder="Enter Your Email OR User Name "
                     type = "model"

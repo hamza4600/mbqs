@@ -32,7 +32,7 @@ const Input = forwardRef(
             icon,
             onFocus,
             error,
-            errorMessage = "Put the accurate data in",
+            errorMessage = "Please type in the correct credentials",
             maxLength = 200,
             accept,
             readOnly = false,
