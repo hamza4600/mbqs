@@ -1,25 +1,29 @@
 import { useSelector } from "react-redux";
-// import { Navigate } from "react-router-dom"  // when connceted to server 
+import { Navigate } from "react-router-dom"  // when connceted to server 
 
 const getUserRole = (props) => (WrappedComponent) => {
-    const detail = props;
+    // const detail = props;
 
     function HOC(props) {
         // redux from store 
-        const role = useSelector(state => state.user);
+        const user = useSelector(state => state.loginModel);
 
         const {
-            isAuth,
-            role: userRole,
-            roleID,
-        } = role;
+            isValid : isAuth,
+            session : {
+                id : roleID,
+                token : token,
+                email : email,
+            },
+        } = user;
 
-        if (!isAuth || userRole !== detail.name || roleID === "") {
-            // return <Navigate to={detail.login} />
+        if (!isAuth || roleID === "" || token === "" || email === "") {
+            // window.location.href = "/auth/login"
+            return <Navigate to="/" />
         }
-        document.title = detail.title;
+        // document.title = detail.title;
 
-        return <WrappedComponent role={role} {...props} />
+        return <WrappedComponent role={user} {...props} />
     }
     return HOC;
 }

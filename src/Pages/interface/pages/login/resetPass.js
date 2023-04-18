@@ -2,12 +2,13 @@ import Input from "components/input"
 import { useState } from "react"
 import { Head, LoginModelWrapper } from "./structure"
 import Button from "components/button"
+import { runValidation } from "functions/validate"
 
-const ResetPass = () => {
+const ResetPass = (props) => {
 // it will be dynamic have another modal in it also for otp
     const [pass, setPass] = useState({
-        pass: '',
-        cpass: ''
+        email: '',
+        error: ''
     });
 
     const setValue = (e, name) => {
@@ -17,6 +18,24 @@ const ResetPass = () => {
         })
     }
 
+    const handelClick = () => {
+        const email = runValidation(pass.email , ["required", "email"]);
+        if(!email.isValid) {
+            setPass({
+                email : email.isValid ? pass.email : "" ,
+                error : true
+            })
+        } else {
+            setPass({
+                ...pass,
+                error : false
+            })
+            // next Modal and api call post data to it 
+            props.setActiveCompont(3);
+        }
+    }
+
+    console.log(pass)
     return (
         <>
             <LoginModelWrapper>
@@ -30,12 +49,12 @@ const ResetPass = () => {
                     placeholder="Enter Your Email OR User Name "
                     type = "model"
                     inputype="text"
-                    value={pass.pass}
-                    onChange={(e) => setValue(e, 'pass')}
-                    // error={error()}
+                    value={pass.email}
+                    onChange={(e) => setValue(e, 'email')}
+                    error = {pass.error}
                 />
 
-                <Button type="login-model" onClick={() => { }}>Continue</Button>
+                <Button type="login-model" onClick={handelClick}>Continue</Button>
 
             </LoginModelWrapper>
         </>

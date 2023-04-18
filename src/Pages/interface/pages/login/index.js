@@ -1,4 +1,4 @@
-import { useCallback, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 
 import InterfaceLayout from "page-componet/layout"
 import Model from "components/model"
@@ -29,20 +29,23 @@ const Right = (props) => {
     // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
     const [activeCompont, setActiveCompont] = useState(1);
     const active = useSelector(state => state.loginModel);
-    console.log(active)
 
-    // 
+    useEffect(() => {
+        if (active.isValid && active.session.id !== "" && active.session.token !== "" ) {
+            window.location.href = "auth/panel"
+        }
+    },[active.isValid, active.session.id, active.session.token]) 
 
     const ActiveCompt = useCallback(() => {
         switch (activeCompont) {
             case 1:
                 return <LoginModelPart setActiveCompont={setActiveCompont} />
             case 2:
-                return <RegesterModel />
+                return <RegesterModel setActiveCompont={setActiveCompont} />
             case 3:
                 return <OTP />
             case 4:
-                return <ResetPass />
+                return <ResetPass setActiveCompont={setActiveCompont} />
             default:
                 return <p>Error : No Match</p>
         }

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 
 import Input from "components/input";
 import { DotShuttler, Head, RegesterWrapper } from "./structure";
@@ -7,10 +8,9 @@ import { runValidation } from "functions/validate";
 import { LoginApi } from "api";
 import axios from "axios";
 import ServerError from "components/serverError";
-import { useSelector } from "react-redux"
+import { setModelData } from "store/loginModel";
 
-
-const RegesterModel = () => {
+const RegesterModel = (props) => {
     const [values, setValues] = useState({
         employname: "",
         contactNumber: "",
@@ -29,10 +29,22 @@ const RegesterModel = () => {
     const [responce, setResponce] = useState({});
     const [loading, setLoading] = useState(false);
 
-    const active = useSelector(state => state.loginModel);
-    console.log(active, "===");
+    const dispatch = useDispatch();
 
     const setValue = (e, name) => {
+        // if error is true then set it to false
+        if (values.error[name]) {
+            setValues({
+                ...values,
+                [name]: e.target.value,
+                error: {
+                    ...values.error,
+                    [name]: false,
+                },
+            });
+            return;
+        }
+
         setValues({
             ...values,
             [name]: e.target.value,
@@ -42,14 +54,24 @@ const RegesterModel = () => {
     useEffect(() => {
         const modal = document.getElementById("small-modal");
 
-        if (values.error.employname || values.error.contactNumber ||values.error.email || values.error.password  ) {    
+        if (
+            values.error.employname ||
+            values.error.contactNumber ||
+            values.error.email ||
+            values.error.password
+        ) {
             modal.style.maxHeight = "425px";
         }
         // on mobile 768px
         if (window.innerWidth < 768) {
             modal.style.maxHeight = "100%";
         }
-    }, [values.error.contactNumber, values.error.email, values.error.employname, values.error.password]);
+    }, [
+        values.error.contactNumber,
+        values.error.email,
+        values.error.employname,
+        values.error.password,
+    ]);
 
     const handelLogin = async () => {
         //  all logic for login
@@ -106,13 +128,21 @@ const RegesterModel = () => {
                 });
                 setLoading(false);
                 setResponce(responce.data);
-                
-                // redirect to login page  after 3 sec chnage to 1 modal
-                setTimeout(() => {
-                    window.location.reload();
-                }, 3000);
 
+                setTimeout(() => {
+                    dispatch(
+                        setModelData({
+                            valid: false,
+                            session: "",
+                            usertype: "",
+                            number: 1,
+                            typeModel: "signup",
+                        })
+                    );
+                    props.setActiveCompont(1);
+                }, 2000);
             } catch (error) {
+                setLoading(false);
                 console.error("Error occurred while logging in: ", error);
             }
         }
@@ -124,10 +154,13 @@ const RegesterModel = () => {
                 <RegesterWrapper>
                     <Head
                         style={{
-                            textAlign : "center",
-                            padding :"2px 20px"
+                            textAlign: "center",
+                            padding: "2px 20px",
                         }}
-                    >Thank you for being patient with us, and we apologize for the delay.</Head>
+                    >
+                        Thank you for being patient with us, and we apologize
+                        for the delay.
+                    </Head>
                     {/* animation */}
                     <DotShuttler />
                 </RegesterWrapper>
@@ -139,34 +172,29 @@ const RegesterModel = () => {
         return (
             <>
                 <RegesterWrapper>
-                    <Head
-                        size = '25px'
-                    >Congratulations</Head>
+                    <Head size="25px" capi>
+                        Congratulations
+                    </Head>
                     <Head>you've successfully registered</Head>
-
                 </RegesterWrapper>
             </>
         );
     }
-    
+
     if (responce.code === 500) {
         return (
             <>
                 <ServerError />
-
             </>
         );
     }
 
-    
     if (responce.code === 400) {
         return (
             <>
                 <RegesterWrapper>
-                <Head
-                    size = '25px'
-                    >Congratulations</Head>
-                    <Head>your Email is registered</Head>                   
+                    <Head size="25px">Congratulations</Head>
+                    <Head>your Email is registered</Head>
                 </RegesterWrapper>
             </>
         );
@@ -175,10 +203,7 @@ const RegesterModel = () => {
     return (
         <>
             <RegesterWrapper>
-
-                <Head
-                    justify = "start"
-                >Employees sign up with MBIQS</Head>
+                <Head justify="start">Employees sign up with MBIQS</Head>
                 <Input
                     placeholder="Employee Name"
                     type="model"

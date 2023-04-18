@@ -60,3 +60,5 @@ git merge test
 git push origin master
 
 https://github.com/thanhtungdp/vnpt-i/tree/VNPT/
+
+set document title of login Pages 

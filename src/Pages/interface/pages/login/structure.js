@@ -100,6 +100,7 @@ export const Head = styled.h1`
     justify-content: ${(props) => (props.justify ? props.justify : "center")};
     align-items: center;
     color: #c2bebe;
+    text-transform: ${(props) => (props.capi ? "capitalize" : "none")};
 
     @media (max-width: 768px) {
         margin-right: 60px;
@@ -115,7 +116,7 @@ const Anime = styled.div`
         width: 34px;
         height: 34px;
         border-radius: 50%;
-        background-color: #C8CACB;
+        background-color: #c8cacb;
         color: transparent;
         margin: -1px 0;
     }
@@ -128,7 +129,7 @@ const Anime = styled.div`
         width: 34px;
         height: 34px;
         border-radius: 50%;
-        background-color: #C8CACB;
+        background-color: #c8cacb;
         color: transparent;
     }
     .dot-shuttle::before {
@@ -160,16 +161,14 @@ const Anime = styled.div`
     }
 `;
 
-export const DotShuttler = () => {
-    return (
-        <>
-            <Anime class="col-3">
-                <div class="snippet" data-title="dot-shuttle">
-                    <div class="stage filter-contrast">
-                        <div class="dot-shuttle"></div>
-                    </div>
+export const DotShuttler = () => (
+    <>
+        <Anime class="col-3">
+            <div class="snippet" data-title="dot-shuttle">
+                <div class="stage filter-contrast">
+                    <div class="dot-shuttle"></div>
                 </div>
-            </Anime>
-        </>
-    );
-};
+            </div>
+        </Anime>
+    </>
+);

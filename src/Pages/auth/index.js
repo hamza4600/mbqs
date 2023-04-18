@@ -6,15 +6,6 @@ import InterfaceLayout from 'page-componet/layout';
 import getUserRole from 'functions/getRole';
 import paths from './paths';
 
-
-const detail = {
-    name: "user",
-    title: "User",
-    roleID: "userID",
-    role: "user",
-    login: "/",
-};
-
 const AuthPages = () => (
     <>
         <InterfaceLayout blurnav={false}>
@@ -33,5 +24,5 @@ const AuthPages = () => (
 )
 
 export default compose(
-    getUserRole(detail) // check user role Auth or not Set Page Title
+    getUserRole() // check user role Auth or not Set Page Title
 )(AuthPages);
