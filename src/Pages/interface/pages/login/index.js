@@ -43,7 +43,7 @@ const Right = (props) => {
             case 2:
                 return <RegesterModel setActiveCompont={setActiveCompont} />
             case 3:
-                return <OTP />
+                return <OTP setActiveCompont={setActiveCompont}/>
             case 4:
                 return <ResetPass setActiveCompont={setActiveCompont} />
             default:

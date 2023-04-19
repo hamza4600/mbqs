@@ -4,92 +4,81 @@ import { createSlice } from "@reduxjs/toolkit";
 export const sessionSlice = createSlice({
     name: "session",
     initialState: {
-        session: false,
-        isLogedIn: false,
+        isLogedIn: false, // after loginit will true
         isAuthenticated: false,
-        verified: false,
-        error: null,
-        userSession: null,
-        attributes: null,
-        authToken: null,
-        refreshToken: null,
-        uuId: null,
+        verified: false, // if register then true
+        error: null, // any error
+        userSession: null, // previus session
+        role: null, // role of user type
+        authToken: null, // token
+        refreshToken: null, //
+        uuId: null, // set on first time when a persion visit
         csrfToken: null,
-        ipv4: null,
-        userAgent: null,
+        ipv4: null, // ip of user when login
+        userAgent: null, // browser
+        sessionTime: null, // when login
     },
     reducers: {
         //  eact Time middlewarre  willalso run on It
         loginSuccess: (state, action) => {
-            // const { userSession, attributes } = action.payload; 
-            state.session = false;
-            state.isLogedIn = false;
-            state.isAuthenticated = false;
-            state.verified = false;
-            state.error = null;
-            state.userSession = false;
-            state.attributes = null;
-            state.authToken = false;
-            state.refreshToken = null;
-            state.uuId = false;
-            state.csrfToken = false;
-            state.ipv4 = false;
-            state.userAgent = false;
-
+            const {
+                isLoginIn,
+                isAuthenticated,
+                error,
+                userSession,
+                role,
+                token,
+                time,
+            } = action.payload;
+            return {
+                ...state,
+                isLogedIn: isLoginIn,
+                isAuthenticated: isAuthenticated,
+                error: error,
+                userSession: userSession,
+                role: role,
+                authToken: token,
+                sessionTime: time,
+            };
         },
-        loginError: (state, action) => {
-            // const { error } = action.payload;
-            state.session = false;
-            state.isLogedIn = false;
-            state.isAuthenticated = false;
-            state.verified = false;
-            state.error = null;
-            state.userSession = false;
-            state.attributes = null;
-            state.authToken = false;
-            state.refreshToken = null;
-            state.uuId = false;
-            state.csrfToken = false;
-            state.ipv4 = false;
-            state.userAgent = false;
 
-        },
         logoutSuccess: (state) => {
-            state.session = false;
-            state.isLogedIn = false;
-            state.isAuthenticated = false;
-            state.verified = false;
-            state.error = null;
-            state.userSession = false;
-            state.attributes = null;
-            state.authToken = false;
-            state.refreshToken = null;
-            state.uuId = false;
-            state.csrfToken = false;
-            state.ipv4 = false;
-            state.userAgent = false;
-
+            return {
+                ...state,
+                isLogedIn: false,
+                isAuthenticated: false,
+                error: null,
+                userSession: false,
+                role: null,
+                authToken: false,
+                refreshToken: null,
+                uuId: false, // remain same
+                csrfToken: false,
+                ipv4: false,
+                userAgent: false,
+            };
         },
-        userNotSignedIn: (state, action) => {
-            const { authtoken, uuId, csrfToken, ipv4, userAgent, session } = action.payload;
-
-            state.session = session;
-            state.isLogedIn = false;
-            state.isAuthenticated = false;
-            state.verified = false;
-            state.error = null;
-            state.userSession = false;
-            state.attributes = null;
-            state.authToken = authtoken;
-            state.refreshToken = null;
-            state.uuId = uuId;
-            state.csrfToken = csrfToken;
-            state.ipv4 = ipv4;
-            state.userAgent = userAgent;
+        addUid: (state, action) => {
+            const { uuId, userAgent } = action.payload;
+            return {
+                ...state,
+                uuId: uuId,
+                userAgent: userAgent,
+            };
+        },
+        registerUser: (state, action) => {
+            const { verified, userAgent, ip } = action.payload;
+            return {
+                ...state,
+                verified: verified,
+                userAgent: userAgent,
+                ipv4: ip,
+            };
         },
     },
 });
 
-// export const { loginSuccess, loginError, logoutSuccess, userNotSignedIn } = sessionSlice.actions;
+export const { loginSuccess, logoutSuccess, registerUser, addUid } =
+    sessionSlice.actions;
 
 export default sessionSlice.reducer;

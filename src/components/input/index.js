@@ -93,8 +93,7 @@ const Input = forwardRef(
                         onFocusCapture={onFocus}
                         maxLength={maxLength}
                         accept={accept}
-                        readOnly={readOnly}
-                        
+                        readOnly={readOnly}  
                     />
                     {icon && <i>{icon}</i>}
                     {type === "model-password" && (

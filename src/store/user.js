@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-// Togic show and Hide the slider
+// all detail of user and user related information
 export const userSlice = createSlice({
     name: "user",
     initialState: {
@@ -23,8 +23,7 @@ export const userSlice = createSlice({
             state.details = action.payload.details;
             state.token = action.payload.token;
             state.expire = action.payload.expire;
-        }
-
+        },
     },
 });
 

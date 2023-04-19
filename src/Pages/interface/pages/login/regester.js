@@ -144,6 +144,7 @@ const RegesterModel = (props) => {
             } catch (error) {
                 setLoading(false);
                 console.error("Error occurred while logging in: ", error);
+                setResponce(error.response.data);
             }
         }
     };
@@ -175,7 +176,7 @@ const RegesterModel = (props) => {
                     <Head size="25px" capi>
                         Congratulations
                     </Head>
-                    <Head>you've successfully registered</Head>
+                    <Head>You've successfully registered</Head>
                 </RegesterWrapper>
             </>
         );
@@ -202,7 +203,7 @@ const RegesterModel = (props) => {
 
     return (
         <>
-            <RegesterWrapper>
+            <RegesterWrapper cpait>
                 <Head justify="start">Employees sign up with MBIQS</Head>
                 <Input
                     placeholder="Employee Name"
@@ -211,6 +212,7 @@ const RegesterModel = (props) => {
                     value={values.employname}
                     onChange={(e) => setValue(e, "employname")}
                     error={values.error.employname}
+                    id="employname"
                 />
                 <Input
                     placeholder="Contact Number"

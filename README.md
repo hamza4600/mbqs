@@ -61,4 +61,7 @@ git push origin master
 
 https://github.com/thanhtungdp/vnpt-i/tree/VNPT/
 
-set document title of login Pages 
+set document title of login Pages
+hoc for server error
+Hoc for logi apis
+use session for authentication also set cookies base it local stores is not enables

@@ -21,7 +21,7 @@ const Container = styled.div`
 
     h2 {
         margin-top: 20px;
-        font-size: 1.5rem;
+        font-size: 40px;
         font-weight: 500;
     }
 
@@ -40,6 +40,11 @@ const Container = styled.div`
         height: 92%;
         img {
             width: 300px;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            text-align: center;
         }
     }
 

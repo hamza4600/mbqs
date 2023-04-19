@@ -83,7 +83,7 @@ const Wrapper = styled.div`
     }
 `;
 
-const UserMenu = ({ data }) => {
+const UserMenu = ({ data , logoutClick }) => {
     const { name, time, avatar, logout, otherUser } = data;
 
     return (
@@ -131,6 +131,7 @@ const UserMenu = ({ data }) => {
                     <Button
                         leftIcon={<IoLogOutOutline size={22} />}
                         type="usermodel"
+                        onClick={logoutClick}
                     >
                         {logout}
                     </Button>

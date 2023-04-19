@@ -4,13 +4,13 @@ import { forwardRef, memo, useCallback, useEffect, useMemo } from "react";
 import styled from "styled-components";
 
 const DialOuter = styled.div`
-    position: absolute;
+    position : ${props => props.type === "logout" ? "fixed" : "absolute"};
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.6);    
-    z-index: 100;
+    background-color : ${props => props.type === "logout" ? "rgba(34, 34, 34, 0.38)" : "rgba(0, 0, 0, 0.6)"};
+    z-index : ${props => props.type === "logout" ? "9999" : "100"};
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,6 +47,23 @@ const DialOuter = styled.div`
         background: #D9D9D9;
     }
 
+    // for logout
+    #logout {
+        width: 538px;
+        height: 178px;
+    }
+
+    #logout h2 {
+        font-size: 25px;
+        font-weight: 400;
+    }
+    
+    #logout button:first-child {
+       background: none;
+       border: 1px solid #fff;
+        color: #fff;
+    }
+
     @media (max-width: 768px) {
         #delete {
             width: 90%;
@@ -57,7 +74,10 @@ const DialOuter = styled.div`
             font-size: 20px;
             font-weight: 300;
         }
-
+        #logout {
+            width: 90%;
+            height: 90%;
+        }
     }
 `;
 
@@ -72,6 +92,7 @@ const DialInner = styled.div`
     flex-direction: column;
     padding: 20px;
     animation: open 0.2s ease-in-out;
+
 
     @keyframes open {
         from {
@@ -100,7 +121,7 @@ const DialInner = styled.div`
         cursor: pointer;
         font-size: 18px;
     }
-    
+
     @media (max-width: 768px) {
         #dialog_footer {
             width: 72%;
@@ -122,7 +143,8 @@ const DialogBox = memo(forwardRef(
             id = 'dialog',
             description,
             type,
-
+            conformText = 'Confirm',
+            cancelText = 'Cancel',
         } = props;
 
         const [, setLocked] = useScrollLock(false || scrollLock, ref);
@@ -165,6 +187,8 @@ const DialogBox = memo(forwardRef(
                     return 'cancel';
                 case 'delete':
                     return 'delete';
+                case 'logout':
+                    return 'logout';
                 default:
                     return 'confirm';
             }
@@ -179,9 +203,11 @@ const DialogBox = memo(forwardRef(
                         <DialOuter
                             ref={ref}
                             role="dialog"
+                            tabIndex={-1}
                             id={id}
                             onClick={closeOutside && onClose}
                             backdrop={backdrop}
+                            type = {type}
                         >
                             <DialInner
                                 id={handelType}
@@ -194,8 +220,8 @@ const DialogBox = memo(forwardRef(
                                 </div>
 
                                 <div id="dialog_footer">
-                                    <button onClick={onConfirm}>Confirm</button>
-                                    <button onClick={open && onClose}>Cancel</button>
+                                    <button onClick={onConfirm}>{conformText}</button>
+                                    <button onClick={open && onClose}>{cancelText}</button>
                                 </div>
                             </DialInner>
                         </DialOuter>

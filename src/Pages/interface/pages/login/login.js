@@ -36,7 +36,7 @@ const LoginModelPart = (props) => {
                 error: {
                     ...values.error,
                     [name]: false,
-                },
+                },  
             });
             return; 
         }
@@ -115,7 +115,7 @@ const LoginModelPart = (props) => {
                 if (res.data.code === 200 && res.data.message) {
                     // set session
                     setTimeout(() => {
-                        // set redux
+                        // set redux use session of auth 
                         dispatch(
                             setModelData({
                                 valid: true,

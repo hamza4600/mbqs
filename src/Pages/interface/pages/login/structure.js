@@ -86,6 +86,10 @@ export const RegesterWrapper = styled.div`
     #small-modal {
         max-height: 430px !important;
     }
+    
+    #employname {
+        text-transform: ${(props) => (props.cpait ? "capitalize" : "none")};
+    }
 
     @media (max-width: 768px) {
         margin-top: -50px;
@@ -147,10 +151,10 @@ const Anime = styled.div`
             transform: translateX(0);
         }
         25% {
-            transform: translateX(-90px);
+            transform: translateX(-120px);
         }
         75% {
-            transform: translateX(90px);
+            transform: translateX(120px);
         }
     }
 

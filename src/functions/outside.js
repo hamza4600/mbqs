@@ -8,6 +8,16 @@ function outisdeClick(WrapperComponent, callback) {
         React.useEffect(() => {
             function handleClickOutside(event) {
                 if (ref.current && !ref.current.contains(event.target)) {
+                    // for child component check
+                    // let isDecendant = false;
+                    // for( let i = 0; i < ref.current.children.length; i++ ) {
+                    //         console.log("ref.current.children[i]", ref.current.children[i]);
+                    //     if( ref.current.children[i].contains(event.target) ) {
+                    //         isDecendant = true;
+                    //         break;
+                    //     }
+                    // }
+                    // !isDecendant &&
                     outSide && typeof outSide === "function" && outSide();
                 }
             }
