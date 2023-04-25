@@ -1,7 +1,7 @@
 import Button from "components/button";
 import styled from "styled-components";
 import { IoLogOutOutline } from "react-icons/io5";
-import { Suspense } from "react";
+import { Suspense, forwardRef } from "react";
 
 const Wrapper = styled.div`
     position: absolute;
@@ -83,11 +83,11 @@ const Wrapper = styled.div`
     }
 `;
 
-const UserMenu = ({ data , logoutClick }) => {
-    const { name, time, avatar, logout, otherUser } = data;
+const UserMenu = forwardRef(({ data, logoutClick }, ref) => {
+const { name, time, avatar, logout, otherUser } = data;
 
     return (
-        <Wrapper>
+        <Wrapper ref={ref}>
             <Suspense fallback={<div>Loading...</div>}>
                 <a className="user" href={`/${name}`}>
                     <img
@@ -139,6 +139,6 @@ const UserMenu = ({ data , logoutClick }) => {
             </Suspense>
         </Wrapper>
     );
-};
+});
 
 export default UserMenu;

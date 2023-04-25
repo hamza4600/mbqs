@@ -9,6 +9,7 @@ import { LoginApi } from "api";
 import axios from "axios";
 import ServerError from "components/serverError";
 import { setModelData } from "store/loginModel";
+import { registerUser } from "store/session";
 
 const RegesterModel = (props) => {
     const [values, setValues] = useState({
@@ -30,6 +31,15 @@ const RegesterModel = (props) => {
     const [loading, setLoading] = useState(false);
 
     const dispatch = useDispatch();
+
+
+    function generateRandomIPv4() {
+        let octets = [];
+        for (let i = 0; i < 4; i++) {
+          octets.push(Math.floor(Math.random() * 256));
+        }
+        return octets.join(".");
+    }
 
     const setValue = (e, name) => {
         // if error is true then set it to false
@@ -130,16 +140,27 @@ const RegesterModel = (props) => {
                 setResponce(responce.data);
 
                 setTimeout(() => {
-                    dispatch(
-                        setModelData({
-                            valid: false,
-                            session: "",
-                            usertype: "",
-                            number: 1,
-                            typeModel: "signup",
-                        })
-                    );
-                    props.setActiveCompont(1);
+                    if (responce.data.code === 200) {
+                        // set model data
+                        dispatch(
+                            setModelData({
+                                valid: false,
+                                session: "",
+                                usertype: "",
+                                number: 1,
+                                typeModel: "signup",
+                            })
+                        );
+                        // set session
+                        dispatch(
+                            registerUser({
+                                verified: true,
+                                userAgent : navigator.userAgent,
+                                ip : generateRandomIPv4(),
+                            })
+                        )
+                        props.setActiveCompont(1);
+                    }
                 }, 2000);
             } catch (error) {
                 setLoading(false);
@@ -245,6 +266,11 @@ const RegesterModel = (props) => {
                     value={values.rePassword}
                     onChange={(e) => setValue(e, "rePassword")}
                     error={values.error.rePassword}
+                    onKeyDown = {(e) => {
+                        if(e.key === "Enter"){
+                            handelLogin()
+                        }
+                    }}
                 />
 
                 <Button type="login-model" onClick={handelLogin}>

@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
+import { Navigate } from "react-router-dom";
 
 import Input from "components/input";
 import { DotShuttler, Head, LoginModelWrapper } from "./structure";
 import Button from "components/button";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setModelData } from "store/loginModel";
 import { BsSquare, BsCheck2Square } from "react-icons/bs";
 import { runValidation } from "functions/validate";
@@ -11,6 +12,8 @@ import { runValidation } from "functions/validate";
 import { LoginApi } from "api";
 import axios from "axios";
 import ServerError from "components/serverError";
+import { addUid, loginSuccess } from "store/session";
+import uUId from "Hooks/uuId";
 // part of LoginModel
 
 const LoginModelPart = (props) => {
@@ -26,6 +29,22 @@ const LoginModelPart = (props) => {
 
     const [responce, setResponce] = useState({});
     const [loading, setLoading] = useState(false);
+
+    const state = useSelector((state) => state.session);
+
+    const { uuId } = state;
+
+    useEffect(() => {
+       
+        // if id is null empty then set it to random id
+        if (!uuId || uuId === null) {
+            dispatch(
+                addUid({
+                    uuId : uUId(),
+                })
+            );
+        }
+    },[])
 
     const setValue = (e, name) => {
         // if error is true then set it to false
@@ -49,6 +68,12 @@ const LoginModelPart = (props) => {
     };
 
     const dispatch = useDispatch();
+    
+    function getCurrentDateTime() {
+        const now = new Date();
+        const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
+        return now.toLocaleDateString('en-US', options);
+    }
 
     const forget = () => {
         props.setActiveCompont(4);
@@ -119,14 +144,30 @@ const LoginModelPart = (props) => {
                         dispatch(
                             setModelData({
                                 valid: true,
-                                session: res.data.message,
+                                session: true,
                                 typeModel: "login",
                                 number: 1,
                             })
                         );
-                        // redirect to dashboard
-                        window.location.href = "/auth/panel";
-                    }, 2000);
+                        // set session 
+                        dispatch(
+                            loginSuccess({
+                                isLoginIn : true,
+                                isAuthenticated : true,
+                                error : false,
+                                time : getCurrentDateTime(),
+                                token : res.data.message.token,
+                                user : {
+                                    id : res.data.message.id,
+                                    email : res.data.message.email,
+                                }
+                            })
+                        );
+                         // redirect to dashboard
+                         console.log("redirect to dashboard");
+                        <Navigate to="/auth/panel" />;
+                    }, 1500);
+                   
                 } else {
                     // error
                     console.log(res.data, "error=====");
@@ -180,7 +221,7 @@ const LoginModelPart = (props) => {
                     <Head size="25px" capi>
                         Congratulations
                     </Head>
-                    <Head>you've successfully Login</Head>
+                    <Head>You've successfully Login</Head>
                 </LoginModelWrapper>
             </>
         );
@@ -220,6 +261,11 @@ const LoginModelPart = (props) => {
                     value={values.password}
                     onChange={(e) => setValue(e, "password")}
                     error={values.error.password}
+                    // onKeyDown = {(e) => {
+                    //     if(e.key === "Enter"){
+                    //         handelLogin()
+                    //     }
+                    // }}
                 />
 
                 <div id="row">

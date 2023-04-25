@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import styled from "styled-components";
 
 import useHover from "Hooks/useHover";
@@ -15,7 +15,6 @@ import Tooltip from "components/tooltip";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
-import { resertModel } from "store/loginModel";
 // HOC
 import outisdeClick from "functions/outside";
 
@@ -23,6 +22,7 @@ import Spinner from "components/spinner/spinner";
 import UserMenu from "./usermenu";
 import LanguageMenu from "./languagemenu";
 import DialogBox from "components/dialog";
+import { logoutSuccess } from "store/session";
 
 const Searchbar = React.lazy(() => import("./serachbar"));
 
@@ -62,6 +62,20 @@ const Ico = styled.i`
     @media screen and (max-width: 768px) {
         margin: 0 0.5rem;
         scale: 0.8;
+    }
+`;
+
+const NavLogo = styled.a`
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    
+    p {
+        margin: 0 1.1rem;
+        font-size: 23px;
+        font-weight: 400;
+        color: #fff;
+        text-shadow: 0px 4px 4px #151010;
     }
 `;
 
@@ -127,15 +141,18 @@ const RightSide = () => {
     const [user, setUser] = useState(false);
     const [lang, setLang] = useState(false);
 
+    // ref for input
+    const inputRef = React.useRef(null);
+    const userRef = React.useRef(null);
+
+
     // using differnt approch for toggle the sea uer and lang
     const [active, setActive] = useState("");
     const [model, setModel] = useState(false);
-    
-    // array on which outside should not work
 
     const dispatch = useDispatch();
     const state = useSelector((state) => state.sidebar);
-
+    
     const search = () => {
         console.log("search");
         setSearh(!searh);
@@ -150,6 +167,8 @@ const RightSide = () => {
         console.log("user");
         setUser(!user);
         setActive("user");
+        // get by id
+        // if click outside useBox then null the active
     };
 
     const handelLang = () => {
@@ -159,16 +178,38 @@ const RightSide = () => {
     };
 
     const handelLogout = () => {
-        console.log("logout");
-        // show Modal
+        // open modal
         setModel(true);
-        // if conform then LogOut
     };
 
     const logout = () => {
         // remove the data from redux
-        dispatch(resertModel());
+        // dispatch(logoutSuccess());
+        // close modal post data and redirect to login page
+        setModel(false);
+        console.log(inputRef.current.value);
+
     };
+
+    useEffect(() => {
+        
+        const handelUserModal = (event) => {
+            if (userRef.current && !userRef.current.contains(event.target)) {
+                setUser(false);
+                setActive("");
+
+                // if click outside the user box then set the active to null
+            } 
+        }
+        if (active === "user") {
+            // and clcik outside the user box then set the active to null
+            console.log(userRef.current);
+            document.addEventListener("mousedown", handelUserModal);
+        }
+        return () => {
+            document.removeEventListener("mousedown", handelUserModal);
+        };
+    },[active])
 
     return (
         <>
@@ -219,7 +260,7 @@ const RightSide = () => {
                 //     <UserMenu data={userData} logoutClick={handelLogout} />
                 //     </>)
                 active === "user" && (
-                    <UserMenu data={userData} logoutClick={handelLogout} />
+                    <UserMenu ref={userRef}  data={userData} logoutClick={handelLogout} />
                 )
             }
             {lang && <LanguageMenu />}
@@ -228,13 +269,13 @@ const RightSide = () => {
                 <>
                     <DialogBox
                         open={model}
-                        title="Are You Sure you want to logout ? ?"
-                        onClose={logout}
-                        onConfirm={() => setModel(false)}
+                        title="Are You Sure you want to logout ?"
+                        onClose={() => setModel(false)}
+                        onConfirm={logout}
                         type="logout"
-                        conformText= "No"
-                        cancelText="Yes"
-                        closeOutside = {false}
+                        conformText= "Confirm"
+                        cancelText = 'none'
+                        children = {<textarea ref={inputRef} placeholder="Enter Your logout message here" />}
                     />
                 </>
             )}
@@ -249,14 +290,15 @@ const PageNavbar = (props) => {
                 blure={props.blure || false}
                 Left={
                     <>
-                        <a
+                        <NavLogo
                             href={
                                 !props.blure && "/auth/panel"
-                                // route.pathname === "/auth/panel" ? "#" : "/auth/panel"
                             } // can also pass on base of auth
+
                         >
                             <img src={logo} alt="logo" />
-                        </a>
+                            <p>Mbiqs</p>
+                        </NavLogo>
                     </>
                 }
                 Right={<RightSide />}
@@ -266,75 +308,3 @@ const PageNavbar = (props) => {
 };
 // start next
 export default PageNavbar;
-
-// import React, { useRef, useEffect } from "react";
-
-// function MyComponent() {
-//   const ref = useRef(null);
-//   const childRefs = useRef([]);
-
-//   useEffect(() => {
-//     function handleClickOutside(event) {
-//       if (ref.current && !ref.current.contains(event.target)) {
-//         // check if the clicked element is one of the child refs
-//         for (let i = 0; i < childRefs.current.length; i++) {
-//           if (childRefs.current[i].current && childRefs.current[i].current.contains(event.target)) {
-//             // user clicked inside a child component, don't close the component
-//             return;
-//           }
-//         }
-//         // user clicked outside the component and its children, close it
-//         // you can close the component using a state variable or a prop
-//       }
-//     }
-
-//     // Bind the event listener
-//     document.addEventListener("mousedown", handleClickOutside);
-//     return () => {
-//       // Unbind the event listener on cleanup
-//       document.removeEventListener("mousedown", handleClickOutside);
-//     };
-//   }, [ref, childRefs]);
-
-//   function registerChildRef(childRef) {
-//     childRefs.current.push(childRef);
-//   }
-
-//   return (
-//     <div ref={ref}>
-//       {/* your component's content */}
-//       <ChildComponent ref={registerChildRef} />
-//       <AnotherChildComponent ref={registerChildRef} />
-//       {/* other child components */}
-//     </div>
-//   );
-// }
-
-// const ChildComponent = React.forwardRef((props, ref) => {
-//   const childRef = useRef(null);
-
-//   useEffect(() => {
-//     ref.current.push(childRef);
-//   }, [childRef, ref]);
-
-//   return (
-//     <div ref={childRef}>
-//       {/* your child component's content */}
-//     </div>
-//   );
-// });
-
-// const AnotherChildComponent = React.forwardRef((props, ref) => {
-//   const childRef = useRef(null);
-
-//   useEffect(() => {
-//     ref.current.push(childRef);
-//   }, [childRef, ref]);
-
-//   return (
-//     <div ref={childRef}>
-//       {/* your another child component's content */}
-//     </div>
-//   );
-// });
-

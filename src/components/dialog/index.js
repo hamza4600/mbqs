@@ -49,19 +49,43 @@ const DialOuter = styled.div`
 
     // for logout
     #logout {
-        width: 538px;
-        height: 178px;
+        width: 697px;
+        height: 358px;
+        padding: 35px 40px;
     }
 
     #logout h2 {
-        font-size: 25px;
+        font-size: 18px;
         font-weight: 400;
+        text-align: center;
     }
     
     #logout button:first-child {
-       background: none;
-       border: 1px solid #fff;
-        color: #fff;
+        padding: 7px 42px;
+        width: 155px;
+        color: #1A496E;
+    }
+
+    #logout textarea {
+        width: 615px;
+        height: 154px;
+        padding: 10px 14px;
+        margin-top: 18px;
+        background: #B8BFC4;
+        border-radius: 3px;
+        outline: none;
+        border: none;
+        font-size: 16px;
+        // not allowed to resize
+        resize: none;
+    }
+
+    #logout textarea::placeholder {
+        color: #000000;
+    }
+
+    #dialog_footer {
+        width: unset !important;; 
     }
 
     @media (max-width: 768px) {
@@ -71,7 +95,7 @@ const DialOuter = styled.div`
         }
 
         #delete h2 {
-            font-size: 20px;
+            font-size: 16px;
             font-weight: 300;
         }
         #logout {
@@ -221,7 +245,9 @@ const DialogBox = memo(forwardRef(
 
                                 <div id="dialog_footer">
                                     <button onClick={onConfirm}>{conformText}</button>
-                                    <button onClick={open && onClose}>{cancelText}</button>
+                                    {cancelText !== 'none' &&
+                                        <button onClick={open && onClose}>{cancelText}</button>
+                                    }
                                 </div>
                             </DialInner>
                         </DialOuter>

@@ -36,6 +36,7 @@ const Input = forwardRef(
             maxLength = 200,
             accept,
             readOnly = false,
+            onKeyDown
         } = props;
 
         const idx = useMemo(() => { return uuId() }, [])
@@ -93,7 +94,8 @@ const Input = forwardRef(
                         onFocusCapture={onFocus}
                         maxLength={maxLength}
                         accept={accept}
-                        readOnly={readOnly}  
+                        readOnly={readOnly}
+                        onKeyDown={onKeyDown}
                     />
                     {icon && <i>{icon}</i>}
                     {type === "model-password" && (

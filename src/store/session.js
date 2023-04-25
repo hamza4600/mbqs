@@ -8,7 +8,7 @@ export const sessionSlice = createSlice({
         isAuthenticated: false,
         verified: false, // if register then true
         error: null, // any error
-        userSession: null, // previus session
+        userSession: [], // previus session
         role: null, // role of user type
         authToken: null, // token
         refreshToken: null, //
@@ -17,6 +17,7 @@ export const sessionSlice = createSlice({
         ipv4: null, // ip of user when login
         userAgent: null, // browser
         sessionTime: null, // when login
+        user : {}
     },
     reducers: {
         //  eact Time middlewarre  willalso run on It
@@ -25,20 +26,24 @@ export const sessionSlice = createSlice({
                 isLoginIn,
                 isAuthenticated,
                 error,
-                userSession,
                 role,
                 token,
                 time,
+                user 
             } = action.payload;
             return {
                 ...state,
                 isLogedIn: isLoginIn,
                 isAuthenticated: isAuthenticated,
                 error: error,
-                userSession: userSession,
+                // appned new session in array
+                // userSession: [...state.userSession, time],
+                // set new session time also copy old session
+                userSession: state.userSession.concat(time),
                 role: role,
                 authToken: token,
                 sessionTime: time,
+                user : user
             };
         },
 
@@ -48,14 +53,17 @@ export const sessionSlice = createSlice({
                 isLogedIn: false,
                 isAuthenticated: false,
                 error: null,
-                userSession: false,
                 role: null,
                 authToken: false,
                 refreshToken: null,
-                uuId: false, // remain same
+                // remain same
+                uuId: state.uuId,
                 csrfToken: false,
                 ipv4: false,
                 userAgent: false,
+                sessionTime: false,
+                user : {}
+
             };
         },
         addUid: (state, action) => {

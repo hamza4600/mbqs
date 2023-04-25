@@ -16,7 +16,7 @@ export const Wrapper = styled.div`
         display: flex;
         font-weight: lighter;
         flex-direction: column;
-        margin-left: 10px;
+        // margin-left: 10px;
         // remove the flicker on click
         -webkit-tap-highlight-color: transparent;
     }

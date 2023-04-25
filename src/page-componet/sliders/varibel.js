@@ -223,7 +223,7 @@ const humanResource = [
 export const sidebarData = [
     {
         id: 5,
-        title: 'MBIQS',
+        title: 'Dashboared',
         icon: <MdOutlineEngineering size={size} />,
         drop: [
             {
@@ -376,57 +376,57 @@ export const sidebarData = [
             }
         ]
     },
-    {
-        id: 8,
-        title: 'about',
-        icon: <RiUser2Line size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'creat about page',
-                subMenu: aboutMenu,
-            },
-            {
-                id: 2,
-                title: 'List about pages',
-                route: authRoutes.addAboutList
-            }
-        ]
-    },
-    {
-        id: 9,
-        title: 'privacy',
-        icon: <BiMessageAltDetail size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'creat privacy page',
-                subMenu: privacyMenu,
-            },
-            {
-                id: 2,
-                title: 'List privacy pages',
-                route: authRoutes.privacyList
-            }
-        ]
-    },
-    {
-        id: 12,
-        title: 'terms & conditions',
-        icon: <AiOutlineFileSearch size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'creat terms page',
-                subMenu: termsMenu,
-            },
-            {
-                id: 2,
-                title: 'List terms pages',
-                route: authRoutes.addTermsList
-            }
-        ]
-    },
+    // {
+    //     id: 8,
+    //     title: 'about',
+    //     icon: <RiUser2Line size={size} />,
+    //     drop: [
+    //         {
+    //             id: 1,
+    //             title: 'creat about page',
+    //             subMenu: aboutMenu,
+    //         },
+    //         {
+    //             id: 2,
+    //             title: 'List about pages',
+    //             route: authRoutes.addAboutList
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: 9,
+    //     title: 'privacy',
+    //     icon: <BiMessageAltDetail size={size} />,
+    //     drop: [
+    //         {
+    //             id: 1,
+    //             title: 'creat privacy page',
+    //             subMenu: privacyMenu,
+    //         },
+    //         {
+    //             id: 2,
+    //             title: 'List privacy pages',
+    //             route: authRoutes.privacyList
+    //         }
+    //     ]
+    // },
+    // {
+    //     id: 12,
+    //     title: 'terms & conditions',
+    //     icon: <AiOutlineFileSearch size={size} />,
+    //     drop: [
+    //         {
+    //             id: 1,
+    //             title: 'creat terms page',
+    //             subMenu: termsMenu,
+    //         },
+    //         {
+    //             id: 2,
+    //             title: 'List terms pages',
+    //             route: authRoutes.addTermsList
+    //         }
+    //     ]
+    // },
     {
         id: 10,
         title: 'contact',

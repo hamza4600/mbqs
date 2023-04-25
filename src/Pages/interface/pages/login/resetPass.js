@@ -113,6 +113,11 @@ const ResetPass = (props) => {
                     value={pass.email}
                     onChange={(e) => setValue(e, "email")}
                     error={pass.error}
+                    onKeyDown = {(e) => {
+                        if(e.key === "Enter"){
+                            handelClick()
+                        }
+                    }}
                 />
 
                 <Button type="login-model" onClick={handelClick}>

@@ -65,3 +65,5 @@ set document title of login Pages
 hoc for server error
 Hoc for logi apis
 use session for authentication also set cookies base it local stores is not enables
+Post Data on logout 
+Sidebar Data and pages

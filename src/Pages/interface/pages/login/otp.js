@@ -155,6 +155,11 @@ const OTP = (props) => {
                     value={value.newPass}
                     onChange={(e) => setValue(e, "newPass")}
                     error={value.error.newPass}
+                    onKeyDown = {(e) => {
+                        if(e.key === "Enter"){
+                            handelClick()
+                        }
+                    }}
                 />
 
                 <Button type="login-model" onClick={handelClick}>

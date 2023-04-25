@@ -106,7 +106,7 @@ const PageSide = () => {
     const [select, setSelect] = useState();
     const [showSub, setShowSub] = useState(false);
 
-    const handeWidth = () => setWidth((prev) => prev === 210 ? 55 : 210)
+    const handeWidth = () => setWidth((prev) => prev === 185 ? 55 : 185)
 
     const subhandel = (e) => {
         if (e === select) return setSelect();
@@ -127,13 +127,13 @@ const PageSide = () => {
                 height={'100%'}
                 handelClick={handeWidth}
                 outSideClick={handelOutSide}
-                trigger={width === 210 ? true : false}
+                trigger={width === 185 ? true : false}
             >
                 <Wrapper
                     width={width}
                 >
                     {
-                        width === 210 ? (<>
+                        width === 185 ? (<>
                             {
                                 Array.isArray(sidebarData) && sidebarData.map((item, index) => (
                                     <div
