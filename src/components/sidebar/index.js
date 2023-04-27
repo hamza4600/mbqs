@@ -1,5 +1,5 @@
 import { forwardRef, memo, useCallback, useEffect, useRef } from "react";
-import { Aside, Wrapper } from "./structure";
+import { Aside } from "./structure";
 
 const Sidebar = memo(forwardRef(
     function Sidebar(props, ref) {
@@ -37,13 +37,9 @@ const Sidebar = memo(forwardRef(
                     aria-orientation="horizontal"
                     opacity = "0.95"
                 >
-                    <Wrapper
-                        aria-label="sidebar"
-                        aria-haspopup="true"
-                        aria-expanded={trigger} 
-                    >
+                    
                         {children}
-                    </Wrapper>
+                    
                 </Aside>
             </>
         )

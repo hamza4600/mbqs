@@ -20,8 +20,8 @@ const Container = styled.div`
     }
 
     h2 {
-        margin-top: 20px;
-        font-size: 40px;
+        margin-top: 32px;
+        font-size: 28px;
         font-weight: 500;
     }
 

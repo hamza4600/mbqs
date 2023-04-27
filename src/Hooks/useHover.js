@@ -20,19 +20,23 @@ const useHover = () => {
 
   const nodeRef = React.useRef();
 
-  const callbackRef = React.useCallback(
+  const callbackRef =  React.useCallback(
+    // delay hover effect for 0.1s  to avoid hover effect on mobile devices
+
     (node) => {
-      if (nodeRef.current) {
-        nodeRef.current.removeEventListener("mouseover", handleMouseOver);
-        nodeRef.current.removeEventListener("mouseout", handleMouseOut);
-      }
+      setTimeout(() => {
+        if (nodeRef.current) {
+          nodeRef.current.removeEventListener("mouseover", handleMouseOver);
+          nodeRef.current.removeEventListener("mouseout", handleMouseOut);
+        }
 
-      nodeRef.current = node;
+        nodeRef.current = node;
 
-      if (nodeRef.current) {
-        nodeRef.current.addEventListener("mouseover", handleMouseOver);
-        nodeRef.current.addEventListener("mouseout", handleMouseOut);
-      }
+        if (nodeRef.current) {
+          nodeRef.current.addEventListener("mouseover", handleMouseOver);
+          nodeRef.current.addEventListener("mouseout", handleMouseOut);
+        }
+      }, 100);
     },
     [handleMouseOver, handleMouseOut]
   );

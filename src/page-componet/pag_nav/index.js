@@ -15,14 +15,12 @@ import Tooltip from "components/tooltip";
 // Redux
 import { useDispatch, useSelector } from "react-redux";
 import { toggelSidebar } from "store/sidebar";
-// HOC
-import outisdeClick from "functions/outside";
+import { logoutSuccess } from "store/session";
 
 import Spinner from "components/spinner/spinner";
 import UserMenu from "./usermenu";
 import LanguageMenu from "./languagemenu";
 import DialogBox from "components/dialog";
-import { logoutSuccess } from "store/session";
 
 const Searchbar = React.lazy(() => import("./serachbar"));
 
@@ -113,7 +111,7 @@ const userData = {
     ],
 };
 
-const Icon = (props) => {
+const Icons = (props) => {
     const { hover, Click, icon, color } = props;
     const [ref, istrue] = useHover();
     return (
@@ -133,18 +131,16 @@ const Icon = (props) => {
         </>
     );
 };
-// outside of the component
-const Icons = outisdeClick(Icon);
 
 const RightSide = () => {
-    const [searh, setSearh] = useState(false);
-    const [user, setUser] = useState(false);
-    const [lang, setLang] = useState(false);
-
+    
     // ref for input
     const inputRef = React.useRef(null);
-    const userRef = React.useRef(null);
 
+    // for dropdown modals
+    const userRef = React.useRef(null);
+    const langRef = React.useRef(null);
+    const searchRef = React.useRef(null);
 
     // using differnt approch for toggle the sea uer and lang
     const [active, setActive] = useState("");
@@ -155,7 +151,6 @@ const RightSide = () => {
     
     const search = () => {
         console.log("search");
-        setSearh(!searh);
         setActive("search");
     };
 
@@ -165,7 +160,6 @@ const RightSide = () => {
 
     const handelUser = () => {
         console.log("user");
-        setUser(!user);
         setActive("user");
         // get by id
         // if click outside useBox then null the active
@@ -173,7 +167,6 @@ const RightSide = () => {
 
     const handelLang = () => {
         console.log("lang");
-        setLang(!lang);
         setActive("lang");
     };
 
@@ -195,19 +188,31 @@ const RightSide = () => {
         
         const handelUserModal = (event) => {
             if (userRef.current && !userRef.current.contains(event.target)) {
-                setUser(false);
                 setActive("");
-
-                // if click outside the user box then set the active to null
             } 
         }
+        const handelLangModal = (event) => {
+            if (langRef.current && !langRef.current.contains(event.target)) {
+                setActive("");
+            }
+        }
+        const handelSearchModal = (event) => {
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setActive("");
+            }
+        }
+
         if (active === "user") {
-            // and clcik outside the user box then set the active to null
-            console.log(userRef.current);
             document.addEventListener("mousedown", handelUserModal);
+        } else if (active === "lang") {
+            document.addEventListener("mousedown", handelLangModal);
+        } else if (active === "search") {
+            document.addEventListener("mousedown", handelSearchModal);
         }
         return () => {
             document.removeEventListener("mousedown", handelUserModal);
+            document.removeEventListener("mousedown", handelLangModal);
+            document.removeEventListener("mousedown", handelSearchModal);
         };
     },[active])
 
@@ -218,8 +223,7 @@ const RightSide = () => {
                     hover="Search"
                     icon={<BiSearch size={20} />}
                     Click={search}
-                    color={searh}
-                    outSide={() => setSearh(false)}
+                    color={ active === "search"}
                 />
                 <Icons
                     hover="Menu"
@@ -231,18 +235,16 @@ const RightSide = () => {
                     hover="User"
                     icon={<FaRegUser size={20} />}
                     Click={handelUser}
-                    color={user}
-                    // outSide={() => setUser(false)}
+                    color={active === "user"}
                 />
                 <Icons
                     hover="Language"
                     icon={<img src={flag} id="flag" alt="flag" />}
                     Click={handelLang}
-                    color={lang}
-                    outSide={() => setLang(false)}
+                    color={active === "lang"}
                 />
             </Wrapper>
-            {searh && (
+            {active === "search" && (
                 <Suspense
                     fallback={
                         <Spinner
@@ -252,18 +254,13 @@ const RightSide = () => {
                         />
                     }
                 >
-                    <Searchbar />
+                    <Searchbar ref={searchRef} />
                 </Suspense>
             )}
-            {
-                // user && (<>
-                //     <UserMenu data={userData} logoutClick={handelLogout} />
-                //     </>)
-                active === "user" && (
+            { active === "user" && (
                     <UserMenu ref={userRef}  data={userData} logoutClick={handelLogout} />
-                )
-            }
-            {lang && <LanguageMenu />}
+            )}
+            {active === "lang" && <LanguageMenu ref = {langRef} />}
 
             {model && (
                 <>
@@ -294,7 +291,6 @@ const PageNavbar = (props) => {
                             href={
                                 !props.blure && "/auth/panel"
                             } // can also pass on base of auth
-
                         >
                             <img src={logo} alt="logo" />
                             <p>Mbiqs</p>

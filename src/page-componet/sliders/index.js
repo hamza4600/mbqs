@@ -12,16 +12,16 @@ import { BsChevronDown } from "react-icons/bs";
 
 function Icon(props) {
     const {
-        icon, hover, id, select, key
+        icon, hover, id, select
     } = props
-    const [ref, isHovering] = useHover()
+    const [ref, isHovering] = useHover();
 
     return (
         <>
             <Span
                 ref={ref}
-                key={`tab-${id + key}`}
-                id={`tab-${id + key}`}
+                key={`tab-${id}`}
+                id={`tab-${id }`}
                 role='tab'
                 aria-selected={id === select}
                 aria-controls={`panel-id-${id}`}
@@ -102,11 +102,11 @@ const SubDropdownMenu = (props) => {
 }
 
 const PageSide = () => {
-    const [width, setWidth] = useState(55)
+    const [width, setWidth] = useState(50)
     const [select, setSelect] = useState();
     const [showSub, setShowSub] = useState(false);
 
-    const handeWidth = () => setWidth((prev) => prev === 185 ? 55 : 185)
+    const handeWidth = () => setWidth((prev) => prev === 200 ? 50 : 200)
 
     const subhandel = (e) => {
         if (e === select) return setSelect();
@@ -116,7 +116,7 @@ const PageSide = () => {
     const handelOutSide = () => {
         setShowSub(false);
         setSelect()
-        setWidth(60);
+        setWidth(50);
     }
 
     return (
@@ -127,18 +127,18 @@ const PageSide = () => {
                 height={'100%'}
                 handelClick={handeWidth}
                 outSideClick={handelOutSide}
-                trigger={width === 185 ? true : false}
+                trigger={width === 200 ? true : false}
             >
                 <Wrapper
                     width={width}
                 >
                     {
-                        width === 185 ? (<>
+                        width === 200 ? (<>
                             {
                                 Array.isArray(sidebarData) && sidebarData.map((item, index) => (
                                     <div
-                                        key={`tab-${item.id}`}
-                                        id={`tab-id-${item.id}`}
+                                        key={`tab-${index}`}
+                                        id={`tab-id-${index}`}
                                         onClick={(e) => {
                                             e.stopPropagation();
                                             subhandel(item.id)
@@ -153,6 +153,7 @@ const PageSide = () => {
                                                 item.id === select ||
                                                 window.location.pathname === "/auth" + item.route
                                             }
+                                            width={width}
                                         >
                                             <i>{item.icon}</i>
                                             {item.title}
@@ -199,7 +200,7 @@ const PageSide = () => {
                                             key={item.id + index}
                                             icon={item.icon}
                                             hover={item.title}
-                                            id={item.id}
+                                            id={index}
                                             select={select}
                                         />
                                     ))

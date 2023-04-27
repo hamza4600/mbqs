@@ -16,27 +16,27 @@ export const Wrapper = styled.div`
         display: flex;
         font-weight: lighter;
         flex-direction: column;
-        // margin-left: 10px;
         // remove the flicker on click
         -webkit-tap-highlight-color: transparent;
     }
     i {
-        margin-right: 15px;
+        margin-right: 10px;
+        display : ${({ width }) => width === 200 && 'inline-flex'};
     }
 
-    span {
-        margin-bottom : ${({ width }) => width === 210 ? '5px' : '3px'};
+    button {
+        margin-bottom : ${({ width }) => width === 200 ? '7px' : '3px'};
     }
 
     #drop {
-        font-size: 13px;
+        font-size: 14px;
         font-weight: lighter;
         margin-bottom: 0;
         display: flex;
         flex-direction: column;
-        margin-left: 45px;
+        margin-left: 41px;
         transition: all 0.3s ease-in-out;
-        font-weight: 400 !important;
+        font-weight: 300 !important;
     }
 
     #drop a {
@@ -49,7 +49,7 @@ export const Wrapper = styled.div`
     }
 
     #subdrop {
-        margin-left: 6px;
+        margin-left: 1px;
         font-size: 12px !important;
         margin-top: 4px;
         height: auto !important;
@@ -63,7 +63,6 @@ export const Wrapper = styled.div`
         font-weight: 300 !important;
     }
     #subMenu {
-        font-weight: 400 !important;
         color: #f0f0f0 !important;
     }
 
@@ -90,7 +89,7 @@ export const Span = styled.button`
     cursor: pointer;
     position: relative;
     transition: all 0.3s ease-in-out;
-    margin-left: 8px;
+    margin-left: ${({ width }) => width === 200 ? '12px' : '13px'};
     border: none;
     background: none;
     color: unset;
@@ -115,11 +114,10 @@ export const SubMenu = styled.div`
     flex-direction: row;
     justify-content: space-between;
     width: 100%;
-    font-size: 13px;
-
+    align-items: center;
+    
     .subico {
-        margin-left: 15px !important;
-        margin-right: 5px !important;
+        margin-right: 15px !important;
         transform : ${(props) => props.color ? 'rotate(0deg)' : 'rotate(180deg)'};
     }
     `;

@@ -6,6 +6,7 @@ import { DE } from "country-flag-icons/react/3x2";
 import { IT } from "country-flag-icons/react/3x2";
 import { SE } from "country-flag-icons/react/3x2";
 import { ES } from "country-flag-icons/react/3x2";
+import { forwardRef } from "react";
 
 const Wrapper = styled.div`
     position: absolute;
@@ -75,12 +76,12 @@ const Flags = [
     },
 ];
 
-const LanguageMenu = () => {
+const LanguageMenu = forwardRef((props, ref) => {
     //  will chnage language in all application
 
     return (
         <>
-            <Wrapper>
+            <Wrapper ref={ref}>
 
                 {Flags.map((flag) => (
                     <button key={flag.id} id="flags">
@@ -92,6 +93,6 @@ const LanguageMenu = () => {
             </Wrapper>
         </>
     );
-};
+});
 
 export default LanguageMenu;

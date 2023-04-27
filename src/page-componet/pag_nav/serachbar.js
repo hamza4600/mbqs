@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { forwardRef, useEffect } from "react";
 import styled from "styled-components"
 
 const Wrapper = styled.div`
@@ -41,7 +41,7 @@ const Wrapper = styled.div`
     }
 
 `;
-const Searchbar = (props) => {
+const Searchbar = forwardRef((props, ref) => {
     const {
         autofocus = true,
         placeholder = "Search",
@@ -57,7 +57,7 @@ const Searchbar = (props) => {
 
     return (
         <>
-            <Wrapper>
+            <Wrapper ref = {ref}>
                 <input
                     id={id}
                     type="text"
@@ -67,6 +67,6 @@ const Searchbar = (props) => {
             </Wrapper>
         </>
     )
-}
+});
 
 export default Searchbar

@@ -52,6 +52,7 @@ const DialOuter = styled.div`
         width: 697px;
         height: 358px;
         padding: 35px 40px;
+        margin-bottom: 6rem;
     }
 
     #logout h2 {
@@ -100,7 +101,18 @@ const DialOuter = styled.div`
         }
         #logout {
             width: 90%;
-            height: 90%;
+            height: 60%;
+            margin-bottom: 0px;
+        }
+        #logout h2 {
+            font-size: 16px;
+        }
+        #logout textarea {
+            width: 100%;
+            height: 154px;
+        }
+        #dialog {
+            width: 100%;
         }
     }
 `;

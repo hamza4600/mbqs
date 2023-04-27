@@ -228,7 +228,7 @@ export const sidebarData = [
         drop: [
             {
                 id: 300,
-                title: 'add new business',
+                title: 'add new page',
                 subMenu: sharMenu,
             },
             {
