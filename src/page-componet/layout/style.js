@@ -35,6 +35,10 @@ export const Container = styled.div`
         line-height: 17px;
     }
 
+    #moz321 {
+        color: black;
+    }
+
     .margin {
         margin-top: 20px;
         width: 93%;
@@ -66,6 +70,8 @@ export const Container = styled.div`
 
     @media (max-width: 768px) {
         .inlineflex {
+            height: auto;
+
             h1 {
                 font-size: 18px;
             }
@@ -158,6 +164,7 @@ export const BtnContainer = styled.div`
 
     @media (max-width: 768px) {
         right: 0px;
+        position: ${props => props.relative && 'relative'};
     }
 `;
 
@@ -170,7 +177,6 @@ export const Box = styled.div`
     align-items: center;
     width: 100%;
     margin-bottom: 10px;
-    /* margin: 10px 0px; */
     gap: 10px;
     margin-top: ${props => props.marginTop && props.marginTop};
 
@@ -178,29 +184,14 @@ export const Box = styled.div`
     & > * {
         flex-basis: ${props => props.full ? '100%' : 'calc(50% - 5px) ! important'};
     }
+
+    @media (max-width: 768px) {
+        // get the number in margin-top and divide by 2 
+        margin-top: ${props => props.marginTop && props.marginTop.replace(/\D/g,'') / 2 + props.marginTop.replace(/\d/g,'')};
+    }
 }
 `;
 // use in all application
-export const BoxTwo = styled.div`
-
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    margin: 10px 0px;
-    gap: 10px;
-    margin-top: ${props => props.marginTop && props.marginTop};
-
-    // if have  children  width
-    & > * {
-        flex-basis: ${props => props.full ? '57%' : 'calc(50% - 5px) ! important'};
-    }
-    @media (min-width:1400px) and (max-width:2600px){
-        max-width: 75%;
-    }
-}
-`;
-
 
 // for file input 
 export const FileInput = styled.div`

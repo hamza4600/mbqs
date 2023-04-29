@@ -29,6 +29,9 @@ const FAQ = lazy(() => import('./pages/faq'));
 const Map = lazy(() => import('./pages/map'));
 const ContactDetails = lazy(() => import('./pages/contactDetails'));
 // new Pages
+// Login Pages
+const Account = lazy(() => import('./pages/account'));
+const LogActivity = lazy(() => import('./pages/log-activity'));
 
 // 7 types of list page
 const listPageType = {  // every Page have its own Api for getting Data
@@ -149,11 +152,6 @@ const paths = [
         id: 14,
         path: authRoutes.listAddPage,
         component: <ListViewPage type={listPageType.business} />  // list of add page
-    },
-    {
-        id: 15,
-        path: authRoutes.settAddDetail,
-        component: <SettingAppDetail />
     },
     {
         id: 16,
@@ -306,15 +304,26 @@ const paths = [
         path: authRoutes.contactBg,
         component: <NewsBg type={bgType.contact} />
     },
-    // {
-    //     id: 47,
-    //     path: authRoutes.account,
-    //     component: <Account />
-    // },
     {
         id: 48,
         path: "*", // this is the important part
         component: <ErrorPage />
+    },
+    // login page
+    {
+        id: 49,
+        path: authRoutes.loginSetup,
+        component: <SettingAppDetail />
+    },
+    {
+        id: 49,
+        path: authRoutes.logActivity,
+        component: <LogActivity />
+    },
+    {
+        id: 49,
+        path: authRoutes.accountPage,
+        component: <Account />
     }
 ];
 

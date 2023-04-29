@@ -4,10 +4,9 @@ import useHover from "Hooks/useHover";
 import { IconsContainer, Span } from "./styled";
 import Input from "components/input";
 import { AddIcon, RemoveIcon } from "page-componet/iconbutton";
-import { BoxTwo } from "page-componet/layout/style";
 import { useReducer } from "react";
 import { settingsIcons } from "./variable";
-
+// remove this all
 const Index = () => {
   const initialState = {
     twitterUrl: "",
@@ -44,13 +43,13 @@ const Index = () => {
     <>
       <p className="menu-edit">Menu Edit</p>
 
-      <BoxTwo>
+      <>
         <Dropdown
           placeholder="Select And Enable The Icon Function"
           value={data.dropdown.category}
           updateValue={(value) => handelDropdown(value.name, "category")}
         />
-      </BoxTwo>
+      </>
       <IconsContainer>
         <ul className="toppings-list">
           {settingsIcons.map(({ id, title, icon }) => {

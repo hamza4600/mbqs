@@ -140,11 +140,12 @@ export const PreviewBtnGroup = (props) => {
         nextBtnText = 'Next',
         frontBtnText = 'Front Website View',
         showEditorBtn = false,
-        editorBtnText = 'Open Editor'
+        editorBtnText = 'Open Editor',
+        relative = false
     } = props;
 
     return (
-        <BtnContainer id='btngrp'>
+        <BtnContainer id='btngrp' relative= {relative} >
             {
                 showEditorBtn && (
                     <Button

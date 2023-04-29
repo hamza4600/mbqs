@@ -48,7 +48,6 @@ export const authRoutes = {
     viedoList: '/viedo-list',
     brandSlider: '/brand-slider',
     // setting pages
-    settAddDetail: '/setting-app-detail',
     headFooter: '/setting-head-footer',
     others: '/others',
     mediaIcon: '/media-icon',
@@ -59,4 +58,8 @@ export const authRoutes = {
     listAddPage: '/list-new-page',
     // Dynamic Pages
     pageView: '/page/:id',
+    // Login Pages
+    loginSetup: '/login-setup',
+    logActivity: '/log-activity',
+    accountPage: '/account',
 };

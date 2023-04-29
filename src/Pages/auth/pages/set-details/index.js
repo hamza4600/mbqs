@@ -1,4 +1,5 @@
 import { useReducer } from "react";
+import styled from "styled-components";
 
 import Input from "components/input";
 import Dropdown from "components/dropdown";
@@ -6,10 +7,10 @@ import {
     EditPageHeader,
     EditPageLayout,
     HeaderTitleIcons,
+    PreviewBtnGroup,
     PreviewSectionHeader,
 } from "page-componet/layout/editPage";
 import { Box, InputContainer } from "page-componet/layout/style";
-import styled from "styled-components";
 
 const initialState = {
     selectBusines: "",
@@ -31,9 +32,13 @@ const initialState = {
         password: "",
     },
     changePassword: {
-        userName: "",
-        userPassword: "",
+        oldPassword: "",
+        newPassword: "",
+        confirmPassword: "",
     },
+    changeEmail: {
+        newEmail : ""
+    }
 };
 
 const PageWrapper = styled.div`
@@ -59,8 +64,16 @@ const PageWrapper = styled.div`
         }
     }
 `;
-const LeftSection = ({data , setData}) => {
-    return (
+
+const business = [
+    { id: 1, name: "Mian Builder" },
+    { id: 2, name: "Cash Paring" },
+    { id: 3, name: "MBIQS" },
+    { id: 4, name: "Miner Man" },
+    { id: 5, name: "Ev Fog" },
+]
+
+const LeftSection = ({data , setData}) => (
         <>
             <PageWrapper id="wrapper">
                 <PreviewSectionHeader>
@@ -74,30 +87,30 @@ const LeftSection = ({data , setData}) => {
                         <Input
                             inputype="text"
                             type="addDataform"
-                            placeholder="Full Name"
-                            // value={data.companyName}
-                            // onChange={(e) => handelChange(e, "companyName")}
+                            value= {"Select Details"}
+                            id = "moz321"
+                        />
+                    </Box>                    
+                    <Box full>
+                        <Input
+                            inputype="text"
+                            type="addDataform"
+                            placeholder="Username"
+                            value = {data.loginDetails.userName}
+                            onChange={(e) => setData(e,  "loginDetails", "userName")}
                         />
                     </Box>
+
                     <Box full>
                         <Input
                             inputype="text"
                             type="addDataform"
                             placeholder="Contact"
-                            // value={data.address}
-                            // onChange={(e) => handelChange(e, "address")}
+                            value = {data.loginDetails.password}
+                            onChange={(e) => setData(e,  "loginDetails", "password")}
                         />
                     </Box>
-                    <Box full>
-                        <Input
-                            inputype="text"
-                            type="addDataform"
-                            placeholder="E-mail"
-                            // value={data.companyName}
-                            // onChange={(e) => handelChange(e, "companyName")}
-                        />
-                    </Box>
-                    
+
                     <Box full marginTop="3rem">
                         <HeaderTitleIcons
                             title="Change Password"
@@ -108,41 +121,60 @@ const LeftSection = ({data , setData}) => {
                         <Input
                             inputype="text"
                             type="addDataform"
-                            placeholder="Full Name"
-                            // value={data.companyName}
-                            // onChange={(e) => handelChange(e, "companyName")}
+                            value= {"Select Details"}
+                            id = "moz321"
                         />
                     </Box>
                     <Box full>
                         <Input
                             inputype="text"
                             type="addDataform"
-                            placeholder="Contact"
-                            // value={data.address}
-                            // onChange={(e) => handelChange(e, "address")}
+                            placeholder="Enter your old password"
+                            value = {data.changePassword.oldPassword}
+                            onChange={(e) => setData(e,  "changePassword", "oldPassword")}
                         />
                     </Box>
-                    <Box full>
+                    <Box>
                         <Input
                             inputype="text"
                             type="addDataform"
-                            placeholder="E-mail"
-                            // value={data.companyName}
-                            // onChange={(e) => handelChange(e, "companyName")}
+                            placeholder="Enter new password"
+                            value = {data.changePassword.newPassword}
+                            onChange={(e) => setData(e,  "changePassword", "newPassword")}
+                        />
+
+                        <Input
+                            inputype="text"
+                            type="addDataform"
+                            placeholder="Re-Enter your new password"
+                            value = {data.changePassword.confirmPassword}
+                            onChange={(e) => setData(e,  "changePassword", "confirmPassword")}
                         />
                     </Box>
                 </PreviewSectionHeader>
             </PageWrapper>
         </>
-    );
-};
+);
 
 const Index = () => {
     const [data, setData] = useReducer((state, action) => {
         return { ...state, [action.type]: action.value };
     }, initialState);
 
-    console.log(data);
+    const handelDropdown = (value, name) => {
+        setData({ type: name, value: value });
+    };
+
+    const handelChange = (e, node , subNode) => {
+        if(subNode){
+            setData({ type: node , value: {...data[node] , [subNode] : e.target.value } });
+        }
+    }
+
+    const handalSubmit = () => {
+        console.log(data);
+    }
+
     return (
         <>
             <EditPageLayout>
@@ -155,16 +187,20 @@ const Index = () => {
                         <Box>
                             <Dropdown
                                 placeholder="Select Business"
-                                // value={data.dropdown.business}
-                                // updateValue={(value) =>
-                                //     handelDropdown(value.name, "business")
-                                // }
+                                value={data.selectBusines}
+                                type="addDataform"
+                                updateValue={(value) =>
+                                    handelDropdown(value.name, "selectBusines")
+                                }
+                                options= {business}
+
                             />
                             <Input
                                 inputype="text"
                                 type="addDataform"
                                 placeholder="Select Business "
-                                // value={data.dropdown.business}
+                                value={data.selectBusines}
+                                readOnly
                             />
                         </Box>
 
@@ -178,9 +214,17 @@ const Index = () => {
                             <Input
                                 inputype="text"
                                 type="addDataform"
+                                value = {"Select Details"}
+                                id = "moz321"
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
+                                type="addDataform"
                                 placeholder="Full Name"
-                                // value={data.companyName}
-                                // onChange={(e) => handelChange(e, "companyName")}
+                                value={data.register.name}
+                                onChange={(e) => handelChange(e, "register" , "name")}
                             />
                         </Box>
                         <Box full>
@@ -188,8 +232,8 @@ const Index = () => {
                                 inputype="text"
                                 type="addDataform"
                                 placeholder="Contact"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                value={data.register.contact}
+                                onChange={(e) => handelChange(e, "register" , "contact")}
                             />
                         </Box>
                         <Box full>
@@ -197,8 +241,8 @@ const Index = () => {
                                 inputype="text"
                                 type="addDataform"
                                 placeholder="E-mail"
-                                // value={data.companyName}
-                                // onChange={(e) => handelChange(e, "companyName")}
+                                value={data.register.email}
+                                onChange={(e) => handelChange(e, "register" , "email")}
                             />
                         </Box>
                         <Box full>
@@ -206,8 +250,8 @@ const Index = () => {
                                 inputype="text"
                                 type="addDataform"
                                 placeholder="Password"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                value={data.register.password}
+                                onChange={(e) => handelChange(e, "register" , "password")}
                             />
                         </Box>
                         <Box full>
@@ -215,8 +259,8 @@ const Index = () => {
                                 inputype="text"
                                 type="addDataform"
                                 placeholder="Enter your Password Again"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                value={data.register.confirmPassword}
+                                onChange={(e) => handelChange(e, "register" , "confirmPassword")}
                             />
                         </Box>
 
@@ -229,37 +273,43 @@ const Index = () => {
                         <Box full>
                             <Input
                                 inputype="text"
+                                value = {"Select Details"}
+                                type="addDataform"
+                                id = "moz321"
+                            />
+                        </Box>
+                        <Box full>
+                            <Input
+                                inputype="text"
                                 type="addDataform"
                                 placeholder="Full Name"
-                                // value={data.companyName}
-                                // onChange={(e) => handelChange(e, "companyName")}
                             />
                         </Box>
                         <Box full>
                             <Input
                                 inputype="text"
                                 type="addDataform"
-                                placeholder="Contact"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                placeholder="Enter the OTP verification code"
+                                value= {data.forgetPassword.otp}
+                                onChange={(e) => handelChange(e, "forgetPassword" , "otp")}
                             />
                         </Box>
                         <Box full>
                             <Input
                                 inputype="text"
                                 type="addDataform"
-                                placeholder="E-mail"
-                                // value={data.companyName}
-                                // onChange={(e) => handelChange(e, "companyName")}
+                                placeholder="Enter new password"
+                                value= {data.forgetPassword.nextPassword}
+                                onChange={(e) => handelChange(e, "forgetPassword" , "nextPassword")}
                             />
                         </Box>
                         <Box full>
                             <Input
                                 inputype="text"
                                 type="addDataform"
-                                placeholder="Password"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                placeholder="Enter your new password again"
+                                value= {data.forgetPassword.newPassword}
+                                onChange={(e) => handelChange(e, "forgetPassword" , "newPassword")}
                             />
                         </Box>
 
@@ -273,29 +323,34 @@ const Index = () => {
                             <Input  
                                 inputype="text"
                                 type="addDataform"
-                                placeholder="Full Name"
-                                // value={data.companyName}
-                                // onChange={(e) => handelChange(e, "companyName")}
+                                value = {"Select Details"}
+                                id = "moz321"
                             />
                         </Box>
                         <Box full>
                             <Input
                                 inputype="text"
                                 type="addDataform"
-                                placeholder="Contact"
-                                // value={data.address}
-                                // onChange={(e) => handelChange(e, "address")}
+                                placeholder="Enter your new email address"
+                                value= {data.changeEmail.newEmail}
+                                onChange={(e) => handelChange(e, "changeEmail" , "newEmail")}
                             />
                         </Box>
                     </InputContainer>
                 </EditPageHeader>
 
-                {/* Left Section */}
                 <LeftSection
                   data = {data}
-                  setData = {setData}
+                  setData = {handelChange}
                 />
+                                
             </EditPageLayout>
+            <PreviewBtnGroup
+                relative = {true}
+                frontView = {false}
+                nextPage = {handalSubmit}
+                nextBtnText="Save & Exit"
+            />
         </>
     );
 };

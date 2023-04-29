@@ -1,14 +1,15 @@
 // all routes and data for slider page
-import { MdOutlineEngineering } from "react-icons/md";
 import { HiOutlineBuildingOffice2 } from "react-icons/hi2";
 import { IoDocumentTextOutline, } from "react-icons/io5";
-import { RiUser2Line } from "react-icons/ri";
-import { BiMessageAltDetail } from "react-icons/bi";
 import { FiPhoneCall } from "react-icons/fi";
-import { AiOutlineFileSearch } from "react-icons/ai";
 import { FiSettings } from "react-icons/fi";
-import { IoMdAdd } from "react-icons/io";
 import { RiShoppingCartLine } from "react-icons/ri";
+
+import { RiDashboardLine } from "react-icons/ri";
+import { TbFileInvoice } from "react-icons/tb";
+import { IoLogInOutline } from "react-icons/io5";
+import { BsPeople } from "react-icons/bs";
+import { IoIosAddCircleOutline } from "react-icons/io";
 
 import { authRoutes } from "Pages/auth/routes";
 
@@ -224,7 +225,7 @@ export const sidebarData = [
     {
         id: 5,
         title: 'Dashboared',
-        icon: <MdOutlineEngineering size={size} />,
+        icon: <RiDashboardLine size={size} />,
         drop: [
             {
                 id: 300,
@@ -245,101 +246,108 @@ export const sidebarData = [
         drop: [
             {
                 id: 300,
-                title: 'ev fog',
-                route: "/404",
+                title: 'add new page',
+                route: authRoutes.listAddPage
             },
             {
-                id: 301,
-                title: 'Gym Fighters',
-                route: "/404",
+                id: 4,
+                title: 'List of Business',
+                route: authRoutes.listAddPage
+            }
+        ]
+    },
+    {
+        id: 5985,
+        title: 'Invoice',
+        icon: <TbFileInvoice size={size} />,
+        drop: [
+            {
+                id: 399985,
+                title: 'add new page',
+                subMenu: authRoutes.listAddPage,
             },
             {
-                id: 302,
-                title: 'ev fog',
-                route: "/404",
-            },
-            {
-                id: 303,
-                title: 'Latex Tyre',
-                route: "/404",
-            },
-            {
-                id: 304,
-                title: 'Miner Man',
-                route: "/404",
-            },
-            {
-                id: 305,
-                title: 'Time for bid',
-                route: "/404",
-            },
-            {
-                id: 306,
-                title: 'Sagwan Wood',
-                route: "/404",
-            },
-            {
-                id: 307,
-                title: 'Snáithe',
-                route: "/404",
-            },
-            {
-                id: 308,
-                title: 'Warbler Studio',
-                route: "/404",
-            },
+                id: 41,
+                title: 'List of Business',
+                route: authRoutes.listAddPage
+            }
         ]
     },
     {
         id: 500,
-        title: 'Brands',
-        icon: <IoMdAdd size={size} />,
+        title: 'Business',
+        icon: <IoIosAddCircleOutline size={size} />,
         drop: [
             {
                 id: 300,
-                title: 'ev fog',
-                route: "/404",
+                title: 'add new page',
+                route: authRoutes.listAddPage
             },
             {
-                id: 301,
-                title: 'Gym Fighters',
-                route: "/404",
+                id: 4,
+                title: 'List of Business',
+                route: authRoutes.listAddPage
+            }
+        ]
+    },
+    // events
+    {
+        id: 7,
+        title: 'events',
+        icon: <IoDocumentTextOutline size={size} />,
+        drop: [
+            {
+                id: 1,
+                title: 'create event page',
+                subMenu: eventMenu,
             },
             {
-                id: 302,
-                title: 'ev fog',
-                route: "/404",
+                id: 2,
+                title: 'list event page',
+                route: authRoutes.addEventList
+            }
+        ]
+    },
+    // human resource
+    {
+        id: 7875,
+        title: 'Human Resource',
+        icon: <BsPeople size={size} />,
+        drop: [
+            {
+                id: 1,
+                title: 'create event page',
+                subMenu: eventMenu,
             },
             {
-                id: 303,
-                title: 'Latex Tyre',
-                route: "/404",
+                id: 2,
+                title: 'list event page',
+                route: authRoutes.addEventList
+            }
+        ]
+    },
+    // Login Set Up
+
+    {
+        id: 6785,
+        title: 'Login Setup',
+        icon: <IoLogInOutline size={22} />,
+        drop: [
+            {
+                id: 199,
+                title: 'Login Setup',
+                route: authRoutes.loginSetup,
             },
             {
-                id: 304,
-                title: 'Miner Man',
-                route: "/404",
+                id: 299,
+                title: 'My Account',
+                route: authRoutes.accountPage
             },
             {
-                id: 305,
-                title: 'Time for bid',
-                route: "/404",
-            },
-            {
-                id: 306,
-                title: 'Sagwan Wood',
-                route: "/404",
-            },
-            {
-                id: 307,
-                title: 'Snáithe',
-                route: "/404",
-            },
-            {
-                id: 308,
-                title: 'Warbler Studio',
-                route: "/404",
-            },
+                id: 2499,
+                title: 'Login Activity',
+                route: authRoutes.logActivity
+            }
         ]
     },
     {
@@ -356,23 +364,6 @@ export const sidebarData = [
                 id: 2,
                 title: 'list of news pages',
                 route: authRoutes.newsPageList
-            }
-        ]
-    },
-    {
-        id: 7,
-        title: 'events',
-        icon: <IoDocumentTextOutline size={size} />,
-        drop: [
-            {
-                id: 1,
-                title: 'create event page',
-                subMenu: eventMenu,
-            },
-            {
-                id: 2,
-                title: 'list event page',
-                route: authRoutes.addEventList
             }
         ]
     },
@@ -454,11 +445,11 @@ export const sidebarData = [
                 title: 'header & footer',
                 route: authRoutes.headFooter
             },
-            {
-                id: 5,
-                title: 'Login Setup',
-                route: authRoutes.settAddDetail
-            },
+            // {
+            //     id: 5,
+            //     title: 'Login Setup',
+            //     route: authRoutes.settAddDetail
+            // },
             {
                 id: 30,
                 title: 'Add on media icon',
