@@ -33,6 +33,9 @@ export const ListBody = (props) => {
         setModel(prev => !prev)
     }
 
+    // if no array data found then null
+    if (!array) return null;
+
     return (
         <>
             <div className={styles.table}>

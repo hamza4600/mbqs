@@ -1,11 +1,10 @@
-import { Suspense, lazy, useCallback, useEffect, useState } from "react";
+import { Suspense, lazy, useCallback, useState } from "react";
 
 import InterfaceLayout from "page-componet/layout";
 import Model from "components/model";
 import { DotShuttler, Grid, Lwrap, Rwrap } from "./structure";
 
 import logo from "../../../../assits/modal.svg";
-// import { useSelector } from "react-redux"
 
 const LoginModelPart = lazy(() => import("./login"));
 const RegesterModel = lazy(() => import("./regester"));
@@ -27,12 +26,6 @@ const Right = (props) => {
     // console.log(role)
     // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
     const [activeCompont, setActiveCompont] = useState(1);
-
-    // useEffect(() => {
-    //     if (user.isAuthenticated && user.isLogedIn && user.authToken !== "" && user.user.id !== "") {
-    //         window.location.href = "auth/panel"
-    //     }
-    // },[user.authToken, user.isAuthenticated, user.isLogedIn, user.user.id])
 
     const ActiveCompt = useCallback(() => {
         switch (activeCompont) {

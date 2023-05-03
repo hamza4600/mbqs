@@ -39,7 +39,8 @@ export const sessionSlice = createSlice({
                 // appned new session in array
                 // userSession: [...state.userSession, time],
                 // set new session time also copy old session
-                userSession: state.userSession.concat(time),
+                // userSession: state.userSession.concat(time),
+                userSession: [time],
                 role: role,
                 authToken: token,
                 sessionTime: time,

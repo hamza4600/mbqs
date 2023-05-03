@@ -1,6 +1,6 @@
 // used for  main Page Types
 // Only data will chnage for this page  
-import { useMemo, useState } from "react";
+import React, { useMemo, useState } from "react";
 
 import { Container, Left, Right } from "./styled";
 import Button from "components/button";
@@ -19,13 +19,14 @@ import { ListBod, exportList, share, sortBy } from "./variable";
 import { H1 } from "components/a";
 
 
-const LeftSide = (props) => {
+export const TableLeftSide = (props) => {
 
-    const { query, onChange } = props;
+    const { query, onChange, id="left", scheduleList } = props;
 
     return (
         <>
-            <Left id="left">
+            <Left id={id}>
+                {scheduleList}
                 <input
                     type="addData"
                     inputype='text'
@@ -60,7 +61,7 @@ const LeftSide = (props) => {
     )
 }
 
-const RightSide = () => {
+export const TableRightSide = ({id }) => {
 
     const fullScreen = () => {
         const element = document.getElementById("main_page");
@@ -79,7 +80,7 @@ const RightSide = () => {
     }
     return (
         <>
-            <Right>
+            <Right id={id}>
                 < Dropdown
                     placeholder="Export"
                     icon={<BsChevronDown size={18} />}
@@ -146,11 +147,11 @@ const ListViewPage = (props) => {
 
                 <div id="inline-head">
 
-                    <LeftSide
+                    <TableLeftSide
                         query={query}
                         onChange={search}
                     />
-                    <RightSide />
+                    <TableRightSide />
 
                 </div>
 

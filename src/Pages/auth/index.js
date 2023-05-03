@@ -24,5 +24,5 @@ const AuthPages = () => (
 )
 
 export default compose(
-    // getUserRole() // check user role Auth or not Set Page Title
+    getUserRole() // check user role Auth or not Set Page Title
 )(AuthPages);

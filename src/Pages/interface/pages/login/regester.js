@@ -82,7 +82,7 @@ const RegesterModel = (props) => {
         values.error.employname,
         values.error.password,
     ]);
-
+    console.log(LoginApi.register)
     const handelLogin = async () => {
         //  all logic for login
         const { employname, contactNumber, email, password, rePassword } =

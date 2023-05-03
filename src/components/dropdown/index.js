@@ -11,6 +11,8 @@ const Wrapper = styled.div`
         switch (type) {
             case 'addMotion':
                 return '100%';
+            case 'formtable':
+                return '250px';
             default:
                 return '300px';
         }
@@ -59,6 +61,13 @@ const Wrapper = styled.div`
         justify-content: start;
         height: 100%;
         border : 1px solid ${(props) => (props.isOpen ? '#4CCDF9' : '#ccc')};} 
+        
+    }
+
+    #formtable {
+        width: 100%;
+        display: inline-flex;
+        justify-content: space-between;
     }
 
     #form {
@@ -141,6 +150,8 @@ const Dropdown = forwardRef(
                     return 'addMotion'
                 case 'addDataMenu':
                     return 'addDataMenu'
+                case 'formtable':
+                    return 'formtable'
                 default:
                     return 'addData'
             }
