@@ -21,6 +21,12 @@ import Spinner from "components/spinner/spinner";
 import UserMenu from "./usermenu";
 import LanguageMenu from "./languagemenu";
 import DialogBox from "components/dialog";
+import axios from "axios";
+import { LoginApi } from "api";
+import user from "store/user";
+
+import PageSpinner from "components/pageSpinner";
+
 
 const Searchbar = React.lazy(() => import("./serachbar"));
 
@@ -145,10 +151,16 @@ const RightSide = () => {
     // using differnt approch for toggle the sea uer and lang
     const [active, setActive] = useState("");
     const [model, setModel] = useState(false);
+    
+    const [responce , setResponce] = useState(null);
 
     const dispatch = useDispatch();
     const state = useSelector((state) => state.sidebar);
-    
+    const token = useSelector((state) => state.session);
+    console.log(token);
+    // const pharseToken = JSON.parse(token.authToken);
+    // console.log(pharseToken);
+
     const search = () => {
         console.log("search");
         setActive("search");
@@ -175,17 +187,43 @@ const RightSide = () => {
         setModel(true);
     };
 
-    const logout = () => {
-        // remove the data from redux
-        // dispatch(logoutSuccess());
-        // close modal post data and redirect to login page
-        setModel(false);
-        console.log(inputRef.current.value);
+    const logout = async () => {
+        
+        if (inputRef.current.value !== "") {
+            try {
+                // post data
+                const data = {
+                    email : token.user.email,
+                    message: inputRef.current.value,
+                };
+
+                const request = await axios.post(LoginApi.logout, data, {
+                    headers: {
+                        'Authorization': `Bearer ${token.authToken}`,
+                        'Content-Type': 'application/json',
+                        'Accept' : 'application/json',
+                    }
+                });
+                setResponce(request.data);
+                console.log(request);
+                if (request.status === 200) {
+                    setTimeout(() => {
+                        // remove the data from redux
+                        dispatch(logoutSuccess());
+                        setModel(false);
+                    }, 500);
+                }
+            }
+            catch (error) {
+                setResponce(error.response.data);
+                console.log(error);
+            }
+        }
 
     };
 
     useEffect(() => {
-        
+
         const handelUserModal = (event) => {
             if (userRef.current && !userRef.current.contains(event.target)) {
                 setActive("");

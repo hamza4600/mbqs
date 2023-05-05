@@ -167,10 +167,10 @@ const Anime = styled.div`
 
 export const DotShuttler = () => (
     <>
-        <Anime class="col-3">
-            <div class="snippet" data-title="dot-shuttle">
-                <div class="stage filter-contrast">
-                    <div class="dot-shuttle"></div>
+        <Anime className="col-3">
+            <div className="snippet" data-title="dot-shuttle">
+                <div className="stage filter-contrast">
+                    <div className="dot-shuttle"></div>
                 </div>
             </div>
         </Anime>

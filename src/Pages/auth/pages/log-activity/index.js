@@ -1,27 +1,33 @@
 import { H1 } from "components/a"
-import { Container } from "./style"
+import { Container, TableHead } from "./style"
 import { TableLeftSide, TableRightSide } from "../list-View"
 import Dropdown from "components/dropdown"
 import { useState } from "react"
-import { ListBody } from "../list-View/sub"
-import { ListBod } from "../list-View/variable"
+import { scheduleBody, scheduleHead, scheduleList } from "./data"
 
-const TableHeader = ({ headerList }) => {
-    return (
-        <>
-            <thead>
-                <tr>
-                    
-                    {Array.isArray(headerList) && headerList.map((item, index) => (
-                        <th key={index}>{item}</th>
-                    ))}
 
-                </tr>
-            </thead>
-        </>
-    )
+const TableHeader = ({ headerList , type }) => {
+    if (type === 'schedule') {
+        return (
+            <>
+                <TableHead
+                    type={type}
+                >
+                    <tr>
+                        
+                        {Array.isArray(headerList) && 
+                        headerList.map((item, index) => (
+                            <th key={index}>{item.name}</th>
+                        ))}
+    
+                    </tr>
+                </TableHead>
+            </>
+        )
+    }
 }
-const TableBody = (bodyData) => {
+const TableBody = ({bodyData, type}) => {
+    if (type === 'schedule') {
     return (
         <>
             <tbody>
@@ -43,16 +49,7 @@ const TableBody = (bodyData) => {
         </>
     )
 }
-
-const scheduleList = [
-    {id : 1, name : 'Login Schedule'},
-    {id : 2, name : 'Working Schedule'},
-    {id : 3, name : 'Vacation Leave Schedule'},
-    {id : 4, name : 'Salary Schedule'},
-    {id : 5, name : 'Report Schedule'},
-    {id : 6, name : 'Employee Schedule Profile Setup'},
-    {id : 7, name : 'Meeting Schedule'},
-]
+}
 
 const ScheduleList = ({options , value, onUpdate }) => {
     return (
@@ -76,6 +73,8 @@ const TableList = () => {
             selectedSchedule : null,
         })
         
+        console.log(state)
+        // on update State it will change all the state of table header and body
     return (
         <>
             <div id="head">
@@ -91,15 +90,21 @@ const TableList = () => {
                 />
                 <TableRightSide id="rgt12" />
             </div>
-{/* 
+            {/* // type of table header and body should be same  */}
             <table 
                 aria-label="table"
                 id="table"
+                    style={{
+                        width: "100%",
+                        borderCollapse: "collapse",
+                        borderSpacing: "0",
+                        border: "1px solid #ddd",
+                        marginTop: "20px",
+                    }}
             >
-                <TableHeader />
-                <TableBody />
-            </table> */}
-            <ListBody array={ListBod}/>
+                <TableHeader  headerList={scheduleHead} type={'schedule'} />
+                <TableBody  bodyData={scheduleBody} type={'schedule'}/>
+            </table>
 
         </>
     )

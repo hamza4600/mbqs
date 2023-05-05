@@ -97,9 +97,12 @@ export const isValidName = (value) => {
 export const isPassword = (value) => {
     // const regex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/; // at least 8 characters, 1 uppercase, 1 lowercase, 1 number
     // only check for length of 8 characters
-    const regex = /(?=.*\w{8,}).*/;
+    // const regex = /(?=.*\w{8,}).*/;
+    // check lenght of 8 any characters but not space
+    // const regex = /^(?=.*\w{8,}).*/;
     return {
-        isValid: regex.test(value) && value.length > 7 && value.length < 40,
+        // isValid: regex.test(value) && value.length > 7 && value.length < 40,
+        isValid : value.length > 7 && value.length < 40,
         // label: "Require at least 8 characters, 1 uppercase, 1 lowercase, 1 number",
         label: "Require at least 8 characters",
     };

@@ -129,7 +129,7 @@ const LoginModelPart = (props) => {
             try {
                 setLoading(true);
                 // only wait for 2 sec for animation
-                const res = await axios.post(LoginApi.login, {
+                const res = await axios.post(LoginApi.employeLogin, {
                     email: values.username,
                     password: values.password,
                 });
@@ -261,11 +261,11 @@ const LoginModelPart = (props) => {
                     value={values.password}
                     onChange={(e) => setValue(e, "password")}
                     error={values.error.password}
-                    // onKeyDown = {(e) => {
-                    //     if(e.key === "Enter"){
-                    //         handelLogin()
-                    //     }
-                    // }}
+                    onKeyDown = {(e) => {
+                        if(e.key === "Enter"){
+                            handelLogin()
+                        }
+                    }}
                 />
 
                 <div id="row">
