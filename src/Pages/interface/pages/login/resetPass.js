@@ -45,7 +45,7 @@ const ResetPass = (props) => {
                 setLoading(false);
                 // next component
                 setTimeout(() => {
-                    if (res.data.code === 200) {
+                    if (res?.data?.code === 200) {
                         props.setActiveCompont(3);
                     }
                 }, 2000);
@@ -57,7 +57,6 @@ const ResetPass = (props) => {
         }
     };
 
-    console.log(responce);
     if (loading) {
         return (
             <>

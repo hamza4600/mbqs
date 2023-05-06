@@ -23,10 +23,6 @@ import LanguageMenu from "./languagemenu";
 import DialogBox from "components/dialog";
 import axios from "axios";
 import { LoginApi } from "api";
-import user from "store/user";
-
-import PageSpinner from "components/pageSpinner";
-
 
 const Searchbar = React.lazy(() => import("./serachbar"));
 
@@ -157,9 +153,6 @@ const RightSide = () => {
     const dispatch = useDispatch();
     const state = useSelector((state) => state.sidebar);
     const token = useSelector((state) => state.session);
-    console.log(token);
-    // const pharseToken = JSON.parse(token.authToken);
-    // console.log(pharseToken);
 
     const search = () => {
         console.log("search");
@@ -188,7 +181,7 @@ const RightSide = () => {
     };
 
     const logout = async () => {
-        
+
         if (inputRef.current.value !== "") {
             try {
                 // post data
@@ -215,7 +208,7 @@ const RightSide = () => {
                 }
             }
             catch (error) {
-                setResponce(error.response.data);
+                setResponce(error?.response);
                 console.log(error);
             }
         }

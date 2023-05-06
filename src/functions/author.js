@@ -1,4 +1,4 @@
-export function hamza(n, e) {
+export function x86asmler(n, e) {
     var r = [["#FFDA7A", "#FF6969"], ["#F29FFF", "#7C99FF"], ["#6491D6", "#43F0C7"]]
         , t = function () {
             return r[Math.floor(Math.random() * r.length)]

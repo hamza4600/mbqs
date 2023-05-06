@@ -8,5 +8,6 @@ export const LoginApi = {
     register : url + '/admin/registerBusiness',
     sendOtp : url + '/admin/sendOtp',
     verifyOtp : url + '/admin/verifyOtp',
-    logout : url + '/employee/logoutEmployee'
+    logout : url + '/employee/logoutEmployee',
+    getUserData : url + '/employee/getMyAccount'
 }

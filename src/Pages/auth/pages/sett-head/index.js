@@ -211,12 +211,6 @@ const SettingHeaderFooter = () => {
                                 accept="image/*"
                                 type="file"
                                 id={`file-`}
-                                // onInput={(e) => {
-                                //     let images = [...state.images];
-                                //     images[index].name = e.target.files[0].name;
-                                //     images[index].url = URL.createObjectURL(e.target.files[0]);
-                                //     setState({ ...state, images })
-                                // }}
                                 onClick={(e) => (e.target.value = null)}
                             />
                         </FileInput>
@@ -227,12 +221,6 @@ const SettingHeaderFooter = () => {
                                     accept="image/*"
                                     type="file"
                                     id={`file-`}
-                                    // onInput={(e) => {
-                                    //     let images = [...state.images];
-                                    //     images[index].name = e.target.files[0].name;
-                                    //     images[index].url = URL.createObjectURL(e.target.files[0]);
-                                    //     setState({ ...state, images })
-                                    // }}
                                     onClick={(e) => (e.target.value = null)}
                                 />
                             </FileInput>{" "}
@@ -242,12 +230,6 @@ const SettingHeaderFooter = () => {
                                     accept="image/*"
                                     type="file"
                                     id={`file-`}
-                                    // onInput={(e) => {
-                                    //     let images = [...state.images];
-                                    //     images[index].name = e.target.files[0].name;
-                                    //     images[index].url = URL.createObjectURL(e.target.files[0]);
-                                    //     setState({ ...state, images })
-                                    // }}
                                     onClick={(e) => (e.target.value = null)}
                                 />
                             </FileInput>
@@ -272,12 +254,6 @@ const SettingHeaderFooter = () => {
                                 accept="image/*"
                                 type="file"
                                 id={`file-`}
-                                // onInput={(e) => {
-                                //     let images = [...state.images];
-                                //     images[index].name = e.target.files[0].name;
-                                //     images[index].url = URL.createObjectURL(e.target.files[0]);
-                                //     setState({ ...state, images })
-                                // }}
                                 onClick={(e) => (e.target.value = null)}
                             />
                         </FileInput>

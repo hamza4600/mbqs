@@ -121,7 +121,6 @@ const ViedoPreview = ({ data }) => {
                     <br />
 
                     {
-                        // data.selectViedoType?.id === 1 ?
                         data.viedo.url && (
                             <video
                                 style={{
@@ -135,7 +134,6 @@ const ViedoPreview = ({ data }) => {
                     {
                         data.viedoUrl && (
                             <div>
-                                {/* https://www.youtube.com/embed/2g811Eo7K8U */}
                                 <h1>{data.viedoTitle}</h1>
                             </div>
                         )

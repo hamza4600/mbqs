@@ -69,6 +69,11 @@ export const Container = styled.div`
             width: 73%;
         }
 
+        span {
+            // same as input
+            width: 73%;
+        }
+
     }
 
     #cont {
@@ -119,6 +124,14 @@ export const Container = styled.div`
         }
     }
 
+    .input {
+        border: 0.5px solid #C8CACB;
+        padding: 2px;
+        padding-left: 6px;
+        color: #00243D;
+        background: none;
+        font-size: 15px;
+    }
 
     @media (max-width: 768px) {
         flex-direction: column;

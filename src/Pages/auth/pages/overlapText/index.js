@@ -14,9 +14,7 @@ const dData = [
 
 const InputSection = ({ data, setData, type }) => {
 
-    // can addd more input field
     const addInputField = () => {
-        console.log("addInputField", data)
         setData({
             field: "textAray",
             value: [

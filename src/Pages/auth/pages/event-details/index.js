@@ -253,8 +253,6 @@ const EditDetailSection = ({ state, setState }) => {
                                         type="text"
                                         placeholder={item.placeholder}
                                         id={item.id}
-                                    // value={item.value}
-                                    // onChange={(e) => handelNestedInput(e, item.id)}
                                     />
                                 </div>
                             ))

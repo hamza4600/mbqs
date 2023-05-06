@@ -19,12 +19,8 @@ const Left = () => (
     </>
 );
 
-// pass all values to redux In seprate file Models
 const Right = (props) => {
-    // const url = new URL(window.location.href);
-    // const role = url.searchParams.get("role");
-    // console.log(role)
-    // url be like this http://localhost:3000/?role=Admin/?model=4 can  model in use for login model
+
     const [activeCompont, setActiveCompont] = useState(1);
 
     const ActiveCompt = useCallback(() => {

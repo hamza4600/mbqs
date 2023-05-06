@@ -32,7 +32,6 @@ const RegesterModel = (props) => {
 
     const dispatch = useDispatch();
 
-
     function generateRandomIPv4() {
         let octets = [];
         for (let i = 0; i < 4; i++) {
@@ -140,7 +139,7 @@ const RegesterModel = (props) => {
                 setResponce(responce.data);
 
                 setTimeout(() => {
-                    if (responce.data.code === 200) {
+                    if (responce?.data?.code === 200) {
                         // set model data
                         dispatch(
                             setModelData({
@@ -165,7 +164,7 @@ const RegesterModel = (props) => {
             } catch (error) {
                 setLoading(false);
                 console.error("Error occurred while logging in: ", error);
-                setResponce(error.response.data);
+                setResponce(error?.response?.data);
             }
         }
     };
@@ -190,7 +189,7 @@ const RegesterModel = (props) => {
         );
     }
 
-    if (responce.code === 200) {
+    if (responce?.code === 200) {
         return (
             <>
                 <RegesterWrapper>
@@ -203,7 +202,7 @@ const RegesterModel = (props) => {
         );
     }
 
-    if (responce.code === 500) {
+    if (responce?.code === 500) {
         return (
             <>
                 <ServerError />
@@ -211,7 +210,7 @@ const RegesterModel = (props) => {
         );
     }
 
-    if (responce.code === 400) {
+    if (responce?.code === 400) {
         return (
             <>
                 <RegesterWrapper>

@@ -4,19 +4,20 @@ import { createSlice } from "@reduxjs/toolkit";
 export const sessionSlice = createSlice({
     name: "session",
     initialState: {
-        isLogedIn: false, // after loginit will true
+        isLogedIn: false, 
         isAuthenticated: false,
-        verified: false, // if register then true
-        error: null, // any error
-        userSession: [], // previus session
-        role: null, // role of user type
-        authToken: null, // token
-        refreshToken: null, //
-        uuId: null, // set on first time when a persion visit
+        verified: false, 
+        error: null, 
+        userSession: [],
+        role: null,
+        authToken: null,
+        refreshToken: null,
+        uuId: null,
         csrfToken: null,
-        ipv4: null, // ip of user when login
-        userAgent: null, // browser
-        sessionTime: null, // when login
+        ipv4: null, 
+        userAgent: null, 
+        sessionTime: null, 
+        timeinMilli: null, 
         user : {}
     },
     reducers: {
@@ -29,21 +30,19 @@ export const sessionSlice = createSlice({
                 role,
                 token,
                 time,
-                user 
+                timeinMilli,
+                user
             } = action.payload;
             return {
                 ...state,
                 isLogedIn: isLoginIn,
                 isAuthenticated: isAuthenticated,
                 error: error,
-                // appned new session in array
-                // userSession: [...state.userSession, time],
-                // set new session time also copy old session
-                // userSession: state.userSession.concat(time),
                 userSession: [time],
                 role: role,
                 authToken: token,
                 sessionTime: time,
+                timeinMilli : timeinMilli, 
                 user : user
             };
         },
@@ -63,6 +62,7 @@ export const sessionSlice = createSlice({
                 ipv4: false,
                 userAgent: false,
                 sessionTime: false,
+                timeinMilli: false,
                 user : {}
 
             };

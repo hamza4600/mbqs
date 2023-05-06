@@ -42,9 +42,6 @@ const OTP = (props) => {
     };
 
     const handelClick = async () => {
-        // validate the data and post to spi and succees then move to auth pages
-
-        console.log(value);
         const otp = runValidation(value.otp, ["required", "number"]);
         const pass = runValidation(value.pass, ["required", "password"]);
         const newPass = runValidation(
@@ -83,14 +80,14 @@ const OTP = (props) => {
                 setLoading(false);
                 // next component
                 setTimeout(() => {
-                    if (res.data.code === 200) {
+                    if (res.data?.code === 200) {
                         props.setActiveCompont(1);
                     }
                 }, 2000);
             } catch (error) {
                 setLoading(false);
                 console.log(error);
-                setResponce(error.response.data);
+                setResponce(error?.response?.data);
             }
         }
     };
@@ -115,7 +112,7 @@ const OTP = (props) => {
         );
     }
 
-    if (responce.code === 200) {
+    if (responce?.code === 200) {
         return (
             <>
                 <LoginModelWrapper>

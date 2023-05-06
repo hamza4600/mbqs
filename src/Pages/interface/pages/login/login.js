@@ -36,7 +36,6 @@ const LoginModelPart = (props) => {
 
     useEffect(() => {
        
-        // if id is null empty then set it to random id
         if (!uuId || uuId === null) {
             dispatch(
                 addUid({
@@ -74,6 +73,7 @@ const LoginModelPart = (props) => {
         const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric' };
         return now.toLocaleDateString('en-US', options);
     }
+    // reverse 
 
     const forget = () => {
         props.setActiveCompont(4);
@@ -137,7 +137,7 @@ const LoginModelPart = (props) => {
                 setLoading(false);
                 setResponce(res.data);
 
-                if (res.data.code === 200 && res.data.message) {
+                if (res.data?.code === 200 && res.data?.message) {
                     // set session
                     setTimeout(() => {
                         // set redux use session of auth 
@@ -156,6 +156,7 @@ const LoginModelPart = (props) => {
                                 isAuthenticated : true,
                                 error : false,
                                 time : getCurrentDateTime(),
+                                timeinMilli : Date.now(),
                                 token : res.data.message.token,
                                 user : {
                                     id : res.data.message.id,
@@ -175,14 +176,14 @@ const LoginModelPart = (props) => {
             } catch (error) {
                 setLoading(false);
                 console.log(error, "=======");
-                setResponce(error.response.data); 
+                setResponce(error?.response); 
             }
         }
     };
 
     useEffect(() => {
                      
-        if (responce.code === 401) {
+        if (responce?.code === 401) {
             setValues({
                 username: "",
                 password: "",
@@ -214,7 +215,7 @@ const LoginModelPart = (props) => {
         );
     }
 
-    if (responce.code === 200) {
+    if (responce?.code === 200) {
         return (
             <>
                 <LoginModelWrapper>
@@ -227,7 +228,7 @@ const LoginModelPart = (props) => {
         );
     }
 
-    if (responce.code === 500) {
+    if (responce?.code === 500) {
         return (
             <>
                 <ServerError />

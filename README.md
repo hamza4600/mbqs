@@ -4,12 +4,6 @@
 
 # Models for Login and Register
 
-# to the Redxu Store
-
-# Show Model when user is offline
-
-- Set the types of pages to be used in the system
-
 https://billing.misshosting.com/clientarea.php
 
 # For Gut hub
@@ -58,12 +52,3 @@ git checkout master
 git pull origin master
 git merge test
 git push origin master
-
-https://github.com/thanhtungdp/vnpt-i/tree/VNPT/
-
-set document title of login Pages
-hoc for server error
-Hoc for logi apis
-use session for authentication also set cookies base it local stores is not enables
-Post Data on logout 
-Sidebar Data and pages
